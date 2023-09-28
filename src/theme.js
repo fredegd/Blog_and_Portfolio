@@ -12,6 +12,8 @@ export const themeManager = (darkMode) => {
     text: {
       primary: "#f1f1f1",
       secondary: "#888888",
+      contrast:"#000000",
+
       highlight: localStorage.getItem("col1") || "#ff8800", //hex orange color
       highlightAlt: localStorage.getItem("col2") || "#ffff00", //hex yellow color
     },
@@ -33,6 +35,7 @@ export const themeManager = (darkMode) => {
     text: {
       primary: "#131313",
       secondary: "#888888",
+      contrast:"#ffffff",
       highlight: localStorage.getItem("col1") || "#ff8800", //hex orange color
       highlightAlt: localStorage.getItem("col2") || "#ffff00", //hex yellow color
 
@@ -49,20 +52,20 @@ export const themeManager = (darkMode) => {
     palette: darkMode ? { ...darkPalette } : { ...lightPalette },
 
     typography: {
-      fontFamily: "IBM Plex Mono, sans-serif",
+      fontFamily: "IBM Plex Mono",
       body1: {
         fontSize: "1.2rem",
-        fontFamily: "IBM Plex Mono, sans-serif",
+        fontFamily: "IBM Plex Mono",
 
 
       },
       body2: {
         fontSize: "1.2rem",
-        fontFamily: "IBM Plex Mono, sans-serif",
+        fontFamily: "IBM Plex Mono",
       },
       button:{
         fontSize: "1.1rem",
-        fontFamily: "IBM Plex Mono, sans-serif",
+        fontFamily: "IBM Plex Mono",
         fontSize:"1.4rem",
         fontWeight: 400,
         letterSpacing:"0.02857em",
@@ -70,7 +73,7 @@ export const themeManager = (darkMode) => {
       },
       h1: {
         fontSize: "4rem",
-        fontFamily: "IBM Plex Mono, sans-serif",
+        fontFamily: "IBM Plex Mono",
         letterSpacing: "-0.08em",
 
       
@@ -78,46 +81,46 @@ export const themeManager = (darkMode) => {
       },
       h2: {
         fontSize: "3.5rem",
-        fontFamily: "IBM Plex Mono, sans-serif",
+        fontFamily: "IBM Plex Mono",
         letterSpacing: "-0.08em",
 
         // lineHeight: "3.2rem",
       },
       h3: {
         fontSize: "3rem",
-        fontFamily: "IBM Plex Mono, sans-serif",
+        fontFamily: "IBM Plex Mono",
         letterSpacing: "-0.08em",
 
         // lineHeight: "2.6rem",
       },
       h4: {
         fontSize: "2.5rem",
-        fontFamily: "IBM Plex Mono, sans-serif",
+        fontFamily: "IBM Plex Mono",
         letterSpacing: "-0.08em",
 
         // lineHeight: "2.3rem",
       },
       h5: {
         fontSize: "2rem",
-        fontFamily: "IBM Plex Mono, sans-serif",
+        fontFamily: "IBM Plex Mono",
         letterSpacing: "-0.08em",
 
         // lineHeight: "1.7rem",
       },
       h6: {
         fontSize: "1.5rem",
-        fontFamily: "IBM Plex Mono, sans-serif",
+        fontFamily: "IBM Plex Mono",
         letterSpacing: "-0.08em",
         // lineHeight: "1.6rem",
       },
 
       subtitle1: {
         fontSize: "1.1rem",
-        fontFamily: "IBM Plex Mono, sans-serif",
+        fontFamily: "IBM Plex Mono",
       },
       subtitle2: {
         fontSize: "1rem",
-        fontFamily: "IBM Plex Mono, sans-serif",
+        fontFamily: "IBM Plex Mono",
       },
       
     },

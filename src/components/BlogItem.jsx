@@ -12,11 +12,10 @@ export default function BlogItem() {
   const theme = useTheme();
   const [blog, setBlog] = useState();
   const [showBackToTop, setShowBackToTop] = useState(false);
+  const [anchorEl, setAnchorEl] = useState(null); // for popover
 
   const { blogItemid } = useParams();
   const { scrollYProgress } = useScroll();
-
-  const [anchorEl, setAnchorEl] = useState(null);
 
   const handlePopoverOpen = (event) => {
     console.log(event.currentTarget);
@@ -80,6 +79,7 @@ export default function BlogItem() {
       top: 0,
       behavior: "smooth",
     });
+    handlePopoverClose();
   };
 
   const open = Boolean(anchorEl);
@@ -145,6 +145,7 @@ export default function BlogItem() {
               <KeyboardArrowUp />
             </IconButton>
           )}
+
           <Box>
             {/* Back to "/blog" button */}
             <Link to="/blog" style={{ textDecoration: "none" }}>
@@ -152,7 +153,7 @@ export default function BlogItem() {
                 id="back to blog"
                 sx={{
                   position: "fixed",
-                  top: "12rem",
+                  top: "8rem",
                   left: "2rem",
                   backgroundColor: theme.palette.text.highlightAlt,
                   color: theme.palette.primary.contrastText,
@@ -173,10 +174,6 @@ export default function BlogItem() {
               }}
               open={open}
               anchorEl={anchorEl && anchorEl}
-              // anchorOrigin={{
-              //   vertical: "top",
-              //   horizontal: "left",
-              // }}
               transformOrigin={{
                 vertical: "top",
                 horizontal: "left",

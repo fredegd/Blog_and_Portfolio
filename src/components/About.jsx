@@ -19,7 +19,7 @@ export default function About() {
         sx={{
           backgroundColor: theme.palette.text.highlight,
           fontSize: "20px",
-
+          color:theme.palette.text.contrast,
           width: "100%",
           padding: "2.5rem",
           marginTop: "5rem",

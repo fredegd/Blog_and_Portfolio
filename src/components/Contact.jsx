@@ -75,12 +75,12 @@ export default function Contact() {
         paddingTop: "5rem",
       }}
     >
-      
       <Box
         sx={{
           backgroundColor: theme.palette.text.highlight,
           fontSize: "20px",
-
+          color: theme.palette.text.contrast,
+          marginBottom: "5rem",
           width: "100%",
           padding: "2.5rem",
           // marginTop: "5rem",
@@ -105,26 +105,28 @@ export default function Contact() {
         {contactItems.map((item) => {
           return (
             <Grid item key={item.id} xs={12} sm={6} md={3}>
-              <motion.div
-                key={item.id}
-                style={{
-                  margin: "1rem",
-                  padding: 0,
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                }}
-                variants={staggerConfig}
-                // initial="animate"
-                //  animate={controls}
-                whileHover={{ scale: 1.1 }}
-                transition={{ type: "spring", stiffness: 400, damping: 10 }}
-                whileTap={{ scale: 0.9 }}
-              >
-                <Link href={item.linkTo} target={"blank"} underline="hover">
+              <Link href={item.linkTo} target={"blank"} underline="hover">
+                <motion.div
+                  key={item.id}
+                  style={{
+                    margin: "1rem",
+                    padding: 0,
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                  }}
+                  variants={staggerConfig}
+                  // initial="animate"
+                  //  animate={controls}
+                  whileHover={{ scale: 1.1 }}
+                  transition={{ type: "spring", stiffness: 300, damping: 10 }}
+                  whileTap={{ scale: 0.9 }}
+                >
                   <IconButton
                     sx={{
-                      background: theme.palette.text.highlightAlt,
+                      background: theme.palette.background.main,
+                      border: `10px solid ${theme.palette.text.highlightAlt}`,
+                      color: theme.palette.text.highlightAlt,
                       borderRadius: "10%",
                       width: {
                         xs: "300px",
@@ -140,7 +142,8 @@ export default function Contact() {
                       },
                       transition: "all 0.5s ease-in-out",
                       "&:hover": {
-                        border: `10px solid ${theme.palette.text.highlight}`,
+                        color: theme.palette.text.highlight,
+                        background: theme.palette.background.main,
                       },
                       fontSize: {
                         xs: "14rem",
@@ -153,14 +156,13 @@ export default function Contact() {
                     <item.icon
                       style={{
                         fontSize: "inherit",
-                        color: theme.palette.text.highlight,
                         textAlign: "center",
                         textJustify: "center",
                       }}
                     />
                   </IconButton>
-                </Link>
-              </motion.div>
+                </motion.div>
+              </Link>
             </Grid>
           );
         })}

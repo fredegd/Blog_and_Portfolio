@@ -32,7 +32,7 @@ export default function BlogListCF() {
   return (
     <>
       <Box
-        sx={{  backgroundColor: theme.palette.text.highlight, fontSize: "20px", zIndex: "100", width: "100%", padding: "2.5rem", marginTop: "5rem" }}
+        sx={{  backgroundColor: theme.palette.text.highlight, fontSize: "20px", zIndex: "100", width: "100%", padding: "2.5rem", marginTop: "5rem", color:theme.palette.text.contrast}}
       >
         <Typography variant="h1">BLOG</Typography>
       </Box>

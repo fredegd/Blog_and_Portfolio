@@ -22,6 +22,7 @@ import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import { navItems } from "../navItems";
 
+
 // const drawerWidth = 240;
 
 export default function Navbar({ window, setOpen }) {
@@ -84,7 +85,7 @@ export default function Navbar({ window, setOpen }) {
           sm: "400px", // 400px wide on screens wider than 600px (md)
           xs: "100vw", // Fullscreen on small screens
         },
-        height: "100vh",
+        height: "90vh",
       }}
     >
       <Typography
@@ -96,10 +97,11 @@ export default function Navbar({ window, setOpen }) {
       <Divider />
       <List
         sx={{
-          height: "90vh",
+          height: "75vh",
+          mt: 3,
           display: "flex",
           flexDirection: "column",
-          justifyContent: "space-around",
+          justifyContent: "space-between",
         }}
       >
         {navItems.map((item) => (
@@ -135,8 +137,18 @@ export default function Navbar({ window, setOpen }) {
             </Link>
           </ListItem>
         ))}
+        
       </List>
-    </Box>
+
+<Box mt={8}>
+  <Typography variant="p" color={theme.palette.text.secondary} fontSize={20}>
+
+all rights reserved © 2023
+  </Typography>
+
+  </Box> 
+     </Box>
+  
   );
 
   const container =
@@ -152,6 +164,8 @@ export default function Navbar({ window, setOpen }) {
             display: "flex",
             flexDirection: "row",
             justifyContent: "space-between",
+            // border : `1px solid ${theme.palette.text.highlightAlt}`,
+            boxShadow: "0px 0px 10px 10px rgba(0,0,0,0.2)"
           }}
         >
           <IconButton
@@ -192,7 +206,7 @@ export default function Navbar({ window, setOpen }) {
                     sx={{
                       color:
                         activeMenuItem === item.id
-                          ? theme.palette.text.secondary // Active color
+                          ? theme.palette.text.contrast // Active color
                           : theme.palette.text.primary, // Inactive color
                       backgroundColor:
                         activeMenuItem === item.id

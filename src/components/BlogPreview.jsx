@@ -2,11 +2,11 @@ import { Box } from "@mui/system";
 import useTheme from "@mui/material/styles/useTheme";
 import { motion, useAnimation } from "framer-motion";
 
-import { Typography, Button,Grid } from "@mui/material";
+import { Typography, Button, Grid } from "@mui/material";
 import { Link } from "react-router-dom";
 import BlogItemCard from "./BlogItemCard";
 
-export default function BlogPreview({blogs}) {
+export default function BlogPreview({ blogs }) {
   const theme = useTheme();
   // console.log(theme)
 
@@ -15,7 +15,6 @@ export default function BlogPreview({blogs}) {
       sx={{
         width: { xs: "100%", sm: "100%", md: "100%", lg: "100%", xl: "100%" },
         minHeight: "100vh",
-
 
         display: "flex",
         flexDirection: "column",
@@ -26,14 +25,12 @@ export default function BlogPreview({blogs}) {
     >
       <motion.div
         style={{
-          // backgroundColor: `${theme.palette.background.transparent}`,
-          margin: "5rem",
+          margin: "5rem 0 ",
+          padding: "0 3rem",
           transition: "background 0.7s ",
-
         }}
-        //while hover apply a gradient background
         whileHover={{
-          scale: 1.1,
+          scale: 1.05,
         }}
         whileTap={{ scale: 0.9 }}
         transition={{ type: "spring", stiffness: 100, damping: 10 }}
@@ -48,11 +45,17 @@ export default function BlogPreview({blogs}) {
         >
           <Button
             sx={{
-              background: theme.palette.text.highlightAlt,
+              width: "100%",
+              background: theme.palette.background.main,
+              border: `10px solid ${theme.palette.text.highlightAlt}`,
+              fontFamily: "IBM Plex Mono ",
+              color: theme.palette.text.highlightAlt,
               p: 3,
               borderRadius: "1em",
               "&:hover": {
-                border: `10px solid ${theme.palette.text.highlight}`,
+                background: theme.palette.background.main,
+                color: theme.palette.text.highlight,
+                fontSize: "1.1rem",
               },
             }}
           >
@@ -66,15 +69,13 @@ export default function BlogPreview({blogs}) {
                   lg: "4.5rem",
                   xl: "5rem",
                 },
-                color: theme.palette.text.primary,
-                transition:" all 0.7s ease-in-out",
 
+                transition: " all 0.3s ease-in-out",
               }}
             >
               Latest from the Blog:
             </Typography>
           </Button>
-          
         </Link>
       </motion.div>
 
