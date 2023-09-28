@@ -80,7 +80,7 @@ export default function Contact() {
         sx={{
           backgroundColor: theme.palette.text.highlight,
           fontSize: "20px",
-          zIndex: "100",
+
           width: "100%",
           padding: "2.5rem",
           // marginTop: "5rem",
