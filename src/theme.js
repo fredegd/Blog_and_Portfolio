@@ -49,9 +49,12 @@ export const themeManager = (darkMode) => {
     palette: darkMode ? { ...darkPalette } : { ...lightPalette },
 
     typography: {
+      fontFamily: "IBM Plex Mono, sans-serif",
       body1: {
         fontSize: "1.2rem",
         fontFamily: "IBM Plex Mono, sans-serif",
+
+
       },
       body2: {
         fontSize: "1.2rem",
@@ -68,32 +71,44 @@ export const themeManager = (darkMode) => {
       h1: {
         fontSize: "4rem",
         fontFamily: "IBM Plex Mono, sans-serif",
-        lineHeight: "4.4rem",
+        letterSpacing: "-0.08em",
+
+      
+        // lineHeight: "5.8rem",
       },
       h2: {
         fontSize: "3.5rem",
         fontFamily: "IBM Plex Mono, sans-serif",
-        lineHeight: "3.2rem",
+        letterSpacing: "-0.08em",
+
+        // lineHeight: "3.2rem",
       },
       h3: {
         fontSize: "3rem",
         fontFamily: "IBM Plex Mono, sans-serif",
-        lineHeight: "2.6rem",
+        letterSpacing: "-0.08em",
+
+        // lineHeight: "2.6rem",
       },
       h4: {
         fontSize: "2.5rem",
         fontFamily: "IBM Plex Mono, sans-serif",
-        lineHeight: "2.3rem",
+        letterSpacing: "-0.08em",
+
+        // lineHeight: "2.3rem",
       },
       h5: {
         fontSize: "2rem",
         fontFamily: "IBM Plex Mono, sans-serif",
-        lineHeight: "1.7rem",
+        letterSpacing: "-0.08em",
+
+        // lineHeight: "1.7rem",
       },
       h6: {
         fontSize: "1.5rem",
         fontFamily: "IBM Plex Mono, sans-serif",
-        lineHeight: "1.6rem",
+        letterSpacing: "-0.08em",
+        // lineHeight: "1.6rem",
       },
 
       subtitle1: {

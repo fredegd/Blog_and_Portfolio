@@ -4,7 +4,6 @@ import { client } from "../client";
 
 import BlogItemCard from "./BlogItemCard";
 import { Box, Grid, Typography } from "@mui/material";
-import { axiosClient } from "../axiosClient";
 
 export default function BlogListCF() {
   const [blogs, setBlogs] = useState([]);

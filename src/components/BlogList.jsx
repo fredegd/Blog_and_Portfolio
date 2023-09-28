@@ -4,20 +4,8 @@ import BlogItemCard from "./BlogItemCard";
 import { Box, Grid, Typography } from "@mui/material";
 import { axiosClient } from "../axiosClient";
 
-export default function BlogList() {
-  const [blogs, setBlogs] = useState([]);
-const theme = useTheme();
-  useEffect(() => {
-    axiosClient
-      .get("/blog/read")
-      .then((res) => {
-        console.log(res.data);
-        setBlogs(res.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, []);
+export default function BlogList({blogs}) {
+ 
 
   return (
     <Box sx={{ zIndex: "100", width: "100%", padding:  "2.5rem"}}>

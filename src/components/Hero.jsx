@@ -38,7 +38,7 @@ export default function Hero() {
   return (
     <Box
       sx={{
-        fontFamily: "IBM Plex Mono, sans-serif",
+        // fontFamily: "IBM Plex Mono, sans-serif",
         fontSize: {
           xs: "1.2rem",
           sm: "1.5rem",
@@ -48,11 +48,12 @@ export default function Hero() {
         },
         // position: "relative",
         backgroundSize: "cover",
+        width: { xs: "100%", sm: "100%", md: "100%", lg: "100%", xl: "100%" },
         minHeight: "100vh",
+        border:"2px solid red",
         display: "flex",
         flexDirection: "column",
         justifyContent: "center",
-        width: { xs: "100%", sm: "100%", md: "100%", lg: "100%", xl: "100%" },
         overflow: "scroll",
         // animation: `${slideIn} 0.7s ease-out 0s 1  `,
         transition: "all 0.9s ease-in-out",

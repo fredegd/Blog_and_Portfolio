@@ -21,8 +21,6 @@ import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import { navItems } from "../navItems";
-import { cols } from "../colorSchema";
-import { MicNone } from "@mui/icons-material";
 
 // const drawerWidth = 240;
 
@@ -32,21 +30,29 @@ export default function Navbar({ window, setOpen }) {
 
   const location = useLocation();
   const [activeMenuItem, setActiveMenuItem] = useState(null);
+
   console.log(activeMenuItem);
+
   useEffect(() => {
     // Iterate through the navItems to find the active one
     for (const item of navItems) {
-      console.log(location.pathname)
-      console.log(location.pathname.startsWith(item.linkTo))
+      // console.log(location.pathname.slice(1,location.pathname.length) )
+      //  console.log(location.pathname.startsWith(item.linkTo.slice(1,item.linkTo.length)))
 
-      if (location.pathname === item.linkTo) {
+      // if (location.pathname === item.linkTo) {
+      //   setActiveMenuItem(item.id);
+      //   return; // Exit the loop early when found
+      // }
+   //   console.log(location.pathname.slice(1, location.pathname.length));
+      // console.log(location.pathname);
+
+      if (
+        location.pathname.slice(1, location.pathname.length).startsWith(item.id)
+      ) {
         setActiveMenuItem(item.id);
         return; // Exit the loop early when found
-      }
-      if (location.pathname.startsWith(item.linkTo)) {
-
+      } else if (location.pathname === "/") {
         setActiveMenuItem(item.id);
-        console.log(item.linkTo)
         return;
       }
     }
@@ -161,55 +167,59 @@ export default function Navbar({ window, setOpen }) {
             <MenuIcon />
           </IconButton>
 
-          <Typography
-            variant="h6"
-            component="div"
-            color={theme.palette.text.primary}
-            fontFamily={"IBM Plex Mono"}
-            sx={{
-              flexGrow: 1,
-              display: { xs: "none", sm: "block" },
-              color: theme.palette.text.highlight,
-            }}
-            textAlign="left"
-          >
-            Fred Egidi
-          </Typography>
+          <Link href={"/"} underline="hover">
+            <Typography
+              variant="h6"
+              component="div"
+              color={theme.palette.text.primary}
+              fontFamily={"IBM Plex Mono"}
+              sx={{
+                flexGrow: 1,
+                display: { xs: "none", sm: "block" },
+                color: theme.palette.text.highlight,
+              }}
+              textAlign="left"
+            >
+              Fred Egidi
+            </Typography>
+          </Link>
 
-          <Box sx={{ display: { xs: "none", sm: "block" } }}>
-            {navItems.map((item) => (
-              <Link key={item.id} href={item.linkTo} underline="hover">
-                <Button
-                  sx={{
-                    color:
-                      activeMenuItem === item.id
-                        ? theme.palette.text.highlightAlt // Active color
-                        : theme.palette.text.primary, // Inactive color
-                    backgroundColor:
-                      activeMenuItem === item.id
-                        ? theme.palette.text.primary
-                        : "transparent",
-                  }}
-                >
-                  {item.name}
-                </Button>
-              </Link>
-            ))}
+          <Box sx={{display: "flex", flexDirection:"row", alignItems:"center"}}>
+            <Box sx={{ display: { xs: "none", sm: "block" } }}>
+              {navItems.map((item) => (
+                <Link key={item.id} href={item.linkTo} underline="hover">
+                  <Button
+                    sx={{
+                      color:
+                        activeMenuItem === item.id
+                          ? theme.palette.text.secondary // Active color
+                          : theme.palette.text.primary, // Inactive color
+                      backgroundColor:
+                        activeMenuItem === item.id
+                          ? theme.palette.text.highlight
+                          : "transparent",
+                    }}
+                  >
+                    {item.name}
+                  </Button>
+                </Link>
+              ))}
+            </Box>
+
+            <Box
+              onClick={handleDrawerBgChange}
+              sx={{ color: theme.palette.text.highlight, mx: 2 }}
+            >
+              <WallpaperIcon />
+            </Box>
+
+            <Box
+              onClick={handleDarkChange}
+              style={{ color: theme.palette.text.primary, mx: 2 }}
+            >
+              {dk ? <DarkModeIcon /> : <LightModeIcon />}
+            </Box>
           </Box>
-
-          <div
-            onClick={handleDrawerBgChange}
-            style={{ color: theme.palette.text.highlight }}
-          >
-            <WallpaperIcon />
-          </div>
-
-          <div
-            onClick={handleDarkChange}
-            style={{ color: theme.palette.text.primary }}
-          >
-            {dk ? <DarkModeIcon /> : <LightModeIcon />}
-          </div>
         </Toolbar>
       </AppBar>
 

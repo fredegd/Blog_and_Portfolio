@@ -2,11 +2,10 @@ import { motion, useScroll } from "framer-motion";
 import { useParams, Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
-import ReactMarkdown from "react-markdown";
 import { useTheme } from "@mui/material/styles";
 import { client } from "../client";
-import { Box, Typography, IconButton } from "@mui/material";
-import {KeyboardArrowUp} from "@mui/icons-material";
+import { Box, Typography, IconButton, Popover } from "@mui/material";
+import { KeyboardArrowUp, KeyboardArrowLeft } from "@mui/icons-material";
 import { BLOCKS, INLINES } from "@contentful/rich-text-types";
 
 export default function BlogItem() {
@@ -16,6 +15,17 @@ export default function BlogItem() {
 
   const { blogItemid } = useParams();
   const { scrollYProgress } = useScroll();
+
+  const [anchorEl, setAnchorEl] = useState(null);
+
+  const handlePopoverOpen = (event) => {
+    console.log(event.currentTarget);
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handlePopoverClose = () => {
+    setAnchorEl(null);
+  };
 
   useEffect(() => {
     client
@@ -72,6 +82,8 @@ export default function BlogItem() {
     });
   };
 
+  const open = Boolean(anchorEl);
+
   if (!blog) {
     console.log("done");
     return (
@@ -95,8 +107,7 @@ export default function BlogItem() {
           sx={{
             zIndex: "1000",
             width: "100%",
-            background: `linear-gradient(90deg, ${theme.palette.background.transparent} 0%, ${theme.palette.background.secondary} 50%, ${theme.palette.background.transparent} 100%)`,
-            maxWidth: "800px",
+            background: `linear-gradient(90deg, #00000000 0%,${theme.palette.background.transparent} 20%, ${theme.palette.background.main} 40%, ${theme.palette.background.main} 60%, ${theme.palette.background.transparent} 80%,  #00000000 100%)`,
             display: "flex",
             flexDirection: "column",
             overflowX: "visible",
@@ -118,52 +129,83 @@ export default function BlogItem() {
           />
           {showBackToTop && (
             <IconButton
+              id="back to top"
               onClick={scrollToTop}
               sx={{
                 position: "fixed",
                 bottom: "2rem",
                 right: "2rem",
-                backgroundColor: theme.palette.text.highlight,
+                backgroundColor: theme.palette.text.highlightAlt,
                 color: theme.palette.primary.contrastText,
-                "&:hover":{                 backgroundColor: theme.palette.text.primary,
-                }
+                "&:hover": { backgroundColor: theme.palette.text.primary },
               }}
+              onMouseEnter={handlePopoverOpen}
+              onMouseLeave={handlePopoverClose}
             >
               <KeyboardArrowUp />
             </IconButton>
           )}
-
-
-{/* Back to "/blog" button */}
-<Link to="/blog" style={{ textDecoration: "none" }}>
-            <IconButton
+          <Box>
+            {/* Back to "/blog" button */}
+            <Link to="/blog" style={{ textDecoration: "none" }}>
+              <IconButton
+                id="back to blog"
+                sx={{
+                  position: "fixed",
+                  top: "12rem",
+                  left: "2rem",
+                  backgroundColor: theme.palette.text.highlightAlt,
+                  color: theme.palette.primary.contrastText,
+                  "&:hover": {
+                    backgroundColor: theme.palette.text.primary,
+                  },
+                }}
+                onMouseEnter={handlePopoverOpen}
+                onMouseLeave={handlePopoverClose}
+              >
+                <KeyboardArrowLeft />
+              </IconButton>
+            </Link>
+            <Popover
+              id="mouse-over-popover"
               sx={{
-                position: "fixed",
-                top: "12rem",
-                left: "2rem",
-                backgroundColor: theme.palette.text.highlightAlt,
-                color: theme.palette.primary.contrastText,
-                "&:hover": {
-                  backgroundColor: theme.palette.text.primary,
-                },
+                pointerEvents: "none",
               }}
+              open={open}
+              anchorEl={anchorEl && anchorEl}
+              // anchorOrigin={{
+              //   vertical: "top",
+              //   horizontal: "left",
+              // }}
+              transformOrigin={{
+                vertical: "top",
+                horizontal: "left",
+              }}
+              onClose={handlePopoverClose}
+              disableRestoreFocus
             >
-              {/* You can add an icon or text here */}
-              Back to Blog
-            </IconButton>
-          </Link>
+              <Typography
+                sx={{
+                  p: 1,
+                  border: `2px solid ${theme.palette.text.highlightAlt}`,
+                }}
+              >
+                {anchorEl && anchorEl.id}
+              </Typography>
+            </Popover>
+          </Box>
 
           <Box
             sx={{
-              boxShadow: theme.shadows,
+              boxShadow: `0px 0px 10px 0px ${theme.palette.text.highlightAlt}`,
               backgroundColor: theme.palette.background.main,
               padding: "2rem 1.5rem 3rem 1.5rem",
             }}
           >
             <Box
               sx={{
-                height: { xs: "90vw", sm: "60vw", md: "50vw" },
-                width: { xs: "90vw", sm: "90vw", md: "85vw", lg: "80vw" },
+                height: { xs: "90vw", sm: "60vw", md: "50vw", lg: "40vw" },
+                width: { xs: "90vw", sm: "90vw", md: "85vw", lg: "70vw" },
                 backgroundImage: `url(${blog.blogTitleImage.fields.file.url})`,
                 backgroundPosition: "center",
                 backgroundSize: `100% auto`,
@@ -177,7 +219,7 @@ export default function BlogItem() {
             <Typography
               variant="h1"
               sx={{
-                width: { xs: "auto", sm: "90vw", md: "85vw", lg: "80vw" },
+                width: { xs: "auto", sm: "90vw", md: "85vw", lg: "70vw" },
                 fontSize: { xs: "8vw", sm: "7.7vw", md: "6.5vw", lg: "5vw" },
                 padding: { xs: "1rem", md: "3rem" },
                 transition: "all 0.5s ease-in-out",
@@ -198,7 +240,9 @@ export default function BlogItem() {
             </Typography>
           </Box>
 
-          <Box sx={{ marginTop: "4rem", marginBottom: "5rem" }}>
+          <Box
+            sx={{ marginTop: "4rem", marginBottom: "5rem", maxWidth: "800px" }}
+          >
             {renderRichText(blog.content)}
           </Box>
         </Box>

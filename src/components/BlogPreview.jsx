@@ -2,58 +2,91 @@ import { Box } from "@mui/system";
 import useTheme from "@mui/material/styles/useTheme";
 import { motion, useAnimation } from "framer-motion";
 
-import { Typography } from "@mui/material";
+import { Typography, Button,Grid } from "@mui/material";
 import { Link } from "react-router-dom";
+import BlogItemCard from "./BlogItemCard";
 
-export default function BlogPreview() {
+export default function BlogPreview({blogs}) {
   const theme = useTheme();
   // console.log(theme)
 
   return (
-    <Link
-      to={"/blog"}
-      style={{
-        textDecoration: "none",
-        color: theme.palette.text.primary,
-        zIndex: "100",
+    <Box
+      sx={{
+        width: { xs: "100%", sm: "100%", md: "100%", lg: "100%", xl: "100%" },
+        minHeight: "100vh",
+        border:"2px solid red",
+
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
+        overflow: "scroll",
+        transition: "all 0.9s ease-in-out",
       }}
     >
-      <Box
-        sx={{
-          fontFamily: "IBM Plex Mono, sans-serif",
-          fontSize: {
-            xs: "1.2rem",
-            sm: "1.5rem",
-            md: "1.8rem",
-            lg: "2.1rem",
-            xl: "2.4rem",
-          },
+      <motion.div
+        style={{
+          // backgroundColor: `${theme.palette.background.transparent}`,
+          margin: "5rem",
+          transition: "background 0.7s ",
 
-          minHeight: "100vh",
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "center",
-          width: { xs: "100%", sm: "100%", md: "100%", lg: "100%", xl: "100%" },
-          overflow: "scroll",
-          transition: "all 0.9s ease-in-out",
-         
         }}
+        //while hover apply a gradient background
+        whileHover={{
+          scale: 1.1,
+        }}
+        whileTap={{ scale: 0.9 }}
+        transition={{ type: "spring", stiffness: 100, damping: 10 }}
       >
-        <motion.div
+        <Link
+          to={"/blog"}
           style={{
-            backgroundColor: `${theme.palette.background.transparent}`,
-            // backgroundColor: theme.palette.background.transparent,
-            margin: "5rem",
-            borderRadius: "1rem",     
-            transition: "background 0.7s "     }}
-            //while hover apply a gradient background
-          whileHover={{ scale: 1.05, border: "1px solid yellow", background: `radial-gradient(circle, ${theme.palette.background.main} 0%, ${theme.palette.action.active} 100%)`}}
-          transition={{ type: "spring", stiffness: 100, damping: 10 }}
-          whileTap={{ scale: 0.9 }}
+            textDecoration: "none",
+            color: theme.palette.text.primary,
+            zIndex: "100",
+          }}
         >
-          <h1>Latest from the Blog:</h1>
-        </motion.div>
+          <Button
+            sx={{
+              background: theme.palette.text.highlightAlt,
+              p: 3,
+              borderRadius: "1em",
+              "&:hover": {
+                border: `10px solid ${theme.palette.text.highlight}`,
+              },
+            }}
+          >
+            <Typography
+              variant="h1"
+              sx={{
+                fontSize: {
+                  xs: "3rem",
+                  sm: "3.5rem",
+                  md: "4rem",
+                  lg: "4.5rem",
+                  xl: "5rem",
+                },
+                color: theme.palette.text.primary,
+                transition:" all 0.7s ease-in-out",
+
+              }}
+            >
+              Latest from the Blog:
+            </Typography>
+          </Button>
+          
+        </Link>
+      </motion.div>
+
+      <Box sx={{ zIndex: "100", width: "100%", padding: "2.5rem" }}>
+        <Grid container spacing={5}>
+          {blogs.map((blog) => (
+            <Grid item xs={12} sm={6} md={4} key={blog.sys.id}>
+              <BlogItemCard blog={blog} />
+            </Grid>
+          ))}
+        </Grid>
       </Box>
-    </Link>
+    </Box>
   );
 }
