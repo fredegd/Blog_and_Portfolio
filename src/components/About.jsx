@@ -28,6 +28,10 @@ export default function About() {
       >
         <Typography variant="h1">About Me:</Typography>
       </Box>
+
+      <Box>
+      
+      </Box>
     </Box>
   );
 }

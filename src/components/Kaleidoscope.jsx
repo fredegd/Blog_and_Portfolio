@@ -56,35 +56,36 @@ export default function Kaleidoscope(bgImage) {
         )})`;
         square.style.backgroundPosition = "center";
         // square.style.transition = "0.5s ease-out"; //commented out temporarily
-        square.style.opacity = "0.3";
+         square.style.opacity = "0.6";
       });
 
     const shiftSquares = (mX, mY, gridW, gridH, tileW, tileH) => {
+      mX = mX + gridW / 2;
+      mY = mY + gridH / 2;
       squares.forEach((square, index) => {
         const row = Math.floor(index / gridSize.numCols);
         const col = index % gridSize.numCols;
-        const xt = map(col, 0, gridSize.numCols, -gridW / 2, gridW / 2);
-        const yt = map(row, 0, gridSize.numRows, -gridH / 2, gridH / 2);
-        const distance = Math.sqrt((mX - xt) ** 2 + (mY - yt) ** 2);
+        const xt = remap(col, 0, gridSize.numCols, 0, gridW );
+        const yt = remap(row, 0, gridSize.numRows, 0, gridH );
+        const distance = Math.sqrt((xt-mX) ** 2 + (yt-mY) ** 2);
         const multiplier = Math.min(
           maxScale,
-          maxScale * Math.abs(map(distance, 0, gridW / 2, 3 / Math.sqrt(2), 0))
+          maxScale * remap(distance, 0, (gridW+gridH)/2, 3 / Math.sqrt(2), 0)
         );
 
         square.style.width = `${tileW * 1}px`; // instead of 1, use multiplier
         square.style.height = `${tileH * 1}px`; // instead of 1, use multiplier
-        square.style.opacity = `${map(distance, 0, gridW / 2, 1.5, 0.1)}`;
+         square.style.opacity = `${remap(distance, 0, gridW / 2, 1.5, 0.2)}`;
 
         // Calculate background tiles position based on the square's position
-        const bgX = gridW / 2 - xt;
-        const bgY = gridH / 2 - yt;
+
+        const bgX =  - xt;
+        const bgY = - yt;
         square.style.backgroundPosition = `${bgX}px ${bgY}px`;
         square.style.backgroundSize = `${gridW * multiplier}px ${
           gridH * multiplier
         }px`;
-        square.style.transform = `translate(${
-          (-tileW / 2) * multiplier + tileW / 2
-        }px, ${(-tileH / 2) * multiplier + tileH / 2}px)`;
+        square.style.transform = `translate(${0}px, ${0}px)`;
       });
     };
 
@@ -167,8 +168,8 @@ export default function Kaleidoscope(bgImage) {
     };
   }, [bgImage, window.innerWidth]);
 
-  // a function to map a value from one range to another range
-  function map(value, fromLow, fromHigh, toLow, toHigh) {
+  // a function to remap a value from one range to another range
+  function remap(value, fromLow, fromHigh, toLow, toHigh) {
     return (
       ((value - fromLow) * (toHigh - toLow)) / (fromHigh - fromLow) + toLow
     );

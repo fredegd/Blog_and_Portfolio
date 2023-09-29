@@ -26,11 +26,11 @@ export default function BlogPreview({ blogs }) {
       <motion.div
         style={{
           margin: "5rem 0 ",
-          padding: "0 3rem",
+          padding: "0 2.5rem",
           transition: "background 0.7s ",
         }}
         whileHover={{
-          scale: 1.05,
+          scale: 1.04,
         }}
         whileTap={{ scale: 0.9 }}
         transition={{ type: "spring", stiffness: 100, damping: 10 }}
@@ -51,7 +51,7 @@ export default function BlogPreview({ blogs }) {
               fontFamily: "IBM Plex Mono ",
               color: theme.palette.text.highlightAlt,
               p: 3,
-              borderRadius: "1em",
+              // borderRadius: "1em",
               "&:hover": {
                 background: theme.palette.background.main,
                 color: theme.palette.text.highlight,
