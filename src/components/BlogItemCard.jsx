@@ -97,7 +97,7 @@ export default function BlogItemCard({ blog }) {
                 <Box
                   sx={{
                     zIndex: "100",
-                    height: { xs: "22rem", sm: "12rem", md: "15rem" },
+                    height: { xs: "22rem", sm: "15rem", md: "15rem" },
                     width: "100%",
                     backgroundImage: `url(${blog.fields.blogTitleImage.fields.file.url})`,
                     backgroundPosition: "center",

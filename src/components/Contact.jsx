@@ -104,7 +104,7 @@ export default function Contact() {
       >
         {contactItems.map((item) => {
           return (
-            <Grid item key={item.id} xs={12} sm={6} md={3}>
+            <Grid item key={item.id} xs={6} sm={6} md={3}>
               <Link href={item.linkTo} target={"blank"} underline="hover">
                 <motion.div
                   key={item.id}
@@ -129,14 +129,14 @@ export default function Contact() {
                       color: theme.palette.text.highlightAlt,
                       borderRadius: "10%",
                       width: {
-                        xs: "300px",
-                        sm: "230px",
+                        xs: "100px",
+                        sm: "200px",
                         md: "180px",
                         lg: "150px",
                       },
                       height: {
-                        xs: "300px",
-                        sm: "230px",
+                        xs: "100px",
+                        sm: "200px",
                         md: "180px",
                         lg: "150px",
                       },
@@ -146,8 +146,8 @@ export default function Contact() {
                         background: theme.palette.background.main,
                       },
                       fontSize: {
-                        xs: "14rem",
-                        sm: "10rem",
+                        xs: "4rem",
+                        sm: "8rem",
                         md: "9rem",
                         lg: "8rem",
                       },

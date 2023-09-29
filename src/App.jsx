@@ -28,7 +28,7 @@ export default function App() {
   const theme = themeManager(dk);
   const [blogs, setBlogs] = useState([]);
 
-  console.log(theme);
+   console.log(theme);
   const [open, setOpen] = useState(false); //a state to control the drawer
 
   const [bgImage, setBgImage] = useState(
@@ -76,7 +76,7 @@ export default function App() {
   return (
     <>
       <ThemeProvider theme={theme}>
-        <CssBaseline>
+        <CssBaseline enableColorScheme>
           <Navbar setOpen={setOpen} />
           <DrawerBGChange
             bgImage={bgImage}
@@ -92,7 +92,7 @@ export default function App() {
           <Routes>
             <Route path="/projects" element={<Projects />} />
             <Route path="/blog" element={<Blog />} />
-            <Route path="/blog/read/:blogItemid" element={<BlogItem />} />
+            <Route path="/blog/read/:blogItemid" element={<BlogItem  />} />
             <Route path="/about" element={<About />} />
             <Route path="/contact" element={<Contact />} />
 

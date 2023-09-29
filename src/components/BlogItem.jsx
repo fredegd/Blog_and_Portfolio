@@ -7,8 +7,10 @@ import { client } from "../client";
 import { Box, Typography, IconButton, Popover } from "@mui/material";
 import { KeyboardArrowUp, KeyboardArrowLeft } from "@mui/icons-material";
 import { BLOCKS, INLINES } from "@contentful/rich-text-types";
+import RelatedPosts from "./RelatedPosts";
 
 export default function BlogItem() {
+
   const theme = useTheme();
   const [blog, setBlog] = useState();
   const [showBackToTop, setShowBackToTop] = useState(false);
@@ -16,9 +18,11 @@ export default function BlogItem() {
 
   const { blogItemid } = useParams();
   const { scrollYProgress } = useScroll();
+// console.log(blogItemid)
+
 
   const handlePopoverOpen = (event) => {
-    console.log(event.currentTarget);
+    // console.log(event.currentTarget);
     setAnchorEl(event.currentTarget);
   };
 
@@ -32,18 +36,21 @@ export default function BlogItem() {
       .then((response) => {
         // console.log(response.fields, "testtt");
         setBlog(response.fields);
+  window.scrollTo(0, 0);
+
         // console.log(response.fields);
+        console.log(response.sys.id, blogItemid);
         if (response.fields.images) {
           console.log(response.fields.images);
           setBlogImgs(response.fields.images);
         }
       })
       .catch((err) => console.log(err));
-  }, []);
+  }, [blogItemid]);
 
   useEffect(() => {
     const handleScroll = () => {
-      if (window.pageYOffset > 200) {
+      if (window.scrollY > 200) {
         // Show the button when scrolling down 200px
         setShowBackToTop(true);
       } else {
@@ -85,7 +92,7 @@ export default function BlogItem() {
   const open = Boolean(anchorEl);
 
   if (!blog) {
-    console.log("done");
+    // console.log("done");
     return (
       <div>
         <h1>LOADING</h1>
@@ -101,6 +108,7 @@ export default function BlogItem() {
           flexDirection: "column",
           alignItems: "center",
           justifyContent: "flex-start",
+          
         }}
       >
         <Box
@@ -127,6 +135,7 @@ export default function BlogItem() {
               background: theme.palette.text.highlightAlt,
             }}
           />
+
           {showBackToTop && (
             <IconButton
               id="back to top"
@@ -167,36 +176,37 @@ export default function BlogItem() {
                 <KeyboardArrowLeft />
               </IconButton>
             </Link>
-            <Popover
-              id="mouse-over-popover"
-              sx={{
-                pointerEvents: "none",
-              }}
-              open={open}
-              anchorEl={anchorEl && anchorEl}
-              transformOrigin={{
-                vertical: "top",
-                horizontal: "left",
-              }}
-              onClose={handlePopoverClose}
-              disableRestoreFocus
-            >
-              <Typography
-                sx={{
-                  p: 1,
-                  border: `2px solid ${theme.palette.text.highlightAlt}`,
-                }}
-              >
-                {anchorEl && anchorEl.id}
-              </Typography>
-            </Popover>
           </Box>
+          <Popover
+            id="mouse-over-popover"
+            sx={{
+              pointerEvents: "none",
+            }}
+            open={open}
+            anchorEl={anchorEl && anchorEl}
+            transformOrigin={{
+              vertical: "top",
+              horizontal: "left",
+            }}
+            onClose={handlePopoverClose}
+            disableRestoreFocus
+          >
+            <Typography
+              sx={{
+                p: 1,
+                border: `2px solid ${theme.palette.text.highlightAlt}`,
+              }}
+            >
+              {anchorEl && anchorEl.id}
+            </Typography>
+          </Popover>
 
           <Box
             sx={{
               boxShadow: `0px 0px 10px 0px ${theme.palette.text.highlightAlt}`,
               backgroundColor: theme.palette.background.main,
               padding: "2rem 1.5rem 3rem 1.5rem",
+              textAlign: "left",
             }}
           >
             <Box
@@ -217,8 +227,13 @@ export default function BlogItem() {
               variant="h1"
               sx={{
                 width: { xs: "auto", sm: "90vw", md: "85vw", lg: "70vw" },
-                fontSize: { xs: "8vw", sm: "7.7vw", md: "6.5vw", lg: "5vw" },
-                padding: { xs: "1rem", md: "3rem" },
+                fontSize: {
+                  xs: "6.2vw",
+                  sm: "6.5vw",
+                  md: "5.5vw",
+                  lg: "4.5vw",
+                },
+                padding: "1rem",
                 transition: "all 0.5s ease-in-out",
                 fontWeight: "bold",
               }}
@@ -229,12 +244,29 @@ export default function BlogItem() {
             <Typography
               variant="h4"
               sx={{
-                fontSize: { xs: "4vw", sm: "3.9vw", md: "3.3vw", lg: "2.55vw" },
+                fontSize: { xs: "5vw", sm: "4vw", md: "3.5vw", lg: "2.55vw" },
                 fontStyle: "italic",
+                padding: { xs: "1rem", md: "3rem" },
+                pb: "1rem",
               }}
             >
-              {blog.subtitle}{" "}
+              {"  "}"{blog.subtitle}"
             </Typography>
+            <Box
+              sx={{
+                display: "flex",
+                flexDirection: "column",
+                px: { xs: 2, md: 5 },
+                fontSize: { xs: "2.5vw", sm: "1rem", md: "1.2rem", lg: "1rem" },
+              }}
+            >
+              <Typography variant="p">
+                Published on: "{blog.createdAt}" by "{blog.author}"
+              </Typography>
+              <Typography variant="p">
+                Last edit: "{blog.createdAt}" * X min. Read
+              </Typography>
+            </Box>
           </Box>
 
           <Box
@@ -243,7 +275,10 @@ export default function BlogItem() {
             {renderRichText(blog.content)}
           </Box>
         </Box>
+
+        <RelatedPosts  />
       </Box>
+      
     );
   }
 }
