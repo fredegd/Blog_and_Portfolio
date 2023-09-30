@@ -74,7 +74,7 @@ export default function About() {
       <Box
         sx={{
           zIndex:"1000",
-          paddingX: "2.5rem",
+          padding: "2.5rem",
           display: "flex",
           flexDirection: {xs:"column", md:"row"},
           alignItems: "center",
@@ -82,7 +82,7 @@ export default function About() {
           overflow: "scroll",
           // border: "1px solid black",
 
-          backgroundColor:`${theme.palette.background.main} 1.0`
+          backgroundColor:`${theme.palette.background.main}`
         }}
       >
          <Box 

@@ -4,39 +4,10 @@ import { motion, useAnimation } from "framer-motion";
 import { useEffect, useState } from "react";
 import { useTheme } from "@mui/material/styles";
 
-import InstagramIcon from "@mui/icons-material/Instagram";
-import TwitterIcon from "@mui/icons-material/Twitter";
-import LinkedInIcon from "@mui/icons-material/LinkedIn";
-import GitHubIcon from "@mui/icons-material/GitHub";
-
-const staggerConfig = {
-  animate: {
-    // scale: [1,0.5, 1],
-    // rotate: [0, 360],
-    opacity: [1, 1, 0.5],
-  },
-  transition: {
-    duration: 1,
-    ease: "easeIn",
-    times: [0, 0.5, 1],
-    repeat: Infinity,
-  },
-};
-
+import contactItems from "../contactItems";
 
 export default function Contact() {
   const theme = useTheme();
-
-  const [click, setClick] = useState(false);
-  const clicker = () => {
-    return click ? setClick(false) : setClick(true);
-  };
-  console.log("click", click);
-  const controls = useAnimation();
-
-  useEffect(() => {
-    controls.start("animate");
-  }, [clicker]);
 
   return (
     <Box
@@ -63,11 +34,40 @@ export default function Contact() {
           zIndex: "1000",
         }}
       >
+        <Box sx={{}}>
+          {contactItems.map((item) => (
+            <Link href={item.linkTo} target="_blank" key={item.id}>
+              <IconButton
+                sx={{
+                  borderRadius: "20%",
+                  width: "3.5rem",
+                  height: "3.5rem",
+                  textAlign: "center",
+                  margin: "0 1rem 0 1rem",
+                  textDecoration: "none",
+                  color: theme.palette.text.primary,
+
+                  "&:hover": {
+                    background: `${theme.palette.text.highlightAlt}`,
+
+                    border: `1px solid ${theme.palette.text.primary}`,
+                  },
+                }}
+              >
+                <item.icon
+                  style={{
+                    fontSize: "2rem",
+                  }}
+                />
+              </IconButton>
+            </Link>
+          ))}
+        </Box>
+
         <Typography variant="p" color={theme.palette.text.primary}>
           2023 all rights reserved © Fred Egidi
         </Typography>
       </Box>
-     
     </Box>
   );
 }

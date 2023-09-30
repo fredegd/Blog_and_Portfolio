@@ -49,6 +49,9 @@ export default function BlogItemCard({ blog }) {
   const contentPreview = extractTextFromRichText(blog.fields.content);
 
   // Truncate the text to the first 100 words
+
+  const truncatedTitle = titlePreview.split("").slice(0, 40).join("");
+  // Truncate the text to the first 100 words
   const words = contentPreview.split(" ");
   const truncatedContent = words.slice(0, 20).join(" ");
 
@@ -75,16 +78,16 @@ export default function BlogItemCard({ blog }) {
           <Box
             sx={{
               height: {
-                xs: "34rem",
-                sm: "28rem",
-                md: "28rem",
-                lg: "28rem",
-                xl: "28rem",
+                xs: "32rem",
+                sm: "26rem",
+                md: "25rem",
+                lg: "24rem",
+                xl: "24rem",
               },
               backgroundColor: `${theme.palette.background.transparent}`,
               display: "flex",
               flexDirection: "column",
-              minHeight: "25rem",
+              minHeight: "23rem",
               border: `5px solid ${theme.palette.text.highlight}`,
               padding: "1rem",
               "&:hover": {
@@ -99,7 +102,7 @@ export default function BlogItemCard({ blog }) {
                 <Box
                   sx={{
                     zIndex: "100",
-                    height: { xs: "22rem", sm: "15rem", md: "15rem" },
+                    height: { xs: "20rem", sm: "13rem", md: "13rem" },
                     width: "100%",
                     backgroundImage: `url(${blog.fields.blogTitleImage.fields.file.url})`,
                     filter: "grayscale(70%)",
@@ -144,7 +147,7 @@ export default function BlogItemCard({ blog }) {
                         textJustify: "interWord",
                       }}
                     >
-                      {titlePreview}
+                      {truncatedTitle+ "..."}
                     </Typography>
                   </Box>
                   <Box
