@@ -36,7 +36,7 @@ export default function About() {
         
 
 
-      duration: 1200,
+      duration: gridSize.numRows*110,
       delay: function(entry, i) { return i * 100; },
 
        delay: anime.stagger(100, {direction: 'reverse'}),
