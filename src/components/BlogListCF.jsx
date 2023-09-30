@@ -4,6 +4,7 @@ import { client } from "../client";
 
 import BlogItemCard from "./BlogItemCard";
 import { Box, Grid, Typography } from "@mui/material";
+import Footer from "./Footer";
 
 export default function BlogListCF() {
   const [blogs, setBlogs] = useState([]);
@@ -46,6 +47,7 @@ export default function BlogListCF() {
           ))}
         </Grid>
       </Box>
+      <Footer />
     </>
   );
 }

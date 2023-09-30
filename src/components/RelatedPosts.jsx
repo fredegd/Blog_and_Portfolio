@@ -27,7 +27,7 @@ export default function RelatedPosts() {
       sx={{
         zIndex: "1000",
         width: "100vw",
-        background: theme.palette.text.highlight,
+        background: `${theme.palette.text.highlight}88`,
         display: "flex",
         flexDirection: "column",
         overflowX: "visible",

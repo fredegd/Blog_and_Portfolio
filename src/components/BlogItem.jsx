@@ -54,7 +54,7 @@ export default function BlogItem() {
     client
       .getEntry(blogItemid)
       .then((response) => {
-        // console.log(response.fields, "testtt");
+        console.log(response.fields, "testtt");
         setBlog(response.fields);
         window.scrollTo(0, 0);
 
@@ -133,7 +133,7 @@ export default function BlogItem() {
         <Box
           sx={{
             zIndex: "1000",
-            padding: "0 0 25rem 0",
+            padding: "0 0 5rem 0",
             width: "100%",
             background: `linear-gradient(90deg, #00000000 0%,${theme.palette.background.transparent} 20%, ${theme.palette.background.main} 40%, ${theme.palette.background.main} 60%, ${theme.palette.background.transparent} 80%,  #00000000 100%)`,
             display: "flex",
@@ -199,50 +199,57 @@ export default function BlogItem() {
                 flexDirection: "column",
                 px: { xs: 2, md: 5 },
                 fontSize: { xs: "2.5vw", sm: "1rem", md: "1.2rem", lg: "1rem" },
+                gap: "0.3rem",
               }}
             >
               <Typography variant="p">
-                Published on: "{blog.createdAt}" by "{blog.author}"
+                Published on: "{blog.createdAt}" by "{blog.blogAuthor.fields.authorName}"
               </Typography>
               <Typography variant="p">
-                Last edit: "{blog.createdAt}" * X min. Read
+                Last edit: "{blog.editAt}"  {} min. Read
               </Typography>
-              <Box sx={{ display: "flex", height: "2rem" }}>
-              <Typography variant="h5" sx={{ textAlign: "center", mr: "2rem" }}>
-                Tags
-              </Typography>
+
               <Box
                 sx={{
                   display: "flex",
-                  justifyContent: "center",
-                  flexWrap: "wrap",
-                  gap: "1rem",
+                  alignItems: "center",
+                  justifyContent: "flex-start",
                 }}
               >
-                {blog.tags.tags.map((tag, index) => {
-                  return (
-                    <Typography
-                      key={index}
-                      variant="p"
-                      sx={{
-                        backgroundColor: theme.palette.text.highlightAlt,
-                        padding: "0.5rem 1rem",
-                        borderRadius: "1rem",
-                      }}
-                    >
-                      {tag}
-                    </Typography>
-                  );
-                })}
+                <Typography variant="p" sx={{ textAlign: "center" }}>
+                  Tags:
+                </Typography>
+                <Box
+                  sx={{
+                    display: "flex",
+                    justifyContent: "center",
+                    flexWrap: "wrap",
+                    gap: "1rem",
+                  }}
+                >
+                  {blog.tags.tags.map((tag, index) => {
+                    return (
+                      <Typography
+                        key={index}
+                        variant="p"
+                        sx={{
+                          mx: "1rem",
+                          backgroundColor: theme.palette.text.highlightAlt,
+                          padding: "0.2rem 0.8rem",
+                          borderRadius: "1rem",
+                        }}
+                      >
+                        {tag}
+                      </Typography>
+                    );
+                  })}
+                </Box>
               </Box>
             </Box>
-            </Box>
-
-            
           </Box>
 
           <Box
-            sx={{ marginTop: "4rem", marginBottom: "5rem", maxWidth: "800px" }}
+            sx={{ marginTop: "3rem", marginBottom: "3rem", maxWidth: "800px" }}
           >
             {renderRichText(blog.content)}
           </Box>
@@ -288,8 +295,8 @@ export default function BlogItem() {
             sx={{
               zIndex: "1000",
               position: "fixed",
-              bottom: "2rem",
-              right: "2rem",
+              bottom: "3rem",
+              right: "1rem",
               backgroundColor: theme.palette.text.highlightAlt,
               color: theme.palette.primary.contrastText,
               "&:hover": { backgroundColor: theme.palette.text.primary },
@@ -309,8 +316,8 @@ export default function BlogItem() {
               sx={{
                 zIndex: "1000",
                 position: "fixed",
-                top: "8rem",
-                left: "2rem",
+                top: "6rem",
+                left: "1.0rem",
                 backgroundColor: theme.palette.text.highlightAlt,
                 color: theme.palette.primary.contrastText,
                 "&:hover": {

@@ -44,7 +44,7 @@ export default function Contact() {
     <Box
     id="contact"
       sx={{
-        height: "70vh",
+        height: {xs:"70vh",sm:"80vh",md:"60vh"},
         width: "100%",
         display: "flex",
         flexDirection: "column",
@@ -55,7 +55,7 @@ export default function Contact() {
     >
       <Box
         sx={{
-          backgroundColor: theme.palette.text.highlight,
+          backgroundColor: `${theme.palette.text.highlight}88`,
           fontSize: "20px",
           color: theme.palette.text.primary,
           marginBottom: "5rem",

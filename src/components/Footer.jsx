@@ -23,7 +23,7 @@ export default function Contact() {
     >
       <Box
         sx={{
-          backgroundColor: theme.palette.text.highlight,
+          backgroundColor: `${theme.palette.text.highlight}88`,
           backgroundBlendMode: "difference",
           fontSize: "20px",
           color: theme.palette.text.contrast,

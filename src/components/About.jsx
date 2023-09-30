@@ -6,10 +6,9 @@ import Pic from "../assets/IMG_4858.jpg";
 
 import anime from "animejs";
 
-
 export default function About() {
   const theme = useTheme();
-  const [gridSize, setGridSize] = useState({ numRows: 20, numCols: 1 });
+  const [gridSize, setGridSize] = useState({ numRows: 11, numCols: 1 });
   const [aboutImage, setAboutImage] = useState(Pic);
 
   const divArray = Array.from(
@@ -19,52 +18,55 @@ export default function About() {
 
   const maxWidth = 30;
   const maxHeight = 45 / gridSize.numRows;
- 
+
   const target = document.querySelector(".tile-wrap");
 
   const handleOn = (entry) => {
     anime({
       targets: ".tile",
-      rotate: anime.stagger([-10, 10]), // rotation will be distributed from -360deg to 360deg evenly between all elements
-      translateX:[0, "12vw","-85vw"],
+      rotate: anime.stagger([-3, 3]), // rotation will be distributed from -360deg to 360deg evenly between all elements
+      translateX: [0, "12vw", "-85vw"],
 
       // keyframes: [
       //   {translateX: "-100vw"},
-
-      
       // ],
-        
+      opacity: [1, 0.5],
+      duration: (gridSize.numRows + 1) * 100,
 
+      // delay: function (entry, i) {
+      //   return i * 100;
+      // },
 
-      duration: gridSize.numRows*110,
-      delay: function(entry, i) { return i * 100; },
-
-       delay: anime.stagger(100, {direction: 'reverse'}),
+      delay: anime.stagger(100, { direction: "reverse" }),
+      easing: "easeOutElastic(1, .8)",
       direction: "reverse",
     });
+    const arr = Array.from(entry.target.children).map((item) => {
+          item.classList.remove("tile");
+          console.log("removed")
+        })
 
+    console.log(entry.target.children)
+    observer.unobserve(target);
+    entry.target.classList.remove("tile-wrap");
   };
 
-
   function handleIntersection(entries) {
+    
     // The callback will return an array of entries, even if you are only observing a single item
     entries.map((entry) => {
       if (entry.isIntersecting) {
+        handleOn(entry);
         console.log("intersecting");
-
-       handleOn(entry)
-      //  
-     } else{
-      console.log("not intersecting");
-     }
+      } else {
+        console.log("not intersecting");
+      }
     });
   }
-
 
   const observer = new IntersectionObserver(handleIntersection);
 
   target && observer.observe(target);
-
 
   return (
     <Box
@@ -81,7 +83,7 @@ export default function About() {
       {" "}
       <Box
         sx={{
-          backgroundColor: theme.palette.text.highlight,
+          backgroundColor: `${theme.palette.text.highlight}88`,
           fontSize: "20px",
           color: theme.palette.text.primary,
           width: "100%",
@@ -90,10 +92,10 @@ export default function About() {
           zIndex: "1000",
         }}
       >
-        <Typography variant="h1" >About Me:</Typography>
+        <Typography variant="h1">About Me:</Typography>
       </Box>
       <Box
-      className="tile-wrap"
+        
         sx={{
           zIndex: "1000",
           padding: "2.5rem",
@@ -107,8 +109,7 @@ export default function About() {
           backgroundColor: `${theme.palette.background.main}`,
         }}
       >
-        <Box className="tile" sx={{ padding: "2.5rem" }} >
-
+        <Box className="tile" sx={{ padding: "2.5rem" }}>
           <Typography
             variant="p"
             color={theme.palette.text.primary}
@@ -118,17 +119,17 @@ export default function About() {
           numquam nam, incidunt debitis corrupti impedit eaque quidem quibusdam
           inventore culpa sequi. Dicta, in?
         </Box>
-        <Box 
+        <Box
+        className="tile-wrap"
         >
           {divArray.map((item) => {
             const bgY = -maxHeight * item + maxHeight;
-            console.log(item);
+
             return (
               <Box
                 className="tile"
                 key={item}
                 sx={{
-
                   position: "relative",
 
                   background: `url(${aboutImage})`,
@@ -150,6 +151,7 @@ export default function About() {
           })}
         </Box>
       </Box>
+      
     </Box>
   );
 }
