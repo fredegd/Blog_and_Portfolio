@@ -40,8 +40,8 @@ export default function Contact() {
               <IconButton
                 sx={{
                   borderRadius: "20%",
-                  width: "2.5rem",
-                  height: "2.5rem",
+                  width: "2.0rem",
+                  height: "2.0rem",
                   textAlign: "center",
                   margin: "0 1rem 0 1rem",
                   textDecoration: "none",
@@ -55,7 +55,7 @@ export default function Contact() {
                 }}
               >
                 <Typography variant={"h6"} sx={{ display: "flex" }}>
-                  {<item.icon sx={{ fontSize: { xs: "1rem", sm: "2rem" } }} />}
+                  {<item.icon sx={{ fontSize: { xs: "1.5rem", sm: "2rem" } }} />}
                 </Typography>
               </IconButton>
             </Link>

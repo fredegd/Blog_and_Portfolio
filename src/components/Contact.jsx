@@ -65,7 +65,7 @@ export default function Contact() {
           zIndex: "1000",
         }}
       >
-        <Typography variant="h1">Let´s get in Touch:</Typography>
+        <Typography variant= "h1" sx={{fontSize:{xs:"2rem",sm:"2.5rem", md:"3rem", lg:"4rem"}}}>Let´s get in Touch:</Typography>
       </Box>
       <Grid
         container

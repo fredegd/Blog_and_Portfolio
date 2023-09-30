@@ -50,7 +50,7 @@ export default function Hero() {
         // position: "relative",
         backgroundSize: "cover",
         width: { xs: "100%", sm: "100%", md: "100%", lg: "100%", xl: "100%" },
-        minHeight: "70vh",
+        minHeight: "80vh",
         display: "flex",
         flexDirection: "column",
         justifyContent: "center",
