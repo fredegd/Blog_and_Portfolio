@@ -54,7 +54,7 @@ export default function BlogPreview({ blogs }) {
               p: 3,
               // borderRadius: "1em",
               "&:hover": {
-                background: theme.palette.background.main,
+                background: theme.palette.background.secondary,
                 color: theme.palette.text.highlight,
                 fontSize: "1.1rem",
               },
