@@ -1,14 +1,29 @@
+import { useForm } from "react-hook-form";
+
 import { motion, useScroll } from "framer-motion";
 import { useParams, Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
 import { useTheme } from "@mui/material/styles";
+
 import { client } from "../client";
-import { Box, Typography, IconButton, Popover } from "@mui/material";
+import {
+  Box,
+  Typography,
+  IconButton,
+  Popover,
+  TextField,
+  FormControl,
+  InputLabel,
+  OutlinedInput,
+  InputAdornment,
+} from "@mui/material";
+
 import { KeyboardArrowUp, KeyboardArrowLeft } from "@mui/icons-material";
 import { BLOCKS, INLINES } from "@contentful/rich-text-types";
 import RelatedPosts from "./RelatedPosts";
 import Footer from "./Footer";
+
 export default function BlogItem() {
   const theme = useTheme();
   const [blog, setBlog] = useState();
@@ -17,11 +32,17 @@ export default function BlogItem() {
 
   const { blogItemid } = useParams();
   const { scrollYProgress } = useScroll();
-  console.log(scrollYProgress)
-  // console.log(blogItemid)
+
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors },
+  } = useForm();
+  const onSubmit = (data) => console.log(data);
+  console.log(watch("comment")); // watch input value by passing the name of it
 
   const handlePopoverOpen = (event) => {
-    // console.log(event.currentTarget);
     setAnchorEl(event.currentTarget);
   };
 
@@ -37,7 +58,7 @@ export default function BlogItem() {
         setBlog(response.fields);
         window.scrollTo(0, 0);
 
-         console.log(response.fields);
+        console.log(response.fields);
         console.log(response.sys.id, blogItemid);
         if (response.fields.images) {
           console.log(response.fields.images);
@@ -121,8 +142,6 @@ export default function BlogItem() {
             alignItems: "center",
           }}
         >
-          
-
           <Box
             sx={{
               boxShadow: `0px 0px 10px 0px ${theme.palette.text.highlightAlt}`,
@@ -188,7 +207,38 @@ export default function BlogItem() {
               <Typography variant="p">
                 Last edit: "{blog.createdAt}" * X min. Read
               </Typography>
+              <Box sx={{ display: "flex", height: "2rem" }}>
+              <Typography variant="h5" sx={{ textAlign: "center", mr: "2rem" }}>
+                Tags
+              </Typography>
+              <Box
+                sx={{
+                  display: "flex",
+                  justifyContent: "center",
+                  flexWrap: "wrap",
+                  gap: "1rem",
+                }}
+              >
+                {blog.tags.tags.map((tag, index) => {
+                  return (
+                    <Typography
+                      key={index}
+                      variant="p"
+                      sx={{
+                        backgroundColor: theme.palette.text.highlightAlt,
+                        padding: "0.5rem 1rem",
+                        borderRadius: "1rem",
+                      }}
+                    >
+                      {tag}
+                    </Typography>
+                  );
+                })}
+              </Box>
             </Box>
+            </Box>
+
+            
           </Box>
 
           <Box
@@ -196,122 +246,107 @@ export default function BlogItem() {
           >
             {renderRichText(blog.content)}
           </Box>
+          <Typography variant="h1">{"*****"}</Typography>
 
-          <Box>
-            <Typography variant="h4" sx={{ textAlign: "center", mb: "2rem" }}>
-              Tags
-            </Typography>
-            <Box
-              sx={{
-                display: "flex",
-                justifyContent: "center",
-                flexWrap: "wrap",
-                gap: "1rem",
-              }}
-            >
-              {blog.tags.tags.map((tag, index) => {
-                return (
-                  <Typography
-                    key={index}
-                    variant="h5"
-                    sx={{
-                      backgroundColor: theme.palette.text.highlightAlt,
-                      padding: "0.5rem 1rem",
-                      borderRadius: "1rem",
-                    }}
-                  >
-                    {tag}
-                  </Typography>
-                );
-              })}
-            </Box>
-          </Box>
+          <FormControl
+            fullWidth
+            sx={{ background: "red" }}
+            onSubmit={handleSubmit(onSubmit)}
+          >
+            <TextField
+              id="comment"
+              height="100%"
+              // startAdornment={<InputAdornment position="start">***</InputAdornment>}
+              label="comment"
+              {...register("comment")}
+            />
+          </FormControl>
         </Box>
 
         <RelatedPosts />
         <Footer />
 
         <motion.div
-            className="progress-bar"
-            style={{
-              zIndex: "1000", 
-              scaleX: scrollYProgress,
-              position: "fixed",
-              top: "5rem",
-              left: 0,
-              right: 0,
-              height: "1rem",
-              transformOrigin: "0%",
-              background: theme.palette.text.highlightAlt,
-            }}
-          />
+          className="progress-bar"
+          style={{
+            zIndex: "1000",
+            scaleX: scrollYProgress,
+            position: "fixed",
+            top: "5rem",
+            left: 0,
+            right: 0,
+            height: "1rem",
+            transformOrigin: "0%",
+            background: theme.palette.text.highlightAlt,
+          }}
+        />
 
-          {showBackToTop && (
+        {showBackToTop && (
+          <IconButton
+            id="back to top"
+            onClick={scrollToTop}
+            sx={{
+              zIndex: "1000",
+              position: "fixed",
+              bottom: "2rem",
+              right: "2rem",
+              backgroundColor: theme.palette.text.highlightAlt,
+              color: theme.palette.primary.contrastText,
+              "&:hover": { backgroundColor: theme.palette.text.primary },
+            }}
+            onMouseEnter={handlePopoverOpen}
+            onMouseLeave={handlePopoverClose}
+          >
+            <KeyboardArrowUp />
+          </IconButton>
+        )}
+
+        <Box>
+          {/* Back to "/blog" button */}
+          <Link to="/blog" style={{ textDecoration: "none" }}>
             <IconButton
-              id="back to top"
-              onClick={scrollToTop}
+              id="back to blog"
               sx={{
                 zIndex: "1000",
                 position: "fixed",
-                bottom: "2rem",
-                right: "2rem",
+                top: "8rem",
+                left: "2rem",
                 backgroundColor: theme.palette.text.highlightAlt,
                 color: theme.palette.primary.contrastText,
-                "&:hover": { backgroundColor: theme.palette.text.primary },
+                "&:hover": {
+                  backgroundColor: theme.palette.text.primary,
+                },
               }}
               onMouseEnter={handlePopoverOpen}
               onMouseLeave={handlePopoverClose}
             >
-              <KeyboardArrowUp />
+              <KeyboardArrowLeft />
             </IconButton>
-          )}
-
-          <Box>
-            {/* Back to "/blog" button */}
-            <Link to="/blog" style={{ textDecoration: "none" }}>
-              <IconButton
-                id="back to blog"
-                sx={{
-                  zIndex: "1000", 
-                  position: "fixed",
-                  top: "8rem",
-                  left: "2rem",
-                  backgroundColor: theme.palette.text.highlightAlt,
-                  color: theme.palette.primary.contrastText,
-                  "&:hover": {
-                    backgroundColor: theme.palette.text.primary,
-                  },
-                }}
-                onMouseEnter={handlePopoverOpen}
-                onMouseLeave={handlePopoverClose}
-              >
-                <KeyboardArrowLeft />
-              </IconButton>
-            </Link>
-          </Box>
-          <Popover
-            id="mouse-over-popover"
+          </Link>
+        </Box>
+        <Popover
+          id="mouse-over-popover"
+          sx={{
+            pointerEvents: "none",
+          }}
+          open={open}
+          anchorEl={anchorEl && anchorEl}
+          transformOrigin={{
+            vertical: "top",
+            horizontal: "left",
+          }}
+          onClose={handlePopoverClose}
+          disableRestoreFocus
+        >
+          <Typography
             sx={{
-              pointerEvents: "none",
+              p: 1,
+              border: `2px solid ${theme.palette.text.highlightAlt}`,
             }}
-            open={open}
-            anchorEl={anchorEl && anchorEl}
-            transformOrigin={{
-              vertical: "top",
-              horizontal: "left",
-            }}
-            onClose={handlePopoverClose}
-            disableRestoreFocus
           >
-            <Typography
-              sx={{
-                p: 1,
-                border: `2px solid ${theme.palette.text.highlightAlt}`,
-              }}
-            >
-              {anchorEl && anchorEl.id}
-            </Typography>
-          </Popover>
+            {anchorEl && anchorEl.id}
+          </Typography>
+        </Popover>
       </Box>
     );
   }

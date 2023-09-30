@@ -33,7 +33,7 @@ export default function Contact() {
   const clicker = () => {
     return click ? setClick(false) : setClick(true);
   };
-  console.log("click", click);
+
   const controls = useAnimation();
 
   useEffect(() => {
@@ -57,7 +57,7 @@ export default function Contact() {
         sx={{
           backgroundColor: theme.palette.text.highlight,
           fontSize: "20px",
-          color: theme.palette.text.contrast,
+          color: theme.palette.text.primary,
           marginBottom: "5rem",
           width: "100%",
           padding: "2.5rem",
@@ -90,6 +90,7 @@ export default function Contact() {
                     margin: "1rem",
                     padding: 0,
                     display: "flex",
+                    flexDirection: "column",
                     alignItems: "center",
                     justifyContent: "center",
                   }}
@@ -139,6 +140,9 @@ export default function Contact() {
                       }}
                     />
                   </IconButton>
+                  <Box sx={{zIndex:"1000", }}>
+                    <Typography variant="h6"  textDecoration={"none"}>{item.id}</Typography>
+                  </Box>
                 </motion.div>
               </Link>
             </Grid>

@@ -93,7 +93,7 @@ export default function App() {
             <Route path="/projects" element={<Projects />} />
             <Route path="/blog" element={<Blog />} />
             <Route path="/blog/read/:blogItemid" element={<BlogItem  />} />
-            {/* <Route path="/about" element={<About />} /> */}
+            <Route path="/about" element={<About />} />
             <Route path="/contact" element={<Contact />} />
 
             <Route path="/" element={<Landing blogs={blogs} />} />
