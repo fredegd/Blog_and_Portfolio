@@ -59,6 +59,8 @@ export default function BlogItemCard({ blog }) {
       <motion.div
         whileHover={{
           scale: 1.08,
+          filter: "none !important"
+
         }}
         transition={{ type: "spring", stiffness: 100, damping: 10 }}
         whileTap={{ scale: 0.9 }}
@@ -100,10 +102,15 @@ export default function BlogItemCard({ blog }) {
                     height: { xs: "22rem", sm: "15rem", md: "15rem" },
                     width: "100%",
                     backgroundImage: `url(${blog.fields.blogTitleImage.fields.file.url})`,
+                    filter: "grayscale(70%)",
                     backgroundPosition: "center",
                     backgroundSize: `100% auto`,
                     backgroundRepeat: "no-repeat",
-                    transition: "all 0.5s ease-in-out",
+                    transition: "all 0.3s ease-in-out",
+                    "&:hover": {
+                      filter: "grayscale(0%)",
+
+                    },
                   }}
                 >
                   {/* background image */}

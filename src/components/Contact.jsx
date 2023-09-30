@@ -66,8 +66,10 @@ export default function Contact() {
 
   return (
     <Box
+    id="contact"
       sx={{
-        height: "100vh",
+        height: "70vh",
+        width: "100%",
         display: "flex",
         flexDirection: "column",
         alignItems: "center",

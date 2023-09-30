@@ -37,6 +37,7 @@ const slideIn2 = keyframes`
 export default function Hero() {
   return (
     <Box
+    id="hero"
       sx={{
         // fontFamily: "IBM Plex Mono, sans-serif",
         fontSize: {
@@ -54,17 +55,15 @@ export default function Hero() {
         flexDirection: "column",
         justifyContent: "center",
         overflow: "scroll",
-        // animation: `${slideIn} 0.7s ease-out 0s 1  `,
         transition: "all 0.9s ease-in-out",
         zIndex: "100",
-        // animation: `${slideIn0} 0.7s ease-out 0s 1  `,
       }}
     >
-      <Box sx={{animation: `${slideIn1} .7s ease-out 0s 1`}}>
+      <Box sx={{animation: `${slideIn1} .5s ease-out 0s 1`}}>
       <h1>FRED EGIDI</h1>
 
       </Box>
-      <Box sx={{animation: `${slideIn2} 1.7s ease-out 0s 1`}}>
+      <Box sx={{animation: `${slideIn2} 1.5s ease-out 0s 1`}}>
         <h2>
           <Typewriter
             options={{

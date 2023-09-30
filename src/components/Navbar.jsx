@@ -21,7 +21,7 @@ import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import { navItems } from "../navItems";
-
+import { Link as Scroller } from "react-scroll";
 
 // const drawerWidth = 240;
 
@@ -44,7 +44,7 @@ export default function Navbar({ window, setOpen }) {
       //   setActiveMenuItem(item.id);
       //   return; // Exit the loop early when found
       // }
-   //   console.log(location.pathname.slice(1, location.pathname.length));
+      //   console.log(location.pathname.slice(1, location.pathname.length));
       // console.log(location.pathname);
 
       if (
@@ -114,7 +114,16 @@ export default function Navbar({ window, setOpen }) {
               justifyContent: "center",
             }}
           >
-            <Link href={item.linkTo} underline="hover">
+            <Scroller
+              activeClass="active"
+              to={item.linkTo}
+              smooth={true}
+              offset={-410}
+              duration={200}
+              delay={100}
+              isDynamic={true}
+            >
+              {/* <Link href={item.linkTo} underline="hover"> */}
               <Button
                 key={item.id}
                 sx={{
@@ -134,21 +143,22 @@ export default function Navbar({ window, setOpen }) {
                   {item.name}{" "}
                 </Typography>
               </Button>
-            </Link>
+              {/* </Link> */}
+            </Scroller>
           </ListItem>
         ))}
-        
       </List>
 
-<Box mt={8}>
-  <Typography variant="p" color={theme.palette.text.secondary} fontSize={20}>
-
-all rights reserved © 2023
-  </Typography>
-
-  </Box> 
-     </Box>
-  
+      <Box mt={8}>
+        <Typography
+          variant="p"
+          color={theme.palette.text.secondary}
+          fontSize={20}
+        >
+          all rights reserved © 2023
+        </Typography>
+      </Box>
+    </Box>
   );
 
   const container =
@@ -165,7 +175,7 @@ all rights reserved © 2023
             flexDirection: "row",
             justifyContent: "space-between",
             // border : `1px solid ${theme.palette.text.highlightAlt}`,
-            boxShadow: "0px 0px 10px 10px rgba(0,0,0,0.2)"
+            boxShadow: "0px 0px 10px 10px rgba(0,0,0,0.2)",
           }}
         >
           <IconButton
@@ -198,10 +208,21 @@ all rights reserved © 2023
             </Typography>
           </Link>
 
-          <Box sx={{display: "flex", flexDirection:"row", alignItems:"center"}}>
+          <Box
+            sx={{ display: "flex", flexDirection: "row", alignItems: "center" }}
+          >
             <Box sx={{ display: { xs: "none", sm: "block" } }}>
               {navItems.map((item) => (
-                <Link key={item.id} href={item.linkTo} underline="hover">
+                <Scroller
+                key={item.id}
+                  activeClass="active"
+                  to={item.scrollTo? item.scrollTo:item.linkTo}
+                  smooth={true}
+                  offset={-110}
+                  duration={1200}
+                  delay={100}
+                  isDynamic={true}
+                >
                   <Button
                     sx={{
                       color:
@@ -216,7 +237,7 @@ all rights reserved © 2023
                   >
                     {item.name}
                   </Button>
-                </Link>
+                </Scroller>
               ))}
             </Box>
 

@@ -1,5 +1,7 @@
 import Hero from "./Hero";
-
+import About from "./About";
+import Contact from "./Contact";
+import Footer from "./Footer";
 import { Box } from "@mui/material";
 import BlogPreview from "./BlogPreview";
 export default function Landing({blogs}) {
@@ -18,6 +20,9 @@ export default function Landing({blogs}) {
     >
       <Hero />
       <BlogPreview blogs={blogs}/>
+      <About />
+      <Contact />
+      <Footer/>
     </Box>
   );
 }
