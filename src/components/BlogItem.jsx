@@ -23,10 +23,10 @@ import { KeyboardArrowUp, KeyboardArrowLeft } from "@mui/icons-material";
 import { BLOCKS, INLINES } from "@contentful/rich-text-types";
 import RelatedPosts from "./RelatedPosts";
 import Footer from "./Footer";
-
 export default function BlogItem() {
   const theme = useTheme();
   const [blog, setBlog] = useState();
+  const [contentImages, setContentImages] = useState([]);
   const [showBackToTop, setShowBackToTop] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null); // for popover
 
@@ -40,7 +40,7 @@ export default function BlogItem() {
     formState: { errors },
   } = useForm();
   const onSubmit = (data) => console.log(data);
-  console.log(watch("comment")); // watch input value by passing the name of it
+  // console.log(watch("comment")); // watch input value by passing the name of it
 
   const handlePopoverOpen = (event) => {
     setAnchorEl(event.currentTarget);
@@ -54,15 +54,14 @@ export default function BlogItem() {
     client
       .getEntry(blogItemid)
       .then((response) => {
-        console.log(response.fields, "testtt");
         setBlog(response.fields);
         window.scrollTo(0, 0);
 
         console.log(response.fields);
-        console.log(response.sys.id, blogItemid);
-        if (response.fields.images) {
-          console.log(response.fields.images);
-          setBlogImgs(response.fields.images);
+        // console.log(response.sys.id, blogItemid);
+        if (response.fields.contentImages) {
+          console.log(response.fields.contentImages);
+          setContentImages(response.fields.contentImages);
         }
       })
       .catch((err) => console.log(err));
@@ -90,15 +89,82 @@ export default function BlogItem() {
 
   const options = {
     renderNode: {
-      [BLOCKS.PARAGRAPH]: (node, children) => <p>{children}</p>,
       [BLOCKS.HEADING_1]: (node, children) => <h1>{children}</h1>,
-      // Add more renderNode functions as needed for other block types
+      [BLOCKS.PARAGRAPH]: (node, children) => {
+        const { content } = node;
+        console.log(node)
+        const text = content.map((c) => c.value).join("");
+        if (text.startsWith("#img")) {
+          const imgIndex = parseInt(text.substring(4));
+          if (blog && blog.contentImages && blog.contentImages[imgIndex]) {
+            const imgUrl = blog.contentImages[imgIndex].fields.file.url;
+            console.log(imgIndex)
+            return (
+              <Box    key={imgIndex+"img"}>
+
+              <Box
+           
+              sx={{
+                marginY: {xs: "1rem", sm: "2rem", md: "3rem", lg: "4rem"},
+                height: { xs: "90vw", sm: "60vw", md: "50vw", lg: "40vw" },
+                width: { xs: "90vw", sm: "90vw", md: "85vw", lg: "70vw" },
+                backgroundImage: `url(${contentImages[imgIndex].fields.file.url})`,
+                backgroundPosition: "center",
+                backgroundSize: `100% auto`,
+                backgroundRepeat: "no-repeat",
+                transition: "all 0.5s ease-in-out",
+              }}
+              >
+              {/* content image */}
+              {/* <Typography variant="h1" >WTF</Typography> */}
+            </Box>
+              </Box>
+            );
+          }
+        }
+        return <p>{children}</p>;
+      }, // Add more renderNode functions as needed for other block types
     },
     renderMark: {},
     renderInline: {},
   };
   const renderRichText = (richText) => {
     return documentToReactComponents(richText, options);
+  };
+
+  const displayContent = (content) => {
+    let id = 0;
+
+    const paragraphs = renderRichText(content);
+
+
+    const update = paragraphs.map((paragraph, index) => {
+      if (paragraph.props.children[0] === `img0${id}`) {
+        console.log(id);
+        console.log(paragraph.props);
+        id++;
+        return (
+          <Box
+            key={index}
+            sx={{
+              height: { xs: "90vw", sm: "60vw", md: "50vw", lg: "40vw" },
+              width: { xs: "90vw", sm: "90vw", md: "85vw", lg: "70vw" },
+              backgroundImage: `url(${contentImages[0].fields.file.url})`,
+              backgroundPosition: "center",
+              backgroundSize: `100% auto`,
+              backgroundRepeat: "no-repeat",
+              transition: "all 0.5s ease-in-out",
+            }}
+          >
+            {/* content image */}
+          </Box>
+        );
+      } else {
+        return paragraph;
+      }
+    });
+
+    return update;
   };
 
   const scrollToTop = () => {
@@ -161,7 +227,7 @@ export default function BlogItem() {
                 transition: "all 0.5s ease-in-out",
               }}
             >
-              {/* background image */}
+              {/* content image */}
             </Box>
 
             <Typography
@@ -203,10 +269,11 @@ export default function BlogItem() {
               }}
             >
               <Typography variant="p">
-                Published on: "{blog.createdAt}" by "{blog.blogAuthor.fields.authorName}"
+                Published on: "{blog.createdAt}" by "
+                {blog.blogAuthor.fields.authorName}"
               </Typography>
               <Typography variant="p">
-                Last edit: "{blog.editAt}"  {} min. Read
+                Last edit: "{blog.editAt}" {} min. Read
               </Typography>
 
               <Box
@@ -249,10 +316,11 @@ export default function BlogItem() {
           </Box>
 
           <Box
-            sx={{ marginTop: "3rem", marginBottom: "3rem", maxWidth: "800px" }}
+            sx={{ marginTop: "3rem", marginBottom: "3rem", maxWidth: "800px", display:  "flex", flexDirection: "column", alignItems: "center" }}
           >
-            {renderRichText(blog.content)}
+            {displayContent(blog.content)}
           </Box>
+
           <Typography variant="h1">{"*****"}</Typography>
 
           <FormControl

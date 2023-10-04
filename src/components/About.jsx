@@ -2,13 +2,13 @@ import { Box, Typography, Button } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 import { useState, useEffect } from "react";
 
-import Pic from "../assets/IMG_4858.jpg";
+import Pic from "../assets/portrait.gif";
 
 import anime from "animejs";
 
 export default function About() {
   const theme = useTheme();
-  const [gridSize, setGridSize] = useState({ numRows: 11, numCols: 1 });
+  const [gridSize, setGridSize] = useState({ numRows: 15, numCols: 1 });
   const [aboutImage, setAboutImage] = useState(Pic);
 
   const divArray = Array.from(
@@ -42,17 +42,16 @@ export default function About() {
       direction: "reverse",
     });
     const arr = Array.from(entry.target.children).map((item) => {
-          item.classList.remove("tile");
-          console.log("removed")
-        })
+      item.classList.remove("tile");
+      console.log("removed");
+    });
 
-    console.log(entry.target.children)
+    console.log(entry.target.children);
     observer.unobserve(target);
     entry.target.classList.remove("tile-wrap");
   };
 
   function handleIntersection(entries) {
-    
     // The callback will return an array of entries, even if you are only observing a single item
     entries.map((entry) => {
       if (entry.isIntersecting) {
@@ -95,7 +94,6 @@ export default function About() {
         <Typography variant="h1">About Me:</Typography>
       </Box>
       <Box
-        
         sx={{
           zIndex: "1000",
           padding: "2.5rem",
@@ -114,14 +112,39 @@ export default function About() {
             variant="p"
             color={theme.palette.text.primary}
           ></Typography>
-          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Cumque
-          reiciendis dignissimos cupiditate aliquam obcaecati rerum laboriosam
-          numquam nam, incidunt debitis corrupti impedit eaque quidem quibusdam
-          inventore culpa sequi. Dicta, in?
+          I am a passionate Full-Stack Web and App Developer experimenting in
+          the realm of Creative Coding and Graphic Design as well as Front end
+          development.
+          <br />
+          <br />
+         began by chance as a self-taught developer, have been coding for past
+          2+ years now. 
+          And as the crush for knowledge grew, I decided to attend a coding bootcamp where i could further widen my knowledge and skills.
+          My experience range over a wide variety of languages and frameworks,
+          including:
+          <br />
+          <br />
+          
+            <span>React, </span>
+            <span>Node.js, </span>
+            <span>Express, </span>
+            <span>Java, </span>
+            <span>JavaScript, </span>
+            <span>HTML, </span>
+            <span>CSS, </span>
+            <span>SQL, </span>
+            <span>MongoDB, </span>
+            <span>Git, </span>
+            <span>REST, </span>
+
+            <span>GraphQL, </span>
+            <span>Adobe Illustrator, </span>
+            <span>Adobe Photoshop, </span>
+            <span>Figma, </span>
+            <span>Adobe XD, </span>
+
         </Box>
-        <Box
-        className="tile-wrap"
-        >
+        <Box className="tile-wrap">
           {divArray.map((item) => {
             const bgY = -maxHeight * item + maxHeight;
 
@@ -151,7 +174,6 @@ export default function About() {
           })}
         </Box>
       </Box>
-      
     </Box>
   );
 }

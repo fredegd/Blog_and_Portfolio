@@ -32,7 +32,7 @@ export default function Navbar({ window, setOpen }) {
   const location = useLocation();
   const [activeMenuItem, setActiveMenuItem] = useState(null);
 
-  console.log(activeMenuItem);
+  // console.log(activeMenuItem);
 
   useEffect(() => {
     // Iterate through the navItems to find the active one

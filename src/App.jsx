@@ -28,7 +28,7 @@ export default function App() {
   const theme = themeManager(dk);
   const [blogs, setBlogs] = useState([]);
 
-   console.log(theme);
+  //  console.log(theme);
   const [open, setOpen] = useState(false); //a state to control the drawer
 
   const [bgImage, setBgImage] = useState(
