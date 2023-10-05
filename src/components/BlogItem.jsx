@@ -112,8 +112,8 @@ export default function BlogItem() {
            
               sx={{
                 marginY: {xs: "1rem", sm: "2rem", md: "3rem", lg: "4rem"},
-                height: { xs: "90vw", sm: "60vw", md: "50vw", lg: "40vw" },
-                width: { xs: "90vw", sm: "90vw", md: "85vw", lg: "70vw" },
+                height: { xs: "90vw", sm: "60vw", md: "600px", lg: "600px" },
+                width: { xs: "90vw", sm: "90vw", md: "800px", lg: "800px" },
                 backgroundImage: `url(${contentImages[imgIndex].fields.file.url})`,
                 backgroundPosition: "center",
                 backgroundSize: `100% auto`,
@@ -206,7 +206,7 @@ export default function BlogItem() {
           sx={{
             zIndex: "1000",
             padding: "0 0 5rem 0",
-            width: "100%",
+
             background: `linear-gradient(90deg, #00000000 0%,${theme.palette.background.transparent} 20%, ${theme.palette.background.main} 40%, ${theme.palette.background.main} 60%, ${theme.palette.background.transparent} 80%,  #00000000 100%)`,
             display: "flex",
             flexDirection: "column",
@@ -216,16 +216,19 @@ export default function BlogItem() {
         >
           <Box
             sx={{
-              boxShadow: `0px 0px 10px 0px ${theme.palette.text.highlightAlt}`,
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
               backgroundColor: theme.palette.background.main,
-              padding: "2rem 1.5rem 3rem 1.5rem",
+              padding: "3vw 3vw 3rem 3vw",
               textAlign: "left",
+              boxShadow: `0px 0px 10px 0px ${theme.palette.text.highlightAlt}`,
             }}
           >
             <Box
               sx={{
-                height: { xs: "90vw", sm: "60vw", md: "50vw", lg: "40vw" },
-                width: { xs: "90vw", sm: "90vw", md: "85vw", lg: "70vw" },
+                height: { xs: "80vw", sm: "60vw", md: "50vw", lg: "40vw" },
+                width: { xs: "80vw", sm: "80vw", md: "85vw", lg: "70vw" },
                 backgroundImage: `url(${blog.blogTitleImage.fields.file.url})`,
                 backgroundPosition: "center",
                 backgroundSize: `100% auto`,
@@ -249,6 +252,7 @@ export default function BlogItem() {
                 padding: "1rem",
                 transition: "all 0.5s ease-in-out",
                 fontWeight: "bold",
+                textAlign:"justify"
               }}
             >
               {blog.title}
@@ -257,9 +261,11 @@ export default function BlogItem() {
             <Typography
               variant="h4"
               sx={{
+                width:{xs:"100%",md:"900px"},
                 fontSize: { xs: "5vw", sm: "4vw", md: "3.5vw", lg: "2.55vw" },
                 fontStyle: "italic",
-                padding: { xs: "1rem", md: "3rem" },
+                marginY: "1.5rem",
+                padding: { xs: "1rem", md: 0 },
                 pb: "1rem",
               }}
             >
@@ -267,9 +273,10 @@ export default function BlogItem() {
             </Typography>
             <Box
               sx={{
+                width:{xs:"100%",md:"900px"},
                 display: "flex",
                 flexDirection: "column",
-                px: { xs: 2, md: 5 },
+                px: { xs: 2, md: 0 },
                 fontSize: { xs: "2.5vw", sm: "1rem", md: "1.2rem", lg: "1rem" },
                 gap: "0.3rem",
               }}
@@ -322,7 +329,7 @@ export default function BlogItem() {
           </Box>
 
           <Box
-            sx={{ marginTop: "3rem", marginBottom: "3rem", maxWidth: "800px", display:  "flex", flexDirection: "column", alignItems: "center" }}
+            sx={{ marginTop: "3rem", marginBottom: "3rem", maxWidth: "900px", display:  "flex", flexDirection: "column", alignItems: "center",textAlign: "justify", }}
           >
             {displayContent(blog.content)}
           </Box>

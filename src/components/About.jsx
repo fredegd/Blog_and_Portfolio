@@ -1,13 +1,23 @@
 import { Box, Typography, Button } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 import { useState, useEffect } from "react";
+import { useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 import Pic from "../assets/portrait.gif";
 
 import anime from "animejs";
 
+const personalInfo = {
+  short:
+    "I'm a passionate full stack developer with a passion for creating beautiful, functional, and responsive web applications. I love experimenting in the realm of Creative Coding and Graphic Design\n",
+  full: "I'm a passionate full stack developer with a passion for creating beautiful, functional, and responsive web applications. I love experimenting in the realm of Creative Coding and Graphic Design,  I'm a lifelong learner and I'm always looking for new ways to improve my skills and expand my knowledge. I'm currently looking for a full time position as a software engineer. I began by chance as a self-taught developer, have been coding for past 2+ years now. And as the crush for knowledge grew, I decided to attend a coding bootcamp where i could further widen my knowledge \n and skills. My experience range over a wide variety of languages and frameworks, including: \n React, Node.js, Express, Java, JavaScript, HTML, CSS, SQL, MongoDB, Git, REST, GraphQL, Adobe Illustrator, Adobe Photoshop, Figma, Adobe XD,",
+};
 export default function About() {
+  window.scrollTo(0, 0);
   const theme = useTheme();
+  const location = useLocation();
+
   const [gridSize, setGridSize] = useState({ numRows: 15, numCols: 1 });
   const [aboutImage, setAboutImage] = useState(Pic);
 
@@ -108,41 +118,23 @@ export default function About() {
         }}
       >
         <Box className="tile" sx={{ padding: "2.5rem" }}>
-          <Typography
-            variant="p"
-            color={theme.palette.text.primary}
-          ></Typography>
-          I am a passionate Full-Stack Web and App Developer experimenting in
-          the realm of Creative Coding and Graphic Design as well as Front end
-          development.
-          <br />
-          <br />
-         began by chance as a self-taught developer, have been coding for past
-          2+ years now. 
-          And as the crush for knowledge grew, I decided to attend a coding bootcamp where i could further widen my knowledge and skills.
-          My experience range over a wide variety of languages and frameworks,
-          including:
-          <br />
-          <br />
-          
-            <span>React, </span>
-            <span>Node.js, </span>
-            <span>Express, </span>
-            <span>Java, </span>
-            <span>JavaScript, </span>
-            <span>HTML, </span>
-            <span>CSS, </span>
-            <span>SQL, </span>
-            <span>MongoDB, </span>
-            <span>Git, </span>
-            <span>REST, </span>
-
-            <span>GraphQL, </span>
-            <span>Adobe Illustrator, </span>
-            <span>Adobe Photoshop, </span>
-            <span>Figma, </span>
-            <span>Adobe XD, </span>
-
+          {location.pathname === "/about" && (
+            <Typography variant="p" color={theme.palette.text.primary}>
+              {personalInfo.full}
+            </Typography>
+          )}
+          {location.pathname === "/" && (
+            <Typography variant="p" color={theme.palette.text.primary}>
+              {
+                <>
+                  {personalInfo.short}
+                  <Link to={"about"}>
+                    <Button>...more</Button>
+                  </Link>
+                </>
+              }
+            </Typography>
+          )}
         </Box>
         <Box className="tile-wrap">
           {divArray.map((item) => {

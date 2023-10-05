@@ -67,7 +67,7 @@ export default function Hero() {
 
       </Box>
 
-      <Box sx={{animation: `${slideIn2} 1.5s ease-out 0s 1`, height:{xs:"10rem",md:"12rem"}, width:"100%", background:theme.palette.background.secondary, borderRadius:"5rem"}}>
+      <Box sx={{animation: `${slideIn2} 1.5s ease-out 0s 1`, height:{xs:"10rem",md:"12rem"}, width:"100%", background:theme.palette.background.secondary, borderRadius:"5rem" , display:"flex", alignItems:"center", justifyContent:"center"}}>
         <h2>
           <Typewriter
             options={{
