@@ -1,4 +1,4 @@
-import { useForm } from "react-hook-form";
+import { Form, useForm } from "react-hook-form";
 
 import { motion, useScroll } from "framer-motion";
 import { useParams, Link } from "react-router-dom";
@@ -14,7 +14,9 @@ import {
   Popover,
   TextField,
   FormControl,
+  Button,
   InputLabel,
+  Input,
   OutlinedInput,
   InputAdornment,
 } from "@mui/material";
@@ -37,9 +39,13 @@ export default function BlogItem() {
     register,
     handleSubmit,
     watch,
+    reset,
     formState: { errors },
   } = useForm();
-  const onSubmit = (data) => console.log(data);
+  const onSubmit = (data) => {
+    console.log(data)
+    reset();
+  }
   // console.log(watch("comment")); // watch input value by passing the name of it
 
   const handlePopoverOpen = (event) => {
@@ -60,7 +66,7 @@ export default function BlogItem() {
         console.log(response.fields);
         // console.log(response.sys.id, blogItemid);
         if (response.fields.contentImages) {
-          console.log(response.fields.contentImages);
+          // console.log(response.fields.contentImages);
           setContentImages(response.fields.contentImages);
         }
       })
@@ -92,13 +98,13 @@ export default function BlogItem() {
       [BLOCKS.HEADING_1]: (node, children) => <h1>{children}</h1>,
       [BLOCKS.PARAGRAPH]: (node, children) => {
         const { content } = node;
-        console.log(node)
+        // console.log(node)
         const text = content.map((c) => c.value).join("");
         if (text.startsWith("#img")) {
           const imgIndex = parseInt(text.substring(4));
           if (blog && blog.contentImages && blog.contentImages[imgIndex]) {
             const imgUrl = blog.contentImages[imgIndex].fields.file.url;
-            console.log(imgIndex)
+            // console.log(imgIndex)
             return (
               <Box    key={imgIndex+"img"}>
 
@@ -325,9 +331,11 @@ export default function BlogItem() {
 
           <FormControl
             fullWidth
-            sx={{ background: "red" }}
+            // sx={{ background: "red" }}
             onSubmit={handleSubmit(onSubmit)}
           >
+              <Input id="my-input" aria-describedby="my-helper-text" />
+
             <TextField
               id="comment"
               height="100%"
@@ -335,6 +343,7 @@ export default function BlogItem() {
               label="comment"
               {...register("comment")}
             />
+            <Button type="submit">sub</Button>
           </FormControl>
         </Box>
 

@@ -24,7 +24,14 @@ const svgHeight = 250;
 const startString = `<svg xmlns="http://www.w3.org/2000/svg" width="${svgWidth}" height="${svgHeight}">`;
 const endString = "</svg>";
 
-function Artwork({ bgImage, setBgImage, color1, color2, setColor1, setColor2 }) {
+function Artwork({
+  bgImage,
+  setBgImage,
+  color1,
+  color2,
+  setColor1,
+  setColor2,
+}) {
   const theme = useTheme();
   const dk = useDarkMode();
 
@@ -51,25 +58,13 @@ function Artwork({ bgImage, setBgImage, color1, color2, setColor1, setColor2 }) 
   const [maxSegmentAmount, setMaxSegmentAmount] = useState(
     gridSize > 2 ? Math.floor(gridSize * gridSize * 0.5) + gridSize : 2
   );
-
-  // const [color1, setColor1] = useState(
-  //   localStorage.getItem("col1")
-  //     ? localStorage.getItem("col1")
-  //     : getRandomHexColor("col1")
-  // );
-  // const [color2, setColor2] = useState(
-  //   localStorage.getItem("col2")
-  //     ? localStorage.getItem("col2")
-  //     : getRandomHexColor("col2")
-  // );
-
-
+  const svgData = localStorage.getItem("svgData");
 
   const extractStrokesFromSVG = () => {
     const regex = /<line [^>]*\/>/g;
-    if (bgImage) {
-      // console.log("bgImage passed to extractStrokesFromSVG");
-      const matches = bgImage.match(regex);
+    if (svgData) {
+       console.log("bgImage passed to extractStrokesFromSVG");
+      const matches = svgData.match(regex);
       if (matches) {
         const strokes = matches.join("");
         // console.log("match!");
@@ -80,10 +75,10 @@ function Artwork({ bgImage, setBgImage, color1, color2, setColor1, setColor2 }) 
     }
   };
 
-  //if no bgImage in local storage, draw once and store on local storage
+
 
   const drawStrokes = () => {
-    const pointSize = svgWidth / gridSize;
+    const pointSize = svgWidth / (gridSize -1);
 
     let tempString = "";
     for (let i = 0; i < 2; i++) {
@@ -94,9 +89,10 @@ function Artwork({ bgImage, setBgImage, color1, color2, setColor1, setColor2 }) 
       const visitedPoints = new Set();
 
       for (let j = 0; j < segmentsAmount; j++) {
-        const startX = (currentIndex % gridSize) * pointSize + pointSize / 2;
+
+        const startX = (currentIndex % gridSize) * pointSize*0.8+svgWidth*0.1;
         const startY =
-          Math.floor(currentIndex / gridSize) * pointSize + pointSize / 2;
+          Math.floor(currentIndex / gridSize) * pointSize*0.8+svgWidth*0.1;
 
         visitedPoints.add(currentIndex);
 
@@ -109,10 +105,11 @@ function Artwork({ bgImage, setBgImage, color1, color2, setColor1, setColor2 }) 
             gridSize ** 2;
         } while (visitedPoints.has(nextIndex));
 
-        const endX = (nextIndex % gridSize) * pointSize + pointSize / 2;
+        const endX = (nextIndex % gridSize) *  pointSize*0.8+svgWidth*0.1;
         const endY =
-          Math.floor(nextIndex / gridSize) * pointSize + pointSize / 2;
-        let sw = Math.random() * 5 + 5;
+          Math.floor(nextIndex / gridSize) * pointSize*0.8+svgWidth*0.1;
+        let sw = Math.random() * 2 + 6;
+        // let sw = Math.random() * 5+5;
 
         currentIndex = nextIndex;
 
@@ -123,7 +120,7 @@ function Artwork({ bgImage, setBgImage, color1, color2, setColor1, setColor2 }) 
     console.log("new strokesString");
     return tempString;
   };
-  const svgData = localStorage.getItem("svgData");
+ 
 
   const [strokesString, setStrokesString] = useState(
     bgImage ? extractStrokesFromSVG() : drawStrokes()
@@ -143,22 +140,27 @@ function Artwork({ bgImage, setBgImage, color1, color2, setColor1, setColor2 }) 
       `<rect width="${svgWidth}" height="${svgHeight}" fill="${theme.palette.background.main}"/>`
     );
 
-    if (svgDataString) {
-      // console.log("done");
+  
+
       localStorage.setItem("svgData", svgDataString);
       setBgImage(svgDataString);
-    }
-  }, [dk, gridSize, segmentsAmount, color1, color2, strokesString]);
+      console.log("doing this")
+    
+  }, [dk, strokesString]);
 
-  //this function checks if there is a bgImage in local storage, if not, it draws one and stores it
+  //this function is called when the component is mounted and it checks if there is a bgImage in local storage
+  //if there is, it sets the bgImage state to the value in local storage
   useEffect(() => {
     const svgData = localStorage.getItem("svgData");
 
     if (svgData) {
+     // console.log(svgData)
       setBgImage(svgData);
+      console.log("doing that")
+
       // console.log("svgData was read from LS", svgData);
     }
-  }, [bgImage, color1, color2]);
+  }, [ bgImage, color1, color2, gridSize, segmentsAmount,bgColor]);
 
   const saveDataLocally = (svgData) => {
     try {
@@ -212,7 +214,7 @@ function Artwork({ bgImage, setBgImage, color1, color2, setColor1, setColor2 }) 
   };
 
   const handleHardSave = () => {
-    if (p5CanvasRef.current) {
+   
       const svgData = localStorage.getItem("svgData");
       if (!svgData) {
         console.error("SVG data not found in local storage.");
@@ -231,7 +233,7 @@ function Artwork({ bgImage, setBgImage, color1, color2, setColor1, setColor2 }) 
 
       // Programmatically trigger the download
       a.click();
-    }
+    
   };
 
   return (
@@ -252,10 +254,14 @@ function Artwork({ bgImage, setBgImage, color1, color2, setColor1, setColor2 }) 
               Tap to Generate a new Pattern
             </Typography>
             {/* an element displaying the content of bgImage */}
-            <div
+            {/* <div
               dangerouslySetInnerHTML={{ __html: bgImage }}
               style={{ width: "125px" }}
-            ></div>
+            ></div> */}
+            <Box
+            sx={{width:"250px",height:"250px",backgroundImage:`url(data:image/svg+xml;base64,${btoa(bgImage)})`}}>
+             
+            </Box>
           </div>
         </Box>
         <Box sx={{ width: 250 }}>
