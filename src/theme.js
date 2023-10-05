@@ -6,7 +6,7 @@ export const themeManager = (darkMode) => {
     mode: "dark",
     background: {
       main: "#121212",
-      secondary: "#303030", // You can customize these values
+      secondary: "#131313", // You can customize these values
       transparent: "#121212cc",
     },
     text: {

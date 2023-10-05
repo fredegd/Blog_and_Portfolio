@@ -1,7 +1,9 @@
 import Typewriter from "typewriter-effect";
 import { Box } from "@mui/system";
 import { keyframes } from "@mui/system";
-import { motion, useAnimation } from "framer-motion";
+
+import { useTheme } from "@mui/material/styles";
+
 
 const slideIn0 = keyframes`
   0% {
@@ -35,6 +37,7 @@ const slideIn2 = keyframes`
 `;
 
 export default function Hero() {
+  const theme = useTheme();
   return (
     <Box
     id="hero"
@@ -63,7 +66,8 @@ export default function Hero() {
       <h1>FRED EGIDI</h1>
 
       </Box>
-      <Box sx={{animation: `${slideIn2} 1.5s ease-out 0s 1`}}>
+
+      <Box sx={{animation: `${slideIn2} 1.5s ease-out 0s 1`, height:{xs:"10rem",md:"12rem"}, width:"100%", background:theme.palette.background.secondary, borderRadius:"5rem"}}>
         <h2>
           <Typewriter
             options={{
