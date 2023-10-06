@@ -48,14 +48,14 @@ export default function BlogPreview({ blogs }) {
             sx={{
               width: "100%",
               background: theme.palette.background.main,
-              border: `10px solid ${theme.palette.text.highlightAlt}`,
+              border: `10px solid ${theme.palette.text.highlight}`,
               fontFamily: "IBM Plex Mono ",
-              color: theme.palette.text.highlightAlt,
+              color: theme.palette.text.primary,
               p: 3,
               // borderRadius: "1em",
               "&:hover": {
                 background: theme.palette.background.secondary,
-                color: theme.palette.text.highlight,
+                color: theme.palette.text.highlightAlt,
                 fontSize: "1.1rem",
               },
             }}

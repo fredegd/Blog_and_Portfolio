@@ -24,8 +24,6 @@ const staggerConfig = {
   },
 };
 
-
-
 export default function Contact() {
   const theme = useTheme();
 
@@ -42,15 +40,14 @@ export default function Contact() {
 
   return (
     <Box
-    id="contact"
+      id="contact"
       sx={{
-        height: {xs:"70vh",sm:"80vh",md:"60vh"},
+        height: { xs: "50vh",sm:"60vh", md: "90vh" },
         width: "100%",
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
         justifyContent: { xs: "flex-start", sm: "flex-start" },
-        paddingTop: "5rem",
       }}
     >
       <Box
@@ -58,37 +55,45 @@ export default function Contact() {
           backgroundColor: `${theme.palette.text.highlight}88`,
           fontSize: "20px",
           color: theme.palette.text.primary,
-          marginBottom: "5rem",
           width: "100%",
           padding: "2.5rem",
-          // marginTop: "5rem",
+          marginBottom: "5rem",
           zIndex: "1000",
         }}
       >
-        <Typography variant= "h1" sx={{fontSize:{xs:"2rem",sm:"2.5rem", md:"3rem", lg:"4rem"}}}>Let´s get in Touch:</Typography>
+        <Typography
+          variant="h1"
+          sx={{
+            fontSize: { xs: "2rem", sm: "2.5rem", md: "3rem", lg: "4rem" },
+          }}
+        >
+          Let´s get in Touch:
+        </Typography>
       </Box>
+
       <Grid
         container
         spacing={2}
-        justifyContent="center"
         alignItems="center"
         sx={{
+          maxWidth: "900px",
+          paddingX: { xs: "1rem", md: "2.5rem" },
           "& > div": {
             display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
+            alignItems: "flex-start",
+            justifyContent: { xs: "center", sm: "center", md: "flex-start" },
           },
         }}
       >
         {contactItems.map((item) => {
           return (
-            <Grid item key={item.id} xs={6} sm={6} md={3}>
+            <Grid item key={item.id} xs={6} sm={6} md={12}>
               <Link href={item.linkTo} target={"blank"} underline="hover">
                 <motion.div
                   key={item.id}
                   style={{
-                    margin: "1rem",
-                    padding: 0,
+                   
+                    margin: "0 1.5rem 1.5rem 0",
                     display: "flex",
                     flexDirection: "column",
                     alignItems: "center",
@@ -98,7 +103,7 @@ export default function Contact() {
                   // initial="animate"
                   //  animate={controls}
                   whileHover={{ scale: 1.1 }}
-                  transition={{ type: "spring", stiffness: 300, damping: 10 }}
+                  transition={{ type: "spring", stiffness: 200, damping: 8 }}
                   whileTap={{ scale: 0.9 }}
                 >
                   <IconButton
@@ -119,10 +124,11 @@ export default function Contact() {
                         md: "180px",
                         lg: "150px",
                       },
-                      transition: "all 0.5s ease-in-out",
+                      transition: "border 0.3s ease-in-out",
                       "&:hover": {
                         color: theme.palette.text.highlight,
                         background: theme.palette.background.main,
+                        border: `10px solid ${theme.palette.text.highlight}`,
                       },
                       fontSize: {
                         xs: "4rem",
@@ -140,11 +146,43 @@ export default function Contact() {
                       }}
                     />
                   </IconButton>
-                  <Box sx={{zIndex:"1000", }}>
-                    <Typography variant="h6"  textDecoration={"none"}>{item.id}</Typography>
+                  <Box sx={{ zIndex: "1000", display:{xs:"block",md:"none"}}}>
+                    <Typography variant="h6" textDecoration={"none"} >
+                      {item.name}
+                    </Typography>
                   </Box>
                 </motion.div>
               </Link>
+              <Link href={item.linkTo} target={"blank"} underline="hover" zIndex={100} sx={{
+                  display:{xs:"none", md:"block"},
+                  width: "100%",
+                  height: {
+                    md: "180px",
+                    lg: "150px",
+                  },
+                  backgroundImage: ``,
+                  backgroundColor: `${theme.palette.background.main}cc`,
+                  boxShadow: `0 0 10px ${theme.palette.text.highlight}`,
+
+                  "&:hover": {
+                    border: `10px solid ${theme.palette.text.highlight}`,
+                    boxShadow: `0 0 10px ${theme.palette.text.highlight}`,
+                    borderRadius: "1.2rem",
+                    // backgroundColor: `${theme.palette.text.highlight}88`,
+                    backgroundImage: `url(${item.screenshot})`,
+                    backgroundSize: "100% auto",
+                    "& > p": {
+                      display: "none",
+                    },
+                  },
+                  color: theme.palette.text.primary,  
+                  transition: "all 0.5s ease-in-out",
+                 
+                }}>
+             
+                <p>{item.shortText}</p>
+
+                </Link>
             </Grid>
           );
         })}

@@ -27,8 +27,6 @@ export default function BlogItemCard({ blog }) {
     return documentToReactComponents(richText, options);
   };
 
-  const titlePreview = blog.fields.title;
-
   const extractTextFromRichText = (content) => {
     if (!content) return "";
 
@@ -46,14 +44,28 @@ export default function BlogItemCard({ blog }) {
       .join(" ");
   };
 
-  const contentPreview = extractTextFromRichText(blog.fields.content);
+  // Truncate the text to the first 45 chars
 
-  // Truncate the text to the first 100 words
+  const truncatedTitle = () => {
+    const title = blog.fields.title;
+    if (title.length < 40) {
+      return title;
+    } else {
+      return title.split("").slice(0, 45).join("").trim() + "...";
+    }
+  };
 
-  const truncatedTitle = titlePreview.split("").slice(0, 40).join("");
-  // Truncate the text to the first 100 words
-  const words = contentPreview.split(" ");
-  const truncatedContent = words.slice(0, 20).join(" ");
+  // Truncate the text to the first 20 words
+
+  const truncatedContent = () => {
+    const contentPreview = extractTextFromRichText(blog.fields.content);
+    const words = contentPreview.split(" ");
+    if (words.length < 20) {
+      return words.join(" ");
+    } else {
+      return words.slice(0, 20).join(" ") + " [...]";
+    }
+  };
 
   // console.log(truncatedContent);
 
@@ -62,8 +74,7 @@ export default function BlogItemCard({ blog }) {
       <motion.div
         whileHover={{
           scale: 1.08,
-          filter: "none !important"
-
+          filter: "none !important",
         }}
         transition={{ type: "spring", stiffness: 100, damping: 10 }}
         whileTap={{ scale: 0.9 }}
@@ -78,16 +89,17 @@ export default function BlogItemCard({ blog }) {
           <Box
             sx={{
               height: {
-                xs: "32rem",
-                sm: "26rem",
-                md: "25rem",
+                xs: "45vw",
+                sm: "60vw",
+                md: "38vw",
                 lg: "24rem",
                 xl: "24rem",
               },
               backgroundColor: `${theme.palette.text.highlight}55`,
               display: "flex",
               flexDirection: "column",
-              minHeight: "23rem",
+              justifyContent: "flex-start",
+              minHeight: "20rem",
               border: `5px solid ${theme.palette.text.highlight}`,
               boxShadow: `0 0 10px ${theme.palette.text.highlight}`,
               padding: "1rem",
@@ -105,17 +117,17 @@ export default function BlogItemCard({ blog }) {
                 <Box
                   sx={{
                     zIndex: "100",
-                    height: { xs: "20rem", sm: "13rem", md: "13rem" },
+                    height: "50vw",
+                    maxHeight: { xs: "16rem", sm: "50vw", md: "20rem" },
                     width: "100%",
                     backgroundImage: `url(${blog.fields.blogTitleImage.fields.file.url})`,
-                    filter: "grayscale(70%)",
+                    filter: "grayscale(90%)",
                     backgroundPosition: "center",
                     backgroundSize: `100% auto`,
                     backgroundRepeat: "no-repeat",
                     transition: "all 0.3s ease-in-out",
                     "&:hover": {
                       filter: "grayscale(0%)",
-
                     },
                   }}
                 >
@@ -126,7 +138,7 @@ export default function BlogItemCard({ blog }) {
                   flexDirection={"column"}
                   sx={{
                     width: "100%",
-                    marginTop: "1rem",
+                    // marginTop: "1rem",
                     // transition: "all 0.5s ease-in-out",
                   }}
                 >
@@ -138,7 +150,7 @@ export default function BlogItemCard({ blog }) {
                       lineHeight={"1"}
                       sx={{
                         fontSize: {
-                          xs: "1.9rem",
+                          xs: "1.4rem",
                           sm: "1.4rem",
                           md: "1.4rem",
                           lg: "1.6rem",
@@ -150,7 +162,7 @@ export default function BlogItemCard({ blog }) {
                         textJustify: "interWord",
                       }}
                     >
-                      {truncatedTitle+ "..."}
+                      {truncatedTitle()}
                     </Typography>
                   </Box>
                   <Box
@@ -168,9 +180,10 @@ export default function BlogItemCard({ blog }) {
                         textAlign: "justify",
                         textJustify: "interWord",
                         zIndex: "100",
+                        letterSpacing: `0.08vw`,
                       }}
                     >
-                      {truncatedContent + " [...]"}
+                      {truncatedContent()}
                     </Typography>
                   </Box>
                 </Box>

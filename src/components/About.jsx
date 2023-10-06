@@ -10,11 +10,10 @@ import anime from "animejs";
 
 const personalInfo = {
   short:
-    "I'm a passionate full stack developer with a passion for creating beautiful, functional, and responsive web applications. I love experimenting in the realm of Creative Coding and Graphic Design\n",
-  full: "I'm a passionate full stack developer with a passion for creating beautiful, functional, and responsive web applications. I love experimenting in the realm of Creative Coding and Graphic Design,  I'm a lifelong learner and I'm always looking for new ways to improve my skills and expand my knowledge. I'm currently looking for a full time position as a software engineer. I began by chance as a self-taught developer, have been coding for past 2+ years now. And as the crush for knowledge grew, I decided to attend a coding bootcamp where i could further widen my knowledge \n and skills. My experience range over a wide variety of languages and frameworks, including: \n React, Node.js, Express, Java, JavaScript, HTML, CSS, SQL, MongoDB, Git, REST, GraphQL, Adobe Illustrator, Adobe Photoshop, Figma, Adobe XD,",
+    "I'm a full stack developer with a passion for creating beautiful, functional, and responsive web applications. I love experimenting in the realm of Creative Coding and Graphic Design\n",
+  full: "I'm a full stack developer with a passion for creating beautiful, functional, and responsive web applications. I love experimenting in the realm of Creative Coding and Graphic Design,  I'm a lifelong learner and I'm always looking for new ways to improve my skills and expand my knowledge. I'm currently looking for a full time position as a software engineer. I began by chance as a self-taught developer, have been coding for past 2+ years now. And as the crush for knowledge grew, I decided to attend a coding bootcamp where i could further widen my knowledge \n and skills. My experience range over a wide variety of languages and frameworks, including: \n React, Node.js, Express, Java, JavaScript, HTML, CSS, SQL, MongoDB, Git, REST, GraphQL, Adobe Illustrator, Adobe Photoshop, Figma, Adobe XD,",
 };
 export default function About() {
-  window.scrollTo(0, 0);
   const theme = useTheme();
   const location = useLocation();
 
@@ -25,6 +24,8 @@ export default function About() {
     { length: gridSize.numRows },
     (_, index) => index + 1
   );
+
+  window.scrollTo(0, 0);
 
   const maxWidth = 30;
   const maxHeight = 45 / gridSize.numRows;
@@ -91,19 +92,20 @@ export default function About() {
     >
       {" "}
       <Box
-        sx={{
-          backgroundColor: `${theme.palette.text.highlight}88`,
-          fontSize: "20px",
-          color: theme.palette.text.primary,
-          width: "100%",
-          padding: "2.5rem",
-          marginY: "5rem",
-          zIndex: "1000",
-        }}
+       sx={{
+        backgroundColor: `${theme.palette.text.highlight}88`,
+        fontSize: "20px",
+        color: theme.palette.text.primary,
+        width: "100%",
+        padding: "2.5rem",
+        marginBottom: "5rem",
+        zIndex: "1000",
+      }}
       >
         <Typography variant="h1">About Me:</Typography>
       </Box>
       <Box
+      id="aboutContent"
         sx={{
           zIndex: "1000",
           padding: "2.5rem",
@@ -114,12 +116,12 @@ export default function About() {
           overflow: "scroll",
           // border: "1px solid black",
 
-          backgroundColor: `${theme.palette.background.main}`,
+          backgroundColor: `${theme.palette.background.main}88`,
         }}
       >
-        <Box className="tile" sx={{ padding: "2.5rem" }}>
+        <Box className="tile" sx={{ padding: "1rem",textAlign:"justify" }}>
           {location.pathname === "/about" && (
-            <Typography variant="p" color={theme.palette.text.primary}>
+            <Typography variant="p"  color={theme.palette.text.primary}>
               {personalInfo.full}
             </Typography>
           )}
@@ -128,7 +130,7 @@ export default function About() {
               {
                 <>
                   {personalInfo.short}
-                  <Link to={"about"}>
+                  <Link to={"/about#aboutContent"}>
                     <Button>...more</Button>
                   </Link>
                 </>
@@ -157,9 +159,6 @@ export default function About() {
                   backgroundRepeat: "noRepeat",
                   width: { xs: `${maxWidth * 2}vw`, md: `${maxWidth}vw` },
                   height: { xs: `${maxHeight * 2}vw`, md: `${maxHeight}vw` },
-                  // border: "1px solid black",
-                  // transition: "0.1s ease-out",
-                  // animation: `${slideIn1} 1.7s ease-out ${item.id * 0.1}s 1`,
                 }}
               ></Box>
             );

@@ -6,13 +6,13 @@ export const themeManager = (darkMode) => {
     mode: "dark",
     background: {
       main: "#121212",
-      secondary: "#131313", // You can customize these values
+      secondary: "#131313",
       transparent: "#121212cc",
     },
     text: {
       primary: "#f1f1f1",
       secondary: "#888888",
-      contrast:"#000000",
+      contrast: "#000000",
 
       highlight: localStorage.getItem("col1") || "#ff8800", //hex orange color
       highlightAlt: localStorage.getItem("col2") || "#ffff00", //hex yellow color
@@ -29,16 +29,15 @@ export const themeManager = (darkMode) => {
     mode: "light",
     background: {
       main: "#f1f1f1",
-      secondary: "#f2f2f2", // You can customize these values
+      secondary: "#f2f2f2",
       transparent: "#f1f1f1cc",
     },
     text: {
       primary: "#131313",
       secondary: "#888888",
-      contrast:"#ffffff",
+      contrast: "#ffffff",
       highlight: localStorage.getItem("col1") || "#ff8800", //hex orange color
       highlightAlt: localStorage.getItem("col2") || "#ffff00", //hex yellow color
-
     },
     action: {
       active: "#ffcf8c",
@@ -56,27 +55,24 @@ export const themeManager = (darkMode) => {
       body1: {
         fontSize: "1.2rem",
         fontFamily: "IBM Plex Mono",
-
-
       },
       body2: {
         fontSize: "1.2rem",
         fontFamily: "IBM Plex Mono",
       },
-      button:{
+      button: {
         fontSize: "1.1rem",
         fontFamily: "IBM Plex Mono",
-        fontSize:"1.4rem",
+        fontSize: "1.4rem",
         fontWeight: 400,
-        letterSpacing:"0.02857em",
-        textTransform:"uppercase",
+        letterSpacing: "0.02857em",
+        textTransform: "uppercase",
       },
       h1: {
         fontSize: "4rem",
         fontFamily: "IBM Plex Mono",
         letterSpacing: "-0.08em",
 
-      
         // lineHeight: "5.8rem",
       },
       h2: {
@@ -122,7 +118,6 @@ export const themeManager = (darkMode) => {
         fontSize: "1rem",
         fontFamily: "IBM Plex Mono",
       },
-      
     },
     shadows:
       "0px 0px 10px 10px #ff0000 0.5, 10px 10px 10px  10px rgba(0,0,0,0.14), 0px 0px 10px 10px rgba(0,0,0,0.12)",

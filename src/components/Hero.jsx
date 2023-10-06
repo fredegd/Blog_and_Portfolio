@@ -4,7 +4,6 @@ import { keyframes } from "@mui/system";
 
 import { useTheme } from "@mui/material/styles";
 
-
 const slideIn0 = keyframes`
   0% {
     transform: translateY(25%);
@@ -40,7 +39,7 @@ export default function Hero() {
   const theme = useTheme();
   return (
     <Box
-    id="hero"
+      id="hero"
       sx={{
         // fontFamily: "IBM Plex Mono, sans-serif",
         fontSize: {
@@ -50,8 +49,6 @@ export default function Hero() {
           lg: "2.1rem",
           xl: "2.5rem",
         },
-        // position: "relative",
-        backgroundSize: "cover",
         width: { xs: "100%", sm: "100%", md: "100%", lg: "100%", xl: "100%" },
         minHeight: "80vh",
         display: "flex",
@@ -62,12 +59,22 @@ export default function Hero() {
         zIndex: "100",
       }}
     >
-      <Box sx={{animation: `${slideIn1} .5s ease-out 0s 1`}}>
-      <h1>FRED EGIDI</h1>
-
+      <Box sx={{ animation: `${slideIn1} .5s ease-out 0s 1` }}>
+        <h1>FRED EGIDI</h1>
       </Box>
 
-      <Box sx={{animation: `${slideIn2} 1.5s ease-out 0s 1`, height:{xs:"10rem",md:"12rem"}, width:"100%", background:theme.palette.background.secondary, borderRadius:"5rem" , display:"flex", alignItems:"center", justifyContent:"center"}}>
+      <Box
+        sx={{
+          animation: `${slideIn2} 1.5s ease-out 0s 1`,
+          height: { xs: "10rem", md: "12rem" },
+          width: "100%",
+          background: theme.palette.background.secondary,
+          borderRadius: "1.2rem",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      >
         <h2>
           <Typewriter
             options={{
