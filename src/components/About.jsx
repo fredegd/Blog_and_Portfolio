@@ -147,7 +147,6 @@ export default function About() {
                 className="tile"
                 key={item}
                 sx={{
-                  visibility: "hidden",
                   position: "relative",
 
                   background: `url(${aboutImage})`,
