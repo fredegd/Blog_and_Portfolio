@@ -315,6 +315,7 @@ export default function BlogItem() {
                         sx={{
                           mx: "1rem",
                           backgroundColor: theme.palette.text.highlightAlt,
+                          color: theme.palette.primary.contrastText,
                           padding: "0.2rem 0.8rem",
                           borderRadius: "1rem",
                         }}

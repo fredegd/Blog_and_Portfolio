@@ -86,7 +86,7 @@ export default function About() {
         flexDirection: "column",
         alignItems: "flex-end",
         width: "100%",
-        minHeight: "100vh",
+        // minHeight: "100vh",
         overflow: "scroll",
       }}
     >
@@ -98,7 +98,7 @@ export default function About() {
         color: theme.palette.text.primary,
         width: "100%",
         padding: "2.5rem",
-        marginBottom: "5rem",
+        // marginBottom: "5rem",
         zIndex: "1000",
       }}
       >

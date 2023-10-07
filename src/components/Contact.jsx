@@ -42,7 +42,7 @@ export default function Contact() {
     <Box
       id="contact"
       sx={{
-        height: { xs: "50vh",sm:"60vh", md: "90vh" },
+        // height: { xs: "50vh",sm:"60vh", md: "90vh" },
         width: "100%",
         display: "flex",
         flexDirection: "column",

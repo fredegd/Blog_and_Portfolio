@@ -15,7 +15,7 @@ export default function BlogPreview({ blogs }) {
     id="blog"
       sx={{
         width: { xs: "100%", sm: "100%", md: "100%", lg: "100%", xl: "100%" },
-        minHeight: "100vh",
+        // minHeight: "100vh",
 
         display: "flex",
         flexDirection: "column",

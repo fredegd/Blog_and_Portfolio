@@ -19,6 +19,7 @@ export default function Contact() {
         alignItems: "center",
         justifyContent: { xs: "flex-start", sm: "flex-start" },
         paddingTop: "5rem",
+        zIndex: "1000",
       }}
     >
       <Box
@@ -31,7 +32,7 @@ export default function Contact() {
           width: "100%",
           padding: "2.5rem",
           // marginTop: "5rem",
-          zIndex: "1000",
+         
         }}
       >
         <Box sx={{}}>

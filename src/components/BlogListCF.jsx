@@ -4,7 +4,7 @@ import { client } from "../client";
 
 import BlogItemCard from "./BlogItemCard";
 import { Box, Grid, Typography } from "@mui/material";
-import Footer from "./Footer";
+
 
 export default function BlogListCF() {
   const [blogs, setBlogs] = useState([]);
@@ -31,7 +31,7 @@ export default function BlogListCF() {
   // );
 
   return (
-    <>
+    <Box zIndex={1000}>
    
       <Box
         sx={{
@@ -41,13 +41,12 @@ export default function BlogListCF() {
           width: "100%",
           padding: "2.5rem",
           marginBottom: "5rem",
-          zIndex: "1000",
         }}
       >
         <Typography variant="h1">Blog</Typography>
       </Box>
 
-      <Box sx={{ zIndex: "100", width: "100%", padding: "2.5rem" }}>
+      <Box sx={{  width: "100%", padding: "2.5rem" }}>
         <Grid container spacing={5}>
           {blogs.map((blog) => (
             <Grid item xs={12} sm={12} md={6} lg={4} key={blog.sys.id}>
@@ -56,7 +55,7 @@ export default function BlogListCF() {
           ))}
         </Grid>
       </Box>
-      <Footer />
-    </>
+
+    </Box>
   );
 }
