@@ -3,7 +3,7 @@ import TwitterIcon from "@mui/icons-material/Twitter";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import GitHubIcon from "@mui/icons-material/GitHub";
 
-import linkedIn from "./assets/linkedin.png"; 
+import linkedin from "./assets/linkedin_ss.png"; 
 import gitHub from "./assets/gitHub.png";
 import instagram from "./assets/instagram.png";
 import twitter from "./assets/twitterX.png";
@@ -15,7 +15,7 @@ const contactItems = [
     linkTo: "https://www.linkedin.com/in/federicoegidi/",
     icon: LinkedInIcon,
     shortText: "Here's my LinkedIn where you can find my work experience and education but i also use it to get in touch with Dev. peers.",
-    screenshot: linkedIn,
+    screenshot: linkedin,
   },
   {
     id: "github",
