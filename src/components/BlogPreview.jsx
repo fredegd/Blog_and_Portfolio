@@ -14,21 +14,20 @@ export default function BlogPreview({ blogs }) {
     <Box
     id="blog"
       sx={{
-        width: { xs: "100%", sm: "100%", md: "100%", lg: "100%", xl: "100%" },
-        // minHeight: "100vh",
-
+        width: "100%",
         display: "flex",
         flexDirection: "column",
         justifyContent: "center",
         overflow: "scroll",
-        transition: "all 0.9s ease-in-out",
+        transition: "all 0.5s ease-in-out",
+        paddingBottom: "5rem",
       }}
     >
       <motion.div
         style={{
-          margin: "5rem 0 ",
-          padding: "0 2.5rem",
-          transition: "background 0.7s ",
+          margin: "5rem 0 2rem 0",
+          padding: "0 1.5rem",
+
         }}
         whileHover={{
           scale: 1.04,
@@ -71,7 +70,7 @@ export default function BlogPreview({ blogs }) {
                   xl: "5rem",
                 },
 
-                transition: " all 0.3s ease-in-out",
+                transition: " all 0.5s ease-in-out",
               }}
             >
               Latest from the Blog:
@@ -80,7 +79,7 @@ export default function BlogPreview({ blogs }) {
         </Link>
       </motion.div>
 
-      <Box sx={{ zIndex: "100", width: "100%", padding: "2.5rem" }}>
+      <Box sx={{ zIndex: "100", width: "100%", padding:{ xs:"1.5rem",md:"2.5rem"} }}>
         <Grid container spacing={5}>
           {blogs.map((blog) => (
             <Grid item xs={12} sm={6} md={4} key={blog.sys.id}>

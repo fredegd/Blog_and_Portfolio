@@ -55,7 +55,7 @@ export default function Hero() {
         flexDirection: "column",
         justifyContent: "center",
         overflow: "scroll",
-        transition: "all 0.9s ease-in-out",
+        transition: "all 0.5s ease-in-out",
         zIndex: "100",
       }}
     >

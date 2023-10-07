@@ -88,23 +88,17 @@ export default function BlogItemCard({ blog }) {
         >
           <Box
             sx={{
-              height: {
-                xs: "45vw",
-                sm: "60vw",
-                md: "38vw",
-                lg: "24rem",
-                xl: "24rem",
-              },
-              backgroundColor: `${theme.palette.text.highlight}55`,
+              backgroundColor: `${theme.palette.text.highlight}88`,
               display: "flex",
               flexDirection: "column",
               justifyContent: "flex-start",
-              minHeight: "20rem",
+              height: {xs:"100vw",sm:"90vw",md:"47vw",lg:"30vw"},
+              maxHeight: {lg:"400px"},
               border: `5px solid ${theme.palette.text.highlight}`,
               boxShadow: `0 0 10px ${theme.palette.text.highlight}`,
               padding: "1rem",
               "&:hover": {
-                backgroundColor: `${theme.palette.text.highlightAlt}55`,
+                backgroundColor: `${theme.palette.background.main}cc`,
                 border: `5px solid ${theme.palette.text.highlightAlt}`,
                 boxShadow: `0 0 10px ${theme.palette.text.highlightAlt}`,
                 color: theme.palette.text.primary,
@@ -116,16 +110,16 @@ export default function BlogItemCard({ blog }) {
                 {" "}
                 <Box
                   sx={{
-                    zIndex: "100",
-                    height: "50vw",
-                    maxHeight: { xs: "16rem", sm: "50vw", md: "20rem" },
+
+                    height: { xs: "66vw",  md: "32vw",lg:"20vw" },
+
                     width: "100%",
                     backgroundImage: `url(${blog.fields.blogTitleImage.fields.file.url})`,
                     filter: "grayscale(90%)",
                     backgroundPosition: "center",
                     backgroundSize: `100% auto`,
                     backgroundRepeat: "no-repeat",
-                    transition: "all 0.3s ease-in-out",
+                    transition: "all 0.5s ease-in-out",
                     "&:hover": {
                       filter: "grayscale(0%)",
                     },
@@ -133,6 +127,7 @@ export default function BlogItemCard({ blog }) {
                 >
                   {/* background image */}
                 </Box>
+
                 <Box
                   display={"flex"}
                   flexDirection={"column"}
@@ -150,8 +145,8 @@ export default function BlogItemCard({ blog }) {
                       lineHeight={"1"}
                       sx={{
                         fontSize: {
-                          xs: "1.4rem",
-                          sm: "1.4rem",
+                          xs: "1.8rem",
+                          sm: "2rem",
                           md: "1.4rem",
                           lg: "1.6rem",
                           xl: "1.7rem",

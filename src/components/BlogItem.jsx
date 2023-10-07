@@ -15,10 +15,7 @@ import {
   TextField,
   FormControl,
   Button,
-  InputLabel,
   Input,
-  OutlinedInput,
-  InputAdornment,
 } from "@mui/material";
 
 import { KeyboardArrowUp, KeyboardArrowLeft } from "@mui/icons-material";
@@ -43,9 +40,9 @@ export default function BlogItem() {
     formState: { errors },
   } = useForm();
   const onSubmit = (data) => {
-    console.log(data)
+    console.log(data);
     reset();
-  }
+  };
   // console.log(watch("comment")); // watch input value by passing the name of it
 
   const handlePopoverOpen = (event) => {
@@ -106,24 +103,27 @@ export default function BlogItem() {
             const imgUrl = blog.contentImages[imgIndex].fields.file.url;
             // console.log(imgIndex)
             return (
-              <Box    key={imgIndex+"img"}>
-
-              <Box
-           
-              sx={{
-                marginY: {xs: "1rem", sm: "2rem", md: "3rem", lg: "4rem"},
-                height: { xs: "90vw", sm: "60vw", md: "600px", lg: "600px" },
-                width: { xs: "90vw", sm: "90vw", md: "800px", lg: "800px" },
-                backgroundImage: `url(${contentImages[imgIndex].fields.file.url})`,
-                backgroundPosition: "center",
-                backgroundSize: `100% auto`,
-                backgroundRepeat: "no-repeat",
-                transition: "all 0.5s ease-in-out",
-              }}
-              >
-              {/* content image */}
-              {/* <Typography variant="h1" >WTF</Typography> */}
-            </Box>
+              <Box key={imgIndex + "img"}>
+                <Box
+                  sx={{
+                    marginY: { xs: "1rem", sm: "2rem", md: "3rem", lg: "4rem" },
+                    height: {
+                      xs: "90vw",
+                      sm: "60vw",
+                      md: "600px",
+                      lg: "600px",
+                    },
+                    width: { xs: "90vw", sm: "90vw", md: "800px", lg: "800px" },
+                    backgroundImage: `url(${contentImages[imgIndex].fields.file.url})`,
+                    backgroundPosition: "center",
+                    backgroundSize: `100% auto`,
+                    backgroundRepeat: "no-repeat",
+                    transition: "all 0.5s ease-in-out",
+                  }}
+                >
+                  {/* content image */}
+                  {/* <Typography variant="h1" >WTF</Typography> */}
+                </Box>
               </Box>
             );
           }
@@ -142,7 +142,6 @@ export default function BlogItem() {
     let id = 0;
 
     const paragraphs = renderRichText(content);
-
 
     const update = paragraphs.map((paragraph, index) => {
       if (paragraph.props.children[0] === `img0${id}`) {
@@ -194,7 +193,6 @@ export default function BlogItem() {
     return (
       <Box
         sx={{
-          padding: "2.5rem",
           height: "100vh",
           display: "flex",
           flexDirection: "column",
@@ -205,7 +203,12 @@ export default function BlogItem() {
         <Box
           sx={{
             zIndex: "1000",
-            padding: "0 0 5rem 0",
+            width: { xs: "100vw", sm: "100vw", md: "100vw", lg: "100vw" },
+            paddingBottom: "5rem",
+            paddingTop: "3rem",
+            paddingX: { xs: "1rem", sm: "2rem", md: "3rem", lg: "3rem" },
+
+            border: `2px solid red`,
 
             background: `linear-gradient(90deg, #00000000 0%,${theme.palette.background.transparent} 20%, ${theme.palette.background.main} 40%, ${theme.palette.background.main} 60%, ${theme.palette.background.transparent} 80%,  #00000000 100%)`,
             display: "flex",
@@ -218,21 +221,23 @@ export default function BlogItem() {
             sx={{
               display: "flex",
               flexDirection: "column",
-              alignItems: "center",
+
+              alignItems: "flex-start",
               backgroundColor: theme.palette.background.main,
-              padding: "3vw 3vw 3rem 3vw",
-              textAlign: "left",
+              maxWidth: "1280px",
+
               boxShadow: `0px 0px 10px 0px ${theme.palette.text.highlightAlt}`,
             }}
           >
             <Box
               sx={{
-                height: { xs: "80vw", sm: "60vw", md: "50vw", lg: "40vw" },
-                width: { xs: "80vw", sm: "80vw", md: "85vw", lg: "70vw" },
+                height: "60vw",
+                width: "90vw",
+                maxWidth: "1280px",
                 backgroundImage: `url(${blog.blogTitleImage.fields.file.url})`,
                 backgroundPosition: "center",
                 backgroundSize: `100% auto`,
-                backgroundRepeat: "no-repeat",
+                // backgroundRepeat: "no-repeat",
                 transition: "all 0.5s ease-in-out",
               }}
             >
@@ -242,7 +247,6 @@ export default function BlogItem() {
             <Typography
               variant="h1"
               sx={{
-                width: { xs: "auto", sm: "90vw", md: "85vw", lg: "70vw" },
                 fontSize: {
                   xs: "6.2vw",
                   sm: "6.5vw",
@@ -252,7 +256,7 @@ export default function BlogItem() {
                 padding: "1rem",
                 transition: "all 0.5s ease-in-out",
                 fontWeight: "bold",
-                textAlign:"justify"
+                textAlign: "justify",
               }}
             >
               {blog.title}
@@ -261,7 +265,6 @@ export default function BlogItem() {
             <Typography
               variant="h4"
               sx={{
-                width:{xs:"100%",md:"900px"},
                 fontSize: { xs: "5vw", sm: "4vw", md: "3.5vw", lg: "2.55vw" },
                 fontStyle: "italic",
                 marginY: "1.5rem",
@@ -269,11 +272,12 @@ export default function BlogItem() {
                 pb: "1rem",
               }}
             >
-              {"  "}"{blog.subtitle}"
+              {""}"{blog.subtitle}"
             </Typography>
             <Box
               sx={{
-                width:{xs:"100%",md:"900px"},
+                maxWidth: "900px",
+
                 display: "flex",
                 flexDirection: "column",
                 px: { xs: 2, md: 0 },
@@ -330,7 +334,15 @@ export default function BlogItem() {
           </Box>
 
           <Box
-            sx={{ marginTop: "3rem", marginBottom: "3rem", maxWidth: "900px", display:  "flex", flexDirection: "column", alignItems: "center",textAlign: "justify", }}
+            sx={{
+              marginTop: "3rem",
+              marginBottom: "3rem",
+              maxWidth: "900px",
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              textAlign: "justify",
+            }}
           >
             {displayContent(blog.content)}
           </Box>
@@ -342,12 +354,11 @@ export default function BlogItem() {
             // sx={{ background: "red" }}
             onSubmit={handleSubmit(onSubmit)}
           >
-              <Input id="my-input" aria-describedby="my-helper-text" />
+            <Input id="my-input" aria-describedby="my-helper-text" />
 
             <TextField
               id="comment"
               height="100%"
-              // startAdornment={<InputAdornment position="start">***</InputAdornment>}
               label="comment"
               {...register("comment")}
             />

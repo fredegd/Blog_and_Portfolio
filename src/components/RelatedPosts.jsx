@@ -26,7 +26,7 @@ export default function RelatedPosts() {
     <Box
       sx={{
         zIndex: "1000",
-        width: "100vw",
+        width: { xs: "100vw", lg:"1280px" },
         background: `${theme.palette.text.highlight}88`,
         display: "flex",
         flexDirection: "column",
@@ -35,13 +35,13 @@ export default function RelatedPosts() {
         // border: `2px solid ${theme.palette.text.highlightAlt}`,
       }}
     >
-      <Box sx={{ width:{sx:"100%",md:"80%", lg:"1280px"}, height: "100vh" }}>
+      <Box sx={{ width:{xs:"100%", } }}>
         <Typography variant="h1">Related: </Typography>
 
         <Box sx={{ zIndex: "100", width: "100%", padding: "2.5rem" }}>
           <Grid container spacing={5}>
             {related.map((blog) => (
-              <Grid item xs={12} sm={6} md={6} lg={4} key={blog.sys.id}>
+              <Grid item xs={12} sm={12} md={6} lg={4} key={blog.sys.id}>
                 <BlogItemCard blog={blog}  />
               </Grid>
             ))}

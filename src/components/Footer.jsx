@@ -1,7 +1,6 @@
-import { Box, Grid, Icon, Typography, IconButton, Link } from "@mui/material";
+import { Box, Typography, IconButton, Link } from "@mui/material";
 
-import { motion, useAnimation } from "framer-motion";
-import { useEffect, useState } from "react";
+
 import { useTheme } from "@mui/material/styles";
 
 import contactItems from "../contactItems";
@@ -10,32 +9,26 @@ export default function Contact() {
   const theme = useTheme();
 
   return (
-    <Box
-      sx={{
-        height: "30vh",
-        width: "100%",
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        justifyContent: { xs: "flex-start", sm: "flex-start" },
-        paddingTop: "5rem",
-        zIndex: "1000",
-      }}
-    >
+
       <Box
         sx={{
           backgroundColor: `${theme.palette.text.highlight}88`,
-          backgroundBlendMode: "difference",
           fontSize: "20px",
           color: theme.palette.text.contrast,
-          marginY: "5rem",
+
           width: "100%",
-          padding: "2.5rem",
-          // marginTop: "5rem",
-         
+          padding: { xs: "0.5rem", sm: "1.5rem", md: "2.5rem" },
+          marginY: "5rem",
+          zIndex: "1000",
+
         }}
       >
-        <Box sx={{}}>
+        <Box
+          sx={{
+
+            width: "100%",
+          }}
+        >
           {contactItems.map((item) => (
             <Link href={item.linkTo} target="_blank" key={item.id}>
               <IconButton
@@ -51,12 +44,16 @@ export default function Contact() {
                   "&:hover": {
                     background: `${theme.palette.text.highlightAlt}`,
 
-                    border: `1px solid ${theme.palette.text.primary}`,
+                    border: `2px solid ${theme.palette.text.primary}`,
                   },
                 }}
               >
                 <Typography variant={"h6"} sx={{ display: "flex" }}>
-                  {<item.icon sx={{ fontSize: { xs: "1.5rem", sm: "2rem" } }} />}
+                  {
+                    <item.icon
+                      sx={{ fontSize: { xs: "1.5rem", sm: "2rem" } }}
+                    />
+                  }
                 </Typography>
               </IconButton>
             </Link>
@@ -64,9 +61,10 @@ export default function Contact() {
         </Box>
 
         <Typography variant="p" color={theme.palette.text.primary}>
-          2023 all rights reserved © Fred Egidi
+          <span>2023 all rights reserved </span>
+          <span>©&nbsp;Fred&nbsp;Egidi</span>
         </Typography>
       </Box>
-    </Box>
+
   );
 }

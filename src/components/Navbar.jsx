@@ -21,7 +21,7 @@ import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import { navItems } from "../navItems";
-
+import animatedLogo from "../assets/animatedLogo.gif";
 
 // const drawerWidth = 240;
 
@@ -37,16 +37,6 @@ export default function Navbar({ window, setOpen }) {
   useEffect(() => {
     // Iterate through the navItems to find the active one
     for (const item of navItems) {
-      // console.log(location.pathname.slice(1,location.pathname.length) )
-      //  console.log(location.pathname.startsWith(item.linkTo.slice(1,item.linkTo.length)))
-
-      // if (location.pathname === item.linkTo) {
-      //   setActiveMenuItem(item.id);
-      //   return; // Exit the loop early when found
-      // }
-   //   console.log(location.pathname.slice(1, location.pathname.length));
-      // console.log(location.pathname);
-
       if (
         location.pathname.slice(1, location.pathname.length).startsWith(item.id)
       ) {
@@ -80,75 +70,92 @@ export default function Navbar({ window, setOpen }) {
     <Box
       onClick={handleDrawerToggle}
       sx={{
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
         textAlign: "center",
-        width: {
-          sm: "400px", // 400px wide on screens wider than 600px (md)
-          xs: "100vw", // Fullscreen on small screens
-        },
-        height: "90vh",
+        width: "100vw",
+        height: "100vh",
       }}
     >
-      <Typography
-        variant="h5"
-        sx={{ color: theme.palette.text.highlight, my: 2, maxHeight: "5vh" }}
-      >
-        Fred Egidi
-      </Typography>
-      <Divider />
-      <List
+      <Box
         sx={{
-          height: "75vh",
-          mt: 3,
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "space-between",
+          m: "1rem",
+          height: "4rem",
+          width: "4rem",
+          backgroundImage: `url(${animatedLogo})`,
+          backgroundPosition: "center",
+          backgroundRepeat: "no-repeat",
+          backgroundSize: "contain",
+          borderRadius: "50%",
+          border: `3px solid ${theme.palette.text.highlight}`,
         }}
-      >
-        {navItems.map((item) => (
-          <ListItem
-            key={item.id}
-            disablePadding
-            sx={{
-              display: "flex",
-              flexDirection: "column",
-              justifyContent: "center",
-            }}
+      />
+
+      <Box>
+        <List
+          sx={{
+            height: "60vh",
+            mt: 3,
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "flex-start",
+            gap: "0.5rem",
+          }}
+        >
+          {navItems.map((item) => (
+            <ListItem
+              key={item.id}
+              disablePadding
+              sx={{
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "center",
+              }}
+            >
+              <Link href={item.linkTo} underline="hover">
+                <Button
+                  key={item.id}
+                  sx={{
+                    height: "8rem",
+                    borderRadius: "4rem",
+
+                    color:
+                      activeMenuItem === item.id
+                        ? theme.palette.text.contrast // Active color
+                        : theme.palette.text.primary, // Inactive color
+                    backgroundColor:
+                      activeMenuItem === item.id
+                        ? `${theme.palette.text.highlight}88`
+                        : "transparent",
+
+                    width: "100vw",
+                    "&:hover": {
+                      backgroundColor: theme.palette.text.highlightAlt,
+
+                    },
+                  }}
+                >
+                  <Typography variant="h4" sx={{ my: 2, maxHeight: "5vh" }}>
+                    {item.name}{" "}
+                  </Typography>
+                </Button>
+              </Link>
+            </ListItem>
+          ))}
+        </List>
+
+        <Box mt={8}>
+          <Typography
+            variant="p"
+            color={theme.palette.text.secondary}
+            fontSize={20}
           >
-            <Link href={item.linkTo} underline="hover">
-              <Button
-                key={item.id}
-                sx={{
-                  color:
-                    activeMenuItem === item.id
-                      ? theme.palette.text.highlightAlt // Active color
-                      : theme.palette.text.primary, // Inactive color
-                  backgroundColor:
-                    activeMenuItem === item.id
-                      ? theme.palette.text.primary
-                      : "transparent",
-
-                  width: "100vw",
-                }}
-              >
-                <Typography variant="h4" sx={{ my: 2, maxHeight: "5vh" }}>
-                  {item.name}{" "}
-                </Typography>
-              </Button>
-            </Link>
-          </ListItem>
-        ))}
-        
-      </List>
-
-<Box mt={8}>
-  <Typography variant="p" color={theme.palette.text.secondary} fontSize={20}>
-
-all rights reserved © 2023
-  </Typography>
-
-  </Box> 
-     </Box>
-  
+            all rights reserved © 2023
+          </Typography>
+        </Box>
+      </Box>
+    </Box>
   );
 
   const container =
@@ -165,7 +172,7 @@ all rights reserved © 2023
             flexDirection: "row",
             justifyContent: "space-between",
             // border : `1px solid ${theme.palette.text.highlightAlt}`,
-            boxShadow: "0px 0px 10px 10px rgba(0,0,0,0.2)"
+            boxShadow: "0px 0px 10px 10px rgba(0,0,0,0.2)",
           }}
         >
           <IconButton
@@ -182,23 +189,23 @@ all rights reserved © 2023
           </IconButton>
 
           <Link href={"/"} underline="hover">
-            <Typography
-              variant="h6"
-              component="div"
-              color={theme.palette.text.primary}
-              fontFamily={"IBM Plex Mono"}
+            <Box
               sx={{
-                flexGrow: 1,
-                display: { xs: "none", sm: "block" },
-                color: theme.palette.text.highlight,
+                height: "4rem",
+                width: "4rem",
+                backgroundImage: `url(${animatedLogo})`,
+                backgroundPosition: "center",
+                backgroundRepeat: "no-repeat",
+                backgroundSize: "contain",
+                borderRadius: "50%",
+                border: `3px solid ${theme.palette.text.highlight}`,
               }}
-              textAlign="left"
-            >
-              Fred Egidi
-            </Typography>
+            />
           </Link>
 
-          <Box sx={{display: "flex", flexDirection:"row", alignItems:"center"}}>
+          <Box
+            sx={{ display: "flex", flexDirection: "row", alignItems: "center" }}
+          >
             <Box sx={{ display: { xs: "none", sm: "block" } }}>
               {navItems.map((item) => (
                 <Link key={item.id} href={item.linkTo} underline="hover">
