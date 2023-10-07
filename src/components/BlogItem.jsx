@@ -208,7 +208,6 @@ export default function BlogItem() {
             paddingTop: "3rem",
             paddingX: { xs: "1rem", sm: "2rem", md: "3rem", lg: "3rem" },
 
-            border: `2px solid red`,
 
             background: `linear-gradient(90deg, #00000000 0%,${theme.palette.background.transparent} 20%, ${theme.palette.background.main} 40%, ${theme.palette.background.main} 60%, ${theme.palette.background.transparent} 80%,  #00000000 100%)`,
             display: "flex",
