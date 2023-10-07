@@ -7,7 +7,7 @@ export default function PageTitle({ title }) {
       sx={{
         backgroundColor: `${theme.palette.text.highlight}88`,
         color: theme.palette.text.primary,
-        width: "100vw",
+        width: "100%",
         padding: "2.5rem",
         marginBottom: "5rem",
         fontSize: { xs: "2rem", sm: "2.5rem", md: "3rem", lg: "4rem" },

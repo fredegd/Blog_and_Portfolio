@@ -51,6 +51,8 @@ export default function Hero() {
         },
         width: { xs: "100%", sm: "100%", md: "100%", lg: "100%", xl: "100%" },
         minHeight: "80vh",
+        background: `
+        linear-gradient(90deg,  transparent 10%,  ${theme.palette.background.main}cc 50%, transparent 90%)`,
         display: "flex",
         flexDirection: "column",
         justifyContent: "center",
@@ -59,7 +61,16 @@ export default function Hero() {
         zIndex: "100",
       }}
     >
-      <Box sx={{ animation: `${slideIn1} .5s ease-out 0s 1` }}>
+      <Box
+        sx={{
+          animation: `${slideIn1} .5s ease-out 0s 1`,
+          height: { xs: "10rem", md: "12rem" },
+          width: "100%",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      >
         <h1>FRED EGIDI</h1>
       </Box>
 
@@ -68,8 +79,6 @@ export default function Hero() {
           animation: `${slideIn2} 1.5s ease-out 0s 1`,
           height: { xs: "10rem", md: "12rem" },
           width: "100%",
-          background: theme.palette.background.secondary,
-          borderRadius: "1.2rem",
           display: "flex",
           alignItems: "center",
           justifyContent: "center",

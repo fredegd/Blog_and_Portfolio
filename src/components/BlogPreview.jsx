@@ -81,11 +81,12 @@ export default function BlogPreview({ blogs }) {
 
       <Box sx={{ zIndex: "100", width: "100%", padding:{ xs:"1.5rem",md:"2.5rem"} }}>
         <Grid container spacing={5}>
-          {blogs.map((blog) => (
+          {blogs.map((blog, index) => {
+            return index < 6 &&
             <Grid item xs={12} sm={6} md={4} key={blog.sys.id}>
               <BlogItemCard blog={blog} />
             </Grid>
-          ))}
+          })}
         </Grid>
       </Box>
     </Box>
