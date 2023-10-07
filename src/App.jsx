@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import Landing from "./components/Landing";
 import Navbar from "./components/Navbar";
 import Projects from "./components/Projects";
+import ProjectItem from "./components/ProjectItem";
 import About from "./components/About";
 import Blog from "./components/Blog";
 import BlogItem from "./components/BlogItem";
@@ -91,6 +92,7 @@ export default function App() {
           <Kaleidoscope bgImage={bgImage} />
           <Routes>
             <Route path="/projects" element={<Projects />} />
+            <Route path="/projects/read/:productItemId" element={<ProjectItem />} />
             <Route path="/blog" element={<Blog />} />
             <Route path="/blog/read/:blogItemid" element={<BlogItem  />} />
             <Route path="/about" element={<About />} />
