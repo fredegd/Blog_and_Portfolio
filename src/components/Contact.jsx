@@ -16,7 +16,7 @@ export default function Contact() {
         zIndex: "1000",
       }}
     >
-<ContactContent/>
+      <ContactContent />
       <Footer />
     </Box>
   );

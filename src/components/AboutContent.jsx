@@ -109,16 +109,21 @@ export default function AboutContent() {
       >
         <Box className="tile" sx={{ padding: "1rem", textAlign: "justify" }}>
           {location.pathname === "/about" && (
-            <Typography variant="p" color={theme.palette.text.primary}>
+            <>            <Typography variant="p" color={theme.palette.text.primary}>
               {personalInfo.full}
             </Typography>
+            <Link to={"/projects"}>
+                    <Button>Latest Projects →</Button>
+                  </Link>
+            </>
+
           )}
           {location.pathname === "/" && (
             <Typography variant="p" color={theme.palette.text.primary}>
               {
                 <>
                   {personalInfo.short}
-                  <Link to={"/about#aboutContent"}>
+                  <Link to={"/about"}>
                     <Button>...more</Button>
                   </Link>
                 </>

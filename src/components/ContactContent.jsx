@@ -7,7 +7,14 @@ import Footer from "./Footer";
 export default function ContactContent() {
   return (
 
-      <Box zIndex={1000}>
+      <Box       sx={{
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        width: "100%",
+        // border: "1px solid black",
+        zIndex: "1000",
+      }}>
         <PageTitle title={"Let´s get in Touch:"} />
         <SocialContacts />
       </Box>
