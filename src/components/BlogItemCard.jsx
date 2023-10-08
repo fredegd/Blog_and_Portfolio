@@ -88,7 +88,7 @@ export default function BlogItemCard({ blog }) {
         >
           <Box
             sx={{
-              backgroundColor: `${theme.palette.text.highlight}88`,
+              backgroundColor: `${theme.palette.background.secondary}55`,
               display: "flex",
               flexDirection: "column",
               justifyContent: "flex-start",
@@ -98,7 +98,7 @@ export default function BlogItemCard({ blog }) {
               boxShadow: `0 0 10px ${theme.palette.text.highlight}`,
               padding: "1rem",
               "&:hover": {
-                backgroundColor: `${theme.palette.background.main}cc`,
+                backgroundColor: `${theme.palette.text.highlightAlt}cc`,
                 border: `5px solid ${theme.palette.text.highlightAlt}`,
                 boxShadow: `0 0 10px ${theme.palette.text.highlightAlt}`,
                 color: theme.palette.text.primary,

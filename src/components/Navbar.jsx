@@ -17,6 +17,7 @@ import MenuIcon from "@mui/icons-material/Menu";
 import WallpaperIcon from "@mui/icons-material/Wallpaper";
 import LightModeIcon from "@mui/icons-material/LightMode";
 import DarkModeIcon from "@mui/icons-material/DarkMode";
+import CloseIcon from "@mui/icons-material/Close";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
@@ -78,20 +79,22 @@ export default function Navbar({ window, setOpen }) {
         height: "100vh",
       }}
     >
-      <Box
-        sx={{
-          m: "1rem",
-          height: "4rem",
-          width: "4rem",
-          backgroundImage: `url(${animatedLogo})`,
-          backgroundPosition: "center",
-          backgroundRepeat: "no-repeat",
-          backgroundSize: "contain",
-          borderRadius: "50%",
-          border: `3px solid ${theme.palette.text.highlight}`,
-        }}
-      />
-
+      <Box sx={{width:"90%", display: "flex", flexDirection:"row", alignItems:"center", justifyContent:"space-between" }}>
+        <Box
+          sx={{
+            m: "1rem",
+            height: { xs: "4rem" },
+            width: { xs: "4rem" },
+            backgroundImage: `url(${animatedLogo})`,
+            backgroundPosition: "center",
+            backgroundRepeat: "no-repeat",
+            backgroundSize: "contain",
+            borderRadius: "50%",
+            border: `3px solid ${theme.palette.text.highlight}`,
+          }}
+        />
+        <CloseIcon />
+      </Box>
       <Box>
         <List
           sx={{
@@ -132,7 +135,6 @@ export default function Navbar({ window, setOpen }) {
                     width: "100vw",
                     "&:hover": {
                       backgroundColor: theme.palette.text.highlightAlt,
-
                     },
                   }}
                 >
@@ -191,8 +193,8 @@ export default function Navbar({ window, setOpen }) {
           <Link href={"/"} underline="hover">
             <Box
               sx={{
-                height: "4rem",
-                width: "4rem",
+                height: { xs: "3.5rem", sm: "4rem" },
+                width: { xs: "3.5rem", sm: "4rem" },
                 backgroundImage: `url(${animatedLogo})`,
                 backgroundPosition: "center",
                 backgroundRepeat: "no-repeat",
@@ -211,6 +213,9 @@ export default function Navbar({ window, setOpen }) {
                 <Link key={item.id} href={item.linkTo} underline="hover">
                   <Button
                     sx={{
+                      fontSize: { sm: "1.2rem", md: "1.5rem" },
+                      mx:{sm:"0.1rem", md:"0.5rem"},
+                      letterSpacing: {sm:"-0.050rem", md:"0.08rem"},
                       color:
                         activeMenuItem === item.id
                           ? theme.palette.text.contrast // Active color
@@ -220,10 +225,9 @@ export default function Navbar({ window, setOpen }) {
                           ? theme.palette.text.highlight
                           : "transparent",
 
-                          "&:hover": {
-                            backgroundColor: theme.palette.text.highlightAlt,
-      
-                          },
+                      "&:hover": {
+                        backgroundColor: theme.palette.text.highlightAlt,
+                      },
                     }}
                   >
                     {item.name}

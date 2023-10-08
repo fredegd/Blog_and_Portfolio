@@ -4,11 +4,11 @@ import { documentToReactComponents } from "@contentful/rich-text-react-renderer"
 import { useTheme } from "@mui/material/styles";
 
 import { client } from "../client";
-import { Box, Typography } from "@mui/material";
+import { Box, Typography, Button } from "@mui/material";
 
 import { BLOCKS, INLINES } from "@contentful/rich-text-types";
 
-import PageTitle from "./PageTitle";
+import ProjectItemHead from "./ProjectItemHead";
 import Footer from "./Footer";
 
 export default function ProjectItem() {
@@ -39,57 +39,15 @@ export default function ProjectItem() {
   const options = {
     renderNode: {
       [BLOCKS.HEADING_1]: (node, children) => <h1>{children}</h1>,
-      [BLOCKS.PARAGRAPH]: (node, children) => {
-        const { content } = node;
-        // console.log(node)
-        const text = content.map((c) => c.value).join("");
-        if (text.startsWith("#img")) {
-          const imgIndex = parseInt(text.substring(4));
-          if (blog && blog.contentImages && blog.contentImages[imgIndex]) {
-            const imgUrl = blog.contentImages[imgIndex].fields.file.url;
-            // console.log(imgIndex)
-            return (
-              <Box key={imgIndex + "img"}>
-                <Box
-                  sx={{
-                    marginY: { xs: "1rem", sm: "2rem", md: "3rem", lg: "4rem" },
-                    height: {
-                      xs: "90vw",
-                      sm: "60vw",
-                      md: "600px",
-                      lg: "600px",
-                    },
-                    width: { xs: "90vw", sm: "90vw", md: "800px", lg: "800px" },
-                    backgroundImage: `url(${contentImages[imgIndex].fields.file.url})`,
-                    backgroundPosition: "center",
-                    backgroundSize: `100% auto`,
-                    backgroundRepeat: "no-repeat",
-                    transition: "all 0.5s ease-in-out",
-                  }}
-                >
-                  {/* content image */}
-                  {/* <Typography variant="h1" >WTF</Typography> */}
-                </Box>
-              </Box>
-            );
-          }
-        }
-        return <p>{children}</p>;
-      }, // Add more renderNode functions as needed for other block types
-    },
+      [BLOCKS.PARAGRAPH]: (node, children) => <p>{children}</p>,
+    }, // Add more renderNode functions as needed for other block types
+
     renderMark: {},
     renderInline: {},
   };
+
   const renderRichText = (richText) => {
     return documentToReactComponents(richText, options);
-  };
-
-  const displayContent = (content) => {
-    let id = 0;
-
-    const paragraphs = renderRichText(content);
-
-    return paragraphs;
   };
 
   console.log(exampleImages);
@@ -111,7 +69,7 @@ export default function ProjectItem() {
           justifyContent: "flex-start",
         }}
       >
-        <PageTitle title={project.fields.title} />
+        <ProjectItemHead project={project} />
 
         <Box
           sx={{
@@ -137,11 +95,17 @@ export default function ProjectItem() {
               display: "flex",
               flexDirection: "column",
               alignItems: "center",
-              textAlign: "justify",
+              textAlign: "left",
             }}
           >
-            {displayContent(project.fields.description)}
+            {renderRichText(project.fields.description)}
           </Box>
+          <Link to={project.fields.links.gitHubRepo} target="_blank">
+            <Button>Repository</Button>
+          </Link>
+          <Link to={project.fields.links.demo} target="_blank">
+            <Button>Demo</Button>
+          </Link>
         </Box>
 
         {exampleImages &&
@@ -160,7 +124,9 @@ export default function ProjectItem() {
                   marginBottom: "3rem",
                 }}
               >
-                <Typography variant="h6" textAlign="left">{image.fields.description}</Typography>
+                <Typography variant="h6" textAlign="left">
+                  {image.fields.description}
+                </Typography>
                 <Box
                   sx={{
                     height: { xs: "60vw", sm: "60vw", md: "60vw", lg: "40vw" },
@@ -178,6 +144,7 @@ export default function ProjectItem() {
               </Box>
             );
           })}
+
         <Footer />
       </Box>
     );

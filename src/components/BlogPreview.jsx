@@ -83,7 +83,7 @@ export default function BlogPreview({ blogs }) {
         <Grid container spacing={5}>
           {blogs.map((blog, index) => {
             return index < 6 &&
-            <Grid item xs={12} sm={6} md={4} key={blog.sys.id}>
+            <Grid item xs={12} sm={12} md={6} lg={4} key={blog.sys.id}>
               <BlogItemCard blog={blog} />
             </Grid>
           })}
