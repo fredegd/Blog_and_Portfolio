@@ -36,6 +36,7 @@ Provide an introduction to your project. Explain what it does, its purpose, and 
 React
 Node.js
 Material Ui
+Contentful
 
 
 ## Contributing
