@@ -219,6 +219,11 @@ export default function Navbar({ window, setOpen }) {
                         activeMenuItem === item.id
                           ? theme.palette.text.highlight
                           : "transparent",
+
+                          "&:hover": {
+                            backgroundColor: theme.palette.text.highlightAlt,
+      
+                          },
                     }}
                   >
                     {item.name}
