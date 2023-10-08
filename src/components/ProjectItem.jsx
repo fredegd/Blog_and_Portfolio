@@ -8,6 +8,7 @@ import { Box, Typography } from "@mui/material";
 
 import { BLOCKS, INLINES } from "@contentful/rich-text-types";
 
+import PageTitle from "./PageTitle";
 import Footer from "./Footer";
 
 export default function ProjectItem() {
@@ -22,40 +23,18 @@ export default function ProjectItem() {
     client
       .getEntry(projectId)
       .then((response) => {
-        // setProject(response.fields);
-        // window.scrollTo(0, 0);
+        setProject(response);
+        window.scrollTo(0, 0);
 
         console.log(response);
         // console.log(response.sys.id, blogItemid);
-        // if (response.fields.exampleImages) {
-        //   // console.log(response.fields.contentImages);
-        //   setExampleImages(response.fields.exampleImages);
-        // }
+        if (response.fields.exampleImages) {
+          // console.log(response.fields.contentImages);
+          setExampleImages(response.fields.exampleImages);
+        }
       })
       .catch((err) => console.log(err));
   }, [projectId]);
-
- 
-
-  useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY > 200) {
-        // Show the button when scrolling down 200px
-        setShowBackToTop(true);
-      } else {
-        // Hide the button when scrolling back to the top
-        setShowBackToTop(false);
-      }
-    };
-
-    // Add the scroll event listener
-    window.addEventListener("scroll", handleScroll);
-
-    // Remove the event listener when the component unmounts
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
 
   const options = {
     renderNode: {
@@ -110,35 +89,10 @@ export default function ProjectItem() {
 
     const paragraphs = renderRichText(content);
 
-    const update = paragraphs.map((paragraph, index) => {
-      if (paragraph.props.children[0] === `img0${id}`) {
-        console.log(id);
-        console.log(paragraph.props);
-        id++;
-        return (
-          <Box
-            key={index}
-            sx={{
-              height: { xs: "90vw", sm: "60vw", md: "50vw", lg: "40vw" },
-              width: { xs: "90vw", sm: "90vw", md: "85vw", lg: "70vw" },
-              backgroundImage: `url(${contentImages[0].fields.file.url})`,
-              backgroundPosition: "center",
-              backgroundSize: `100% auto`,
-              backgroundRepeat: "no-repeat",
-              transition: "all 0.5s ease-in-out",
-            }}
-          >
-            {/* content image */}
-          </Box>
-        );
-      } else {
-        return paragraph;
-      }
-    });
-
-    return update;
+    return paragraphs;
   };
 
+  console.log(exampleImages);
   if (!project) {
     // console.log("done");
     return (
@@ -157,6 +111,8 @@ export default function ProjectItem() {
           justifyContent: "flex-start",
         }}
       >
+        <PageTitle title={project.fields.title} />
+
         <Box
           sx={{
             zIndex: "1000",
@@ -184,10 +140,44 @@ export default function ProjectItem() {
               textAlign: "justify",
             }}
           >
-            {displayContent(project.description)}
+            {displayContent(project.fields.description)}
           </Box>
         </Box>
 
+        {exampleImages &&
+          exampleImages.map((image, index) => {
+            return (
+              <Box
+                key={index}
+                zIndex={1000}
+                sx={{
+                  backgroundColor: `${theme.palette.background.main}`,
+                  height: { xs: "62vw", sm: "62vw", md: "62vw", lg: "42vw" },
+                  border: "2px solid black",
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "flex-start",
+                  marginBottom: "3rem",
+                }}
+              >
+                <Typography variant="h6" textAlign="left">{image.fields.description}</Typography>
+                <Box
+                  sx={{
+                    height: { xs: "60vw", sm: "60vw", md: "60vw", lg: "40vw" },
+                    width: { xs: "90vw", sm: "90vw", md: "90vw", lg: "70vw" },
+                    backgroundImage: `url(${image.fields.file.url})`,
+                    backgroundPosition: "cover",
+                    backgroundSize: `100% auto`,
+                    backgroundRepeat: "no-repeat",
+                    transition: "all 0.5s ease-in-out",
+                    zIndex: "1000",
+                  }}
+                >
+                  {/* content image */}
+                </Box>
+              </Box>
+            );
+          })}
         <Footer />
       </Box>
     );

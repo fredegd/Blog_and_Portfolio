@@ -92,7 +92,7 @@ export default function App() {
           <Kaleidoscope bgImage={bgImage} />
           <Routes>
             <Route path="/projects" element={<Projects />} />
-            <Route path="/projects/read/:productItemId" element={<ProjectItem />} />
+            <Route path="/projects/read/:projectId" element={<ProjectItem />} />
             <Route path="/blog" element={<Blog />} />
             <Route path="/blog/read/:blogItemid" element={<BlogItem  />} />
             <Route path="/about" element={<About />} />
