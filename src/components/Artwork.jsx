@@ -19,8 +19,8 @@ const getRandomHexColor = (colName) => {
   return color;
 };
 
-const svgWidth = 250;
-const svgHeight = 250;
+const svgWidth = 300;
+const svgHeight = 300;
 const startString = `<svg xmlns="http://www.w3.org/2000/svg" width="${svgWidth}" height="${svgHeight}">`;
 const endString = "</svg>";
 
@@ -247,19 +247,17 @@ function Artwork({
         }}
       >
         <Box sx={{ width: 300 }}>
-          {/* <div ref={canvasRef} onClick={handleDrawAndStore} className="canvas"> */}
-          <div onClick={handleDrawAndStore} className="canvas">
-            <Typography variant="p" align="right">
+
+          <div onClick={handleDrawAndStore} >
+            <Typography variant="p" >
               {" "}
               Tap to Generate a new Pattern
             </Typography>
+
             {/* an element displaying the content of bgImage */}
-            {/* <div
-              dangerouslySetInnerHTML={{ __html: bgImage }}
-              style={{ width: "125px" }}
-            ></div> */}
+      
             <Box
-            sx={{width:"250px",height:"250px",backgroundImage:`url(data:image/svg+xml;base64,${btoa(bgImage)})`}}>
+            sx={{width:"300px",height:"300px",backgroundImage:`url(data:image/svg+xml;base64,${btoa(bgImage)})`,backgroundRepeat:"no-repeat"}}>
              
             </Box>
           </div>
@@ -280,7 +278,7 @@ function Artwork({
           />
         </Box>
 
-        <Box sx={{ width: 250 }}>
+        <Box sx={{ width: 250, my:"-0.5rem" }}>
           <Typography>Segment Amount: {segmentsAmount}</Typography>
           <Slider
             aria-label="segmentsAmount"
@@ -294,24 +292,24 @@ function Artwork({
           />
         </Box>
 
-        <Box sx={{ width: 300, mt: "2rem" }}>
+        <Box sx={{ width: 300, mt: "1rem" }}>
           <Button
             onClick={() => handleColorChange("col1", setColor1)}
-            style={{ background: `${color1}`, width: "125px" }}
+            sx={{  height: "3rem", background: `${color1}`,mx:"1rem",  borderRadius:"1.5rem"  }}
           >
             Color 1
           </Button>
 
           <Button
             onClick={() => handleColorChange("col2", setColor2)}
-            style={{ background: `${color2}`, width: "125px" }}
+            sx={{ height: "3rem", background: `${color2}`,mx:"1rem", borderRadius:"1.5rem" }}
           >
             Color 2
           </Button>
         </Box>
 
-        <Box sx={{ width: 300, mt: "2rem" }}>
-          <Button onClick={handleHardSave} style={{ width: "125px" }}>
+        <Box sx={{ width: 300, mt: "1rem" }}>
+          <Button onClick={handleHardSave} sx={{ height: "3rem", border:`2px solid ${theme.palette.text.primary}`, borderRadius:"1.5rem"}}>
             save SVG
           </Button>
         </Box>

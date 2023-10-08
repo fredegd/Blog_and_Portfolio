@@ -29,7 +29,8 @@ export default function DrawerBGChange({ bgImage, setBgImage, open, setOpen ,col
               sm: "400px", // 400px wide on screens wider than 600px (md)
               xs: "100vw", // Fullscreen on small screens
             },
-            marginTop: "1.2rem",
+            height: "100vh",
+
             display: "flex",
             flexDirection: "column",
           }}
@@ -39,7 +40,7 @@ export default function DrawerBGChange({ bgImage, setBgImage, open, setOpen ,col
             onClick={closeDrawer}
             style={{
               float: "right",
-              marginRight: "8px",
+
               alignSelf: "flex-end",
             }}
           >
