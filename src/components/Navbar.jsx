@@ -69,93 +69,120 @@ export default function Navbar({ window, setOpen }) {
 
   const drawer = (
     <Box
-      onClick={handleDrawerToggle}
       sx={{
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
+        justifyContent: "space-between",
         textAlign: "center",
         width: "100vw",
         height: "100vh",
       }}
     >
-      <Box sx={{width:"90%", display: "flex", flexDirection:"row", alignItems:"center", justifyContent:"space-between" }}>
-        <Box
-          sx={{
-            m: "1rem",
-            height: { xs: "4rem" },
-            width: { xs: "4rem" },
-            backgroundImage: `url(${animatedLogo})`,
-            backgroundPosition: "center",
-            backgroundRepeat: "no-repeat",
-            backgroundSize: "contain",
-            borderRadius: "50%",
-            border: `3px solid ${theme.palette.text.highlight}`,
-          }}
-        />
-        <CloseIcon />
-      </Box>
       <Box>
-        <List
+        <Box
+          className="drawer-header"
           sx={{
-            height: "60vh",
-            mt: 3,
+            width: "100%",
+            p: "0.5rem",
             display: "flex",
-            flexDirection: "column",
-            justifyContent: "flex-start",
-            gap: "0.5rem",
+            flexDirection: "row",
+            alignItems: "center",
+            justifyContent: "space-between",
           }}
         >
-          {navItems.map((item) => (
-            <ListItem
-              key={item.id}
-              disablePadding
+          <Link href={"/"} underline="hover">
+            <Box
+              onClick={handleDrawerToggle}
               sx={{
-                display: "flex",
-                flexDirection: "column",
-                justifyContent: "center",
+                height: { xs: "3.5rem", sm: "4rem" },
+                width: { xs: "3.5rem", sm: "4rem" },
+                backgroundImage: `url(${animatedLogo})`,
+                backgroundPosition: "center",
+                backgroundRepeat: "no-repeat",
+                backgroundSize: "contain",
+                borderRadius: "50%",
+                border: `3px solid ${theme.palette.text.highlight}`,
               }}
-            >
-              <Link href={item.linkTo} underline="hover">
-                <Button
-                  key={item.id}
-                  sx={{
-                    height: "8rem",
-                    borderRadius: "4rem",
+            />
+          </Link>
 
-                    color:
-                      activeMenuItem === item.id
-                        ? theme.palette.text.contrast // Active color
-                        : theme.palette.text.primary, // Inactive color
-                    backgroundColor:
-                      activeMenuItem === item.id
-                        ? `${theme.palette.text.highlight}88`
-                        : "transparent",
-
-                    width: "100vw",
-                    "&:hover": {
-                      backgroundColor: theme.palette.text.highlightAlt,
-                    },
-                  }}
-                >
-                  <Typography variant="h4" sx={{ my: 2, maxHeight: "5vh" }}>
-                    {item.name}{" "}
-                  </Typography>
-                </Button>
-              </Link>
-            </ListItem>
-          ))}
-        </List>
-
-        <Box mt={8}>
-          <Typography
-            variant="p"
-            color={theme.palette.text.secondary}
-            fontSize={20}
+          <IconButton
+            aria-label="close drawer"
+            edge="start"
+            onClick={handleDrawerToggle}
+            sx={{
+              display: { sm: "none" },
+              color: theme.palette.text.primary,
+            }}
           >
-            all rights reserved © 2023
-          </Typography>
+            <Typography variant={"h6"} sx={{ display: "flex" }}>
+              <CloseIcon sx={{ fontSize: { xs: "2.2rem", sm: "2rem" } }} />
+            </Typography>
+          </IconButton>
         </Box>
+
+        <Box className="drawer-links">
+          <List
+            sx={{
+              pt: 3,
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              justifyContent: "flex-start",
+              gap: "0.5rem",
+            }}
+          >
+            {navItems.map((item) => (
+              <ListItem
+                key={item.id}
+                disablePadding
+                sx={{
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "center",
+                }}
+              >
+                <Link href={item.linkTo} underline="hover">
+                  <Button
+                    onClick={handleDrawerToggle}
+                    sx={{
+                      height: "5rem",
+                      borderRadius: "2.5rem",
+
+                      color:
+                        activeMenuItem === item.id
+                          ? theme.palette.text.contrast // Active color
+                          : theme.palette.text.primary, // Inactive color
+                      backgroundColor:
+                        activeMenuItem === item.id
+                          ? `${theme.palette.text.highlight}88`
+                          : "transparent",
+
+                      width: "90vw",
+                      "&:hover": {
+                        backgroundColor: theme.palette.text.highlightAlt,
+                      },
+                    }}
+                  >
+                    <Typography variant="h4" sx={{ my: 2 }}>
+                      {item.name}{" "}
+                    </Typography>
+                  </Button>
+                </Link>
+              </ListItem>
+            ))}
+          </List>
+        </Box>
+      </Box>
+      <Box className="drawer-footer" my={3} width={"100vw"}>
+        <Typography
+          variant="p"
+          color={theme.palette.text.secondary}
+          fontSize={20}
+        >
+          all rights reserved © 2023
+        </Typography>
       </Box>
     </Box>
   );
@@ -187,7 +214,9 @@ export default function Navbar({ window, setOpen }) {
               color: theme.palette.text.primary,
             }}
           >
-            <MenuIcon />
+            <Typography variant={"h6"} sx={{ display: "flex" }}>
+              <MenuIcon sx={{ fontSize: { xs: "2.2rem", sm: "2rem" } }} />
+            </Typography>
           </IconButton>
 
           <Link href={"/"} underline="hover">
@@ -201,6 +230,10 @@ export default function Navbar({ window, setOpen }) {
                 backgroundSize: "contain",
                 borderRadius: "50%",
                 border: `3px solid ${theme.palette.text.highlight}`,
+                "&:hover": {
+                  boxShadow: `0px 0px 5px 5px ${theme.palette.text.highlight}`,
+                },
+                transition: "all 0.2s ease-in-out",
               }}
             />
           </Link>
@@ -213,9 +246,12 @@ export default function Navbar({ window, setOpen }) {
                 <Link key={item.id} href={item.linkTo} underline="hover">
                   <Button
                     sx={{
-                      fontSize: { sm: "1.2rem", md: "1.5rem" },
-                      mx:{sm:"0.1rem", md:"0.5rem"},
-                      letterSpacing: {sm:"-0.050rem", md:"0.08rem"},
+                      height: { sm: "3rem", md: "3.5rem" },
+                      borderRadius: { sm: "1.5rem", md: "1.75rem" },
+                      padding: { sm: "0.25rem ", md: "0.75rem" },
+                      mx: { sm: "0.1rem", md: "0.2rem" },
+                      fontSize: { sm: "1.15rem", md: "1.4rem" },
+                      letterSpacing: { sm: "-0.055rem", md: "0.065rem" },
                       color:
                         activeMenuItem === item.id
                           ? theme.palette.text.contrast // Active color
@@ -227,6 +263,7 @@ export default function Navbar({ window, setOpen }) {
 
                       "&:hover": {
                         backgroundColor: theme.palette.text.highlightAlt,
+                        boxShadow: `0px 0px 5px 5px ${theme.palette.text.highlight}`,
                       },
                     }}
                   >
@@ -236,19 +273,47 @@ export default function Navbar({ window, setOpen }) {
               ))}
             </Box>
 
-            <Box
+            <IconButton
+              aria-label="openBackgroudEditor"
+              edge="start"
               onClick={handleDrawerBgChange}
-              sx={{ color: theme.palette.text.highlight, mx: 2 }}
+              sx={{
+                color: theme.palette.text.highlight,
+                mx: 2,
+                borderRadius: "10%",
+                "&:hover": {
+                  boxShadow: `0px 0px 5px 5px ${theme.palette.text.highlightAlt}`,
+                },
+              }}
             >
-              <WallpaperIcon />
-            </Box>
+              <Typography variant={"h6"} sx={{ display: "flex" }}>
+                <WallpaperIcon
+                  sx={{ fontSize: { xs: "2.2rem", sm: "2rem" } }}
+                />
+              </Typography>
+            </IconButton>
 
-            <Box
+            <IconButton
+              aria-label="openBackgroudEditor"
+              edge="start"
               onClick={handleDarkChange}
-              style={{ color: theme.palette.text.primary, mx: 2 }}
+              sx={{
+                color: theme.palette.text.primary,
+                // mx: 2,
+                width:  { xs: "1.8rem", sm: "1.6rem" },
+                height:  { xs: "1.8rem", sm: "1.6rem" },
+                "&:hover": {
+                  boxShadow: ` 0px 0px 8px 8px ${theme.palette.text.highlight} , inset 0px 0px 5px 5px ${theme.palette.text.highlight}`,
+                },
+              }}
             >
-              {dk ? <DarkModeIcon /> : <LightModeIcon />}
-            </Box>
+              <Typography variant={"h6"} sx={{ display: "flex" }}>
+              {dk ? <DarkModeIcon sx={{ fontSize: { xs: "2.2rem", sm: "2rem" } }} /> : <LightModeIcon sx={{ fontSize: { xs: "2.2rem", sm: "2rem" } }} />}
+               
+              </Typography>
+            </IconButton>
+
+           
           </Box>
         </Toolbar>
       </AppBar>
