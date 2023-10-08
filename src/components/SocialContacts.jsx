@@ -74,7 +74,7 @@ export default function SocialContacts() {
                       background: theme.palette.background.main,
                       border: `10px solid ${theme.palette.text.highlightAlt}`,
                       color: theme.palette.text.highlightAlt,
-                      borderRadius: "10%",
+                      borderRadius: "1.5rem",
                       width: {
                         xs: "100px",
                         sm: "200px",
@@ -87,11 +87,12 @@ export default function SocialContacts() {
                         md: "180px",
                         lg: "150px",
                       },
-                      transition: "border 0.3s ease-in-out",
+                      transition: " 0.4s ease-in-out",
                       "&:hover": {
                         color: theme.palette.text.highlight,
                         background: theme.palette.background.main,
                         border: `10px solid ${theme.palette.text.highlight}`,
+                        borderRadius: "2.2rem",
                       },
                       fontSize: {
                         xs: "4rem",
@@ -140,7 +141,7 @@ export default function SocialContacts() {
                   "&:hover": {
                     border: `10px solid ${theme.palette.text.highlight}`,
                     boxShadow: `0 0 10px ${theme.palette.text.highlight}`,
-                    borderRadius: "1.2rem",
+                    borderRadius: "1.5rem",
                     // backgroundColor: `${theme.palette.text.highlight}88`,
                     backgroundImage: `url(${item.screenshot})`,
                     backgroundSize: "100% auto",
@@ -149,7 +150,7 @@ export default function SocialContacts() {
                     },
                   },
                   color: theme.palette.text.primary,
-                  transition: "all 0.5s ease-in-out",
+                  transition: "all 0.35s ease-in-out",
                 }}
               >
                 <p>{item.shortText}</p>

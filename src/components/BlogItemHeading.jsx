@@ -14,7 +14,7 @@ export default function BlogItemHeading({ blog }) {
         backgroundColor: theme.palette.background.main,
         maxWidth: "1280px",
 
-        boxShadow: `0px 0px 10px 0px ${theme.palette.text.highlightAlt}`,
+        boxShadow: `0px 0px 15px 15px ${theme.palette.text.highlight}`,
       }}
     >
       <Box

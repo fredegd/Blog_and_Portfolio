@@ -14,7 +14,7 @@ const contactItems = [
     name: "LinkedIN",
     linkTo: "https://www.linkedin.com/in/federicoegidi/",
     icon: LinkedInIcon,
-    shortText: "Here's my LinkedIn where you can find my work experience and education but i also use it to get in touch with Dev. peers.",
+    shortText: "In my LinkedIn profile you can find my work experience and education but i also like to use it to get in touch with Developer. peers",
     screenshot: linkedin,
   },
   {
@@ -31,7 +31,7 @@ const contactItems = [
     name: "Instagram",
     linkTo: "https://www.instagram.com/tapiwo/",
     icon: InstagramIcon,
-    shortText: "Here's my Instagram profile, where i do mostly share my latest creative coding experiments and get in contact with peers from CC community.",
+    shortText: "Trough Instagram, i do mostly share my latest creative coding experiments under the profile name TAPIWO, i got in contact with a lot of  peers from CC community there.",
     screenshot: instagram,
   },
   {
@@ -39,7 +39,7 @@ const contactItems = [
     name: "Twitter ",
     linkTo: "https://twitter.com/tapiwoHB",
     icon: TwitterIcon,
-    shortText: "Here's my Twitter profile, mostly used for retweet and stuff but also share here now and then some creative coding experiments.",
+    shortText: "Here's my Twitter, ehm.. 'X' profile,  mostly used for retweet and stuff,  altough  i dont like the platform anymore since the  latest, owner-change",
   screenshot: twitter,
   }
 ];

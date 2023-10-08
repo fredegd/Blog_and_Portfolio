@@ -48,7 +48,7 @@ export default function BlogPreview({ blogs }) {
               width: "100%",
               background: theme.palette.background.main,
               border: `10px solid ${theme.palette.text.highlight}`,
-              fontFamily: "IBM Plex Mono ",
+              fontFamily: "IBM Plex Mono",
               color: theme.palette.text.primary,
               p: 3,
               // borderRadius: "1em",

@@ -8,13 +8,21 @@ export default function PageTitle({ title }) {
         backgroundColor: `${theme.palette.text.highlight}88`,
         color: theme.palette.text.primary,
         width: "100%",
-        padding: "2.5rem",
+        paddingY: "2.5rem",
         marginBottom: "5rem",
-        fontSize: { xs: "2rem", sm: "2.5rem", md: "3rem", lg: "4rem" },
+
         zIndex: "1000",
       }}
     >
-      <Typography variant="h1">{title}</Typography>
+      <Typography
+        variant="h1"
+        sx={{ fontSize: { xs: "9vw", md: "8vw", lg: "5rem" },
+      fontWeight: "bold",
+      }}
+
+      >
+        {title}
+      </Typography>
     </Box>
   );
 }
