@@ -91,7 +91,7 @@ export default function AboutContent() {
         zIndex: "1000",
       }}
     >
-      <PageTitle title={"About"} />
+      <PageTitle title={"ABOUT ME:"} />
       <Box
         id="aboutContent"
         sx={{

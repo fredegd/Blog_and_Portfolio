@@ -19,7 +19,7 @@ export default function Blog() {
     >
 
       <Box zIndex={1000} sx={{display:"flex", flexDirection:"column", alignItems:"center",zIndex: "1000",}}>
-      <PageTitle title={"Blog"} />
+      <PageTitle title={"BLOG"} />
       <BlogListCF />
       </Box>
       

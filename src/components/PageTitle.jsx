@@ -17,7 +17,7 @@ export default function PageTitle({ title }) {
       <Typography
         variant="h1"
         sx={{ fontSize: { xs: "9vw", md: "8vw", lg: "5rem" },
-      fontWeight: "bold",
+      fontWeight: "500",
       }}
 
       >

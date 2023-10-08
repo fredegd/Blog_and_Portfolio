@@ -15,7 +15,7 @@ export default function ContactContent() {
         // border: "1px solid black",
         zIndex: "1000",
       }}>
-        <PageTitle title={"Let´s get in Touch:"} />
+        <PageTitle title={"LET'S GET IN TOUCH:"} />
         <SocialContacts />
       </Box>
 

@@ -292,26 +292,26 @@ function Artwork({
           />
         </Box>
 
-        <Box sx={{ width: 300, mt: "1rem" }}>
-          <Button
+        <Box sx={{ width: 300, mt: "1rem" , display:"flex",flexDirection:"row" }}>
+          <Typography
             onClick={() => handleColorChange("col1", setColor1)}
-            sx={{  height: "3rem", background: `${color1}`,mx:"1rem",  borderRadius:"1.5rem"  }}
+            sx={{  height: "3rem",width:"8rem", background: `${color1}`,mx:"1rem",  borderRadius:"1.5rem" ,display:"flex", alignItems:"center", justifyContent:"center" }}
           >
             Color 1
-          </Button>
+          </Typography>
 
-          <Button
+          <Typography
             onClick={() => handleColorChange("col2", setColor2)}
-            sx={{ height: "3rem", background: `${color2}`,mx:"1rem", borderRadius:"1.5rem" }}
+            sx={{ height: "3rem", width:"8rem",background: `${color2}`,mx:"1rem", borderRadius:"1.5rem" ,display:"flex", alignItems:"center", justifyContent:"center"}}
           >
             Color 2
-          </Button>
+          </Typography>
         </Box>
 
-        <Box sx={{ width: 300, mt: "1rem" }}>
-          <Button onClick={handleHardSave} sx={{ height: "3rem", border:`2px solid ${theme.palette.text.primary}`, borderRadius:"1.5rem"}}>
+        <Box sx={{  mt: "1rem" }}>
+          <Typography onClick={handleHardSave} sx={{ height: "3rem", width:"8rem", border:`2px solid ${theme.palette.text.primary}`, borderRadius:"1.5rem",display:"flex", alignItems:"center", justifyContent:"center"}}>
             save SVG
-          </Button>
+          </Typography>
         </Box>
       </Box>
     </div>

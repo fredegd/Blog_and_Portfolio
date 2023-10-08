@@ -16,7 +16,7 @@ export default function ProjectsContent() {
     // border: "1px solid black",
     zIndex: "1000",
   }}>
-   <PageTitle title = {"Latest Projects"}/>
+   <PageTitle title = {"LATEST PROJECTS"}/>
    <ProjectsList />
    </Box>
   );
