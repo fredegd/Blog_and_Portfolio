@@ -8,12 +8,13 @@ export default function ContactContent() {
   return (
 
       <Box       sx={{
+        marginBottom:"5rem",
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
         width: "100%",
-        // border: "1px solid black",
         zIndex: "1000",
+        
       }}>
         <PageTitle title={"LET'S GET IN TOUCH:"} />
         <SocialContacts />

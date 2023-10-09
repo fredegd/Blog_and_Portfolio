@@ -39,7 +39,7 @@ const contactItems = [
     name: "Twitter ",
     linkTo: "https://twitter.com/tapiwoHB",
     icon: TwitterIcon,
-    shortText: "Here's my Twitter, ehm.. 'X' profile,  mostly used for retweet and stuff,  altough  i dont like the platform anymore since the  latest, owner-change",
+    shortText: "Here's my Twitter, ehm.. 'X' profile,  mostly used for retweet and stuff,  although, since the  latest, owner-change i don't like the platform anymore ",
   screenshot: twitter,
   }
 ];

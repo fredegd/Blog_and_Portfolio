@@ -137,7 +137,10 @@ export default function SocialContacts() {
                   backgroundImage: ``,
                   backgroundColor: `${theme.palette.background.main}cc`,
                   boxShadow: `0 0 10px ${theme.palette.text.highlight}`,
+"&>p": {
 
+  margin: 0,
+},
                   "&:hover": {
                     border: `10px solid ${theme.palette.text.highlight}`,
                     boxShadow: `0 0 10px ${theme.palette.text.highlight}`,

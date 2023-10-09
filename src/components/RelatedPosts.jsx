@@ -49,12 +49,13 @@ export default function RelatedPosts() {
             textAlign: "left",
             maxWidth: "1280px",
             margin: "1rem 0",
+            paddingLeft: "2rem",
           }}
         >
           Related:{" "}
         </Typography>
 
-        <Box sx={{ zIndex: "100", width: "100%"}}>
+        <Box sx={{ zIndex: "100", width: "100%", padding:"2rem"}}>
           <Grid container spacing={5}>
             {related.map((blog) => (
               <Grid item xs={12} sm={12} md={6} lg={4} key={blog.sys.id}>

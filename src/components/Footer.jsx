@@ -18,7 +18,7 @@ export default function Contact() {
 
           width: "100%",
           padding: { xs: "0.5rem", sm: "1.5rem", md: "2.5rem" },
-          marginY: "5rem",
+          marginBottom: "1rem",
           zIndex: "1000",
 
         }}
