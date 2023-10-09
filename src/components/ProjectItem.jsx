@@ -123,7 +123,7 @@ export default function ProjectItem() {
                     display: "flex",
                     flexDirection: "column",
                     justifyContent: "center",
-                    marginBottom: "3rem",
+                    marginBottom: "8rem",
                   }}
                 >
                   <Typography

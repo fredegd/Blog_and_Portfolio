@@ -51,7 +51,7 @@ export default function BlogItemCard({ blog }) {
     if (title.length < 40) {
       return title;
     } else {
-      return title.split("").slice(0, 45).join("").trim() + "...";
+      return title.split("").slice(0, 45).join("").trim() + " ...";
     }
   };
 
@@ -60,10 +60,10 @@ export default function BlogItemCard({ blog }) {
   const truncatedContent = () => {
     const contentPreview = extractTextFromRichText(blog.fields.content);
     const words = contentPreview.split(" ");
-    if (words.length < 20) {
+    if (words.length < 13) {
       return words.join(" ");
     } else {
-      return words.slice(0, 20).join(" ") + " [...]";
+      return words.slice(0, 13).join(" ") + " [...]";
     }
   };
 
@@ -88,7 +88,7 @@ export default function BlogItemCard({ blog }) {
         >
           <Box
             sx={{
-              backgroundColor: `${theme.palette.background.secondary}55`,
+              backgroundColor: `${theme.palette.background.main}cc`,
               display: "flex",
               flexDirection: "column",
               justifyContent: "flex-start",
@@ -147,7 +147,7 @@ export default function BlogItemCard({ blog }) {
                         fontSize: {
                           xs: "1.8rem",
                           sm: "2rem",
-                          md: "1.4rem",
+                          md: "1.6rem",
                           lg: "1.6rem",
                           xl: "1.7rem",
                         },
@@ -160,10 +160,12 @@ export default function BlogItemCard({ blog }) {
                       {truncatedTitle()}
                     </Typography>
                   </Box>
+                  
                   <Box
                     display={"flex"}
                     alignItems={"center"}
                     sx={{
+                      py: "1rem",
                       // color: theme.palette.text.secondary,
                       "&:hover": { color: "inherit" },
                     }}
@@ -171,11 +173,11 @@ export default function BlogItemCard({ blog }) {
                     <Typography
                       variant="p"
                       sx={{
-                        fontSize: "0.8rem",
+                        fontSize: {xs:"1.2rem",md:"1rem"},
                         textAlign: "justify",
                         textJustify: "interWord",
                         zIndex: "100",
-                        letterSpacing: `0.08vw`,
+                        letterSpacing: `0.02vw`,
                       }}
                     >
                       {truncatedContent()}

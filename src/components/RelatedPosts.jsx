@@ -37,15 +37,15 @@ export default function RelatedPosts() {
         // border: `2px solid ${theme.palette.text.highlightAlt}`,
       }}
     >
-      <Box sx={{ width: { xs: "100%" } , padding:"2.5rem"}}>
+      <Box sx={{ width: { xs: "100%" } , padding:"2rem"}}>
         <Typography
-          variant="h1"
+          variant="h5"
           sx={{
             backgroundColor: `${theme.palette.text.highlight}88`,
 
             border: `5px solid ${theme.palette.text.highlight}`,
             color: theme.palette.text.primary,
-            padding: "2rem",
+            padding: "1rem",
             textAlign: "left",
             maxWidth: "1280px",
             margin: "1rem 0",

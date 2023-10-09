@@ -1,17 +1,11 @@
-import * as React from "react";
-import Button from "@mui/material/Button";
-import Dialog from "@mui/material/Dialog";
-import ListItemText from "@mui/material/ListItemText";
-import ListItem from "@mui/material/ListItem";
-import List from "@mui/material/List";
-import Divider from "@mui/material/Divider";
-import AppBar from "@mui/material/AppBar";
-import Toolbar from "@mui/material/Toolbar";
-import IconButton from "@mui/material/IconButton";
-import Typography from "@mui/material/Typography";
+import React from "react";
+
+
+
 import CloseIcon from "@mui/icons-material/Close";
-import Slide from "@mui/material/Slide";
-import Box from "@mui/material/Box";
+
+import {Box,Typography, Slide,IconButton,Toolbar, AppBar, Dialog} from "@mui/material"
+import { useTheme } from "@mui/material/styles";
 
 
 const Transition = React.forwardRef(function Transition(props, ref) {
@@ -26,6 +20,7 @@ export default function FullScreenPreview({
   description
 }) {
 
+  const theme = useTheme();
 
   const handleClose = () => {
     setOpenPreview(false);
@@ -39,7 +34,7 @@ export default function FullScreenPreview({
         onClose={handleClose}
         TransitionComponent={Transition}
       >
-        <AppBar sx={{ position: "relative" }}>
+        <AppBar sx={{ position: "relative", background:theme.palette.background.main}}>
           <Toolbar>
             <IconButton
               edge="start"

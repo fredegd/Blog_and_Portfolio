@@ -17,7 +17,7 @@ export default function ProjectItemHead({ project }) {
         backgroundColor: theme.palette.background.main,
         maxWidth: "1280px",
         zIndex: "1000",
-        boxShadow: `0px 0px 10px 0px ${theme.palette.text.highlightAlt}`,
+        boxShadow: `0px 0px 15px 15px ${theme.palette.text.highlightAlt}`,
       }}
     >
       <Box

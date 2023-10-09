@@ -4,6 +4,8 @@ import BlogListCF from "./BlogListCF";
 import Footer from "./Footer";
 import { Box } from "@mui/material";
 export default function Blog() {
+  window.scrollTo(0, 0);
+
   return (
     <Box
       sx={{

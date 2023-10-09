@@ -8,11 +8,10 @@ import BlogItemCard from "./BlogItemCard";
 
 export default function BlogPreview({ blogs }) {
   const theme = useTheme();
-  // console.log(theme)
 
   return (
     <Box
-    id="blog"
+
       sx={{
         width: "100%",
         display: "flex",
@@ -21,13 +20,13 @@ export default function BlogPreview({ blogs }) {
         overflow: "scroll",
         transition: "all 0.5s ease-in-out",
         paddingBottom: "5rem",
+        zIndex: "1000",
       }}
     >
       <motion.div
         style={{
           margin: "5rem 0 2rem 0",
           padding: "0 1.5rem",
-
         }}
         whileHover={{
           scale: 1.04,
@@ -40,20 +39,20 @@ export default function BlogPreview({ blogs }) {
           style={{
             textDecoration: "none",
             color: theme.palette.text.primary,
-            zIndex: "100",
+            zIndex: "1000",
           }}
         >
-          <Button
+          <Box
             sx={{
-              width: "100%",
-              background: theme.palette.background.main,
-              border: `10px solid ${theme.palette.text.highlight}`,
-              fontFamily: "IBM Plex Mono",
+              backgroundColor: `${theme.palette.background.main}88`,
               color: theme.palette.text.primary,
-              p: 3,
-              // borderRadius: "1em",
+              width: "100%",
+              paddingY: "2.5rem",
+              marginBottom: "5rem",
+              border: `5px solid ${theme.palette.text.highlightAlt}`,
+              zIndex: "1000",
               "&:hover": {
-                background: theme.palette.background.secondary,
+                backgroundColor: theme.palette.background.secondary,
                 color: theme.palette.text.highlightAlt,
                 fontSize: "1.1rem",
               },
@@ -62,30 +61,44 @@ export default function BlogPreview({ blogs }) {
             <Typography
               variant="h1"
               sx={{
-                fontSize: {
-                  xs: "3rem",
-                  sm: "3.5rem",
-                  md: "4rem",
-                  lg: "4.5rem",
-                  xl: "5rem",
-                },
+                fontSize: { xs: "9vw", md: "8vw", lg: "5rem" },
+                fontWeight: "500",
 
                 transition: " all 0.5s ease-in-out",
               }}
             >
               Latest from the Blog:
             </Typography>
-          </Button>
+          </Box>
         </Link>
       </motion.div>
 
-      <Box sx={{ zIndex: "100", width: "100%", padding:{ xs:"1.5rem",md:"2.5rem"} }}>
+
+     
+
+
+
+
+
+
+
+
+      <Box
+        sx={{
+          zIndex: "100",
+          width: "100%",
+          padding: { xs: "1.5rem", md: "2.5rem" },
+        }}
+      >
         <Grid container spacing={5}>
           {blogs.map((blog, index) => {
-            return index < 6 &&
-            <Grid item xs={12} sm={12} md={6} lg={4} key={blog.sys.id}>
-              <BlogItemCard blog={blog} />
-            </Grid>
+            return (
+              index < 3 && (
+                <Grid item xs={12} sm={12} md={6} lg={4} key={blog.sys.id}>
+                  <BlogItemCard blog={blog} />
+                </Grid>
+              )
+            );
           })}
         </Grid>
       </Box>

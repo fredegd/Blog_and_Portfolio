@@ -53,7 +53,7 @@ export const themeManager = (darkMode) => {
     typography: {
       fontFamily: "IBM Plex Mono",
       body1: {
-        fontSize: {xs: "6rem", sm: "4rem", md: "6rem", lg: "1rem", xl: "12rem"},
+        fontSize: "1.4rem"
         // fontFamily: "IBM Plex Mono",
       },
       body2: {
