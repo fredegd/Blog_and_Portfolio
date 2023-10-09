@@ -98,7 +98,7 @@ export default function BlogItemCard({ blog }) {
               boxShadow: `0 0 10px ${theme.palette.text.highlight}`,
               padding: "1rem",
               "&:hover": {
-                backgroundColor: `${theme.palette.text.highlightAlt}cc`,
+                backgroundColor: `${theme.palette.background.main}`,
                 border: `5px solid ${theme.palette.text.highlightAlt}`,
                 boxShadow: `0 0 10px ${theme.palette.text.highlightAlt}`,
                 color: theme.palette.text.primary,
