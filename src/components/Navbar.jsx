@@ -83,7 +83,7 @@ export default function Navbar({ window, setOpen }) {
         <Box
           className="drawer-header"
           sx={{
-            width: "100%",
+            width: "95vw",
             p: "0.5rem",
             display: "flex",
             flexDirection: "row",
@@ -102,7 +102,8 @@ export default function Navbar({ window, setOpen }) {
                 backgroundRepeat: "no-repeat",
                 backgroundSize: "contain",
                 borderRadius: "50%",
-                border: `3px solid ${theme.palette.text.highlight}`,
+                borderBottom: `3px solid ${theme.palette.text.highlight}`,
+                borderLeft: `3px solid ${theme.palette.text.highlight}`,
               }}
             />
           </Link>
@@ -112,7 +113,7 @@ export default function Navbar({ window, setOpen }) {
             edge="start"
             onClick={handleDrawerToggle}
             sx={{
-              display: { sm: "none" },
+              display: { md: "none" },
               color: theme.palette.text.primary,
             }}
           >
@@ -149,19 +150,25 @@ export default function Navbar({ window, setOpen }) {
                     sx={{
                       height: "5rem",
                       borderRadius: "2.5rem",
-
-                      color:
+                      width:"70vw",
+                      // color:
+                      //   activeMenuItem === item.id
+                      //     ? theme.palette.text.contrast // Active color
+                      //     : theme.palette.text.primary, // Inactive color
+                      borderBottom: `4px solid ${
                         activeMenuItem === item.id
-                          ? theme.palette.text.contrast // Active color
-                          : theme.palette.text.primary, // Inactive color
-                      backgroundColor:
+                          ? theme.palette.text.highlight
+                          : "transparent"
+                      }`,
+                      borderLeft: `4px solid ${
                         activeMenuItem === item.id
-                          ? `${theme.palette.text.highlight}88`
-                          : "transparent",
+                          ? theme.palette.text.highlight
+                          : "transparent"
+                      }`,
 
-                      width: "90vw",
                       "&:hover": {
-                        backgroundColor: theme.palette.text.highlightAlt,
+                        backgroundColor: `${theme.palette.text.highlightAlt}`,
+                        boxShadow: `0px 0px 5px 5px ${theme.palette.text.highlight}`,
                       },
                     }}
                   >
@@ -210,7 +217,7 @@ export default function Navbar({ window, setOpen }) {
             onClick={handleDrawerToggle}
             sx={{
               mr: 2,
-              display: { sm: "none" },
+              display: { md: "none" },
               color: theme.palette.text.primary,
             }}
           >
@@ -222,14 +229,15 @@ export default function Navbar({ window, setOpen }) {
           <Link href={"/"} underline="hover">
             <Box
               sx={{
-                height: { xs: "3.5rem", sm: "4rem" },
-                width: { xs: "3.5rem", sm: "4rem" },
+                height: { xs: "3.5rem", sm: "3.5rem" },
+                width: { xs: "3.5rem", sm: "3.5rem" },
                 backgroundImage: `url(${animatedLogo})`,
                 backgroundPosition: "center",
                 backgroundRepeat: "no-repeat",
                 backgroundSize: "contain",
                 borderRadius: "50%",
-                border: `3px solid ${theme.palette.text.highlight}`,
+                borderBottom: `3px solid ${theme.palette.text.highlight}`,
+                borderLeft: `3px solid ${theme.palette.text.highlight}`,
                 "&:hover": {
                   boxShadow: `0px 0px 5px 5px ${theme.palette.text.highlight}`,
                 },
@@ -241,28 +249,32 @@ export default function Navbar({ window, setOpen }) {
           <Box
             sx={{ display: "flex", flexDirection: "row", alignItems: "center" }}
           >
-            <Box sx={{ display: { xs: "none", sm: "block" } }}>
+            <Box sx={{ display: { xs: "none", md: "block" } }}>
               {navItems.map((item) => (
                 <Link key={item.id} href={item.linkTo} underline="hover">
                   <Button
                     sx={{
-                      height: { sm: "3rem", md: "3.5rem" },
+                      height: { sm: "3rem", md: "3rem" },
+
                       borderRadius: { sm: "1.5rem", md: "1.75rem" },
-                      padding: { sm: "0.25rem ", md: "0.75rem" },
-                      mx: { sm: "0.1rem", md: "0.2rem" },
+                      padding: { sm: "0.25rem ", md: "0.95rem" },
+                      mx: { sm: "0.1rem", md: "0.7rem" },
                       fontSize: { sm: "1.15rem", md: "1.4rem" },
                       letterSpacing: { sm: "-0.055rem", md: "0.065rem" },
-                      color:
-                        activeMenuItem === item.id
-                          ? theme.palette.text.contrast // Active color
-                          : theme.palette.text.primary, // Inactive color
-                      backgroundColor:
+                      color: theme.palette.text.primary,
+                      borderBottom: `4px solid ${
                         activeMenuItem === item.id
                           ? theme.palette.text.highlight
-                          : "transparent",
+                          : "transparent" // Inactive color
+                      }`,
+                      borderLeft: `4px solid ${
+                        activeMenuItem === item.id
+                          ? theme.palette.text.highlight
+                          : "transparent"
+                      }`,
 
                       "&:hover": {
-                        backgroundColor: theme.palette.text.highlightAlt,
+                        backgroundColor: `${theme.palette.text.highlightAlt}`,
                         boxShadow: `0px 0px 5px 5px ${theme.palette.text.highlight}`,
                       },
                     }}
@@ -279,10 +291,13 @@ export default function Navbar({ window, setOpen }) {
               onClick={handleDrawerBgChange}
               sx={{
                 color: theme.palette.text.highlight,
-                mx: 2,
+                mx: "0.8rem",
+                width: { xs: "1.6rem", sm: "1.6rem" },
+                height: { xs: "1.6rem", sm: "1.6rem" },
+                padding: 0,
                 borderRadius: "10%",
                 "&:hover": {
-                  boxShadow: `0px 0px 5px 5px ${theme.palette.text.highlightAlt}`,
+                  boxShadow: `0px 0px 10px 10px ${theme.palette.text.highlightAlt}`,
                 },
               }}
             >
@@ -299,21 +314,26 @@ export default function Navbar({ window, setOpen }) {
               onClick={handleDarkChange}
               sx={{
                 color: theme.palette.text.primary,
-                // mx: 2,
-                width:  { xs: "1.8rem", sm: "1.6rem" },
-                height:  { xs: "1.8rem", sm: "1.6rem" },
+                mx: "0.8rem",
+                width: { xs: "1.6rem", sm: "1.6rem" },
+                height: { xs: "1.6rem", sm: "1.6rem" },
                 "&:hover": {
-                  boxShadow: ` 0px 0px 8px 8px ${theme.palette.text.highlight} , inset 0px 0px 5px 5px ${theme.palette.text.highlight}`,
+                  boxShadow: ` 0px 0px 8px 8px ${theme.palette.text.highlight} , inset 0px 0px 2.5px 2.5px ${theme.palette.text.highlight}`,
                 },
               }}
             >
               <Typography variant={"h6"} sx={{ display: "flex" }}>
-              {dk ? <DarkModeIcon sx={{ fontSize: { xs: "2.2rem", sm: "2rem" } }} /> : <LightModeIcon sx={{ fontSize: { xs: "2.2rem", sm: "2rem" } }} />}
-               
+                {dk ? (
+                  <DarkModeIcon
+                    sx={{ fontSize: { xs: "2.2rem", sm: "2rem" } }}
+                  />
+                ) : (
+                  <LightModeIcon
+                    sx={{ fontSize: { xs: "2.2rem", sm: "2rem" } }}
+                  />
+                )}
               </Typography>
             </IconButton>
-
-           
           </Box>
         </Toolbar>
       </AppBar>
@@ -328,7 +348,7 @@ export default function Navbar({ window, setOpen }) {
             keepMounted: true, // Better open performance on mobile.
           }}
           sx={{
-            display: { xs: "block", sm: "none" },
+            display: { xs: "block", md: "none" },
             "& .MuiDrawer-paper": {
               boxSizing: "border-box",
             },

@@ -11,11 +11,18 @@ import { BLOCKS, INLINES } from "@contentful/rich-text-types";
 import ProjectItemHead from "./ProjectItemHead";
 import Footer from "./Footer";
 
+import FullScreenPreview from "./FullScreenPreview";
+
+const links = {};
+
 export default function ProjectItem() {
   const theme = useTheme();
   const [project, setProject] = useState();
 
   const [exampleImages, setExampleImages] = useState([]);
+
+  const [previewImage, setPreviewImage] = useState();
+  const [openPreview, setOpenPreview] = useState(false);
 
   const { projectId } = useParams();
 
@@ -27,10 +34,12 @@ export default function ProjectItem() {
         window.scrollTo(0, 0);
 
         console.log(response);
-        // console.log(response.sys.id, blogItemid);
+
         if (response.fields.exampleImages) {
-          // console.log(response.fields.contentImages);
           setExampleImages(response.fields.exampleImages);
+        }
+        if (response.fields.links) {
+          setExternalLinks(response.fields.links);
         }
       })
       .catch((err) => console.log(err));
@@ -63,6 +72,7 @@ export default function ProjectItem() {
       <Box
         sx={{
           height: "100vh",
+          paddingX: { xs: "1rem", sm: "2rem", md: "3rem", lg: "3rem" },
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
@@ -73,20 +83,20 @@ export default function ProjectItem() {
 
         <Box
           sx={{
-            zIndex: "1000",
-            width: { xs: "100vw", sm: "100vw", md: "100vw", lg: "100vw" },
-            paddingBottom: "5rem",
-            paddingTop: "3rem",
-            paddingX: { xs: "1rem", sm: "2rem", md: "3rem", lg: "3rem" },
-            background: `linear-gradient(90deg, #00000000 0%,${theme.palette.background.transparent} 20%, ${theme.palette.background.main} 40%, ${theme.palette.background.main} 60%, ${theme.palette.background.transparent} 80%,  #00000000 100%)`,
+            zIndex: "999",
+            width: "100%",
+            maxWidth: "900px",
+            // paddingBottom: "5rem",
+            // paddingTop: "3rem",
+            // paddingX: { xs: "1rem", sm: "2rem", md: "3rem", lg: "3rem" },
+            background: `linear-gradient(90deg, #00000000 0%,${theme.palette.background.transparent} 5%, ${theme.palette.background.main} 20%, ${theme.palette.background.main} 80%, ${theme.palette.background.transparent} 95%,  #00000000 100%)`,
+
             display: "flex",
             flexDirection: "column",
             overflowX: "visible",
             alignItems: "center",
           }}
         >
-          {/* <BlogItemHeading blog={blog} /> */}
-
           <Box
             sx={{
               marginTop: "3rem",
@@ -94,57 +104,99 @@ export default function ProjectItem() {
               maxWidth: "900px",
               display: "flex",
               flexDirection: "column",
-              alignItems: "center",
+              alignItems: "flex-start",
               textAlign: "left",
             }}
           >
             {renderRichText(project.fields.description)}
           </Box>
-          <Link to={project.fields.links.gitHubRepo} target="_blank">
-            <Button>Repository</Button>
-          </Link>
-          <Link to={project.fields.links.demo} target="_blank">
-            <Button>Demo</Button>
-          </Link>
-        </Box>
-
-        {exampleImages &&
-          exampleImages.map((image, index) => {
-            return (
-              <Box
-                key={index}
-                zIndex={1000}
-                sx={{
-                  backgroundColor: `${theme.palette.background.main}`,
-                  height: { xs: "62vw", sm: "62vw", md: "62vw", lg: "42vw" },
-                  border: "2px solid black",
-                  display: "flex",
-                  flexDirection: "column",
-                  justifyContent: "flex-start",
-                  marginBottom: "3rem",
-                }}
-              >
-                <Typography variant="h6" textAlign="left">
-                  {image.fields.description}
-                </Typography>
+          {exampleImages &&
+            exampleImages.map((image, index) => {
+              return (
                 <Box
+                  key={index}
+                  zIndex={1000}
                   sx={{
-                    height: { xs: "60vw", sm: "60vw", md: "60vw", lg: "40vw" },
-                    width: { xs: "90vw", sm: "90vw", md: "90vw", lg: "70vw" },
-                    backgroundImage: `url(${image.fields.file.url})`,
-                    backgroundPosition: "cover",
-                    backgroundSize: `100% auto`,
-                    backgroundRepeat: "no-repeat",
-                    transition: "all 0.5s ease-in-out",
-                    zIndex: "1000",
+                    // backgroundColor: `${theme.palette.background.main}`,
+                    // height: { xs: "62vw", sm: "62vw", md: "62vw", lg: "42vw" },
+                    border: "2px solid black",
+                    display: "flex",
+                    flexDirection: "column",
+                    justifyContent: "center",
+                    marginBottom: "3rem",
                   }}
                 >
-                  {/* content image */}
-                </Box>
-              </Box>
-            );
-          })}
+                  <Typography
+                    variant="h6"
+                    textAlign="left"
+                    sx={{
+                      
+                      maxWidth: {
+                        xs: "90vw",
+                        sm: "90vw",
+                        md: "60vw",
+                        lg: "50vw",
+                      },
+                      padding: "1rem 0.5rem",
+                    }}
+                  >
+                    {image.fields.title}
+                  </Typography>
+                  <Box
+                    onClick={(e) => {
+                      // window.open(image.fields.file.url, "_blank");
+                      console.log(e);
+                      setOpenPreview(true);
+                      setPreviewImage(image);
+                    }}
+                    sx={{
+                      // aspect ratio 1.66/1
+                      height: {
+                        xs: `${90 * 0.602}vw`,
+                        sm: `${90 * 0.602}vw`,
+                        md: `${70 * 0.602}vw`,
+                        lg: `${50 * 0.602}vw`,
+                      },
+                      width: { xs: "90vw", sm: "90vw", md: "70vw", lg: "50vw" },
 
+                      backgroundImage: `url(${image.fields.file.url})`,
+                      backgroundPosition: "cover",
+                      backgroundSize: `100% auto`,
+                      backgroundRepeat: "no-repeat",
+                      transition: "all 0.5s ease-in-out",
+                      zIndex: "1000",
+                    }}
+                  >
+                    {/* content image */}
+                  </Box>
+                  <Typography
+                    variant="p"
+                    sx={{
+                      width: { xs: "90vw", sm: "90vw", md: "70vw", lg: "50vw" },
+                      padding: "1rem 0.5rem",
+                      textAlign: "justify",
+                    }}
+                  >
+                    {image.fields.description}
+                  </Typography>
+                </Box>
+              );
+            })}
+
+
+
+          {previewImage && (
+            <Box sx={{ display: { xs: "none", md: "block" } }}>
+              <FullScreenPreview
+                openPreview={openPreview}
+                setOpenPreview={setOpenPreview}
+                image={previewImage.fields.file.url}
+                title={previewImage.fields.title}
+                description={previewImage.fields.description}
+              />
+            </Box>
+          )}{" "}
+        </Box>
         <Footer />
       </Box>
     );

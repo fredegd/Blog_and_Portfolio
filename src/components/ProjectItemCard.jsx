@@ -88,7 +88,7 @@ export default function ProjectItemCard({ project }) {
         >
           <Box
             sx={{
-              backgroundColor: `${theme.palette.text.highlight}88`,
+              backgroundColor: `${theme.palette.background.main}88`,
               display: "flex",
               flexDirection: "column",
               justifyContent: "flex-start",
@@ -98,7 +98,7 @@ export default function ProjectItemCard({ project }) {
               boxShadow: `0 0 10px ${theme.palette.text.highlight}`,
               padding: "1rem",
               "&:hover": {
-                backgroundColor: `${theme.palette.background.main}cc`,
+                backgroundColor: `${theme.palette.background.main}`,
                 border: `5px solid ${theme.palette.text.highlightAlt}`,
                 boxShadow: `0 0 10px ${theme.palette.text.highlightAlt}`,
                 color: theme.palette.text.primary,
