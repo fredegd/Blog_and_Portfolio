@@ -4,6 +4,7 @@ import CloseIcon from "@mui/icons-material/Close";
 
 import {
   Box,
+  Button,
   Typography,
   Slide,
   IconButton,
@@ -45,6 +46,15 @@ export default function FullScreenPreview({
           }}
         >
           <Toolbar>
+            
+            <Typography
+              sx={{ ml: 2, flex: 1, color: theme.palette.text.primary }}
+              variant="h5"
+              component="Box"
+              textAlign={"center"}
+            >
+              {title}
+            </Typography>
             <IconButton
               edge="start"
               color="inherit"
@@ -54,13 +64,6 @@ export default function FullScreenPreview({
             >
               <CloseIcon />
             </IconButton>
-            <Typography
-              sx={{ ml: 2, flex: 1, color: theme.palette.text.primary }}
-              variant="h6"
-              component="Box"
-            >
-              {title}
-            </Typography>
           </Toolbar>
         </AppBar>
         <Box
@@ -71,7 +74,7 @@ export default function FullScreenPreview({
             alignItems: "center",
             p: { xs: "0.5rem", md: "2rem" },
           }}
-          onClick={handleClose}
+          // onClick={handleClose}
         >
           <img src={image} alt={title} width={"90%"} />
           <Typography
@@ -81,7 +84,27 @@ export default function FullScreenPreview({
             {" "}
             {description}
           </Typography>
+          <Button
+          onClick={handleClose}
+          sx={{
+            marginY: "2rem",
+            border: `2px solid ${theme.palette.text.highlight}`,
+            borderRadius: "2rem",
+            width: { xs: "17rem", sm: "20rem" },
+            // alignSelf: "flex-end",
+            transition: "all 0.3s ease-in-out",
+            "&:hover": {
+              background: `${theme.palette.text.highlight}88`,
+
+              transform: "translateX(-2.5rem)",
+            },
+          }}
+        >
+          ← back
+        </Button>
         </Box>
+
+        
       </Dialog>
     </Box>
   );
