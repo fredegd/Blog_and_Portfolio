@@ -23,6 +23,7 @@ import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import { navItems } from "../navItems";
 import animatedLogo from "../assets/animatedLogo.gif";
+import anime from "animejs";
 
 // const drawerWidth = 240;
 
@@ -66,6 +67,19 @@ export default function Navbar({ window, setOpen }) {
   const handleDarkChange = () => {
     toggleDarkMode();
   };
+
+  const target = document.querySelector(".drawer-links");
+
+  anime({
+    targets: ".link-item ",
+    translateX: ["-90vw", 0],
+
+    opacity: [0.5, 1],
+    duration: (navItems.length + 1) * 150,
+
+    delay: anime.stagger(150, { direction: "reverse" }),
+    easing: "easeOutElastic(1, .8)",
+  });
 
   const drawer = (
     <Box
@@ -136,6 +150,7 @@ export default function Navbar({ window, setOpen }) {
           >
             {navItems.map((item) => (
               <ListItem
+                className="link-item"
                 key={item.id}
                 disablePadding
                 sx={{
