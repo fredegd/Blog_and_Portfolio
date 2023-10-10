@@ -4,7 +4,7 @@ import ContactContent from "./ContactContent";
 import Footer from "./Footer";
 import { Box } from "@mui/material";
 import BlogPreview from "./BlogPreview";
-export default function Landing({blogs}) {
+export default function Landing({ blogs }) {
   return (
     <Box
       sx={{
@@ -15,14 +15,13 @@ export default function Landing({blogs}) {
         height: "auto",
         overflow: "scroll",
         background: "transparent",
-
       }}
     >
       <Hero />
       <AboutContent />
-      <BlogPreview blogs={blogs}/>
+      <BlogPreview blogs={blogs} />
       <ContactContent />
-      <Footer/>
+      <Footer />
     </Box>
   );
 }

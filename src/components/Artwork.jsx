@@ -63,7 +63,7 @@ function Artwork({
   const extractStrokesFromSVG = () => {
     const regex = /<line [^>]*\/>/g;
     if (svgData) {
-       console.log("bgImage passed to extractStrokesFromSVG");
+      console.log("bgImage passed to extractStrokesFromSVG");
       const matches = svgData.match(regex);
       if (matches) {
         const strokes = matches.join("");
@@ -75,10 +75,8 @@ function Artwork({
     }
   };
 
-
-
   const drawStrokes = () => {
-    const pointSize = svgWidth / (gridSize -1);
+    const pointSize = svgWidth / (gridSize - 1);
 
     let tempString = "";
     for (let i = 0; i < 2; i++) {
@@ -89,10 +87,11 @@ function Artwork({
       const visitedPoints = new Set();
 
       for (let j = 0; j < segmentsAmount; j++) {
-
-        const startX = (currentIndex % gridSize) * pointSize*0.8+svgWidth*0.1;
+        const startX =
+          (currentIndex % gridSize) * pointSize * 0.8 + svgWidth * 0.1;
         const startY =
-          Math.floor(currentIndex / gridSize) * pointSize*0.8+svgWidth*0.1;
+          Math.floor(currentIndex / gridSize) * pointSize * 0.8 +
+          svgWidth * 0.1;
 
         visitedPoints.add(currentIndex);
 
@@ -105,9 +104,9 @@ function Artwork({
             gridSize ** 2;
         } while (visitedPoints.has(nextIndex));
 
-        const endX = (nextIndex % gridSize) *  pointSize*0.8+svgWidth*0.1;
+        const endX = (nextIndex % gridSize) * pointSize * 0.8 + svgWidth * 0.1;
         const endY =
-          Math.floor(nextIndex / gridSize) * pointSize*0.8+svgWidth*0.1;
+          Math.floor(nextIndex / gridSize) * pointSize * 0.8 + svgWidth * 0.1;
         let sw = Math.random() * 2 + 6;
         // let sw = Math.random() * 5+5;
 
@@ -120,7 +119,6 @@ function Artwork({
     console.log("new strokesString");
     return tempString;
   };
- 
 
   const [strokesString, setStrokesString] = useState(
     bgImage ? extractStrokesFromSVG() : drawStrokes()
@@ -140,12 +138,9 @@ function Artwork({
       `<rect width="${svgWidth}" height="${svgHeight}" fill="${theme.palette.background.main}"/>`
     );
 
-  
-
-      localStorage.setItem("svgData", svgDataString);
-      setBgImage(svgDataString);
-      console.log("doing this")
-    
+    localStorage.setItem("svgData", svgDataString);
+    setBgImage(svgDataString);
+    console.log("doing this");
   }, [dk, strokesString]);
 
   //this function is called when the component is mounted and it checks if there is a bgImage in local storage
@@ -154,13 +149,13 @@ function Artwork({
     const svgData = localStorage.getItem("svgData");
 
     if (svgData) {
-     // console.log(svgData)
+      // console.log(svgData)
       setBgImage(svgData);
-      console.log("doing that")
+      console.log("doing that");
 
       // console.log("svgData was read from LS", svgData);
     }
-  }, [ bgImage, color1, color2, gridSize, segmentsAmount,bgColor]);
+  }, [bgImage, color1, color2, gridSize, segmentsAmount, bgColor]);
 
   const saveDataLocally = (svgData) => {
     try {
@@ -214,26 +209,24 @@ function Artwork({
   };
 
   const handleHardSave = () => {
-   
-      const svgData = localStorage.getItem("svgData");
-      if (!svgData) {
-        console.error("SVG data not found in local storage.");
-        return;
-      }
+    const svgData = localStorage.getItem("svgData");
+    if (!svgData) {
+      console.error("SVG data not found in local storage.");
+      return;
+    }
 
-      // Create a Blob from the local stored SVG data
-      const blob = new Blob([svgData], { type: "image/svg+xml" });
+    // Create a Blob from the local stored SVG data
+    const blob = new Blob([svgData], { type: "image/svg+xml" });
 
-      // Create a download link
-      const a = document.createElement("a");
-      a.href = URL.createObjectURL(blob);
+    // Create a download link
+    const a = document.createElement("a");
+    a.href = URL.createObjectURL(blob);
 
-      // Set the file name for the download
-      a.download = "stored_artwork.svg";
+    // Set the file name for the download
+    a.download = "stored_artwork.svg";
 
-      // Programmatically trigger the download
-      a.click();
-    
+    // Programmatically trigger the download
+    a.click();
   };
 
   return (
@@ -247,19 +240,21 @@ function Artwork({
         }}
       >
         <Box sx={{ width: 300 }}>
-
-          <div onClick={handleDrawAndStore} >
-            <Typography variant="p" >
-              {" "}
-              Tap to Generate a new Pattern
-            </Typography>
+          <div onClick={handleDrawAndStore}>
+            <Typography variant="p"> Tap to Generate a new Pattern</Typography>
 
             {/* an element displaying the content of bgImage */}
-      
+
             <Box
-            sx={{width:"300px",height:"300px",backgroundImage:`url(data:image/svg+xml;base64,${btoa(bgImage)})`,backgroundRepeat:"no-repeat"}}>
-             
-            </Box>
+              sx={{
+                width: "300px",
+                height: "300px",
+                backgroundImage: `url(data:image/svg+xml;base64,${btoa(
+                  bgImage
+                )})`,
+                backgroundRepeat: "no-repeat",
+              }}
+            ></Box>
           </div>
         </Box>
         <Box sx={{ width: 250 }}>
@@ -278,7 +273,7 @@ function Artwork({
           />
         </Box>
 
-        <Box sx={{ width: 250, my:"-0.5rem" }}>
+        <Box sx={{ width: 250, my: "-0.5rem" }}>
           <Typography>Segment Amount: {segmentsAmount}</Typography>
           <Slider
             aria-label="segmentsAmount"
@@ -292,24 +287,55 @@ function Artwork({
           />
         </Box>
 
-        <Box sx={{ width: 300, mt: "1rem" , display:"flex",flexDirection:"row" }}>
+        <Box
+          sx={{ width: 300, mt: "1rem", display: "flex", flexDirection: "row" }}
+        >
           <Typography
             onClick={() => handleColorChange("col1", setColor1)}
-            sx={{  height: "3rem",width:"8rem", background: `${color1}`,mx:"1rem",  borderRadius:"1.5rem" ,display:"flex", alignItems:"center", justifyContent:"center" }}
+            sx={{
+              height: "3rem",
+              width: "8rem",
+              background: `${color1}`,
+              mx: "1rem",
+              borderRadius: "1.5rem",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
           >
             Color 1
           </Typography>
 
           <Typography
             onClick={() => handleColorChange("col2", setColor2)}
-            sx={{ height: "3rem", width:"8rem",background: `${color2}`,mx:"1rem", borderRadius:"1.5rem" ,display:"flex", alignItems:"center", justifyContent:"center"}}
+            sx={{
+              height: "3rem",
+              width: "8rem",
+              background: `${color2}`,
+              mx: "1rem",
+              borderRadius: "1.5rem",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
           >
             Color 2
           </Typography>
         </Box>
 
-        <Box sx={{  mt: "1rem" }}>
-          <Typography onClick={handleHardSave} sx={{ height: "3rem", width:"8rem", border:`2px solid ${theme.palette.text.primary}`, borderRadius:"1.5rem",display:"flex", alignItems:"center", justifyContent:"center"}}>
+        <Box sx={{ mt: "1rem" }}>
+          <Typography
+            onClick={handleHardSave}
+            sx={{
+              height: "3rem",
+              width: "8rem",
+              border: `2px solid ${theme.palette.text.primary}`,
+              borderRadius: "1.5rem",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
             save SVG
           </Typography>
         </Box>

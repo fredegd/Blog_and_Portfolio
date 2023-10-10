@@ -58,10 +58,10 @@ export default function BlogItem() {
     client
       .getEntry(blogItemid)
       .then((response) => {
-        setBlog(response.fields);
+        setBlog(response);
         window.scrollTo(0, 0);
 
-        console.log(response.fields);
+        console.log(response);
         // console.log(response.sys.id, blogItemid);
         if (response.fields.contentImages) {
           // console.log(response.fields.contentImages);
@@ -100,8 +100,12 @@ export default function BlogItem() {
         const text = content.map((c) => c.value).join("");
         if (text.startsWith("#img")) {
           const imgIndex = parseInt(text.substring(4));
-          if (blog && blog.contentImages && blog.contentImages[imgIndex]) {
-            const imgUrl = blog.contentImages[imgIndex].fields.file.url;
+          if (
+            blog &&
+            blog.fields.contentImages &&
+            blog.fields.contentImages[imgIndex]
+          ) {
+            const imgUrl = blog.fields.contentImages[imgIndex].fields.file.url;
             // console.log(imgIndex)
             return (
               <Box key={imgIndex + "img"}>
@@ -209,16 +213,17 @@ export default function BlogItem() {
             paddingTop: "3rem",
             paddingX: { xs: "1rem", sm: "2rem", md: "3rem", lg: "3rem" },
 
-
-            background: {xs:`linear-gradient(90deg, #00000000 0%,${theme.palette.background.transparent} 5%, ${theme.palette.background.main} 20%, ${theme.palette.background.main} 80%, ${theme.palette.background.transparent} 95%,  #00000000 100%)`,
-            lg: `linear-gradient(90deg, #00000000 0%,${theme.palette.background.transparent} 15%, ${theme.palette.background.main} 30%, ${theme.palette.background.main} 70%, ${theme.palette.background.transparent} 85%,  #00000000 100%)`,},
+            background: {
+              xs: `linear-gradient(90deg, #00000000 0%,${theme.palette.background.transparent} 5%, ${theme.palette.background.main} 20%, ${theme.palette.background.main} 80%, ${theme.palette.background.transparent} 95%,  #00000000 100%)`,
+              lg: `linear-gradient(90deg, #00000000 0%,${theme.palette.background.transparent} 15%, ${theme.palette.background.main} 30%, ${theme.palette.background.main} 70%, ${theme.palette.background.transparent} 85%,  #00000000 100%)`,
+            },
             display: "flex",
             flexDirection: "column",
             overflowX: "visible",
             alignItems: "center",
           }}
         >
-<BlogItemHeading blog={blog} />
+          <BlogItemHeading blog={blog} />
 
           <Box
             sx={{
@@ -231,12 +236,12 @@ export default function BlogItem() {
               textAlign: "justify",
             }}
           >
-            {displayContent(blog.content)}
+            {displayContent(blog.fields.content)}
           </Box>
 
-          <Typography variant="h1">{"*****"}</Typography>
+          {/* <Typography variant="h1">{"*****"}</Typography> */}
 
-          <FormControl
+          {/* <FormControl
             fullWidth
             // sx={{ background: "red" }}
             onSubmit={handleSubmit(onSubmit)}
@@ -250,10 +255,10 @@ export default function BlogItem() {
               {...register("comment")}
             />
             <Button type="submit">sub</Button>
-          </FormControl>
+          </FormControl> */}
         </Box>
 
-        <RelatedPosts />
+        {/* <RelatedPosts /> */}
         <Footer />
 
         <motion.div

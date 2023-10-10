@@ -9,7 +9,6 @@ export default function Blog() {
   return (
     <Box
       sx={{
-        
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
@@ -19,12 +18,20 @@ export default function Blog() {
         zIndex: "1000",
       }}
     >
-
-      <Box zIndex={1000} sx={{display:"flex", flexDirection:"column", alignItems:"center",zIndex: "1000",}}>
-      <PageTitle title={"BLOG"} />
-      <BlogListCF />
+      <Box
+        zIndex={1000}
+        sx={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          width: "100vw",
+          zIndex: "1000",
+        }}
+      >
+        <PageTitle title={"BLOG"} />
+        <BlogListCF />
       </Box>
-      
+
       <Footer />
     </Box>
   );

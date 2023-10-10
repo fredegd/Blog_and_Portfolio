@@ -92,8 +92,8 @@ export default function ProjectItemCard({ project }) {
               display: "flex",
               flexDirection: "column",
               justifyContent: "flex-start",
-              height: {xs:"100vw",sm:"90vw",md:"47vw",lg:"30vw"},
-              maxHeight: {lg:"400px"},
+              height: { xs: "100vw", sm: "90vw", md: "47vw", lg: "30vw" },
+              maxHeight: { lg: "400px" },
               border: `5px solid ${theme.palette.text.highlightAlt}`,
               boxShadow: `0 0 10px ${theme.palette.text.highlightAlt}`,
               padding: "1rem",
@@ -110,8 +110,7 @@ export default function ProjectItemCard({ project }) {
                 {" "}
                 <Box
                   sx={{
-
-                    height: { xs: "66vw",  md: "32vw",lg:"20vw" },
+                    height: { xs: "66vw", md: "32vw", lg: "20vw" },
 
                     width: "100%",
                     backgroundImage: `url(${project.fields.titleImage.fields.file.url})`,
@@ -127,13 +126,11 @@ export default function ProjectItemCard({ project }) {
                 >
                   {/* background image */}
                 </Box>
-
                 <Box
                   display={"flex"}
                   flexDirection={"column"}
                   sx={{
                     width: "100%",
-          
                   }}
                 >
                   <Box display={"flex"} alignItems={"flex-Start"}>

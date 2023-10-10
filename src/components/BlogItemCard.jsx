@@ -92,8 +92,8 @@ export default function BlogItemCard({ blog }) {
               display: "flex",
               flexDirection: "column",
               justifyContent: "flex-start",
-              height: {xs:"100vw",sm:"90vw",md:"47vw",lg:"30vw"},
-              maxHeight: {lg:"400px"},
+              height: { xs: "100vw", sm: "90vw", md: "47vw", lg: "30vw" },
+              maxHeight: { lg: "400px" },
               border: `5px solid ${theme.palette.text.highlight}`,
               boxShadow: `0 0 10px ${theme.palette.text.highlight}`,
               padding: "1rem",
@@ -110,8 +110,7 @@ export default function BlogItemCard({ blog }) {
                 {" "}
                 <Box
                   sx={{
-
-                    height: { xs: "66vw",  md: "32vw",lg:"20vw" },
+                    height: { xs: "66vw", md: "32vw", lg: "20vw" },
 
                     width: "100%",
                     backgroundImage: `url(${blog.fields.blogTitleImage.fields.file.url})`,
@@ -127,7 +126,6 @@ export default function BlogItemCard({ blog }) {
                 >
                   {/* background image */}
                 </Box>
-
                 <Box
                   display={"flex"}
                   flexDirection={"column"}
@@ -160,7 +158,7 @@ export default function BlogItemCard({ blog }) {
                       {truncatedTitle()}
                     </Typography>
                   </Box>
-                  
+
                   <Box
                     display={"flex"}
                     alignItems={"center"}
@@ -173,7 +171,7 @@ export default function BlogItemCard({ blog }) {
                     <Typography
                       variant="p"
                       sx={{
-                        fontSize: {xs:"1.2rem",md:"1rem"},
+                        fontSize: { xs: "1.2rem", md: "1rem" },
                         textAlign: "justify",
                         textJustify: "interWord",
                         zIndex: "100",

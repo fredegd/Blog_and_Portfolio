@@ -12,7 +12,6 @@ export default function Projects() {
         alignItems: "center",
         justifyContent: "space-between",
         minHeight: "100vh",
-
         overflow: "scroll",
         zIndex: "1000",
       }}

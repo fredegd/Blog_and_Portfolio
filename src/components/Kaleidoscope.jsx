@@ -21,7 +21,7 @@ export default function Kaleidoscope(bgImage) {
 
     // const gridContainer = document.getElementById("gridContainer");
     const gridContainer = document.querySelector(".gridContainer");
-   // console.log(gridContainer);
+    // console.log(gridContainer);
 
     let styles = `
         position: fixed;
@@ -57,7 +57,7 @@ export default function Kaleidoscope(bgImage) {
         )})`;
         square.style.backgroundPosition = "center";
         // square.style.transition = "0.5s ease-out"; //commented out temporarily
-         square.style.opacity = "0.6";
+        square.style.opacity = "0.6";
       });
 
     const shiftSquares = (mX, mY, gridW, gridH, tileW, tileH) => {
@@ -66,22 +66,23 @@ export default function Kaleidoscope(bgImage) {
       squares.forEach((square, index) => {
         const row = Math.floor(index / gridSize.numCols);
         const col = index % gridSize.numCols;
-        const xt = remap(col, 0, gridSize.numCols, 0, gridW );
-        const yt = remap(row, 0, gridSize.numRows, 0, gridH );
-        const distance = Math.sqrt((xt-mX) ** 2 + (yt-mY) ** 2);
+        const xt = remap(col, 0, gridSize.numCols, 0, gridW);
+        const yt = remap(row, 0, gridSize.numRows, 0, gridH);
+        const distance = Math.sqrt((xt - mX) ** 2 + (yt - mY) ** 2);
         const multiplier = Math.min(
           maxScale,
-          maxScale * remap(distance, 0, (gridW+gridH)/4, 3 / Math.sqrt(2), 0)
+          maxScale *
+            remap(distance, 0, (gridW + gridH) / 4, 3 / Math.sqrt(2), 0)
         );
 
         square.style.width = `${tileW * 1}px`; // instead of 1, use multiplier
         square.style.height = `${tileH * 1}px`; // instead of 1, use multiplier
-         square.style.opacity = `${remap(distance, 0, gridW / 2, 1.5, 0.2)}`;
+        square.style.opacity = `${remap(distance, 0, gridW / 2, 1.5, 0.2)}`;
 
         // Calculate background tiles position based on the square's position
 
-        const bgX =  - xt;
-        const bgY = - yt;
+        const bgX = -xt;
+        const bgY = -yt;
         square.style.backgroundPosition = `${bgX}px ${bgY}px`;
         square.style.backgroundSize = `${gridW * multiplier}px ${
           gridH * multiplier

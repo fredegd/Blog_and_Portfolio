@@ -5,7 +5,16 @@ import Drawer from "@mui/material/Drawer";
 import Button from "@mui/material/Button";
 import Artwork from "./Artwork";
 
-export default function DrawerBGChange({ bgImage, setBgImage, open, setOpen ,color1, color2, setColor1, setColor2}) {
+export default function DrawerBGChange({
+  bgImage,
+  setBgImage,
+  open,
+  setOpen,
+  color1,
+  color2,
+  setColor1,
+  setColor2,
+}) {
   const [state, setState] = useState(false);
 
   const toggleDrawer = (open) => (event) => {
@@ -16,38 +25,45 @@ export default function DrawerBGChange({ bgImage, setBgImage, open, setOpen ,col
   };
 
   return (
-      <Drawer
-        anchor={"right"}
-        open={open}
-        onClose={toggleDrawer(false)}
-        variant="persistent"
-        style={{ zIndex: "1000" }}
+    <Drawer
+      anchor={"right"}
+      open={open}
+      onClose={toggleDrawer(false)}
+      variant="persistent"
+      style={{ zIndex: "1000" }}
+    >
+      <Box
+        sx={{
+          width: {
+            sm: "400px", // 400px wide on screens wider than 600px (md)
+            xs: "100vw", // Fullscreen on small screens
+          },
+          height: "100vh",
+
+          display: "flex",
+          flexDirection: "column",
+        }}
+        role="presentation"
       >
-        <Box
-          sx={{
-            width: {
-              sm: "400px", // 400px wide on screens wider than 600px (md)
-              xs: "100vw", // Fullscreen on small screens
-            },
-            height: "100vh",
+        <Button
+          onClick={closeDrawer}
+          style={{
+            float: "right",
 
-            display: "flex",
-            flexDirection: "column",
+            alignSelf: "flex-end",
           }}
-          role="presentation"
         >
-          <Button
-            onClick={closeDrawer}
-            style={{
-              float: "right",
-
-              alignSelf: "flex-end",
-            }}
-          >
-            Close
-          </Button>
-          <Artwork bgImage={bgImage} setBgImage={setBgImage} color1={color1} color2={color2} setColor1={setColor1} setColor2={setColor2} />
-        </Box>
-      </Drawer>
+          Close
+        </Button>
+        <Artwork
+          bgImage={bgImage}
+          setBgImage={setBgImage}
+          color1={color1}
+          color2={color2}
+          setColor1={setColor1}
+          setColor2={setColor2}
+        />
+      </Box>
+    </Drawer>
   );
 }

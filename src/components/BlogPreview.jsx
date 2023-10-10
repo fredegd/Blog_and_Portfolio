@@ -11,7 +11,6 @@ export default function BlogPreview({ blogs }) {
 
   return (
     <Box
-
       sx={{
         width: "100%",
         display: "flex",
@@ -72,16 +71,6 @@ export default function BlogPreview({ blogs }) {
           </Box>
         </Link>
       </motion.div>
-
-
-     
-
-
-
-
-
-
-
 
       <Box
         sx={{

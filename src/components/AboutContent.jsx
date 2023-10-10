@@ -124,7 +124,7 @@ export default function AboutContent() {
                     marginY: "2rem",
                     border: `2px solid ${theme.palette.text.highlight}`,
                     borderRadius: "2rem",
-                    width:{xs:"17rem", sm:"20rem"},
+                    width: { xs: "17rem", sm: "20rem" },
 
                     transition: "all 0.3s ease-in-out",
                     "&:hover": {
@@ -144,7 +144,7 @@ export default function AboutContent() {
                     marginY: "2rem",
                     border: `2px solid ${theme.palette.text.highlightAlt}`,
                     borderRadius: "2rem",
-                    width:{xs:"17rem", sm:"20rem"},
+                    width: { xs: "17rem", sm: "20rem" },
                     transition: "all 0.3s ease-in-out",
                     "&:hover": {
                       background: `${theme.palette.text.highlightAlt}88`,

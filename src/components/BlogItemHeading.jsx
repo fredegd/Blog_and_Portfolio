@@ -4,6 +4,14 @@ import { useTheme } from "@mui/material/styles";
 
 export default function BlogItemHeading({ blog }) {
   const theme = useTheme();
+  const createdAt =
+    new Date(blog.sys.createdAt).toLocaleDateString() +
+    " at:" +
+    new Date(blog.sys.createdAt).toLocaleTimeString();
+  const updatedAt =
+    new Date(blog.sys.updatedAt).toLocaleDateString() +
+    " at:" +
+    new Date(blog.sys.updatedAt).toLocaleTimeString();
   return (
     <Box
       sx={{
@@ -27,7 +35,7 @@ export default function BlogItemHeading({ blog }) {
           maxWidth: "1280px" || "100%",
           maxHeight: `${1280 * 0.66}px`,
           alignSelf: "center",
-          backgroundImage: `url(${blog.blogTitleImage.fields.file.url})`,
+          backgroundImage: `url(${blog.fields.blogTitleImage.fields.file.url})`,
           backgroundPosition: "cover",
           backgroundSize: `100% auto`,
           backgroundRepeat: "no-repeat",
@@ -67,19 +75,26 @@ export default function BlogItemHeading({ blog }) {
           pb: "1rem",
         }}
       >
-        {""}"{blog.subtitle}"
+        {""}"{blog.fields.subtitle}"
       </Typography>
-      <Box sx={{width:"100%",display:"flex", flexDirection:{xs:"column",lg:"row"} , justifyContent:{lg:"space-between"}}}>
+      <Box
+        sx={{
+          width: "100%",
+          display: "flex",
+          flexDirection: { xs: "column", lg: "row" },
+          justifyContent: { lg: "space-between" },
+        }}
+      >
         <Box
           sx={{
-          padding: { xs: "1rem", md: 1.5 },
+            padding: { xs: "1rem", md: 1.5 },
 
             display: "flex",
             alignItems: "center",
             justifyContent: "flex-start",
           }}
         >
-          <Typography variant="p" sx={{ textAlign: "center" }}>
+          <Typography variant="p" sx={{ textAlign: "left" }}>
             Tags:
           </Typography>
           <Box
@@ -89,16 +104,17 @@ export default function BlogItemHeading({ blog }) {
               flexWrap: "wrap",
             }}
           >
-            {blog.tags.tags.map((tag, index) => {
+            {blog.fields.tags.tags.map((tag, index) => {
               return (
                 <Typography
                   key={index}
                   variant="p"
                   sx={{
                     mx: "0.5rem",
+                    padding: "0.2rem 0.8rem",
                     backgroundColor: theme.palette.text.highlightAlt,
                     color: theme.palette.primary.contrastText,
-                    padding: "0.2rem 0.8rem",
+                    fontSize: { xs: "0.8rem", sm: "1rem" },
                     borderRadius: "1rem",
                   }}
                 >
@@ -123,11 +139,11 @@ export default function BlogItemHeading({ blog }) {
           }}
         >
           <Typography variant="p">
-            Published on: "{blog.createdAt}" by "
-            {blog.blogAuthor.fields.authorName}"
+            Published on: "{createdAt}" by "
+            {blog.fields.blogAuthor.fields.authorName}"
           </Typography>
           <Typography variant="p">
-            Last edit: "{blog.editAt}" {"x"} min. Read
+            Last edit: "{updatedAt}" {"x"} min. Read
           </Typography>
         </Box>
       </Box>

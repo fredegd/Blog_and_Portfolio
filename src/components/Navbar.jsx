@@ -150,7 +150,7 @@ export default function Navbar({ window, setOpen }) {
                     sx={{
                       height: "5rem",
                       borderRadius: "2.5rem",
-                      width:"70vw",
+                      width: "70vw",
                       // color:
                       //   activeMenuItem === item.id
                       //     ? theme.palette.text.contrast // Active color

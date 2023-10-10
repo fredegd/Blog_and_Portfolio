@@ -67,10 +67,8 @@ export default function ProjectItemHead({ project }) {
       </Typography>
 
       <Box
-      className="project-links"
+        className="project-links"
         sx={{
-          
-
           display: "flex",
           flexDirection: "column",
           alignItems: "flex-start",
@@ -80,45 +78,45 @@ export default function ProjectItemHead({ project }) {
           padding: { xs: "1rem", md: "2rem" },
         }}
       >
-        <Box sx={{
+        <Box
+          sx={{
             display: "flex",
             alignItems: "center",
             justifyContent: "flex-start",
-          }}>
-
-        
-        {project &&
-          project.fields.links.links.map((link, index) => {
-            return (
-              <Link to={link.linkTo} target="_blank" key={index} >
-                <Button
-                  sx={{
-                    height:  "3rem",
-                    margin: "0.5rem",
-                    borderRadius: "1.5rem",
-                    padding: { xs: "0.25rem ", md: "0.95rem" },
-                    fontSize: { xs: "1.15rem", md: "1.4rem" },
-                    letterSpacing: { sm: "-0.055rem", md: "0.065rem" },
-                    color: theme.palette.text.primary,
-                    border: `2px solid ${theme.palette.text.highlight}`,
-                    "&:hover": {
-                      backgroundColor: `${theme.palette.text.highlightAlt}`,
-                      boxShadow: `0px 0px 5px 5px ${theme.palette.text.highlight}`,
-                    },
-                  }}
-                >
-                  {link.type}
-                </Button>
-              </Link>
-            );
-          })}
-          </Box>
+          }}
+        >
+          {project &&
+            project.fields.links.links.map((link, index) => {
+              return (
+                <Link to={link.linkTo} target="_blank" key={index}>
+                  <Button
+                    sx={{
+                      height: "3rem",
+                      margin: "0.5rem",
+                      borderRadius: "1.5rem",
+                      padding: { xs: "0.25rem ", md: "0.95rem" },
+                      fontSize: { xs: "1.15rem", md: "1.4rem" },
+                      letterSpacing: { sm: "-0.055rem", md: "0.065rem" },
+                      color: theme.palette.text.primary,
+                      border: `2px solid ${theme.palette.text.highlight}`,
+                      "&:hover": {
+                        backgroundColor: `${theme.palette.text.highlightAlt}`,
+                        boxShadow: `0px 0px 5px 5px ${theme.palette.text.highlight}`,
+                      },
+                    }}
+                  >
+                    {link.type}
+                  </Button>
+                </Link>
+              );
+            })}
+        </Box>
 
         <Box
           sx={{
             display: "flex",
-            flexDirection: {xs:"column", md:"row"},
-            alignItems: {xs:"flex-start", md:"center"},
+            flexDirection: { xs: "column", md: "row" },
+            alignItems: { xs: "flex-start", md: "center" },
             justifyContent: "flex-start",
           }}
         >

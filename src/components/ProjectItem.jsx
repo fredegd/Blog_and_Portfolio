@@ -130,7 +130,6 @@ export default function ProjectItem() {
                     variant="h6"
                     textAlign="left"
                     sx={{
-                      
                       maxWidth: {
                         xs: "90vw",
                         sm: "90vw",
@@ -182,9 +181,6 @@ export default function ProjectItem() {
                 </Box>
               );
             })}
-
-
-
           {previewImage && (
             <Box sx={{ display: { xs: "none", md: "block" } }}>
               <FullScreenPreview
