@@ -104,19 +104,59 @@ export default function AboutContent() {
           // overflow: "scroll",
           // border: "1px solid black",
 
-          backgroundColor: `${theme.palette.background.main}88`,
+          background: {
+            xs: `linear-gradient(90deg, #00000000 0%,${theme.palette.background.transparent} 5%, ${theme.palette.background.main} 20%, ${theme.palette.background.main} 80%, ${theme.palette.background.transparent} 95%,  #00000000 100%)`,
+            lg: `linear-gradient(90deg, #00000000 0%,${theme.palette.background.transparent} 15%, ${theme.palette.background.main} 30%, ${theme.palette.background.main} 70%, ${theme.palette.background.transparent} 85%,  #00000000 100%)`,
+          },
         }}
       >
         <Box className="tile" sx={{ padding: "1rem", textAlign: "justify" }}>
           {location.pathname === "/about" && (
-            <>            <Typography variant="p" color={theme.palette.text.primary}>
-              {personalInfo.full}
-            </Typography>
-            <Link to={"/projects"}>
-                    <Button>Latest Projects →</Button>
-                  </Link>
-            </>
+            <>
+              {" "}
+              <Typography variant="p" color={theme.palette.text.primary}>
+                {personalInfo.full}
+              </Typography>
+              <br />
+              <Link to={"/projects"}>
+                <Button
+                  sx={{
+                    marginY: "2rem",
+                    border: `2px solid ${theme.palette.text.highlight}`,
+                    borderRadius: "2rem",
+                    width:{xs:"17rem", sm:"20rem"},
 
+                    transition: "all 0.3s ease-in-out",
+                    "&:hover": {
+                      background: `${theme.palette.text.highlight}88`,
+
+                      transform: "translateX(2.5rem)",
+                    },
+                  }}
+                >
+                  Latest Projects →
+                </Button>
+              </Link>
+              <br />
+              <Link to={"/contact"}>
+                <Button
+                  sx={{
+                    marginY: "2rem",
+                    border: `2px solid ${theme.palette.text.highlightAlt}`,
+                    borderRadius: "2rem",
+                    width:{xs:"17rem", sm:"20rem"},
+                    transition: "all 0.3s ease-in-out",
+                    "&:hover": {
+                      background: `${theme.palette.text.highlightAlt}88`,
+
+                      transform: "translateX(2.5rem)",
+                    },
+                  }}
+                >
+                  Get in Touch →
+                </Button>
+              </Link>
+            </>
           )}
           {location.pathname === "/" && (
             <Typography variant="p" color={theme.palette.text.primary}>

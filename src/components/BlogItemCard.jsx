@@ -145,7 +145,7 @@ export default function BlogItemCard({ blog }) {
                       lineHeight={"1"}
                       sx={{
                         fontSize: {
-                          xs: "1.8rem",
+                          xs: "1.5rem",
                           sm: "2rem",
                           md: "1.6rem",
                           lg: "1.6rem",

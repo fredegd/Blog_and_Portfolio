@@ -3,6 +3,8 @@ import ContactContent from "./ContactContent";
 import Footer from "./Footer";
 
 export default function Contact() {
+  window.scrollTo(0, 0);
+
   return (
     <Box
       sx={{

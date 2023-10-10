@@ -50,7 +50,7 @@ export default function Hero() {
           xl: "2.5rem",
         },
         width: { xs: "100%", sm: "100%", md: "100%", lg: "100%", xl: "100%" },
-        minHeight: "80vh",
+        minHeight: "90vh",
         background: `
         linear-gradient(90deg,  transparent 10%,  ${theme.palette.background.main}cc 50%, transparent 90%)`,
         display: "flex",
