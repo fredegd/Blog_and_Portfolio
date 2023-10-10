@@ -68,7 +68,29 @@ export default function Navbar({ window, setOpen }) {
     toggleDarkMode();
   };
 
-  const target = document.querySelector(".drawer-links");
+
+
+  anime({
+    targets: ".menu-logo",
+    translateX: ["70vw", 0],
+
+    opacity: [0.5, 1],
+    duration: 850,
+
+    delay: anime.stagger(250, { direction: "reverse" }),
+    easing: "easeOutElastic(1, .8)",
+  });
+
+  anime({
+    targets: ".close-drawer",
+    translateX: ["-20vw", 0],
+
+    opacity: [0.5, 1],
+    duration:  850,
+
+    delay: anime.stagger(350, { direction: "reverse" }),
+    easing: "easeOutElastic(1, .8)",
+  });
 
   anime({
     targets: ".link-item ",
@@ -105,9 +127,11 @@ export default function Navbar({ window, setOpen }) {
             justifyContent: "space-between",
           }}
         >
-          <Link href={"/"} underline="hover">
+          <Link href={"/"} underline="hover" >
             <Box
               onClick={handleDrawerToggle}
+              className="menu-logo"
+
               sx={{
                 height: { xs: "3.5rem", sm: "4rem" },
                 width: { xs: "3.5rem", sm: "4rem" },
@@ -123,6 +147,7 @@ export default function Navbar({ window, setOpen }) {
           </Link>
 
           <IconButton
+          
             aria-label="close drawer"
             edge="start"
             onClick={handleDrawerToggle}
@@ -131,7 +156,7 @@ export default function Navbar({ window, setOpen }) {
               color: theme.palette.text.primary,
             }}
           >
-            <Typography variant={"h6"} sx={{ display: "flex" }}>
+            <Typography variant={"h6"} sx={{ display: "flex" }}  className="close-drawer">
               <CloseIcon sx={{ fontSize: { xs: "2.2rem", sm: "2rem" } }} />
             </Typography>
           </IconButton>
