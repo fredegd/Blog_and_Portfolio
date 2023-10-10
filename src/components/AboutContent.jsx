@@ -68,8 +68,8 @@ export default function AboutContent() {
     // The callback will return an array of entries, even if you are only observing a single item
     entries.map((entry) => {
       if (entry.isIntersecting) {
-        handleOn(entry);
         console.log("intersecting");
+        handleOn(entry);
       } else {
         console.log("not intersecting");
       }
@@ -180,8 +180,11 @@ export default function AboutContent() {
                 className="tile"
                 key={item}
                 sx={{
+                  ":before": {
+                    opacity: "0",
+                   },
                   position: "relative",
-
+                  // opacity: "0",
                   background: `url(${aboutImage})`,
                   backgroundPosition: {
                     xs: ` ${-maxWidth * 2}vw ${bgY * 2}vw`,
@@ -192,7 +195,9 @@ export default function AboutContent() {
                   backgroundRepeat: "noRepeat",
                   width: { xs: `${maxWidth * 2}vw`, md: `${maxWidth}vw` },
                   height: { xs: `${maxHeight * 2}vw`, md: `${maxHeight}vw` },
-                }}
+               
+              
+               }}
               ></Box>
             );
           })}
