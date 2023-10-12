@@ -58,6 +58,7 @@ function Artwork({
   const [maxSegmentAmount, setMaxSegmentAmount] = useState(
     gridSize > 2 ? Math.floor(gridSize * gridSize * 0.5) + gridSize : 2
   );
+
   const svgData = localStorage.getItem("svgData");
 
   const extractStrokesFromSVG = () => {
@@ -118,13 +119,14 @@ function Artwork({
     }
 
     console.log("new strokesString");
-    setStrokesString(tempString)
+    
     return tempString;
   };
 
   const [strokesString, setStrokesString] = useState(
     bgImage ? extractStrokesFromSVG() : drawStrokes()
   );
+  
 
   useEffect(() => {
     const svgDataString =
@@ -176,7 +178,9 @@ function Artwork({
 
   const handleDrawAndStore = () => {
     console.log("getting a call", bgString);
-    let svgString = startString + bgString + drawStrokes() + endString;
+    let newStrokesString = drawStrokes();
+    setStrokesString(newStrokesString);
+    let svgString = startString + bgString + newStrokesString + endString;
     saveDataLocally(svgString);
     setBgImage(svgString);
   };

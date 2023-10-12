@@ -8,9 +8,16 @@
     "build": "vite build",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
-    "server" : "npm run build && node ./server/index.js && npm run dev"
+    "postbuild": "react-snap"
 
   },
+  "reactSnap": {
+    "source": "dist",
+    "minifyHtml": {
+      "collapseWhitespace": false,
+      "removeComments": false
+    }
+    },
   "dependencies": {
     "@contentful/rich-text-react-renderer": "^15.17.2",
     "@emotion/react": "^11.11.1",
@@ -21,16 +28,13 @@
     "animejs": "^3.2.1",
     "axios": "^1.5.1",
     "contentful": "^10.5.3",
-    "express": "^4.18.2",
     "framer-motion": "^10.16.4",
-    "fs": "^0.0.1-security",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.46.2",
     "react-markdown": "^8.0.7",
     "react-router-dom": "^6.15.0",
-    "react-scroll": "^1.8.9",
-    "react-simple-typewriter": "^5.0.1",
+    "react-snap": "^1.23.0",
     "svg.js": "^2.7.1",
     "typewriter-effect": "^2.20.1"
   },
