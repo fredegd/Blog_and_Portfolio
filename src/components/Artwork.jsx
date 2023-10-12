@@ -99,8 +99,9 @@ function Artwork({
         do {
           nextIndex =
             (currentIndex +
-              Math.floor(Math.random() * (gridSize ** 2 - 2)) +
-              1) %
+              // Math.floor(Math.random() * (gridSize ** 2 - 2)) +
+              Math.floor(Math.random() * (gridSize**gridSize))) %
+
             gridSize ** 2;
         } while (visitedPoints.has(nextIndex));
 
@@ -112,11 +113,12 @@ function Artwork({
 
         currentIndex = nextIndex;
 
-        tempString += `<line x1="${startX}" y1="${startY}" x2="${endX}" y2="${endY}" stroke="${col}" stroke-width="${sw}" stroke-linecap="round"/>`;
+        tempString += `<line x1="${startX}" y1="${startY}" x2="${endX}" y2="${endY}" stroke="${col+'ff'}" stroke-width="${sw}" stroke-linecap="round"/>`;
       }
     }
 
     console.log("new strokesString");
+    setStrokesString(tempString)
     return tempString;
   };
 
