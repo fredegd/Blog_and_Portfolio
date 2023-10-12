@@ -4,8 +4,8 @@ import express from 'express';
 import path from 'path';
 // const fs = require("fs"); 
 import fs from 'fs';
-// const { getPostById } = require('./stub/posts');
-import  getPostById  from './stub/posts.js';
+// const { getBlogById } = require('./stub/blogs');
+import  getBlogById  from './stub/blogs.js';
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -27,18 +27,18 @@ app.get("/*", (req, res, next) => {
       console.error("Error during file reading", err);
       return res.status(404).end();
     }
-    // get post info
-    const postId = req.query.id;
-    const post = getPostById(postId);
-    if (!post) return res.status(404).send("Post not found");
+    // get blog info
+    const blogId = req.query.id;
+    const blog = getBlogById(blogId);
+    if (!blog) return res.status(404).send("Blog not found");
 
     // inject meta tags
     htmlData = htmlData
-      .replace("<title>React App</title>", `<title>${post.title}</title>`)
-      .replace("__META_OG_TITLE__", post.title)
-      .replace("__META_OG_DESCRIPTION__", post.description)
-      .replace("__META_DESCRIPTION__", post.description)
-      .replace("__META_OG_IMAGE__", post.thumbnail);
+      .replace("<title>React App</title>", `<title>${blog.title}</title>`)
+      .replace("__META_OG_TITLE__", blog.title)
+      .replace("__META_OG_DESCRIPTION__", blog.description)
+      .replace("__META_DESCRIPTION__", blog.description)
+      .replace("__META_OG_IMAGE__", blog.thumbnail);
       console.log(htmlData)
     return res.send(htmlData);
   });
