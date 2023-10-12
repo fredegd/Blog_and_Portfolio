@@ -1,6 +1,6 @@
 import React from "react";
 // import ReactDOM from "react-dom/client";
-import { hydrate, render } from "react-dom";
+import { hydrateRoot, createRoot } from "react-dom/client";
 
 import { BrowserRouter } from "react-router-dom";
 import App from "./App.jsx";
@@ -18,7 +18,8 @@ const APP = (
 const rootElement = document.getElementById("root");
 
 if (rootElement.hasChildNodes()) {
-  hydrate(APP, rootElement);
+  hydrateRoot(APP, rootElement);
 } else {
-  render(APP, rootElement);
+  const root = createRoot(rootElement);
+  root.render(APP, rootElement);
 }
