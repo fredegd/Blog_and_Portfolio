@@ -7,12 +7,11 @@ import App from "./App.jsx";
 import "./index.css";
 import DarkModeProvider from "./context/DarkModeContext";
 
-
 const APP = (
   <BrowserRouter>
-      <DarkModeProvider>
-        <App />
-      </DarkModeProvider>
+    <DarkModeProvider>
+      <App />
+    </DarkModeProvider>
   </BrowserRouter>
 );
 

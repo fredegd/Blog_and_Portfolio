@@ -11,13 +11,7 @@
     "postbuild": "react-snap"
 
   },
-  "reactSnap": {
-    "source": "dist",
-    "minifyHtml": {
-      "collapseWhitespace": false,
-      "removeComments": false
-    }
-    },
+ 
   "dependencies": {
     "@contentful/rich-text-react-renderer": "^15.17.2",
     "@emotion/react": "^11.11.1",
@@ -48,5 +42,10 @@
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.3",
     "vite": "^4.4.5"
+  },
+  "reactSnap": {
+    "inlineCss": true,
+    "source" : "./dist"
   }
+
 }
