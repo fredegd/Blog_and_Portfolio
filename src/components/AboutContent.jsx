@@ -3,12 +3,14 @@ import { useTheme } from "@mui/material/styles";
 import { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import { Link } from "react-router-dom";
+import {client} from "../client";
 
 import PageTitle from "./PageTitle";
 
 import Pic from "../assets/portrait.gif";
 
 import anime from "animejs";
+
 
 const personalInfo = {
   short:
@@ -20,7 +22,18 @@ export default function AboutContent() {
   const location = useLocation();
 
   const [gridSize, setGridSize] = useState({ numRows: 15, numCols: 1 });
-  const [aboutImage, setAboutImage] = useState(Pic);
+  const [aboutImage, setAboutImage] = useState();
+
+  useEffect(() => {
+    client
+      .getEntry("10THe99sOMrQYp3NyoDCID")
+      .then((response) => {
+       console.log(response)
+       setAboutImage(response.fields.authorImg.fields.file.url) 
+      })
+      .catch((err) => console.log(err));
+  }, []);
+
 
   const divArray = Array.from(
     { length: gridSize.numRows },
@@ -117,7 +130,8 @@ export default function AboutContent() {
               <Typography variant="p" color={theme.palette.text.primary}>
                 {personalInfo.full}
               </Typography>
-              <br />
+<Box sx={{display:"flex",flexDirection:{xs:"column", md:"row"}, justifyContent:{xs:"flex-start", md:"space-between"}}}>
+
               <Link to={"/projects"}>
                 <Button
                   sx={{
@@ -125,15 +139,15 @@ export default function AboutContent() {
                     border: `2px solid ${theme.palette.text.highlight}`,
                     borderRadius: "2rem",
                     width: { xs: "17rem", sm: "20rem" },
-
+                    
                     transition: "all 0.3s ease-in-out",
                     "&:hover": {
                       background: `${theme.palette.text.highlight}88`,
-
+                      
                       transform: "translateX(2.5rem)",
                     },
                   }}
-                >
+                  >
                   Latest Projects →
                 </Button>
               </Link>
@@ -148,14 +162,15 @@ export default function AboutContent() {
                     transition: "all 0.3s ease-in-out",
                     "&:hover": {
                       background: `${theme.palette.text.highlightAlt}88`,
-
+                      
                       transform: "translateX(2.5rem)",
                     },
                   }}
-                >
+                  >
                   Get in Touch →
                 </Button>
               </Link>
+                  </Box>
             </>
           )}
           {location.pathname === "/" && (
