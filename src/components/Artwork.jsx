@@ -5,17 +5,23 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import { useDarkMode } from "../context/DarkModeContext.jsx";
 import { useTheme } from "@mui/material/styles";
+import { colorsToChooseFrom } from "../colorsToChooseFrom.js";
+
 //
-//a function to generate Hex colors
+//a function to choose from a list of colors
 const getRandomHexColor = (colName) => {
-  console.log("a new color was generated");
-  const hexChars = "0123456789abcdef";
-  let color = "#";
-  for (let i = 0; i < 6; i++) {
-    const randomIndex = Math.floor(Math.random() * hexChars.length);
-    color += hexChars[randomIndex];
-  }
+  //a variation to generate Hex colors
+  // const hexChars = "0123456789abcdef";
+  // let color = "#";
+  // for (let i = 0; i < 6; i++) {
+  //   const randomIndex = Math.floor(Math.random() * hexChars.length);
+  //   color += hexChars[randomIndex];
+  // }
+  const randomIndex = Math.floor(Math.random() * colorsToChooseFrom.length);
+  const color = colorsToChooseFrom[randomIndex].value;
   localStorage.setItem(colName, color);
+   console.log(color, " was chosen");
+
   return color;
 };
 
@@ -246,8 +252,8 @@ function Artwork({
         }}
       >
         <Box sx={{ width: 300 }}>
-          <div onClick={handleDrawAndStore}>
-            <Typography variant="p"> Tap to Generate a new Pattern</Typography>
+          <Box onClick={handleDrawAndStore}>
+            <Typography variant="p" sx={{ fontSize:{xs:16,md:18}}}> Tap to Generate a new Pattern</Typography>
 
             {/* an element displaying the content of bgImage */}
 
@@ -261,10 +267,10 @@ function Artwork({
                 backgroundRepeat: "no-repeat",
               }}
             ></Box>
-          </div>
+          </Box>
         </Box>
-        <Box sx={{ width: 250 }}>
-          <Typography>
+        <Box sx={{ width: 300 }}>
+          <Typography variant="p" sx={{ fontSize:{xs:16,md:18}}}>
             Matrix Grid Size: {gridSize}x{gridSize}
           </Typography>
           <Slider
@@ -274,13 +280,13 @@ function Artwork({
             step={1}
             marks
             min={2}
-            max={6}
+            max={5}
             onChange={handleGridSizeChange}
           />
         </Box>
 
-        <Box sx={{ width: 250, my: "-0.5rem" }}>
-          <Typography>Segment Amount: {segmentsAmount}</Typography>
+        <Box sx={{ width: 300, my: "-0.5rem" }}>
+          <Typography variant="p" sx={{ fontSize:{xs:16,md:18}}}>Segment Amount: {segmentsAmount}</Typography>
           <Slider
             aria-label="segmentsAmount"
             value={segmentsAmount}
@@ -311,7 +317,7 @@ function Artwork({
           >
             Color 1
           </Typography>
-
+{color1===color2?("="):("")}
           <Typography
             onClick={() => handleColorChange("col2", setColor2)}
             sx={{

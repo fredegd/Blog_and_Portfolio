@@ -61,14 +61,13 @@ export default function Navbar({ window, setOpen }) {
   };
 
   const handleDrawerBgChange = () => {
+    setMobileOpen(false);
     setOpen((prevState) => !prevState);
   };
 
   const handleDarkChange = () => {
     toggleDarkMode();
   };
-
-
 
   anime({
     targets: ".menu-logo",
@@ -86,7 +85,7 @@ export default function Navbar({ window, setOpen }) {
     translateX: ["-20vw", 0],
 
     opacity: [0.5, 1],
-    duration:  850,
+    duration: 850,
 
     delay: anime.stagger(350, { direction: "reverse" }),
     easing: "easeOutElastic(1, .8)",
@@ -94,12 +93,12 @@ export default function Navbar({ window, setOpen }) {
 
   anime({
     targets: ".link-item ",
-    translateX: ["-90vw", 0],
+    translateX: ["90vw", 0],
 
     opacity: [0.5, 1],
     duration: (navItems.length + 1) * 150,
 
-    delay: anime.stagger(150, { direction: "reverse" }),
+    delay: anime.stagger(150),
     easing: "easeOutElastic(1, .8)",
   });
 
@@ -127,27 +126,23 @@ export default function Navbar({ window, setOpen }) {
             justifyContent: "space-between",
           }}
         >
-          <Link href={"/"} underline="hover" >
-            <Box
-              onClick={handleDrawerToggle}
-              className="menu-logo"
-
-              sx={{
-                height: { xs: "3.5rem", sm: "4rem" },
-                width: { xs: "3.5rem", sm: "4rem" },
-                backgroundImage: `url(${animatedLogo})`,
-                backgroundPosition: "center",
-                backgroundRepeat: "no-repeat",
-                backgroundSize: "contain",
-                borderRadius: "50%",
-                borderBottom: `3px solid ${theme.palette.text.highlight}`,
-                borderLeft: `3px solid ${theme.palette.text.highlight}`,
-              }}
-            />
-          </Link>
+          <Box
+            onClick={handleDrawerBgChange}
+            className="menu-logo"
+            sx={{
+              height: { xs: "3.5rem", sm: "4rem" },
+              width: { xs: "3.5rem", sm: "4rem" },
+              backgroundImage: `url(${animatedLogo})`,
+              backgroundPosition: "center",
+              backgroundRepeat: "no-repeat",
+              backgroundSize: "contain",
+              borderRadius: "50%",
+              borderBottom: `3px solid ${theme.palette.text.highlight}`,
+              borderLeft: `3px solid ${theme.palette.text.highlight}`,
+            }}
+          />
 
           <IconButton
-          
             aria-label="close drawer"
             edge="start"
             onClick={handleDrawerToggle}
@@ -156,7 +151,11 @@ export default function Navbar({ window, setOpen }) {
               color: theme.palette.text.primary,
             }}
           >
-            <Typography variant={"h6"} sx={{ display: "flex" }}  className="close-drawer">
+            <Typography
+              variant={"h6"}
+              sx={{ display: "flex" }}
+              className="close-drawer"
+            >
               <CloseIcon sx={{ fontSize: { xs: "2.2rem", sm: "2rem" } }} />
             </Typography>
           </IconButton>
@@ -189,9 +188,10 @@ export default function Navbar({ window, setOpen }) {
                     onClick={handleDrawerToggle}
                     sx={{
                       height: "5rem",
+                      marginBottom: "0.5rem",
                       borderRadius: "2.5rem",
                       width: "70vw",
-                      // color:
+                      color: theme.palette.text.primary,
                       //   activeMenuItem === item.id
                       //     ? theme.palette.text.contrast // Active color
                       //     : theme.palette.text.primary, // Inactive color
@@ -234,6 +234,31 @@ export default function Navbar({ window, setOpen }) {
     </Box>
   );
 
+  const dkToggleIcon = (
+    <IconButton
+      aria-label="dark-light-toggle"
+      edge="start"
+      onClick={handleDarkChange}
+      sx={{
+        color: theme.palette.text.primary,
+        mx: "0.8rem",
+        width: { xs: "1.6rem", sm: "1.6rem" },
+        height: { xs: "1.6rem", sm: "1.6rem" },
+        "&:hover": {
+          boxShadow: ` 0px 0px 8px 8px ${theme.palette.text.highlight} , inset 0px 0px 2.5px 2.5px ${theme.palette.text.highlight}`,
+        },
+      }}
+    >
+      <Typography variant={"h6"} sx={{ display: "flex" }}>
+        {dk ? (
+          <DarkModeIcon sx={{ fontSize: { xs: "2.2rem", sm: "2rem" } }} />
+        ) : (
+          <LightModeIcon sx={{ fontSize: { xs: "2.2rem", sm: "2rem" } }} />
+        )}
+      </Typography>
+    </IconButton>
+  );
+
   const container =
     window !== undefined ? () => window().document.body : undefined;
 
@@ -251,43 +276,32 @@ export default function Navbar({ window, setOpen }) {
             boxShadow: "0px 0px 10px 10px rgba(0,0,0,0.2)",
           }}
         >
-          <IconButton
-            aria-label="open drawer"
-            edge="start"
-            onClick={handleDrawerToggle}
+          <Box
+            onClick={handleDrawerBgChange}
             sx={{
-              mr: 2,
-              display: { md: "none" },
-              color: theme.palette.text.primary,
+              height: { xs: "3.5rem", sm: "3.5rem" },
+              width: { xs: "3.5rem", sm: "3.5rem" },
+              backgroundImage: `url(${animatedLogo})`,
+              backgroundPosition: "center",
+              backgroundRepeat: "no-repeat",
+              backgroundSize: "contain",
+              borderRadius: "50%",
+              borderBottom: `3px solid ${theme.palette.text.highlight}`,
+              borderLeft: `3px solid ${theme.palette.text.highlight}`,
+              "&:hover": {
+                boxShadow: `0px 0px 5px 5px ${theme.palette.text.highlight}`,
+              },
+              transition: "all 0.2s ease-in-out",
             }}
-          >
-            <Typography variant={"h6"} sx={{ display: "flex" }}>
-              <MenuIcon sx={{ fontSize: { xs: "2.2rem", sm: "2rem" } }} />
-            </Typography>
-          </IconButton>
-
-          <Link href={"/"} underline="hover">
-            <Box
-              sx={{
-                height: { xs: "3.5rem", sm: "3.5rem" },
-                width: { xs: "3.5rem", sm: "3.5rem" },
-                backgroundImage: `url(${animatedLogo})`,
-                backgroundPosition: "center",
-                backgroundRepeat: "no-repeat",
-                backgroundSize: "contain",
-                borderRadius: "50%",
-                borderBottom: `3px solid ${theme.palette.text.highlight}`,
-                borderLeft: `3px solid ${theme.palette.text.highlight}`,
-                "&:hover": {
-                  boxShadow: `0px 0px 5px 5px ${theme.palette.text.highlight}`,
-                },
-                transition: "all 0.2s ease-in-out",
-              }}
-            />
-          </Link>
+          />
+          
 
           <Box
-            sx={{ display: "flex", flexDirection: "row", alignItems: "center" }}
+            sx={{
+              display: { xs: "none", md: "flex" },
+              flexDirection: "row",
+              alignItems: "center",
+            }}
           >
             <Box sx={{ display: { xs: "none", md: "block" } }}>
               {navItems.map((item) => (
@@ -325,7 +339,7 @@ export default function Navbar({ window, setOpen }) {
               ))}
             </Box>
 
-            <IconButton
+            {/* <IconButton
               aria-label="openBackgroudEditor"
               edge="start"
               onClick={handleDrawerBgChange}
@@ -346,40 +360,29 @@ export default function Navbar({ window, setOpen }) {
                   sx={{ fontSize: { xs: "2.2rem", sm: "2rem" } }}
                 />
               </Typography>
-            </IconButton>
-
-            <IconButton
-              aria-label="openBackgroudEditor"
-              edge="start"
-              onClick={handleDarkChange}
-              sx={{
-                color: theme.palette.text.primary,
-                mx: "0.8rem",
-                width: { xs: "1.6rem", sm: "1.6rem" },
-                height: { xs: "1.6rem", sm: "1.6rem" },
-                "&:hover": {
-                  boxShadow: ` 0px 0px 8px 8px ${theme.palette.text.highlight} , inset 0px 0px 2.5px 2.5px ${theme.palette.text.highlight}`,
-                },
-              }}
-            >
-              <Typography variant={"h6"} sx={{ display: "flex" }}>
-                {dk ? (
-                  <DarkModeIcon
-                    sx={{ fontSize: { xs: "2.2rem", sm: "2rem" } }}
-                  />
-                ) : (
-                  <LightModeIcon
-                    sx={{ fontSize: { xs: "2.2rem", sm: "2rem" } }}
-                  />
-                )}
-              </Typography>
-            </IconButton>
+            </IconButton> */}
           </Box>
+          {dkToggleIcon}
+          <IconButton
+            aria-label="open drawer"
+            edge="start"
+            onClick={handleDrawerToggle}
+            sx={{
+              mr: 2,
+              display: { md: "none" },
+              color: theme.palette.text.primary,
+            }}
+          >
+            <Typography variant={"h6"} sx={{ display: "flex" }}>
+              <MenuIcon sx={{ fontSize: { xs: "2.2rem", sm: "2rem" } }} />
+            </Typography>
+          </IconButton>
         </Toolbar>
       </AppBar>
 
       <Box component="nav">
         <Drawer
+          anchor={"right"}
           container={container}
           variant="temporary"
           open={mobileOpen}

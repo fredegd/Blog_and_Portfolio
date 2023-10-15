@@ -1,6 +1,8 @@
 import * as React from "react";
 import { useState, useEffect } from "react";
-import Box from "@mui/material/Box";
+import {Box, IconButton, Typography} from "@mui/material";
+import CloseIcon from "@mui/icons-material/Close";
+import { useTheme } from "@mui/material/styles";
 import Drawer from "@mui/material/Drawer";
 import Button from "@mui/material/Button";
 import Artwork from "./Artwork";
@@ -24,9 +26,11 @@ export default function DrawerBGChange({
     setOpen(false);
   };
 
+  const theme = useTheme(); 
+
   return (
     <Drawer
-      anchor={"right"}
+      anchor={"left"}
       open={open}
       onClose={toggleDrawer(false)}
       variant="persistent"
@@ -45,16 +49,25 @@ export default function DrawerBGChange({
         }}
         role="presentation"
       >
-        <Button
-          onClick={closeDrawer}
-          style={{
-            float: "right",
+       
+        <IconButton
+            aria-label="close drawer"
+            edge="start"
+            onClick={closeDrawer}
+            sx={{
+              color: theme.palette.text.primary,
+              alignSelf: "flex-end",
 
-            alignSelf: "flex-end",
-          }}
-        >
-          Close
-        </Button>
+            }}
+          >
+            <Typography
+              variant={"h6"}
+              sx={{ display: "flex" }}
+            >
+              <CloseIcon sx={{ fontSize: { xs: "2.2rem", sm: "2rem" } }} />
+            </Typography>
+          </IconButton>
+
         <Artwork
           bgImage={bgImage}
           setBgImage={setBgImage}

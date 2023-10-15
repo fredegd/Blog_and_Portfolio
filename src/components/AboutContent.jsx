@@ -107,7 +107,7 @@ export default function AboutContent() {
         id="aboutContent"
         sx={{
           zIndex: "1000",
-          padding: "2.5rem",
+          padding: {xs:"0.5rem",md:"2.5rem"},
           display: "flex",
           flexDirection: { xs: "column-reverse", lg: "row" },
           alignItems: "center",
@@ -121,7 +121,7 @@ export default function AboutContent() {
           },
         }}
       >
-        <Box className="tile" sx={{ padding: "1rem", textAlign: "justify" }}>
+        <Box className="tile" sx={{  textAlign: "justify" }}>
           {location.pathname === "/about" && (
             <>
               {" "}
@@ -131,7 +131,7 @@ export default function AboutContent() {
               <Box
                 sx={{
                   display: "flex",
-                  flexDirection: { xs: "column", md: "row" },
+                  flexDirection: { xs: "column", md: "row",xl:"column" },
                   justifyContent: { xs: "flex-start", md: "space-between" },
                   width: "90%",
                 }}
@@ -142,7 +142,7 @@ export default function AboutContent() {
                       marginTop: "2rem",
                       border: `2px solid ${theme.palette.text.highlight}`,
                       borderRadius: "2rem",
-                      width: { xs: "17rem", sm: "18rem" },
+                      width: { xs: "17rem", sm: "17rem" },
 
                       transition: "all 0.3s ease-in-out",
                       "&:hover": {
@@ -162,7 +162,7 @@ export default function AboutContent() {
                       marginTop: "2rem",
                       border: `2px solid ${theme.palette.text.highlightAlt}`,
                       borderRadius: "2rem",
-                      width: { xs: "17rem", sm: "18rem" },
+                      width: { xs: "17rem", sm: "15rem" },
                       transition: "all 0.3s ease-in-out",
                       "&:hover": {
                         background: `${theme.palette.text.highlightAlt}88`,

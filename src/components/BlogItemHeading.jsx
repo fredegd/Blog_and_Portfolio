@@ -42,7 +42,7 @@ export default function BlogItemHeading({ blog }) {
           transition: "all 0.5s ease-in-out",
 
           // border:"2px solid black"
-          boxShadow: `0px 0px 15px 15px ${theme.palette.text.highlight}`,
+          boxShadow: `0px 0px 10px 10px ${theme.palette.text.highlight}88`,
         }}
       >
         {/* content image */}

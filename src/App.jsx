@@ -8,12 +8,12 @@ import About from "./components/About";
 import Blog from "./components/Blog";
 import BlogItem from "./components/BlogItem";
 import Contact from "./components/Contact";
-import DrawerBGChange from "./components//DrawerBGChange";
+import DrawerBGChange from "./components/DrawerBGChange";
 import Kaleidoscope from "./components/Kaleidoscope";
 import { client } from "./client";
 
 
-
+import { colorsToChooseFrom } from "./colorsToChooseFrom";
 import "./App.css";
 
 import DarkModeProvider from "./context/DarkModeContext";
@@ -23,8 +23,12 @@ import CssBaseline from "@mui/material/CssBaseline";
 
 import { themeManager } from "./theme";
 import { useDarkMode } from "./context/DarkModeContext.jsx";
+  
+
 
 export default function App() {
+
+
   const { dk } = useDarkMode();
   const theme = themeManager(dk);
   const [blogs, setBlogs] = useState([]);
@@ -37,14 +41,17 @@ export default function App() {
   );
 
   const getRandomHexColor = (colName) => {
-    console.log("a new color was generated");
-    const hexChars = "0123456789abcdef";
-    let color = "#";
-    for (let i = 0; i < 6; i++) {
-      const randomIndex = Math.floor(Math.random() * hexChars.length);
-      color += hexChars[randomIndex];
-    }
+    // const hexChars = "0123456789abcdef";
+    // let color = "#";
+    // for (let i = 0; i < 6; i++) {
+    //   const randomIndex = Math.floor(Math.random() * hexChars.length);
+    //   color += hexChars[randomIndex];
+    // }
+    const randomIndex = Math.floor(Math.random() * colorsToChooseFrom.length);
+    const color = colorsToChooseFrom[randomIndex].value;
     localStorage.setItem(colName, color);
+     console.log(color, " was chosen");
+
     return color;
   };
   const [color1, setColor1] = useState(
@@ -57,11 +64,6 @@ export default function App() {
       ? localStorage.getItem("col2")
       : getRandomHexColor("col2")
   );
-
-  useEffect(() => {
-    // console.log("something changed")
-    // console.log(color1, color2)
-  }, [color1, color2]);
 
   useEffect(() => {
     client
@@ -82,12 +84,12 @@ export default function App() {
           <DrawerBGChange
             bgImage={bgImage}
             setBgImage={setBgImage}
-            open={open}
-            setOpen={setOpen}
             color1={color1}
             color2={color2}
             setColor1={setColor1}
             setColor2={setColor2}
+            open={open}
+            setOpen={setOpen}
           />{" "}
           <Kaleidoscope bgImage={bgImage} />
           <Routes>

@@ -211,7 +211,9 @@ export default function BlogItem() {
             width: { xs: "100vw", sm: "100vw", md: "100vw", lg: "100vw" },
             paddingBottom: "5rem",
             paddingTop: "3rem",
-            paddingX: { xs: "1rem", sm: "2rem", md: "3rem", lg: "3rem" },
+            paddingX: { xs: "0.5rem", sm: "2rem", md: "2.5rem", lg: "3rem" },
+
+
 
             background: {
               xs: `linear-gradient(90deg, #00000000 0%,${theme.palette.background.transparent} 5%, ${theme.palette.background.main} 20%, ${theme.palette.background.main} 80%, ${theme.palette.background.transparent} 95%,  #00000000 100%)`,
