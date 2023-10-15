@@ -72,7 +72,7 @@ export default function Kaleidoscope(bgImage) {
         const multiplier = Math.min(
           maxScale,
           maxScale *
-            remap(distance, 0, (gridW + gridH) / 4, 3 / Math.sqrt(2), 0)
+            remap(distance, 0, (gridW + gridH) / 4, 3 / Math.sqrt(1.1), 0)
         );
 
         square.style.width = `${tileW * 1}px`; // instead of 1, use multiplier

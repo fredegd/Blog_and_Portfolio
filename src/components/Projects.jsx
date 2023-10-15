@@ -4,6 +4,8 @@ import Footer from "./Footer";
 import ProjectsContent from "./ProjectsContent";
 
 export default function Projects() {
+  window.scrollTo(0, 0);
+
   return (
     <Box
       sx={{

@@ -4,6 +4,8 @@ import AboutContent from "./AboutContent";
 import Footer from "./Footer";
 
 export default function About() {
+  window.scrollTo(0, 0);
+
   return (
     <Box
       id="about"
