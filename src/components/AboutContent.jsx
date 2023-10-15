@@ -3,14 +3,13 @@ import { useTheme } from "@mui/material/styles";
 import { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import { Link } from "react-router-dom";
-import {client} from "../client";
+import { client } from "../client";
 
 import PageTitle from "./PageTitle";
 
 import Pic from "../assets/portrait.gif";
 
 import anime from "animejs";
-
 
 const personalInfo = {
   short:
@@ -28,12 +27,11 @@ export default function AboutContent() {
     client
       .getEntry("10THe99sOMrQYp3NyoDCID")
       .then((response) => {
-       console.log(response)
-       setAboutImage(response.fields.authorImg.fields.file.url) 
+        console.log(response);
+        setAboutImage(response.fields.authorImg.fields.file.url);
       })
       .catch((err) => console.log(err));
   }, []);
-
 
   const divArray = Array.from(
     { length: gridSize.numRows },
@@ -130,47 +128,53 @@ export default function AboutContent() {
               <Typography variant="p" color={theme.palette.text.primary}>
                 {personalInfo.full}
               </Typography>
-<Box sx={{display:"flex",flexDirection:{xs:"column", md:"row"}, justifyContent:{xs:"flex-start", md:"space-between"}}}>
+              <Box
+                sx={{
+                  display: "flex",
+                  flexDirection: { xs: "column", md: "row" },
+                  justifyContent: { xs: "flex-start", md: "space-between" },
+                  width: "90%",
+                }}
+              >
+                <Link to={"/projects"}>
+                  <Button
+                    sx={{
+                      marginTop: "2rem",
+                      border: `2px solid ${theme.palette.text.highlight}`,
+                      borderRadius: "2rem",
+                      width: { xs: "17rem", sm: "18rem" },
 
-              <Link to={"/projects"}>
-                <Button
-                  sx={{
-                    marginY: "2rem",
-                    border: `2px solid ${theme.palette.text.highlight}`,
-                    borderRadius: "2rem",
-                    width: { xs: "17rem", sm: "20rem" },
-                    
-                    transition: "all 0.3s ease-in-out",
-                    "&:hover": {
-                      background: `${theme.palette.text.highlight}88`,
-                      
-                      transform: "translateX(2.5rem)",
-                    },
-                  }}
+                      transition: "all 0.3s ease-in-out",
+                      "&:hover": {
+                        background: `${theme.palette.text.highlight}88`,
+
+                        transform: "translateX(2.5rem)",
+                      },
+                    }}
                   >
-                  Latest Projects →
-                </Button>
-              </Link>
-              <br />
-              <Link to={"/contact"}>
-                <Button
-                  sx={{
-                    marginY: "2rem",
-                    border: `2px solid ${theme.palette.text.highlightAlt}`,
-                    borderRadius: "2rem",
-                    width: { xs: "17rem", sm: "20rem" },
-                    transition: "all 0.3s ease-in-out",
-                    "&:hover": {
-                      background: `${theme.palette.text.highlightAlt}88`,
-                      
-                      transform: "translateX(2.5rem)",
-                    },
-                  }}
+                    Latest Projects →
+                  </Button>
+                </Link>
+                <br />
+                <Link to={"/contact"}>
+                  <Button
+                    sx={{
+                      marginTop: "2rem",
+                      border: `2px solid ${theme.palette.text.highlightAlt}`,
+                      borderRadius: "2rem",
+                      width: { xs: "17rem", sm: "18rem" },
+                      transition: "all 0.3s ease-in-out",
+                      "&:hover": {
+                        background: `${theme.palette.text.highlightAlt}88`,
+
+                        transform: "translateX(2.5rem)",
+                      },
+                    }}
                   >
-                  Get in Touch →
-                </Button>
-              </Link>
-                  </Box>
+                    Get in Touch →
+                  </Button>
+                </Link>
+              </Box>
             </>
           )}
           {location.pathname === "/" && (
@@ -197,7 +201,7 @@ export default function AboutContent() {
                 sx={{
                   ":before": {
                     opacity: "0",
-                   },
+                  },
                   position: "relative",
                   // opacity: "0",
                   background: `url(${aboutImage})`,
@@ -210,9 +214,7 @@ export default function AboutContent() {
                   backgroundRepeat: "noRepeat",
                   width: { xs: `${maxWidth * 2}vw`, md: `${maxWidth}vw` },
                   height: { xs: `${maxHeight * 2}vw`, md: `${maxHeight}vw` },
-               
-              
-               }}
+                }}
               ></Box>
             );
           })}
