@@ -88,18 +88,18 @@ export default function ProjectItemCard({ project }) {
         >
           <Box
             sx={{
-              backgroundColor: `${theme.palette.background.main}88`,
+              backgroundColor: `${theme.palette.background.main}cc`,
               display: "flex",
               flexDirection: "column",
               justifyContent: "flex-start",
               height: { xs: "100vw", sm: "90vw", md: "47vw", lg: "30vw" },
               maxHeight: { lg: "400px" },
-              border: `5px solid ${theme.palette.text.highlightAlt}`,
+              // border: `5px solid ${theme.palette.text.highlightAlt}`,
               boxShadow: `0 0 10px ${theme.palette.text.highlightAlt}`,
               padding: "1rem",
               "&:hover": {
                 backgroundColor: `${theme.palette.background.main}`,
-                border: `5px solid ${theme.palette.text.highlight}`,
+                // border: `5px solid ${theme.palette.text.highlight}`,
                 boxShadow: `0 0 10px ${theme.palette.text.highlight}`,
                 color: theme.palette.text.primary,
               },

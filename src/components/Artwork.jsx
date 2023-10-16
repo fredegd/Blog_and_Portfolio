@@ -70,11 +70,10 @@ function Artwork({
   const extractStrokesFromSVG = () => {
     const regex = /<line [^>]*\/>/g;
     if (svgData) {
-      console.log("bgImage passed to extractStrokesFromSVG");
+      // console.log("bgImage passed to extractStrokesFromSVG");
       const matches = svgData.match(regex);
       if (matches) {
         const strokes = matches.join("");
-        // console.log("match!");
         return strokes;
       }
     } else {
@@ -150,20 +149,16 @@ function Artwork({
 
     localStorage.setItem("svgData", svgDataString);
     setBgImage(svgDataString);
-    console.log("doing this");
   }, [dk, strokesString]);
 
   //this function is called when the component is mounted and it checks if there is a bgImage in local storage
-  //if there is, it sets the bgImage state to the value in local storage
+  //if there is one,  sets the bgImage state to the value in local storage
   useEffect(() => {
     const svgData = localStorage.getItem("svgData");
 
     if (svgData) {
       // console.log(svgData)
       setBgImage(svgData);
-      console.log("doing that");
-
-      // console.log("svgData was read from LS", svgData);
     }
   }, [bgImage, color1, color2, gridSize, segmentsAmount, bgColor]);
 

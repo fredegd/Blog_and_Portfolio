@@ -21,5 +21,5 @@ if (rootElement.hasChildNodes()) {
   hydrateRoot(APP, rootElement);
 } else {
   const root = createRoot(rootElement);
-  root.render(APP, rootElement);
+  root.render(APP);
 }

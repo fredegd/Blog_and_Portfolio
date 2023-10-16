@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { client } from "../client";
+import TechStacks from "./TechStacks";
 
 import PageTitle from "./PageTitle";
 
@@ -220,6 +221,7 @@ export default function AboutContent() {
           })}
         </Box>
       </Box>
+      <TechStacks />
     </Box>
   );
 }

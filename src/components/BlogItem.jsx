@@ -23,6 +23,8 @@ import { BLOCKS, INLINES } from "@contentful/rich-text-types";
 import RelatedPosts from "./RelatedPosts";
 import Footer from "./Footer";
 import BlogItemHeading from "./BlogItemHeading";
+
+
 export default function BlogItem() {
   const theme = useTheme();
   const [blog, setBlog] = useState();
@@ -54,6 +56,10 @@ export default function BlogItem() {
     setAnchorEl(null);
   };
 
+  const [blogContentHeight, setBlogContentHeight] = useState(0);
+
+  
+
   useEffect(() => {
     client
       .getEntry(blogItemid)
@@ -70,6 +76,14 @@ export default function BlogItem() {
       })
       .catch((err) => console.log(err));
   }, [blogItemid]);
+
+  useEffect(() => {
+    const blogContent = document.querySelector(".blog-content");
+    if (blogContent) {
+      setBlogContentHeight(blogContent.clientHeight);
+      console.log(blogContent.clientHeight)
+    }
+  }, [blog]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -110,21 +124,17 @@ export default function BlogItem() {
             return (
               <Box key={imgIndex + "img"}>
                 <Box
+                  component="img"
                   sx={{
                     marginY: { xs: "1rem", sm: "2rem", md: "3rem", lg: "4rem" },
-                    height: {
-                      xs: "90vw",
-                      sm: "60vw",
-                      md: "600px",
-                      lg: "600px",
-                    },
-                    width: { xs: "90vw", sm: "90vw", md: "800px", lg: "800px" },
-                    backgroundImage: `url(${contentImages[imgIndex].fields.file.url})`,
+                    height: "auto", //{ xs: "97vw", sm: "90vw", md: "900px", lg: "900px" },
+                    width: { xs: "97vw", sm: "90vw", md: "900px", lg: "900px" },
                     backgroundPosition: "center",
-                    backgroundSize: `100% auto`,
+                    backgroundSize: `contain`,
                     backgroundRepeat: "no-repeat",
                     transition: "all 0.5s ease-in-out",
                   }}
+                  src={imgUrl}
                 >
                   {/* content image */}
                   {/* <Typography variant="h1" >WTF</Typography> */}
@@ -213,8 +223,6 @@ export default function BlogItem() {
             paddingTop: "3rem",
             paddingX: { xs: "0.5rem", sm: "2rem", md: "2.5rem", lg: "3rem" },
 
-
-
             background: {
               xs: `linear-gradient(90deg, #00000000 0%,${theme.palette.background.transparent} 5%, ${theme.palette.background.main} 20%, ${theme.palette.background.main} 80%, ${theme.palette.background.transparent} 95%,  #00000000 100%)`,
               lg: `linear-gradient(90deg, #00000000 0%,${theme.palette.background.transparent} 15%, ${theme.palette.background.main} 30%, ${theme.palette.background.main} 70%, ${theme.palette.background.transparent} 85%,  #00000000 100%)`,
@@ -228,6 +236,7 @@ export default function BlogItem() {
           <BlogItemHeading blog={blog} />
 
           <Box
+            className="blog-content"
             sx={{
               marginTop: "3rem",
               marginBottom: "3rem",

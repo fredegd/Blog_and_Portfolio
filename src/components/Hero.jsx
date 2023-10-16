@@ -38,7 +38,6 @@ const slideIn2 = keyframes`
 
 export default function Hero() {
   const theme = useTheme();
-  console.log(theme)
   return (
     <Box
       id="hero"

@@ -1,9 +1,10 @@
+import { Box } from "@mui/material";
 import Hero from "./Hero";
+
 import AboutContent from "./AboutContent";
+import BlogPreview from "./BlogPreview";
 import ContactContent from "./ContactContent";
 import Footer from "./Footer";
-import { Box } from "@mui/material";
-import BlogPreview from "./BlogPreview";
 export default function Landing({ blogs }) {
   return (
     <Box
