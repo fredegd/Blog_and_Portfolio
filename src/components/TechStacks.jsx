@@ -3,107 +3,101 @@ import { Box, Typography } from "@mui/material";
 import { useTheme } from "@emotion/react";
 import anime from "animejs";
 
-
 const stackIcons = [
   //html
-  <i className="devicon-html5-plain" />,
+  { name: "html", icon: <i className="devicon-html5-plain" /> },
   //css
-  <i className="devicon-css3-plain" />,
+  { name: "css", icon: <i className="devicon-css3-plain" /> },
   //javascript
-  <i className="devicon-javascript-plain" />,
+  { name: "javascript", icon: <i className="devicon-javascript-plain" /> },
   //typescript
-  <i className="devicon-typescript-plain" />,
+  { name: "typescript", icon: <i className="devicon-typescript-plain" /> },
   //react
-  <i className="devicon-react-original" />,
+  { name: "react", icon: <i className="devicon-react-original" /> },
   //node js
-  <i className="devicon-nodejs-plain" />,
+  { name: "nodejs", icon: <i className="devicon-nodejs-plain" /> },
   //express
-  <i className="devicon-express-original" />,
+  { name: "express", icon: <i className="devicon-express-original" /> },
   //postgresql
-  <i className="devicon-postgresql-plain" />,
+  { name: "postgresql", icon: <i className="devicon-postgresql-plain" /> },
   //mysql
-  <i className="devicon-mysql-plain" />,
+  { name: "mysql", icon: <i className="devicon-mysql-plain" /> },
   //mongodb
-  <i className="devicon-mongodb-plain" />,
+  { name: "mongodb", icon: <i className="devicon-mongodb-plain" /> },
   //bootstrap
-  <i className="devicon-bootstrap-plain" />,
+  { name: "bootstrap", icon: <i className="devicon-bootstrap-plain" /> },
   //material ui
-  <i className="devicon-materialui-plain" />,
+  { name: "materialui", icon: <i className="devicon-materialui-plain" /> },
   // tailwind
-  <i className="devicon-tailwindcss-plain" />,
+  { name: "tailwind", icon: <i className="devicon-tailwindcss-plain" /> },
   //sass
-  <i className="devicon-sass-original" />,
+  { name: "sass", icon: <i className="devicon-sass-original" /> },
 
   //Java
-  <i className="devicon-java-plain" />,
+  { name: "java", icon: <i className="devicon-java-plain" /> },
   //processing
-  <i className="devicon-processing-plain" />,
+  { name: "processing", icon: <i class="devicon-processing-plain"></i> },
 
   //gitHub
-  <i className="devicon-github-original" />,
+  { name: "github", icon: <i className="devicon-github-original" /> },
   //heroku
-  <i className="devicon-heroku-original" />,
+  { name: "heroku", icon: <i className="devicon-heroku-original" /> },
 
   //vscode
-  <i className="devicon-vscode-plain" />,
+  { name: "vscode", icon: <i className="devicon-vscode-plain" /> },
   //npm
-  <i className="devicon-npm-original-wordmark" />,
+  { name: "npm", icon: <i className="devicon-npm-original-wordmark" /> },
   //yarn
-  <i className="devicon-yarn-plain" />,
+  { name: "yarn", icon: <i className="devicon-yarn-plain" /> },
 
   //trello
-  <i className="devicon-trello-plain" />,
+  { name: "trello", icon: <i className="devicon-trello-plain" /> },
 
   //figma
-  <i className="devicon-figma-plain" />,
+  { name: "figma", icon: <i className="devicon-figma-plain" /> },
   //inkscape
-  <i className="devicon-inkscape-plain" />,
+  { name: "inkscape", icon: <i className="devicon-inkscape-plain" /> },
   //adobe illustrator
-  <i className="devicon-illustrator-plain" />,
+  { name: "illustrator", icon: <i className="devicon-illustrator-plain" /> },
   //adobe photoshop
-  <i className="devicon-photoshop-plain" />,
+  { name: "photoshop", icon: <i className="devicon-photoshop-plain" /> },
   //adobe xd
-  <i className="devicon-xd-plain" />,
+  { name: "xd", icon: <i className="devicon-xd-plain" /> },
 
   //slack
-  <i className="devicon-slack-plain" />,
+  { name: "slack", icon: <i className="devicon-slack-plain" /> },
 ];
 export default function TechStacks() {
   const theme = useTheme();
 
-  
-
-
   anime({
-    targets: '.loop-infinity',
-    translateX: [`${Math.min(window.innerWidth,1280)}`, `${ -stackIcons.length*125-Math.min(window.innerWidth,1280)}px`],
-    // delay: function(el, i) { return i * 150 },
-
+    targets: ".loop-infinity",
+    translateX: [
+      `${Math.min(window.innerWidth, 1280)}`,
+      `${-stackIcons.length * 129 - Math.min(window.innerWidth, 1280)}px`,
+    ],
+    delay: function(el, i) { return i * 10 },
 
     duration: 18000,
 
     loop: true,
-    easing: 'easeInOutSine'
+    easing: "easeInOutSine",
   });
 
   return (
     <Box
-
       sx={{
         display: "flex",
         flexDirection: "column",
         alignItems: "flex-start",
 
-        maxWidth: {xs:"100vw", md:"80vw", lg:"1280px"},
-
-
-
+        maxWidth: { xs: "100vw", md: "80vw", lg: "1280px" },
+        overflowX: "hidden",
         zIndex: "1000",
       }}
     >
-      <Typography variant="h1" 
-      sx={{fontWeight:"bold"}}>
-      Tech-Stacks:
+      <Typography variant="h1" sx={{ fontWeight: "bold" }}>
+        Tech-Stacks:
       </Typography>
 
       <Box
@@ -112,7 +106,7 @@ export default function TechStacks() {
           flexDirection: "row",
           alignItems: "center",
           maxWidth: "100vw",
-          overflowX: "scroll",
+          overflowX: "hidden",
 
           gap: "1rem",
           zIndex: "1000",
@@ -129,15 +123,17 @@ export default function TechStacks() {
                 margin: "2rem 0 5rem 0",
                 borderRadius: "20%",
                 padding: "1rem",
-                minWidth: "8rem",
-                height: "8rem",
+                minWidth: "10rem",
+                height: "10rem",
                 display: "flex",
+                flexDirection: "column",
                 justifyContent: "center",
                 alignItems: "center",
                 boxShadow: `0px 0px 10px 1px ${theme.palette.text.highlight}}`,
               }}
             >
-              <Typography variant="h1">{icon}</Typography>
+              <Typography variant="h1">{icon.icon}</Typography>
+              <Typography variant="p">{icon.name}</Typography>
             </Box>
           );
         })}

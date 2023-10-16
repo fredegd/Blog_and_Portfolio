@@ -41,8 +41,8 @@ export default function AboutContent() {
 
   window.scrollTo(0, 0);
 
-  const maxWidth = 30;
-  const maxHeight = 45 / gridSize.numRows;
+  const maxWidth = 40;
+  const maxHeight = 60 / gridSize.numRows;
 
   const target = document.querySelector(".tile-wrap");
 
@@ -99,6 +99,7 @@ export default function AboutContent() {
         flexDirection: "column",
         alignItems: "center",
         width: "100%",
+
         // border: "1px solid black",
         zIndex: "1000",
       }}
@@ -108,13 +109,14 @@ export default function AboutContent() {
         id="aboutContent"
         sx={{
           zIndex: "1000",
-          padding: {xs:"0.5rem",md:"2.5rem"},
+          padding: { xs: "0.5rem", md: "2.5rem" },
           display: "flex",
           flexDirection: { xs: "column-reverse", lg: "row" },
-          alignItems: "center",
+          justifyContent: "center",
+          alignItems: { xs: "center", lg: "flex-start" },
           width: "100%",
           // overflow: "scroll",
-          // border: "1px solid black",
+          // border: "1px solid red",
 
           background: {
             xs: `linear-gradient(90deg, #00000000 0%,${theme.palette.background.transparent} 5%, ${theme.palette.background.main} 20%, ${theme.palette.background.main} 80%, ${theme.palette.background.transparent} 95%,  #00000000 100%)`,
@@ -122,7 +124,15 @@ export default function AboutContent() {
           },
         }}
       >
-        <Box className="tile" sx={{  textAlign: "justify" }}>
+        <Box
+          className="tile"
+          sx={{
+            textAlign: "justify",
+            maxWidth: "700px",
+            // border: "2px solid green",
+            paddingTop: { xs: 0, lg: "1.0rem" },
+          }}
+        >
           {location.pathname === "/about" && (
             <>
               {" "}
@@ -132,7 +142,7 @@ export default function AboutContent() {
               <Box
                 sx={{
                   display: "flex",
-                  flexDirection: { xs: "column", md: "row",xl:"column" },
+                  flexDirection: { xs: "column", md: "row", xl: "column" },
                   justifyContent: { xs: "flex-start", md: "space-between" },
                   width: "90%",
                 }}
@@ -191,6 +201,7 @@ export default function AboutContent() {
             </Typography>
           )}
         </Box>
+
         <Box className="tile-wrap">
           {divArray.map((item) => {
             const bgY = -maxHeight * item + maxHeight;
@@ -209,12 +220,21 @@ export default function AboutContent() {
                   backgroundPosition: {
                     xs: ` ${-maxWidth * 2}vw ${bgY * 2}vw`,
                     md: ` ${-maxWidth}vw ${bgY}vw`,
+                    lg: ` ${-maxWidth * 0.75}vw ${bgY * 0.75}vw`,
                   },
                   filter: "brightness(130%)",
                   backgroundSize: { xs: "100% auto", md: "100% auto" },
                   backgroundRepeat: "noRepeat",
-                  width: { xs: `${maxWidth * 2}vw`, md: `${maxWidth}vw` },
-                  height: { xs: `${maxHeight * 2}vw`, md: `${maxHeight}vw` },
+                  width: {
+                    xs: `${maxWidth * 2}vw`,
+                    md: `${maxWidth}vw`,
+                    lg: `${maxWidth * 0.75}vw`,
+                  },
+                  height: {
+                    xs: `${maxHeight * 2}vw`,
+                    md: `${maxHeight}vw`,
+                    lg: `${maxHeight * 0.75}vw`,
+                  },
                 }}
               ></Box>
             );
