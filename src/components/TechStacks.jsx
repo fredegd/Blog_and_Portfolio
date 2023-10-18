@@ -36,7 +36,7 @@ const stackIcons = [
   //Java
   { name: "java", icon: <i className="devicon-java-plain" /> },
   //processing
-  { name: "processing", icon: <i class="devicon-processing-plain"></i> },
+  { name: "processing", icon: <i className="devicon-processing-plain"></i> },
 
   //gitHub
   { name: "github", icon: <i className="devicon-github-original" /> },
@@ -87,6 +87,7 @@ export default function TechStacks() {
   return (
     <Box
       sx={{
+        marginTop: "5rem",
         display: "flex",
         flexDirection: "column",
         alignItems: "flex-start",

@@ -23,7 +23,7 @@ import { BLOCKS, INLINES } from "@contentful/rich-text-types";
 import RelatedPosts from "./RelatedPosts";
 import Footer from "./Footer";
 import BlogItemHeading from "./BlogItemHeading";
-
+import { get } from "svg.js";
 
 export default function BlogItem() {
   const theme = useTheme();
@@ -58,8 +58,6 @@ export default function BlogItem() {
 
   const [blogContentHeight, setBlogContentHeight] = useState(0);
 
-  
-
   useEffect(() => {
     client
       .getEntry(blogItemid)
@@ -81,7 +79,7 @@ export default function BlogItem() {
     const blogContent = document.querySelector(".blog-content");
     if (blogContent) {
       setBlogContentHeight(blogContent.clientHeight);
-      console.log(blogContent.clientHeight)
+      // console.log(blogContent.clientHeight);
     }
   }, [blog]);
 
@@ -152,6 +150,19 @@ export default function BlogItem() {
   const renderRichText = (richText) => {
     return documentToReactComponents(richText, options);
   };
+
+  const blogLength =
+    blog &&
+    renderRichText(blog.fields.content).map((el) => {
+      return (
+        typeof el.props.children[0] === "string" && el.props.children[0].length
+      );
+    });
+
+
+  function getSum(total, num) {
+    return total + num;
+  }
 
   const displayContent = (content) => {
     let id = 0;

@@ -45,7 +45,7 @@ export default function BlogItemHeading({ blog }) {
           boxShadow: `0px 0px 10px 10px ${theme.palette.text.highlight}88`,
         }}
       >
-        {/* content image */}
+        content image
       </Box>
 
       <Typography
@@ -63,7 +63,7 @@ export default function BlogItemHeading({ blog }) {
           textAlign: "justify",
         }}
       >
-        {blog.title}
+        {blog.fields.title}
       </Typography>
 
       <Typography
