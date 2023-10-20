@@ -163,6 +163,7 @@ export default function AboutContent() {
                   flexDirection: { xs: "column", md: "row", xl: "column" },
                   justifyContent: { xs: "flex-start", md: "space-between" },
                   width: "90%",
+                  zIndex: "1000",
                 }}
               >
                 <Link to={"/projects"}>

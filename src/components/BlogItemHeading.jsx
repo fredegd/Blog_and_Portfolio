@@ -45,7 +45,7 @@ export default function BlogItemHeading({ blog }) {
           boxShadow: `0px 0px 10px 10px ${theme.palette.text.highlight}88`,
         }}
       >
-        content image
+
       </Box>
 
       <Typography
