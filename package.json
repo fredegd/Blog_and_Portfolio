@@ -23,6 +23,7 @@
     "framer-motion": "^10.16.4",
     "puppeteer": "^21.3.8",
     "react": "^18.2.0",
+    "react-commentbox": "^3.0.1",
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.46.2",
     "react-markdown": "^8.0.7",

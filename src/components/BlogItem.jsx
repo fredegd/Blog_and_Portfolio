@@ -6,7 +6,6 @@ import { useEffect, useState } from "react";
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
 import { useTheme } from "@mui/material/styles";
 
-import { client } from "../client";
 import {
   Box,
   Typography,
@@ -23,7 +22,10 @@ import { BLOCKS, INLINES } from "@contentful/rich-text-types";
 import RelatedPosts from "./RelatedPosts";
 import Footer from "./Footer";
 import BlogItemHeading from "./BlogItemHeading";
-import { get } from "svg.js";
+
+import MyCommentBox from "./MyCommentBox";
+import { client } from "../client"; // contentful client
+import { postData } from "../postCommentData";
 
 export default function BlogItem() {
   const theme = useTheme();
@@ -34,19 +36,6 @@ export default function BlogItem() {
 
   const { blogItemid } = useParams();
   const { scrollYProgress } = useScroll();
-
-  const {
-    register,
-    handleSubmit,
-    watch,
-    reset,
-    formState: { errors },
-  } = useForm();
-  const onSubmit = (data) => {
-    console.log(data);
-    reset();
-  };
-  // console.log(watch("comment")); // watch input value by passing the name of it
 
   const handlePopoverOpen = (event) => {
     setAnchorEl(event.currentTarget);
@@ -79,7 +68,6 @@ export default function BlogItem() {
     const blogContent = document.querySelector(".blog-content");
     if (blogContent) {
       setBlogContentHeight(blogContent.clientHeight);
-      // console.log(blogContent.clientHeight);
     }
   }, [blog]);
 
@@ -159,16 +147,9 @@ export default function BlogItem() {
       );
     });
 
-
-  function getSum(total, num) {
-    return total + num;
-  }
-
   const displayContent = (content) => {
     let id = 0;
-
     const paragraphs = renderRichText(content);
-
     const update = paragraphs.map((paragraph, index) => {
       if (paragraph.props.children[0] === `img0${id}`) {
         console.log(id);
@@ -260,24 +241,11 @@ export default function BlogItem() {
           >
             {displayContent(blog.fields.content)}
           </Box>
-
-          {/* <Typography variant="h1">{"*****"}</Typography> */}
-
-          {/* <FormControl
-            fullWidth
-            // sx={{ background: "red" }}
-            onSubmit={handleSubmit(onSubmit)}
-          >
-            <Input id="my-input" aria-describedby="my-helper-text" />
-
-            <TextField
-              id="comment"
-              height="100%"
-              label="comment"
-              {...register("comment")}
+          <MyCommentBox
+                subjectId={blog.sys.id}
+                postData={postData}
+                contentfulClient={client}
             />
-            <Button type="submit">sub</Button>
-          </FormControl> */}
         </Box>
 
         {/* <RelatedPosts /> */}
@@ -359,6 +327,7 @@ export default function BlogItem() {
             sx={{
               p: 1,
               border: `2px solid ${theme.palette.text.highlightAlt}`,
+              borderRadius: "1rem",
             }}
           >
             {anchorEl && anchorEl.id}
