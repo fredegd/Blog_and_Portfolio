@@ -1,36 +1,29 @@
-import { motion, useScroll } from "framer-motion";
-import { useParams, Link } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
+import { useParams, Link } from "react-router-dom";
 import { useTheme } from "@mui/material/styles";
 
-import {
-  Box,
-  Typography,
-  IconButton,
-  Popover,
-} from "@mui/material";
+import { Box, Typography, IconButton } from "@mui/material";
 
 import { KeyboardArrowUp, KeyboardArrowLeft } from "@mui/icons-material";
-import { BLOCKS, INLINES } from "@contentful/rich-text-types";
-import RelatedPosts from "./RelatedPosts";
-import BlogItemHeading from "./BlogItemHeading";
-import Footer from "./Footer";
-import PopOver from "./PopOver";
-
-import MyCommentBox from "./MyCommentBox";
 import { client } from "../client"; // contentful client
+import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
+import { BLOCKS, INLINES } from "@contentful/rich-text-types";
+import BlogItemHeading from "./BlogItemHeading";
+import MyCommentBox from "./MyCommentBox";
 import { postData } from "../postCommentData";
+import RelatedPosts from "./RelatedPosts";
+import Footer from "./Footer";
+import ScrollToTop from "./ScrollToTop";
+import PopOver from "./PopOver";
+import ScrollIndicator from "./ScrollIndicator";
 
 export default function BlogItem() {
   const theme = useTheme();
   const [blog, setBlog] = useState();
   const [contentImages, setContentImages] = useState([]);
-  const [showBackToTop, setShowBackToTop] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null); // for popover
 
   const { blogItemid } = useParams();
-  const { scrollYProgress } = useScroll();
 
   const handlePopoverOpen = (event) => {
     setAnchorEl(event.currentTarget);
@@ -65,26 +58,6 @@ export default function BlogItem() {
       setBlogContentHeight(blogContent.clientHeight);
     }
   }, [blog]);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY > 200) {
-        // Show the button when scrolling down 200px
-        setShowBackToTop(true);
-      } else {
-        // Hide the button when scrolling back to the top
-        setShowBackToTop(false);
-      }
-    };
-
-    // Add the scroll event listener
-    window.addEventListener("scroll", handleScroll);
-
-    // Remove the event listener when the component unmounts
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
 
   const options = {
     renderNode: {
@@ -174,15 +147,6 @@ export default function BlogItem() {
     return update;
   };
 
-  const scrollToTop = () => {
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth",
-    });
-    handlePopoverClose();
-  };
-
-  
   if (!blog) {
     // console.log("done");
     return (
@@ -201,7 +165,6 @@ export default function BlogItem() {
           justifyContent: "flex-start",
         }}
       >
-        <PopOver anchorEl={anchorEl} handlePopoverClose={handlePopoverClose}/>
         <Box
           sx={{
             zIndex: "1000",
@@ -237,50 +200,21 @@ export default function BlogItem() {
             {displayContent(blog.fields.content)}
           </Box>
           <MyCommentBox
-                subjectId={blog.sys.id}
-                postData={postData}
-                contentfulClient={client}
-            />
+            subjectId={blog.sys.id}
+            postData={postData}
+            contentfulClient={client}
+          />
         </Box>
 
         {/* <RelatedPosts /> */}
+       <ScrollIndicator />
         <Footer />
 
-        <motion.div
-          className="progress-bar"
-          style={{
-            zIndex: "1000",
-            scaleX: scrollYProgress,
-            position: "fixed",
-            bottom: "3rem",
-            left: 0,
-            right: 0,
-            height: "2rem",
-            transformOrigin: "0%",
-            background: theme.palette.text.highlightAlt,
-            opacity: 0.9,
-          }}
-        />
+        <ScrollToTop />
 
-        {showBackToTop && (
-          <IconButton
-            id="back to top"
-            onClick={scrollToTop}
-            sx={{
-              zIndex: "1000",
-              position: "fixed",
-              bottom: "3rem",
-              right: "1rem",
-              backgroundColor: theme.palette.text.highlightAlt,
-              color: theme.palette.primary.contrastText,
-              "&:hover": { backgroundColor: theme.palette.text.primary },
-            }}
-            onMouseEnter={handlePopoverOpen}
-            onMouseLeave={handlePopoverClose}
-          >
-            <KeyboardArrowUp />
-          </IconButton>
-        )}
+       
+
+        <PopOver anchorEl={anchorEl} handlePopoverClose={handlePopoverClose} />
 
         <Box>
           {/* Back to "/blog" button */}
