@@ -1,5 +1,3 @@
-import { Form, useForm } from "react-hook-form";
-
 import { motion, useScroll } from "framer-motion";
 import { useParams, Link } from "react-router-dom";
 import { useEffect, useState } from "react";
@@ -11,17 +9,14 @@ import {
   Typography,
   IconButton,
   Popover,
-  TextField,
-  FormControl,
-  Button,
-  Input,
 } from "@mui/material";
 
 import { KeyboardArrowUp, KeyboardArrowLeft } from "@mui/icons-material";
 import { BLOCKS, INLINES } from "@contentful/rich-text-types";
 import RelatedPosts from "./RelatedPosts";
-import Footer from "./Footer";
 import BlogItemHeading from "./BlogItemHeading";
+import Footer from "./Footer";
+import PopOver from "./PopOver";
 
 import MyCommentBox from "./MyCommentBox";
 import { client } from "../client"; // contentful client
@@ -187,8 +182,7 @@ export default function BlogItem() {
     handlePopoverClose();
   };
 
-  const open = Boolean(anchorEl);
-
+  
   if (!blog) {
     // console.log("done");
     return (
@@ -207,6 +201,7 @@ export default function BlogItem() {
           justifyContent: "flex-start",
         }}
       >
+        <PopOver anchorEl={anchorEl} handlePopoverClose={handlePopoverClose}/>
         <Box
           sx={{
             zIndex: "1000",
@@ -257,12 +252,13 @@ export default function BlogItem() {
             zIndex: "1000",
             scaleX: scrollYProgress,
             position: "fixed",
-            top: "5rem",
+            bottom: "3rem",
             left: 0,
             right: 0,
-            height: "1rem",
+            height: "2rem",
             transformOrigin: "0%",
             background: theme.palette.text.highlightAlt,
+            opacity: 0.9,
           }}
         />
 
@@ -309,30 +305,6 @@ export default function BlogItem() {
             </IconButton>
           </Link>
         </Box>
-        <Popover
-          id="mouse-over-popover"
-          sx={{
-            pointerEvents: "none",
-          }}
-          open={open}
-          anchorEl={anchorEl && anchorEl}
-          transformOrigin={{
-            vertical: "top",
-            horizontal: "left",
-          }}
-          onClose={handlePopoverClose}
-          disableRestoreFocus
-        >
-          <Typography
-            sx={{
-              p: 1,
-              border: `2px solid ${theme.palette.text.highlightAlt}`,
-              borderRadius: "1rem",
-            }}
-          >
-            {anchorEl && anchorEl.id}
-          </Typography>
-        </Popover>
       </Box>
     );
   }
