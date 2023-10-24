@@ -17,11 +17,6 @@ import { useTheme } from "@mui/material";
 
 export default function ScrollToTop() {
   const theme = useTheme();
-  const [showBackToTop, setShowBackToTop] = useState(false);
-
-
-
-
   const trigger = useScrollTrigger({
     disableHysteresis: true,
     threshold: 350,
