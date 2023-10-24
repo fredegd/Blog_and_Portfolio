@@ -4,37 +4,36 @@ import { useLocation } from "react-router-dom";
 import { useDarkMode } from "../context/DarkModeContext";
 import { useTheme } from "@mui/material/styles";
 import AppBar from "@mui/material/AppBar";
-import Box from "@mui/material/Box";
+import {Box,Button, useScrollTrigger, Drawer,IconButton,List,ListItem,Link, Slide, Toolbar,Typography,} from "@mui/material/";
 import CssBaseline from "@mui/material/CssBaseline";
 import Divider from "@mui/material/Divider";
-import Drawer from "@mui/material/Drawer";
-import IconButton from "@mui/material/IconButton";
-import List from "@mui/material/List";
-import Link from "@mui/material/Link";
-import ListItem from "@mui/material/ListItem";
-
-import MenuIcon from "@mui/icons-material/Menu";
-import WallpaperIcon from "@mui/icons-material/Wallpaper";
 import LightModeIcon from "@mui/icons-material/LightMode";
+import MenuIcon from "@mui/icons-material/Menu";
 import DarkModeIcon from "@mui/icons-material/DarkMode";
-import CloseIcon from "@mui/icons-material/Close";
-import Toolbar from "@mui/material/Toolbar";
-import Typography from "@mui/material/Typography";
-import Button from "@mui/material/Button";
+import CloseIcon from "@mui/icons-material/Close";  
+
 import { navItems } from "../navItems";
 import animatedLogo from "../assets/animatedLogo.gif";
 import anime from "animejs";
 
-// const drawerWidth = 240;
+function HideOnScroll(props) {
+  const { children} = props;
+  const trigger = useScrollTrigger();
 
-export default function Navbar({ window, setOpen }) {
+  return (
+    <Slide appear={false} direction="down" in={!trigger}>
+      {children}
+    </Slide>
+  );
+}
+
+
+export default function Navbar({ window, setOpen, }) {
   const { dk, toggleDarkMode } = useDarkMode();
   const theme = useTheme();
 
   const location = useLocation();
   const [activeMenuItem, setActiveMenuItem] = useState(null);
-
-  // console.log(activeMenuItem);
 
   useEffect(() => {
     // Iterate through the navItems to find the active one
@@ -43,7 +42,7 @@ export default function Navbar({ window, setOpen }) {
         location.pathname.slice(1, location.pathname.length).startsWith(item.id)
       ) {
         setActiveMenuItem(item.id);
-        return; // Exit the loop early when found
+        return; 
       } else if (location.pathname === "/") {
         setActiveMenuItem(item.id);
         return;
@@ -53,7 +52,7 @@ export default function Navbar({ window, setOpen }) {
     setActiveMenuItem(null);
   }, [location.pathname]);
 
-  // const { window } = props;
+
   const [mobileOpen, setMobileOpen] = useState(false);
 
   const handleDrawerToggle = () => {
@@ -192,9 +191,6 @@ export default function Navbar({ window, setOpen }) {
                       borderRadius: "2.5rem",
                       width: "70vw",
                       color: theme.palette.text.primary,
-                      //   activeMenuItem === item.id
-                      //     ? theme.palette.text.contrast // Active color
-                      //     : theme.palette.text.primary, // Inactive color
                       borderBottom: `4px solid ${
                         activeMenuItem === item.id
                           ? theme.palette.text.highlight
@@ -264,6 +260,7 @@ export default function Navbar({ window, setOpen }) {
 
   return (
     <Box sx={{ display: "flex" }}>
+       <HideOnScroll>
       <AppBar component="nav">
         <Toolbar
           sx={{
@@ -379,7 +376,7 @@ export default function Navbar({ window, setOpen }) {
           </IconButton>
         </Toolbar>
       </AppBar>
-
+      </HideOnScroll>
       <Box component="nav">
         <Drawer
           anchor={"right"}
@@ -392,6 +389,7 @@ export default function Navbar({ window, setOpen }) {
           }}
           sx={{
             display: { xs: "block", md: "none" },
+            height: "100vh",
             "& .MuiDrawer-paper": {
               boxSizing: "border-box",
             },
