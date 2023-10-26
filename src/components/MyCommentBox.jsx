@@ -1,7 +1,7 @@
 import React from "react";
-
-import CommentBox from "./CommentBox.jsx"; // a copy of the npm package react-commentbox component below this file
-// import CommentBox from 'react-commentbox';
+// import CommentBox from "./CommentBox.jsx";
+// a copy of react-commentbox component as npm package, this import link below
+import CommentBox from "react-commentbox";
 
 class MyCommentBox extends React.Component {
   state = { authorName: "", authorNameIsSet: false };
@@ -16,14 +16,20 @@ class MyCommentBox extends React.Component {
   };
 
   getComments = () => {
+    console.log(this.props.subjectId)
     return this.props.contentfulClient
       .getEntries({
-        order: "sys.createdAt",
+
         content_type: "comment",
-        'fields.subject': this.props.subjectId,
-    })
+        // order: "sys.createdAt",
+       "fields.subject.sys.id": this.props.subjectId,
+      })
       .then((response) => {
-        return response.items;
+        console.log("response: ", response);  
+        const check= response.items.map((item)=>{
+          return item.fields.subject.sys.id === this.props.subjectId ? item : null
+        });
+        return check.filter((item)=>item!==null);
       })
       .catch(console.error);
   };
@@ -31,29 +37,30 @@ class MyCommentBox extends React.Component {
   normalizeComment = (comment) => {
     const { id, createdAt } = comment.sys;
     const { body, author, parentComment } = comment.fields;
-
     return {
       id,
       bodyDisplay: body,
-      userNameDisplay: author.fields.displayName,
+      userNameDisplay: author+" ",
       timestampDisplay: createdAt.split("T")[0],
       belongsToAuthor: false,
       parentCommentId: parentComment ? parentComment.sys.id : null,
     };
   };
 
-  comment = (body, parentCommentId) => {
+  // make an API call to post a comment
+  comment = (body, parentCommentId = null) => {
     return this.props.postData("/create-comment", {
       body,
       parentCommentId,
       authorName: this.state.authorName,
-      blogPostId: this.props.blogPostId,
+      subjectId: this.props.subjectId,
     });
   };
 
+  // will be shown when the comment box is disabled
   disabledComponent = (props) => {
     return (
-      <form onSubmit={this.onSubmitAuthorName}>
+      <form className="author-name" onSubmit={this.onSubmitAuthorName}>
         <input
           type="text"
           placeholder="Enter your name to post a comment"
@@ -68,15 +75,14 @@ class MyCommentBox extends React.Component {
   render() {
     return (
       <div>
-        <h2>Comments</h2>
+        <h4>Comments</h4>
         <CommentBox
-          usersHaveAvatars={false}
           disabled={!this.state.authorNameIsSet}
           getComments={this.getComments}
-          normalizeComment={this.normalizeComment}
+           normalizeComment={this.normalizeComment}
           comment={this.comment}
           disabledComponent={this.disabledComponent}
-        />
+        />{" "}
       </div>
     );
   }

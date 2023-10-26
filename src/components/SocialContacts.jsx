@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import contactItems from "../contactItems";
 import { Box, Grid, Typography, IconButton, Link } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
+import contactItems from "../contactItems";
 
 import { motion, useAnimation } from "framer-motion";
 
@@ -71,6 +71,8 @@ export default function SocialContacts() {
                 >
                   <IconButton
                     sx={{
+                      fill: `${theme.palette.text.highlightAlt} `,
+
                       background: theme.palette.background.main,
                       border: `10px solid ${theme.palette.text.highlightAlt}`,
                       color: theme.palette.text.highlightAlt,
@@ -89,6 +91,7 @@ export default function SocialContacts() {
                       },
                       transition: " 0.4s ease-in-out",
                       "&:hover": {
+                        fill: `${theme.palette.text.highlight} `,
                         color: theme.palette.text.highlight,
                         background: theme.palette.background.main,
                         border: `10px solid ${theme.palette.text.highlight}`,
@@ -104,7 +107,13 @@ export default function SocialContacts() {
                   >
                     <item.icon
                       style={{
-                        fontSize: "inherit",
+                        color: "inherit",
+                        fontSize: {
+                          xs: "4rem",
+                          sm: "8rem",
+                          md: "9rem",
+                          lg: "8rem",
+                        },
                         textAlign: "center",
                         textJustify: "center",
                       }}
@@ -137,10 +146,9 @@ export default function SocialContacts() {
                   backgroundImage: ``,
                   backgroundColor: `${theme.palette.background.main}cc`,
                   boxShadow: `0 0 10px ${theme.palette.text.highlight}cc`,
-"&>p": {
-
-  margin: 0,
-},
+                  "&>p": {
+                    margin: 0,
+                  },
                   "&:hover": {
                     border: `10px solid ${theme.palette.text.highlight}`,
                     boxShadow: `0 0 10px ${theme.palette.text.highlight}88`,

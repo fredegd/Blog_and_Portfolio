@@ -10,8 +10,6 @@ import TechStacks from "./TechStacks";
 
 import PageTitle from "./PageTitle";
 
-import Pic from "../assets/portrait.gif";
-
 import anime from "animejs";
 
 const personalInfo = {

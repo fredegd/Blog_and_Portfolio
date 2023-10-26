@@ -10,7 +10,7 @@ import { client } from "../client"; // contentful client
 import BlogItemHeading from "./BlogItemHeading";
 import BlogItemContent from "./BlogItemContent";
 import MyCommentBox from "./MyCommentBox";
-import { postData } from "../postCommentData";
+import postData  from "../postCommentData";
 import Footer from "./Footer";
 import ScrollToTop from "./ScrollToTop";
 import PopOver from "./PopOver";
@@ -29,7 +29,7 @@ export default function BlogItem() {
     setAnchorEl(null);
   };
 
-
+//fetching blog data from contentful
   useEffect(() => {
     client
       .getEntry(blogItemid)
@@ -110,8 +110,8 @@ export default function BlogItem() {
                   backgroundColor: theme.palette.text.primary,
                 },
               }}
-              onMouseEnter={handlePopoverOpen}
-              onMouseLeave={handlePopoverClose}
+              // onMouseEnter={handlePopoverOpen}
+              // onMouseLeave={handlePopoverClose}
             >
               <KeyboardArrowLeft />
             </IconButton>

@@ -21,9 +21,9 @@ export default function ScrollIndicator() {
   });
 
 
-  useMotionValueEvent(scrollYProgress, "change", (latest) => {
-    console.log("Page scroll: ", latest);
-  });
+  // useMotionValueEvent(scrollYProgress, "change", (latest) => {
+  //   console.log("Page scroll: ", latest);
+  // });
   
   return (
     <div>
