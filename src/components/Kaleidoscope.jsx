@@ -5,13 +5,13 @@ export default function Kaleidoscope(bgImage) {
   // State variables to store mouse positions
   const [mouseX, setMouseX] = useState(0);
   const [mouseY, setMouseY] = useState(0);
-  const [gridSize, setGridSize] = useState({ numRows: 11, numCols: 7 });
+  const [gridSize, setGridSize] = useState({ numRows: 9, numCols: 5 });
 
   const maxScale = 1.0;
 
   const calculateGridSize = () => {
-    const newNumRows = window.innerHeight > window.innerWidth ? 11 : 7;
-    const newNumCols = window.innerHeight > window.innerWidth ? 7 : 11;
+    const newNumRows = window.innerHeight > window.innerWidth ? 9 : 5;
+    const newNumCols = window.innerHeight > window.innerWidth ? 5 : 9;
     // console.log(newNumRows, newNumCols);
     return { numRows: newNumRows, numCols: newNumCols };
   };

@@ -14,14 +14,15 @@ import anime from "animejs";
 
 const personalInfo = {
   short:
-    "I'm a full stack developer with a passion for creating beautiful, functional, and responsive web applications. I love experimenting in the realm of Creative Coding and Graphic Design",
+    "I'm Full stack developer with a passion for creating beautiful, functional, and responsive web applications. I love experimenting in the realm of Creative Coding and Graphic Design",
   full: [
-    "I'm a full stack developer with a passion for creating beautiful, functional, and responsive web applications.",
-    "I also like experimenting in the realm of Creative Coding and Graphic Design",
+    "I'm Full stack developer with a passion for creating beautiful, functional, and responsive web applications.",
+    "I also like experimenting in the fields of Creative Coding and Graphic Design",
     "As a lifelong learner and I'm always looking for new ways to improve my skills and expand my experience.",
+    "This year I decided to attend a coding Bootcamp, where i did successfully graduate and i Could further improve my knowledge and skills in the field of Web Development.",
     "Currently i am looking for a full time position as a software engineer.",
     "Fun fact: I began by chance as a self-taught developer, have been coding for past 2+ years now.",
-    "And since the crush for knowledge grew, this year I decided to attend a coding Bootcamp where i could further widen my knowledge and skills and learn all the aspects of Web Development.",
+  
   ],
 };
 export default function AboutContent() {
@@ -102,10 +103,7 @@ export default function AboutContent() {
       opacity = 1 - (scrollTop - distanceToTop) / elementHeight;
     }
 
-    if (opacity >= 0) {
-      element.style.opacity = opacity;
-    }
-
+    return opacity; 
   };
 
   function scrollHandler() {
@@ -131,14 +129,14 @@ export default function AboutContent() {
         id="aboutContent"
         sx={{
           zIndex: "1000",
-          padding: { xs: "0.5rem", md: "2.5rem" },
-          paddingBottom: { xs: "15rem", md: "2.5rem" },
+          padding: { xs: "rem", md: "2.5rem" },
+          paddingBottom: { xs: "5rem", md: "2.5rem" },
           display: "flex",
-          flexDirection: { xs: "column-reverse", lg: "row" },
-          alignItems: "center",
+          flexDirection: { xs: "column-reverse", md: "row" },
+          alignItems: {xs:"center", md:"flex-start"},
           justifyContent: "space-between",
           width: "100%",
-          // border: "1px solid pink",
+          border: "1px solid pink",
           background: {
             xs: `linear-gradient(90deg, #00000000 0%,${theme.palette.background.transparent} 5%, ${theme.palette.background.main} 20%, ${theme.palette.background.main} 80%, ${theme.palette.background.transparent} 95%,  #00000000 100%)`,
             lg: `linear-gradient(90deg, #00000000 0%, ${theme.palette.background.main} 3%, ${theme.palette.background.main} 70%, ${theme.palette.background.transparent} 85%,  #00000000 100%)`,
@@ -146,11 +144,11 @@ export default function AboutContent() {
           },
         }}
       >
-        <Box className="tile" sx={{ textAlign: "justify" }}>
+        <Box className="tile"  sx={{ border: "1px solid green", height:"100vh"}}>
           {location.pathname === "/about" && (
             <>
               {" "}
-              <Typography variant="p" color={theme.palette.text.primary}>
+              <Typography variant="p" color={theme.palette.text.primary} textAlign={"justify"}>
                 {personalInfo.full.map((item, index) => {
                   return <Box key={index}>{item}</Box>;
                 })}
@@ -158,7 +156,7 @@ export default function AboutContent() {
               <Box
                 sx={{
                   display: "flex",
-                  flexDirection: { xs: "column", md: "row", xl: "column" },
+                  flexDirection: { xs: "column", lg: "row",},
                   justifyContent: { xs: "flex-start", md: "space-between" },
                   width: "90%",
                   zIndex: "1000",
@@ -221,10 +219,10 @@ export default function AboutContent() {
         <Box
           className="tile-wrap"
           sx={{
-            position: "sticky",
+            // position: {xs:"sticky", md:"relative"},
             top: "5rem",
             // border: "1px solid red",
-            opacity: fadeOutOnScroll()
+            opacity:{xs: fadeOutOnScroll(), md:1}
           }}
         >
           {divArray.map((item) => {
@@ -239,7 +237,7 @@ export default function AboutContent() {
                   background: `url(${aboutImage})`,
                   backgroundPosition: {
                     xs: ` ${-maxWidth * 2}vw ${bgY * 2}vw`,
-                    md: ` ${-maxWidth * 1.5}vw ${bgY * 1.5}vw`,
+                    md: ` ${-maxWidth * 0.9}vw ${bgY * 0.9}vw`,
                     lg: ` ${-maxWidth * 0.65}vw ${bgY * 0.65}vw`,
                   },
                   filter: "brightness(130%)",
@@ -247,12 +245,12 @@ export default function AboutContent() {
                   backgroundRepeat: "noRepeat",
                   width: {
                     xs: `${maxWidth * 2}vw`,
-                    md: `${maxWidth * 1.5}vw`,
+                    md: `${maxWidth * 0.9}vw`,
                     lg: `${maxWidth * 0.65}vw`,
                   },
                   height: {
                     xs: `${maxHeight * 2}vw`,
-                    md: `${maxHeight * 1.5}vw`,
+                    md: `${maxHeight * 0.9}vw`,
                     lg: `${maxHeight * 0.65}vw`,
                   },
                 }}

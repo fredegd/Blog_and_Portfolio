@@ -50,6 +50,7 @@ export default function SocialContacts() {
         }}
       >
         {contactItems.map((item) => {
+          console.log(item.icon)
           return (
             <Grid item key={item.id} xs={6} sm={6} md={12}>
               <Link href={item.linkTo} target={"blank"} underline="hover">
@@ -97,27 +98,25 @@ export default function SocialContacts() {
                         border: `10px solid ${theme.palette.text.highlight}`,
                         borderRadius: "2.2rem",
                       },
-                      fontSize: {
-                        xs: "4rem",
-                        sm: "8rem",
-                        md: "9rem",
-                        lg: "8rem",
-                      },
+                      
                     }}
                   >
-                    <item.icon
-                      style={{
-                        color: "inherit",
-                        fontSize: {
-                          xs: "4rem",
-                          sm: "8rem",
-                          md: "9rem",
-                          lg: "8rem",
-                        },
-                        textAlign: "center",
-                        textJustify: "center",
-                      }}
-                    />
+                    <Typography variant="h1"sx={{ display: "flex" }} >
+                      {<item.icon
+                        sx={{
+                          fontSize: {
+                            xs: "4rem",
+                            sm: "8rem",
+                            md: "9rem",
+                            lg: "8rem",
+                          },
+                          viewBox:"0 0 512 512",
+                          color: "inherit",
+                          textAlign: "center",
+                          textJustify: "center",
+                        }}
+                      />}
+                    </Typography>
                   </IconButton>
                   <Box
                     sx={{

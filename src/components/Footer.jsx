@@ -10,12 +10,15 @@ export default function Contact() {
   return (
     <Box
       sx={{
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
         backgroundColor: `${theme.palette.text.highlight}88`,
         fontSize: "20px",
         color: theme.palette.text.contrast,
 
         width: "100%",
-        padding: { xs: "0.5rem", sm: "1.5rem", md: "2.5rem" },
+        // padding: { xs: "0.5rem", sm: "1.5rem", md: "2.5rem" },
         marginTop: "5rem",
         marginBottom: "1rem",
         zIndex: "1000",
@@ -23,7 +26,10 @@ export default function Contact() {
     >
       <Box
         sx={{
-          width: "100%",
+          width: { xs: "85%", sm: "80%", md: "60%", lg: "50%" },
+          borderBottom: `1px solid ${theme.palette.text.primary}`,
+          display: "flex",
+          justifyContent: "space-evenly",
         }}
       >
         {contactItems.map((item) => (
@@ -34,13 +40,17 @@ export default function Contact() {
                 width: "2.0rem",
                 height: "2.0rem",
                 textAlign: "center",
-                margin: "0 1rem 0 1rem",
+                margin: "1rem ",
                 textDecoration: "none",
                 color: theme.palette.text.primary,
-
+                fill: theme.palette.text.primary,
+                padding: "1.5rem",
+                background: "none",
+                border: "2px solid transparent",
                 "&:hover": {
-                  background: `${theme.palette.text.highlightAlt}`,
+                padding: "1.5rem",
 
+                  background: `${theme.palette.text.highlightAlt}`,
                   border: `2px solid ${theme.palette.text.primary}`,
                 },
               }}
@@ -52,11 +62,14 @@ export default function Contact() {
           </Link>
         ))}
       </Box>
-
-      <Typography variant="p" color={theme.palette.text.primary}>
-        <span>2023 all rights reserved </span>
-        <span>©&nbsp;Fred&nbsp;Egidi</span>
-      </Typography>
+      <Box sx={{ paddingY: "1rem" }}>
+        <Typography variant="p" color={theme.palette.text.primary}>
+          <span>2023 all rights reserved </span>
+          <span>
+            ©&nbsp; <a href="https://fredegd.dev"> Fred&nbsp;Egidi</a>
+          </span>
+        </Typography>
+      </Box>
     </Box>
   );
 }
