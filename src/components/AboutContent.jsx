@@ -136,7 +136,7 @@ export default function AboutContent() {
           alignItems: {xs:"center", md:"flex-start"},
           justifyContent: "space-between",
           width: "100%",
-          border: "1px solid pink",
+          // border: "1px solid pink",
           background: {
             xs: `linear-gradient(90deg, #00000000 0%,${theme.palette.background.transparent} 5%, ${theme.palette.background.main} 20%, ${theme.palette.background.main} 80%, ${theme.palette.background.transparent} 95%,  #00000000 100%)`,
             lg: `linear-gradient(90deg, #00000000 0%, ${theme.palette.background.main} 3%, ${theme.palette.background.main} 70%, ${theme.palette.background.transparent} 85%,  #00000000 100%)`,
@@ -144,7 +144,7 @@ export default function AboutContent() {
           },
         }}
       >
-        <Box className="tile"  sx={{ border: "1px solid green", height:"100vh"}}>
+        <Box className="tile"  sx={{  height:"100vh"}}>
           {location.pathname === "/about" && (
             <>
               {" "}
