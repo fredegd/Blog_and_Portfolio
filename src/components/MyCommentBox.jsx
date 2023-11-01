@@ -16,20 +16,21 @@ class MyCommentBox extends React.Component {
   };
 
   getComments = () => {
-    console.log(this.props.subjectId)
+    console.log(this.props.subjectId);
     return this.props.contentfulClient
       .getEntries({
-
         content_type: "comment",
         // order: "sys.createdAt",
-       "fields.subject.sys.id": this.props.subjectId,
+        "fields.subject.sys.id": this.props.subjectId,
       })
       .then((response) => {
-        console.log("response: ", response);  
-        const check= response.items.map((item)=>{
-          return item.fields.subject.sys.id === this.props.subjectId ? item : null
+        console.log("response: ", response);
+        const check = response.items.map((item) => {
+          return item.fields.subject.sys.id === this.props.subjectId
+            ? item
+            : null;
         });
-        return check.filter((item)=>item!==null);
+        return check.filter((item) => item !== null);
       })
       .catch(console.error);
   };
@@ -40,7 +41,7 @@ class MyCommentBox extends React.Component {
     return {
       id,
       bodyDisplay: body,
-      userNameDisplay: author+" ",
+      userNameDisplay: author + " ",
       timestampDisplay: createdAt.split("T")[0],
       belongsToAuthor: false,
       parentCommentId: parentComment ? parentComment.sys.id : null,
@@ -79,7 +80,7 @@ class MyCommentBox extends React.Component {
         <CommentBox
           disabled={!this.state.authorNameIsSet}
           getComments={this.getComments}
-           normalizeComment={this.normalizeComment}
+          normalizeComment={this.normalizeComment}
           comment={this.comment}
           disabledComponent={this.disabledComponent}
         />{" "}

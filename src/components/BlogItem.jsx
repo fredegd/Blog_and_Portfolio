@@ -102,7 +102,7 @@ export default function BlogItem() {
               sx={{
                 zIndex: "1000",
                 position: "fixed",
-                top: "6rem",
+                top: "1rem",
                 left: "1.0rem",
                 backgroundColor: theme.palette.text.highlightAlt,
                 color: theme.palette.primary.contrastText,

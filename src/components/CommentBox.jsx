@@ -333,7 +333,8 @@ class CommentBox extends React.Component {
         return (
             <div className={this.props.className}>
                 <div className={this.prefix('header')}>
-                    <form className={this.prefix('comment-form')} onSubmit={this.onComment}>
+                    {/* <form className={this.prefix('comment-form')} onSubmit={this.onComment}> */}
+                    <form className={this.prefix('comment-form')} onSubmit={()=>{alert(" Apologies, unfortunately the comment section is still under construction")}}>
                         <div className={this.prefix('form-element')}>
                             <textarea
                                 name="comment"
