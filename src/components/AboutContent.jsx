@@ -17,12 +17,11 @@ const personalInfo = {
     "I'm Full stack developer with a passion for creating beautiful, functional, and responsive web applications. I love experimenting in the realm of Creative Coding and Graphic Design",
   full: [
     "I'm Full stack developer with a passion for creating beautiful, functional, and responsive web applications.",
-    "I also like experimenting in the fields of Creative Coding and Graphic Design",
-    "As a lifelong learner and I'm always looking for new ways to improve my skills and expand my experience.",
-    "This year I decided to attend a coding Bootcamp, where i did successfully graduate and i Could further improve my knowledge and skills in the field of Web Development.",
+   "I also like experimenting in the fields of Creative Coding and Graphic Design",
+    "Lifelong learner,  Always looking for new ways to improve my skills and expand my experience.",
+    "This year I attended full-time a coding Bootcamp, Successfully graduate at it and improved my knowledge and skills in the field of Web Development.",
     "Currently i am looking for a full time position as a software engineer.",
     "Fun fact: I began by chance as a self-taught developer, have been coding for past 2+ years now.",
-  
   ],
 };
 export default function AboutContent() {
@@ -90,7 +89,7 @@ export default function AboutContent() {
   target && observer.observe(target);
 
   const fadeOutOnScroll = (element, distance) => {
-    if(!element){
+    if (!element) {
       return;
     }
     let distanceToTop = element.getBoundingClientRect().top;
@@ -99,16 +98,18 @@ export default function AboutContent() {
     // console.log(distanceToTop, elementHeight, scrollTop);
 
     let opacity = 1;
-    if (scrollTop > (distanceToTop+distance) && location.pathname === "/about") {
+    if (
+      scrollTop > distanceToTop + distance &&
+      location.pathname === "/about"
+    ) {
       opacity = 1 - (scrollTop - distanceToTop) / elementHeight;
     }
 
-    return opacity; 
+    return opacity;
   };
 
   function scrollHandler() {
-    fadeOutOnScroll(target,80);
-
+    fadeOutOnScroll(target, 80);
   }
 
   window.addEventListener("scroll", scrollHandler);
@@ -129,11 +130,12 @@ export default function AboutContent() {
         id="aboutContent"
         sx={{
           zIndex: "1000",
-          padding: { xs: "rem", md: "2.5rem" },
+          padding: { xs: "2rem", md: "2.5rem" },
           paddingBottom: { xs: "5rem", md: "2.5rem" },
           display: "flex",
-          flexDirection: { xs: "column-reverse", md: "row" },
-          alignItems: {xs:"center", md:"flex-start"},
+          flexDirection: { xs: "column-reverse", sm: "row" },
+          alignItems: { xs: "center", sm: "flex-start" },
+          gap: "2rem",
           justifyContent: "space-between",
           width: "100%",
           // border: "1px solid pink",
@@ -144,24 +146,40 @@ export default function AboutContent() {
           },
         }}
       >
-        <Box className="tile"  sx={{  height:"100vh"}}>
+        <Box className="tile">
           {location.pathname === "/about" && (
             <>
               {" "}
-              <Typography variant="p" color={theme.palette.text.primary} textAlign={"justify"}>
+              <Typography
+                variant="p"
+                color={theme.palette.text.primary}
+                sx={{
+                  fontSize: {
+                    xs: "1.0rem",
+                    sm: "1.0rem",
+                    md: "1.5rem",
+                    textAlign: "justify",
+                  },
+                }}
+              >
                 {personalInfo.full.map((item, index) => {
-                  return <Box key={index}>{item}</Box>;
+                  return <Box key={index} sx={{display:"flex", flexDirection:"column"}}>
+                    <Typography sx={{fontSize:"inherit", marginY:"0.5rem"}}>
+                    {item}
+                    </Typography>
+                  </Box>;
                 })}
               </Typography>
               <Box
                 sx={{
                   display: "flex",
-                  flexDirection: { xs: "column", lg: "row",},
+                  flexDirection: { xs: "column", lg: "row" },
                   justifyContent: { xs: "flex-start", md: "space-between" },
                   width: "90%",
                   zIndex: "1000",
                 }}
               >
+                
                 <Link to={"/projects"}>
                   <Button
                     sx={{
@@ -204,7 +222,18 @@ export default function AboutContent() {
             </>
           )}
           {location.pathname === "/" && (
-            <Typography variant="p" color={theme.palette.text.primary}>
+            <Typography
+              variant="p"
+              color={theme.palette.text.primary}
+              sx={{
+                fontSize: {
+                  xs: "1.2rem",
+                  sm: "1.2rem",
+                  md: "1.5rem",
+                  textAlign: "justify",
+                },
+              }}
+            >
               {
                 <>
                   {personalInfo.short}
@@ -222,7 +251,7 @@ export default function AboutContent() {
             // position: {xs:"sticky", md:"relative"},
             top: "5rem",
             // border: "1px solid red",
-            opacity:{xs: fadeOutOnScroll(), md:1}
+            opacity: { xs: fadeOutOnScroll(), md: 1 },
           }}
         >
           {divArray.map((item) => {
@@ -236,21 +265,21 @@ export default function AboutContent() {
                   position: "relative",
                   background: `url(${aboutImage})`,
                   backgroundPosition: {
-                    xs: ` ${-maxWidth * 2}vw ${bgY * 2}vw`,
-                    md: ` ${-maxWidth * 0.9}vw ${bgY * 0.9}vw`,
+                    xs: ` ${-maxWidth * 1.8}vw ${bgY * 1.8}vw`,
+                    sm: ` ${-maxWidth * 0.9}vw ${bgY * 0.9}vw`,
                     lg: ` ${-maxWidth * 0.65}vw ${bgY * 0.65}vw`,
                   },
                   filter: "brightness(130%)",
-                  backgroundSize: { xs: "100% auto", md: "100% auto" },
+                  backgroundSize: { xs: "100% auto", sm: "100% auto" },
                   backgroundRepeat: "noRepeat",
                   width: {
-                    xs: `${maxWidth * 2}vw`,
-                    md: `${maxWidth * 0.9}vw`,
+                    xs: `${maxWidth * 1.8}vw`,
+                    sm: `${maxWidth * 0.9}vw`,
                     lg: `${maxWidth * 0.65}vw`,
                   },
                   height: {
-                    xs: `${maxHeight * 2}vw`,
-                    md: `${maxHeight * 0.9}vw`,
+                    xs: `${maxHeight * 1.8}vw`,
+                    sm: `${maxHeight * 0.9}vw`,
                     lg: `${maxHeight * 0.65}vw`,
                   },
                 }}
