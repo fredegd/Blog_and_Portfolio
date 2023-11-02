@@ -8,10 +8,22 @@ export default function BlogItemContent({ blog }) {
   const options = {
     renderNode: {
       [BLOCKS.HEADING_1]: (node, children) => <h1>{children}</h1>,
-      [BLOCKS.PARAGRAPH]: (node, children) => <Typography sx={{
-        paddingX: { xs: "1.5rem", sm: "2rem", md: "2.5rem", lg: "3rem" },
-
-      }}>{children}</Typography>, // Add more renderNode functions as needed for other block types
+      [BLOCKS.PARAGRAPH]: (node, children) => (
+        <Typography
+          sx={{
+            paddingX: { xs: "1.3rem", sm: "1rem", md: "0.5rem", lg: "0rem" },
+            marginY: { xs: "1rem", sm: "1.5rem", md: "1.5rem", lg: "1.5rem" },
+            fontSize: {
+              xs: "1.0rem",
+              sm: "1.3rem",
+              md: "1.4rem",
+              lg: "1.5rem",
+            },
+          }}
+        >
+          {children}
+        </Typography>
+      ), // Add more renderNode functions as needed for other block types
       [BLOCKS.EMBEDDED_ASSET]: (node, children) => {
         const imgUrl = node.data.target.fields.file.url;
         return (
@@ -19,6 +31,13 @@ export default function BlogItemContent({ blog }) {
             <Box
               component="img"
               sx={{
+                paddingX: {
+                  xs: "1.3rem",
+                  sm: "1rem",
+                  md: "0.5rem",
+                  lg: "0rem",
+                },
+
                 marginY: { xs: "1rem", sm: "2rem", md: "3rem", lg: "4rem" },
                 height: "auto", //{ xs: "97vw", sm: "90vw", md: "900px", lg: "900px" },
                 width: { xs: "97vw", sm: "90vw", md: "900px", lg: "900px" },
@@ -51,7 +70,7 @@ export default function BlogItemContent({ blog }) {
     // });
 
     // return update;
-    return paragraphs
+    return paragraphs;
   };
 
   return (
