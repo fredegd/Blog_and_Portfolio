@@ -48,7 +48,7 @@ export default function ProjectItemCard({ project }) {
 
   const truncatedTitle = () => {
     const title = project.fields.title;
-    if (title.length < 40) {
+    if (title.length < 50) {
       return title;
     } else {
       return title.split("").slice(0, 45).join("").trim() + "...";
@@ -80,7 +80,7 @@ export default function ProjectItemCard({ project }) {
         whileTap={{ scale: 0.9 }}
       >
         <Link
-          to={`/projects/read/${project.sys.id}`}
+          to={`/works/read/${project.sys.id}`}
           style={{
             textDecoration: "none",
             color: theme.palette.text.secondary,

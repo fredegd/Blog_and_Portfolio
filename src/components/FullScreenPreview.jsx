@@ -48,7 +48,7 @@ export default function FullScreenPreview({
           <Toolbar>
             
             <Typography
-              sx={{ ml: 2, flex: 1, color: theme.palette.text.primary }}
+              sx={{ ml: 2, flex: 1, color: theme.palette.text.primary, paddingY:"3rem" }}
               variant="h5"
               component="Box"
               textAlign={"center"}
