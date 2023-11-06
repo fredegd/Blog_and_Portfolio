@@ -17,7 +17,7 @@ const personalInfo = {
     "I'm Full stack developer with a passion for creating beautiful, functional, and responsive web applications. I love experimenting in the realm of Creative Coding and Graphic Design",
   full: [
     "I'm Full stack developer with a passion for creating beautiful, functional, and responsive web applications.",
-   "I also like experimenting in the fields of Creative Coding and Graphic Design",
+    "I also like experimenting in the fields of Creative Coding and Graphic Design",
     "Lifelong learner,  Always looking for new ways to improve my skills and expand my experience.",
     "This year I attended full-time a coding Bootcamp, Successfully graduate at it and improved my knowledge and skills in the field of Web Development.",
     "Currently i am looking for a full time position as a software engineer.",
@@ -146,6 +146,48 @@ export default function AboutContent() {
           },
         }}
       >
+ <Box
+          className="tile-wrap"
+          sx={{
+            top: "5rem",
+            opacity: { xs: fadeOutOnScroll(), md: 1 },
+          }}
+        >
+          {divArray.map((item) => {
+            const bgY = -maxHeight * item + maxHeight;
+
+            return (
+              <Box
+                className="tile"
+                key={item}
+                sx={{
+                  position: "relative",
+                  background: `url(${aboutImage})`,
+                  backgroundPosition: {
+                    xs: ` ${-maxWidth * 1.8}vw ${bgY * 1.8}vw`,
+                    sm: ` ${-maxWidth * 0.9}vw ${bgY * 0.9}vw`,
+                    lg: ` ${-maxWidth * 0.65}vw ${bgY * 0.65}vw`,
+                  },
+                  filter: "brightness(130%)",
+                  backgroundSize: { xs: "100% auto", sm: "100% auto" },
+                  backgroundRepeat: "noRepeat",
+                  width: {
+                    xs: `${maxWidth * 1.8}vw`,
+                    sm: `${maxWidth * 0.9}vw`,
+                    lg: `${maxWidth * 0.65}vw`,
+                  },
+                  height: {
+                    xs: `${maxHeight * 1.8}vw`,
+                    sm: `${maxHeight * 0.9}vw`,
+                    lg: `${maxHeight * 0.65}vw`,
+                  },
+                }}
+              ></Box>
+            );
+          })}
+        </Box>
+
+
         <Box className="tile">
           {location.pathname === "/about" && (
             <>
@@ -157,36 +199,44 @@ export default function AboutContent() {
                   fontSize: {
                     xs: "1.0rem",
                     sm: "1.0rem",
-                    md: "1.5rem",
+                    md: "1.2rem",
                     textAlign: "justify",
                   },
                 }}
               >
                 {personalInfo.full.map((item, index) => {
-                  return <Box key={index} sx={{display:"flex", flexDirection:"column"}}>
-                    <Typography sx={{fontSize:"inherit", marginY:"0.5rem"}}>
-                    {item}
-                    </Typography>
-                  </Box>;
+                  return (
+                    <Box
+                      key={index}
+                      sx={{ display: "flex", flexDirection: "column" }}
+                    >
+                      <Typography
+                        sx={{ fontSize: "inherit", marginY: "0.5rem" }}
+                      >
+                        {item}
+                      </Typography>
+                    </Box>
+                  );
                 })}
               </Typography>
               <Box
                 sx={{
                   display: "flex",
-                  flexDirection: { xs: "column", lg: "row" },
+                  flexDirection: { xs: "column", md: "row" },
+                  alignItems:"flex-start",
                   justifyContent: { xs: "flex-start", md: "space-between" },
                   width: "90%",
                   zIndex: "1000",
                 }}
               >
-                
-                <Link to={"/projects"}>
+                <Link to={"/works"}>
                   <Button
                     sx={{
                       marginTop: "2rem",
                       border: `2px solid ${theme.palette.text.highlight}`,
                       borderRadius: "2rem",
-                      width: { xs: "17rem", sm: "17rem" },
+                      // width: { xs: "17rem", sm: "13rem" , md:"11rem"},
+                      fontSize: { xs: "1.2rem", sm: "1.0rem", md:"0.9rem" },
 
                       transition: "all 0.3s ease-in-out",
                       "&:hover": {
@@ -206,7 +256,8 @@ export default function AboutContent() {
                       marginTop: "2rem",
                       border: `2px solid ${theme.palette.text.highlightAlt}`,
                       borderRadius: "2rem",
-                      width: { xs: "17rem", sm: "15rem" },
+                      // width: { xs: "17rem", sm: "13rem" , md:"11rem"},
+                      fontSize: { xs: "1.2rem", sm: "1.0rem", md:"0.9rem" },
                       transition: "all 0.3s ease-in-out",
                       "&:hover": {
                         background: `${theme.palette.text.highlightAlt}88`,
@@ -245,48 +296,7 @@ export default function AboutContent() {
             </Typography>
           )}
         </Box>
-        <Box
-          className="tile-wrap"
-          sx={{
-            // position: {xs:"sticky", md:"relative"},
-            top: "5rem",
-            // border: "1px solid red",
-            opacity: { xs: fadeOutOnScroll(), md: 1 },
-          }}
-        >
-          {divArray.map((item) => {
-            const bgY = -maxHeight * item + maxHeight;
-
-            return (
-              <Box
-                className="tile"
-                key={item}
-                sx={{
-                  position: "relative",
-                  background: `url(${aboutImage})`,
-                  backgroundPosition: {
-                    xs: ` ${-maxWidth * 1.8}vw ${bgY * 1.8}vw`,
-                    sm: ` ${-maxWidth * 0.9}vw ${bgY * 0.9}vw`,
-                    lg: ` ${-maxWidth * 0.65}vw ${bgY * 0.65}vw`,
-                  },
-                  filter: "brightness(130%)",
-                  backgroundSize: { xs: "100% auto", sm: "100% auto" },
-                  backgroundRepeat: "noRepeat",
-                  width: {
-                    xs: `${maxWidth * 1.8}vw`,
-                    sm: `${maxWidth * 0.9}vw`,
-                    lg: `${maxWidth * 0.65}vw`,
-                  },
-                  height: {
-                    xs: `${maxHeight * 1.8}vw`,
-                    sm: `${maxHeight * 0.9}vw`,
-                    lg: `${maxHeight * 0.65}vw`,
-                  },
-                }}
-              ></Box>
-            );
-          })}
-        </Box>
+       
       </Box>
       <TechStacks />
     </Box>
