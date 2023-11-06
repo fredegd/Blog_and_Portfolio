@@ -11,8 +11,9 @@ export default function Contact() {
     <Box
       sx={{
         display: "flex",
-        flexDirection: "column",
+        flexDirection:{xs:"column", md:"row"},
         alignItems: "center",
+        justifyContent: "center",
         backgroundColor: `${theme.palette.text.highlight}88`,
         fontSize: "20px",
         color: theme.palette.text.contrast,
@@ -26,8 +27,8 @@ export default function Contact() {
     >
       <Box
         sx={{
-          width: { xs: "85%", sm: "80%", md: "60%", lg: "50%" },
-          borderBottom: `1px solid ${theme.palette.text.primary}`,
+          borderBottom: {xs:`1px solid ${theme.palette.text.primary}`, md:"none"},
+          borderRight: {xs:"none", md:`1px solid ${theme.palette.text.primary}`},
           display: "flex",
           justifyContent: "space-evenly",
         }}
@@ -40,16 +41,16 @@ export default function Contact() {
                 width: "2.0rem",
                 height: "2.0rem",
                 textAlign: "center",
-                margin: "1rem ",
                 textDecoration: "none",
                 color: theme.palette.text.primary,
                 fill: theme.palette.text.primary,
                 padding: "1.5rem",
+                marginX: "1rem",
                 background: "none",
                 border: "2px solid transparent",
                 "&:hover": {
                 padding: "1.5rem",
-
+                  color: theme.palette.text.contrast,
                   background: `${theme.palette.text.highlightAlt}`,
                   border: `2px solid ${theme.palette.text.primary}`,
                 },
@@ -62,7 +63,7 @@ export default function Contact() {
           </Link>
         ))}
       </Box>
-      <Box sx={{ paddingY: "1rem" }}>
+      <Box sx={{ padding: "1.5rem" }}>
         <Typography variant="p" color={theme.palette.text.primary}>
           <span>2023 all rights reserved </span>
           <span>

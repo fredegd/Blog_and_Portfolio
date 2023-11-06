@@ -14,7 +14,7 @@ import anime from "animejs";
 
 const personalInfo = {
   short:
-    "I'm Full stack developer with a passion for creating beautiful, functional, and responsive web applications. I love experimenting in the realm of Creative Coding and Graphic Design",
+    "I'm Full stack Web developer with a passion for creating beautiful, functional, and responsive web applications. I love experimenting in the realm of Creative Coding and Graphic Design and Animation",
   full: [
     "I'm Full stack developer with a passion for creating beautiful, functional, and responsive web applications.",
     "I also like experimenting in the fields of Creative Coding and Graphic Design",
@@ -133,7 +133,7 @@ export default function AboutContent() {
           padding: { xs: "2rem", md: "2.5rem" },
           paddingBottom: { xs: "5rem", md: "2.5rem" },
           display: "flex",
-          flexDirection: { xs: "column-reverse", sm: "row" },
+          flexDirection: { xs: "column", sm: "row" },
           alignItems: { xs: "center", sm: "flex-start" },
           gap: "2rem",
           justifyContent: "space-between",
