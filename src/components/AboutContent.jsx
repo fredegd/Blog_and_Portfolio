@@ -19,23 +19,25 @@ const personalInfo = {
     "I'm Full stack developer with a passion for creating beautiful, functional, and responsive web applications.",
     "I also like experimenting in the fields of Creative Coding and Graphic Design",
     "Lifelong learner,  Always looking for new ways to improve my skills and expand my experience.",
-    "This year I attended full-time a coding Bootcamp, Successfully graduate at it and improved my knowledge and skills in the field of Web Development.",
-    "Currently i am looking for a full time position as a software engineer.",
+    "This year I attended full-time a coding Bootcamp, Successfully graduate at it and improved my knowledge and skills in the field of Software Development.",
+    "Currently i am looking for a full time position as a Frontend engineer.",
     "Fun fact: I began by chance as a self-taught developer, have been coding for past 2+ years now.",
   ],
 };
 export default function AboutContent() {
   const theme = useTheme();
   const location = useLocation();
-  const [gridSize, setGridSize] = useState({ numRows: 15, numCols: 1 });
+  const [gridSize, setGridSize] = useState({ numRows: 11, numCols: 1 });
   const [aboutImage, setAboutImage] = useState();
+  const [aboutImageAlt, setAboutImageAlt] = useState();
 
   useEffect(() => {
     client
-      .getEntry("10THe99sOMrQYp3NyoDCID")
+      .getEntry(process.env.REACT_APP_ABOUT_IMAGE_ID)
       .then((response) => {
         console.log(response);
         setAboutImage(response.fields.authorImg.fields.file.url);
+        setAboutImageAlt(response.fields.authorImgAlt.fields.file.url);
       })
       .catch((err) => console.log(err));
   }, []);
@@ -146,29 +148,95 @@ export default function AboutContent() {
           },
         }}
       >
- <Box
-          className="tile-wrap"
-          sx={{
-            top: "5rem",
-            opacity: { xs: fadeOutOnScroll(), md: 1 },
-          }}
-        >
-          {divArray.map((item) => {
-            const bgY = -maxHeight * item + maxHeight;
+        {location.pathname === "/about" && (
+          <Box
+            className="tile-wrap"
+            sx={{
+              top: "5rem",
+              opacity: { xs: fadeOutOnScroll(), md: 1 },
+            }}
+          >
+            {divArray.map((item) => {
+              const bgY = -maxHeight * item + maxHeight;
 
-            return (
-              <Box
-                className="tile"
-                key={item}
-                sx={{
-                  position: "relative",
+              return (
+                <Box
+                  className="tile"
+                  key={item}
+                  sx={{
+                    position: "relative",
+                    background: `url(${aboutImage})`,
+                    backgroundPosition: {
+                      xs: ` ${-maxWidth * 1.8}vw ${bgY * 1.8}vw`,
+                      sm: ` ${-maxWidth * 0.9}vw ${bgY * 0.9}vw`,
+                      lg: ` ${-maxWidth * 0.65}vw ${bgY * 0.65}vw`,
+                    },
+                    filter: "brightness(130%)",
+                    backgroundSize: { xs: "100% auto", sm: "100% auto" },
+                    backgroundRepeat: "noRepeat",
+                    width: {
+                      xs: `${maxWidth * 1.8}vw`,
+                      sm: `${maxWidth * 0.9}vw`,
+                      lg: `${maxWidth * 0.65}vw`,
+                    },
+                    height: {
+                      xs: `${maxHeight * 1.8}vw`,
+                      sm: `${maxHeight * 0.9}vw`,
+                      lg: `${maxHeight * 0.65}vw`,
+                    },
+                    "&:hover": {
+                      background: `url(${aboutImageAlt})`,
+                      backgroundPosition: {
+                        xs: ` ${-maxWidth * 1.8}vw ${bgY * 1.8 }vw`,
+                        sm: ` ${-maxWidth * 0.9}vw ${bgY * 0.9 }vw`,
+                        lg: ` ${-maxWidth * 0.65}vw ${bgY * 0.65 }vw`,
+                      },
+                      filter: "brightness(130%)",
+                      backgroundRepeat: "noRepeat",
+                      backgroundSize: { xs: `100% ${101*divArray.length}%`, sm: `100% ${101*divArray.length}%` },
+                      width: {
+                        xs: `${maxWidth * 1.8}vw`,
+                        sm: `${maxWidth * 0.9}vw`,
+                        lg: `${maxWidth * 0.65}vw`,
+                      },
+                      height: {
+                        xs: `${maxHeight * 1.8}vw`,
+                        sm: `${maxHeight * 0.9}vw`,
+                        lg: `${maxHeight * 0.65}vw`,
+                      },
+                    }
+                  }}
+                ></Box>
+              );
+            })}
+          </Box>
+        )}
+
+        {location.pathname === "/" && (
+          <Box
+            sx={{
+              top: "5rem",
+            }}
+          >
+            <Box
+              sx={{
+                position: "relative",
+                background: `url(${aboutImageAlt})`,
+                backgroundSize: { xs: "100% auto", sm: "100% auto" },
+                backgroundRepeat: "noRepeat",
+                width: {
+                  xs: `${maxWidth * 1.8}vw`,
+                  sm: `${maxWidth * 0.9}vw`,
+                  lg: `${maxWidth * 0.65}vw`,
+                },
+                height: {
+                  xs: `${maxHeight * 1.8 * gridSize.numRows}vw`,
+                  sm: `${maxHeight * 0.9 * gridSize.numRows}vw`,
+                  lg: `${maxHeight * 0.65 * gridSize.numRows}vw`,
+                },
+                transition: "all 0.65s ease-in-out",
+                "&:hover": {
                   background: `url(${aboutImage})`,
-                  backgroundPosition: {
-                    xs: ` ${-maxWidth * 1.8}vw ${bgY * 1.8}vw`,
-                    sm: ` ${-maxWidth * 0.9}vw ${bgY * 0.9}vw`,
-                    lg: ` ${-maxWidth * 0.65}vw ${bgY * 0.65}vw`,
-                  },
-                  filter: "brightness(130%)",
                   backgroundSize: { xs: "100% auto", sm: "100% auto" },
                   backgroundRepeat: "noRepeat",
                   width: {
@@ -177,17 +245,16 @@ export default function AboutContent() {
                     lg: `${maxWidth * 0.65}vw`,
                   },
                   height: {
-                    xs: `${maxHeight * 1.8}vw`,
-                    sm: `${maxHeight * 0.9}vw`,
-                    lg: `${maxHeight * 0.65}vw`,
+                    xs: `${maxHeight * 1.8 * gridSize.numRows}vw`,
+                    sm: `${maxHeight * 0.9 * gridSize.numRows}vw`,
+                    lg: `${maxHeight * 0.65 * gridSize.numRows}vw`,
                   },
-                }}
-              ></Box>
-            );
-          })}
-        </Box>
-
-
+                }
+                
+              }}
+            ></Box>
+          </Box>
+        )}
         <Box className="tile">
           {location.pathname === "/about" && (
             <>
@@ -223,7 +290,7 @@ export default function AboutContent() {
                 sx={{
                   display: "flex",
                   flexDirection: { xs: "column", md: "row" },
-                  alignItems:"flex-start",
+                  alignItems: "flex-start",
                   justifyContent: { xs: "flex-start", md: "space-between" },
                   width: "90%",
                   zIndex: "1000",
@@ -236,7 +303,7 @@ export default function AboutContent() {
                       border: `2px solid ${theme.palette.text.highlight}`,
                       borderRadius: "2rem",
                       // width: { xs: "17rem", sm: "13rem" , md:"11rem"},
-                      fontSize: { xs: "1.2rem", sm: "1.0rem", md:"0.9rem" },
+                      fontSize: { xs: "1.2rem", sm: "1.0rem", md: "0.9rem" },
 
                       transition: "all 0.3s ease-in-out",
                       "&:hover": {
@@ -257,7 +324,7 @@ export default function AboutContent() {
                       border: `2px solid ${theme.palette.text.highlightAlt}`,
                       borderRadius: "2rem",
                       // width: { xs: "17rem", sm: "13rem" , md:"11rem"},
-                      fontSize: { xs: "1.2rem", sm: "1.0rem", md:"0.9rem" },
+                      fontSize: { xs: "1.2rem", sm: "1.0rem", md: "0.9rem" },
                       transition: "all 0.3s ease-in-out",
                       "&:hover": {
                         background: `${theme.palette.text.highlightAlt}88`,
@@ -296,7 +363,6 @@ export default function AboutContent() {
             </Typography>
           )}
         </Box>
-       
       </Box>
       <TechStacks />
     </Box>

@@ -50,7 +50,7 @@ export default function SocialContacts() {
         }}
       >
         {contactItems.map((item) => {
-          console.log(item.icon)
+          // console.log(item.icon)
           return (
             <Grid item key={item.id} xs={6} sm={6} md={12}>
               <Link href={item.linkTo} target={"blank"} underline="hover">
