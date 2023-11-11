@@ -1,7 +1,8 @@
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import GitHubIcon from "@mui/icons-material/GitHub";
 import InstagramIcon from "@mui/icons-material/Instagram";
-import TwitterIcon from "./assets/TwitterIcon";
+// import TwitterIcon from "./assets/TwitterIcon";
+import TwitterIcon from '@mui/icons-material/Twitter';
 import linkedin from "./assets/linkedin_ss.png";
 import gitHub from "./assets/gitHub.png";
 import instagram from "./assets/instagram.png";

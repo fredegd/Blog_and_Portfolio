@@ -260,9 +260,9 @@ export default function Navbar({ window, setOpen }) {
     >
       <Typography variant={"h6"} sx={{ display: "flex" }}>
         {dk ? (
-          <DarkModeIcon sx={{ fontSize: { xs: "2.2rem", sm: "2rem" } }} />
-        ) : (
           <LightModeIcon sx={{ fontSize: { xs: "2.2rem", sm: "2rem" } }} />
+        ) : (
+          <DarkModeIcon sx={{ fontSize: { xs: "2.2rem", sm: "2rem" } }} />
         )}
       </Typography>
     </IconButton>
@@ -274,81 +274,81 @@ export default function Navbar({ window, setOpen }) {
   return (
     <Box sx={{ display: "flex" }}>
       <HideOnScroll>
-          <AppBar component="nav">
-            <Toolbar
+        <AppBar component="nav">
+          <Toolbar
+            sx={{
+              backgroundColor: theme.palette.background.main,
+              height: "5rem",
+              display: "flex",
+              flexDirection: "row",
+              justifyContent: "space-between",
+              // border : `1px solid ${theme.palette.text.highlightAlt}`,
+              boxShadow: "0px 0px 10px 10px rgba(0,0,0,0.2)",
+            }}
+          >
+            <Box
+              onClick={handleDrawerBgChange}
               sx={{
-                backgroundColor: theme.palette.background.main,
-                height: "5rem",
-                display: "flex",
+                height: { xs: "3.5rem", sm: "3.5rem" },
+                width: { xs: "3.5rem", sm: "3.5rem" },
+                backgroundImage: `url(${animatedLogo})`,
+                backgroundPosition: "center",
+                backgroundRepeat: "no-repeat",
+                backgroundSize: "contain",
+                borderRadius: "50%",
+                borderBottom: `3px solid ${theme.palette.text.highlight}`,
+                borderLeft: `3px solid ${theme.palette.text.highlight}`,
+                "&:hover": {
+                  boxShadow: `0px 0px 5px 5px ${theme.palette.text.highlight}`,
+                },
+                transition: "all 0.2s ease-in-out",
+              }}
+            />
+
+            <Box
+              sx={{
+                display: { xs: "none", md: "flex" },
                 flexDirection: "row",
-                justifyContent: "space-between",
-                // border : `1px solid ${theme.palette.text.highlightAlt}`,
-                boxShadow: "0px 0px 10px 10px rgba(0,0,0,0.2)",
+                alignItems: "center",
               }}
             >
-              <Box
-                onClick={handleDrawerBgChange}
-                sx={{
-                  height: { xs: "3.5rem", sm: "3.5rem" },
-                  width: { xs: "3.5rem", sm: "3.5rem" },
-                  backgroundImage: `url(${animatedLogo})`,
-                  backgroundPosition: "center",
-                  backgroundRepeat: "no-repeat",
-                  backgroundSize: "contain",
-                  borderRadius: "50%",
-                  borderBottom: `3px solid ${theme.palette.text.highlight}`,
-                  borderLeft: `3px solid ${theme.palette.text.highlight}`,
-                  "&:hover": {
-                    boxShadow: `0px 0px 5px 5px ${theme.palette.text.highlight}`,
-                  },
-                  transition: "all 0.2s ease-in-out",
-                }}
-              />
+              <Box sx={{ display: { xs: "none", md: "block" } }}>
+                {navItems.map((item) => (
+                  <Link key={item.id} href={item.linkTo} underline="hover">
+                    <Button
+                      sx={{
+                        height: { sm: "3rem", md: "3rem" },
 
-              <Box
-                sx={{
-                  display: { xs: "none", md: "flex" },
-                  flexDirection: "row",
-                  alignItems: "center",
-                }}
-              >
-                <Box sx={{ display: { xs: "none", md: "block" } }}>
-                  {navItems.map((item) => (
-                    <Link key={item.id} href={item.linkTo} underline="hover">
-                      <Button
-                        sx={{
-                          height: { sm: "3rem", md: "3rem" },
+                        borderRadius: { sm: "1.5rem", md: "1.75rem" },
+                        padding: { sm: "0.25rem ", md: "0.95rem" },
+                        mx: { sm: "0.1rem", md: "0.7rem" },
+                        fontSize: { sm: "1.15rem", md: "1.4rem" },
+                        letterSpacing: { sm: "-0.055rem", md: "0.065rem" },
+                        color: theme.palette.text.primary,
+                        borderBottom: `4px solid ${
+                          activeMenuItem === item.id
+                            ? theme.palette.text.highlight
+                            : "transparent" // Inactive color
+                        }`,
+                        borderLeft: `4px solid ${
+                          activeMenuItem === item.id
+                            ? theme.palette.text.highlight
+                            : "transparent"
+                        }`,
 
-                          borderRadius: { sm: "1.5rem", md: "1.75rem" },
-                          padding: { sm: "0.25rem ", md: "0.95rem" },
-                          mx: { sm: "0.1rem", md: "0.7rem" },
-                          fontSize: { sm: "1.15rem", md: "1.4rem" },
-                          letterSpacing: { sm: "-0.055rem", md: "0.065rem" },
-                          color: theme.palette.text.primary,
-                          borderBottom: `4px solid ${
-                            activeMenuItem === item.id
-                              ? theme.palette.text.highlight
-                              : "transparent" // Inactive color
-                          }`,
-                          borderLeft: `4px solid ${
-                            activeMenuItem === item.id
-                              ? theme.palette.text.highlight
-                              : "transparent"
-                          }`,
+                        "&:hover": {
+                          backgroundColor: `${theme.palette.text.highlightAlt}`,
+                          boxShadow: `0px 0px 5px 5px ${theme.palette.text.highlight}`,
+                        },
+                      }}
+                    >
+                      {item.name}
+                    </Button>
+                  </Link>
+                ))}
+              </Box>
 
-                          "&:hover": {
-                            backgroundColor: `${theme.palette.text.highlightAlt}`,
-                            boxShadow: `0px 0px 5px 5px ${theme.palette.text.highlight}`,
-                          },
-                        }}
-                      >
-                        {item.name}
-                      </Button>
-                    </Link>
-                  ))}
-                </Box>
-
-                {/* <IconButton
+              {/* <IconButton
               aria-label="openBackgroudEditor"
               edge="start"
               onClick={handleDrawerBgChange}
@@ -370,24 +370,24 @@ export default function Navbar({ window, setOpen }) {
                 />
               </Typography>
             </IconButton> */}
-              </Box>
-              {dkToggleIcon}
-              <IconButton
-                aria-label="open drawer"
-                edge="start"
-                onClick={handleDrawerToggle}
-                sx={{
-                  mr: 2,
-                  display: { md: "none" },
-                  color: theme.palette.text.primary,
-                }}
-              >
-                <Typography variant={"h6"} sx={{ display: "flex" }}>
-                  <MenuIcon sx={{ fontSize: { xs: "2.2rem", sm: "2rem" } }} />
-                </Typography>
-              </IconButton>
-            </Toolbar>
-          </AppBar>
+            </Box>
+            {dkToggleIcon}
+            <IconButton
+              aria-label="open drawer"
+              edge="start"
+              onClick={handleDrawerToggle}
+              sx={{
+                mr: 2,
+                display: { md: "none" },
+                color: theme.palette.text.primary,
+              }}
+            >
+              <Typography variant={"h6"} sx={{ display: "flex" }}>
+                <MenuIcon sx={{ fontSize: { xs: "2.2rem", sm: "2rem" } }} />
+              </Typography>
+            </IconButton>
+          </Toolbar>
+        </AppBar>
       </HideOnScroll>
       <Box component="nav">
         <Drawer

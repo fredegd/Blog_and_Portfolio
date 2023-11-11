@@ -33,7 +33,7 @@ export default function AboutContent() {
 
   useEffect(() => {
     client
-      .getEntry(process.env.REACT_APP_ABOUT_IMAGE_ID)
+      .getEntry("10THe99sOMrQYp3NyoDCID")
       .then((response) => {
         console.log(response);
         setAboutImage(response.fields.authorImg.fields.file.url);
@@ -187,13 +187,16 @@ export default function AboutContent() {
                     "&:hover": {
                       background: `url(${aboutImageAlt})`,
                       backgroundPosition: {
-                        xs: ` ${-maxWidth * 1.8}vw ${bgY * 1.8 }vw`,
-                        sm: ` ${-maxWidth * 0.9}vw ${bgY * 0.9 }vw`,
-                        lg: ` ${-maxWidth * 0.65}vw ${bgY * 0.65 }vw`,
+                        xs: ` ${-maxWidth * 1.8}vw ${bgY * 1.8}vw`,
+                        sm: ` ${-maxWidth * 0.9}vw ${bgY * 0.9}vw`,
+                        lg: ` ${-maxWidth * 0.65}vw ${bgY * 0.65}vw`,
                       },
                       filter: "brightness(130%)",
                       backgroundRepeat: "noRepeat",
-                      backgroundSize: { xs: `100% ${101*divArray.length}%`, sm: `100% ${101*divArray.length}%` },
+                      backgroundSize: {
+                        xs: `100% ${101 * divArray.length}%`,
+                        sm: `100% ${101 * divArray.length}%`,
+                      },
                       width: {
                         xs: `${maxWidth * 1.8}vw`,
                         sm: `${maxWidth * 0.9}vw`,
@@ -204,7 +207,7 @@ export default function AboutContent() {
                         sm: `${maxHeight * 0.9}vw`,
                         lg: `${maxHeight * 0.65}vw`,
                       },
-                    }
+                    },
                   }}
                 ></Box>
               );
@@ -249,8 +252,7 @@ export default function AboutContent() {
                     sm: `${maxHeight * 0.9 * gridSize.numRows}vw`,
                     lg: `${maxHeight * 0.65 * gridSize.numRows}vw`,
                   },
-                }
-                
+                },
               }}
             ></Box>
           </Box>

@@ -68,6 +68,7 @@ export default function Hero() {
           height: { xs: "10rem", md: "12rem" },
           width: "100%",
           display: "flex",
+          flexDirection: "column",
           alignItems: "center",
           justifyContent: "center",
           "&:hover": {
@@ -75,7 +76,20 @@ export default function Hero() {
             
           },
         }}
-      >
+      ><Typography
+      variant="h6"
+      // sx={{
+      //   fontSize: {
+      //     xs: "3.2em",
+      //     sm: "3.5em",
+      //     md: "3.8em",
+      //     lg: "4.0em",
+      //     xl: "4.0em",
+      //   },
+      // }}
+    >
+      👋 Hi, My name is:
+    </Typography>
         <Typography
           variant="h1"
           sx={{
