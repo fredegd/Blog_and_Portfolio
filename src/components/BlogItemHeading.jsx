@@ -82,35 +82,6 @@ export default function BlogItemHeading({ blog }) {
         // boxShadow: `0px 0px 15px 15px ${theme.palette.text.highlight}`,
       }}
     >
-      <Typography
-        variant="h1"
-        sx={{
-          fontSize: {
-            xs: "8.0vw",
-            sm: "7.5vw",
-            md: "6.6vw",
-            lg: "5.8vw",
-          },
-          padding: "1rem",
-          transition: "all 0.5s ease-in-out",
-          fontWeight: "bold",
-          textAlign: "justify",
-        }}
-      >
-        {blog.fields.title}
-      </Typography>
-      <Typography
-        variant="h4"
-        sx={{
-          fontSize: { xs: "5vw", sm: "4vw", md: "3.5vw", lg: "2.55vw" },
-          fontStyle: "italic",
-          padding: { xs: "1rem", md: 1.5 },
-          pb: "1rem",
-        }}
-      >
-        {""}"{blog.fields.subtitle}"
-      </Typography>
-
       <Box
         sx={{
           height: "60vw",
@@ -128,7 +99,36 @@ export default function BlogItemHeading({ blog }) {
           boxShadow: `0px 0px 10px 10px ${theme.palette.text.highlight}88`,
         }}
       ></Box>
-
+      <Typography
+        variant="h1"
+        sx={{
+          fontSize: {
+            xs: "8.0vw",
+            sm: "7.0vw",
+            md: "6.0vw",
+            lg: "5.0vw",
+          },
+          padding: "1rem",
+          transition: "all 0.5s ease-in-out",
+          fontWeight: "bold",
+          textAlign: "justify",
+        }}
+      >
+        {blog.fields.title}
+      </Typography>
+     <Box sx={{width:"100%", maxWidth:"900px", display:"flex", justifyContent:"flex-start"}}>
+     <Typography
+        variant="h4"
+        sx={{
+          fontSize: { xs: "5vw", sm: "4vw", md: "3.5vw", lg: "2.55vw" },
+          fontStyle: "italic",
+          p: { xs: "1rem", md: 0.5 },
+          marginY: "1rem",
+        }}
+      >
+        {""}"{blog.fields.subtitle}"
+      </Typography>
+     </Box>
       <Box
         sx={{
           width: "100%",
