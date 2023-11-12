@@ -72,7 +72,7 @@ export default function Hero() {
           alignItems: "center",
           justifyContent: "center",
           "&:hover": {
-            background: `linear-gradient(transparent 0%, ${theme.palette.background.main} 25%, ${theme.palette.background.main} 75%, transparent 100%)`,
+            background: `linear-gradient(transparent 0%, ${theme.palette.background.main}88 25%, ${theme.palette.background.main}88 75%, transparent 100%)`,
             
           },
         }}
@@ -104,18 +104,6 @@ export default function Hero() {
         >
           FRED EGIDI
         </Typography>
-        {/* <Box sx={{display:"flex", flexDirection: "row"}}>
-          <Typography variant="h1" sx={hoverMove}>F</Typography>
-          <Typography variant="h1" sx={hoverMove}>R</Typography>
-          <Typography variant="h1" sx={hoverMove}>E</Typography>
-          <Typography variant="h1" sx={hoverMove}>D</Typography>
-          <Typography variant="h1" sx={hoverMove}> </Typography>
-          <Typography variant="h1" sx={hoverMove}>E</Typography>
-          <Typography variant="h1" sx={hoverMove}>G</Typography>
-          <Typography variant="h1" sx={hoverMove}>I</Typography>
-          <Typography variant="h1" sx={hoverMove}>D</Typography>
-          <Typography variant="h1" sx={hoverMove}>I</Typography>
-        </Box> */}
       </Box>
 
       <Box
@@ -127,7 +115,7 @@ export default function Hero() {
           alignItems: "center",
           justifyContent: "center",
           "&:hover": {
-            background: `linear-gradient(transparent 0%, ${theme.palette.background.main} 25%, ${theme.palette.background.main} 75%, transparent 100%)`,
+            background: `linear-gradient(transparent 0%, ${theme.palette.background.main}88 25%, ${theme.palette.background.main}88 75%, transparent 100%)`,
           },
         }}
       >
