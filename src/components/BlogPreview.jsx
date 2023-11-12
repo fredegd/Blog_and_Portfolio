@@ -17,7 +17,6 @@ export default function BlogPreview({ blogs }) {
         flexDirection: "column",
         justifyContent: "center",
         overflow: "scroll",
-        transition: "all 0.5s ease-in-out",
         paddingBottom: "5rem",
         zIndex: "1000",
       }}
@@ -28,7 +27,7 @@ export default function BlogPreview({ blogs }) {
           padding: "0 1.5rem",
         }}
         whileHover={{
-          scale: 1.04,
+          scale: 1.03,
         }}
         whileTap={{ scale: 0.9 }}
         transition={{ type: "spring", stiffness: 100, damping: 10 }}
@@ -50,19 +49,20 @@ export default function BlogPreview({ blogs }) {
               marginBottom: "5rem",
               border: `5px solid ${theme.palette.text.highlightAlt}`,
               zIndex: "1000",
+              transition: "all 0.3s ease-in-out",
               "&:hover": {
                 backgroundColor: theme.palette.background.secondary,
                 color: theme.palette.text.highlightAlt,
                 fontSize: "1.1rem",
+                borderRadius: "2rem",
               },
             }}
           >
             <Typography
               variant="h1"
               sx={{
-                fontSize: { xs: "9vw", md: "8vw", lg: "5rem" },
+                fontSize: { xs: "8vw", md: "8vw", lg: "5rem" },
                 fontWeight: "500",
-
                 transition: " all 0.5s ease-in-out",
               }}
             >
