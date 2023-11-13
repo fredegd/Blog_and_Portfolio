@@ -70,19 +70,19 @@ const stackIcons = [
 export default function TechStacks() {
   const theme = useTheme();
 
-  anime({
-    targets: ".loop-infinity",
-    translateX: [
-      `${Math.min(window.innerWidth, 1280)}`,
-      `${-stackIcons.length * 129 - Math.min(window.innerWidth, 1280)}px`,
-    ],
-    delay: function(el, i) { return i * 10 },
+  // anime({
+  //   targets: ".loop-infinity",
+  //   translateX: [
+  //     `${Math.min(window.innerWidth, 1280)}`,
+  //     `${-stackIcons.length * 129 - Math.min(window.innerWidth, 1280)}px`,
+  //   ],
+  //   delay: function(el, i) { return i * 10 },
 
-    duration: 18000,
+  //   duration: 18000,
 
-    loop: true,
-    easing: "easeInOutSine",
-  });
+  //   loop: true,
+  //   easing: "easeInOutSine",
+  // });
 
   return (
     <Box
@@ -103,11 +103,13 @@ export default function TechStacks() {
 
       <Box
         sx={{
+          padding: "1rem",
           display: "flex",
-          flexDirection: "row",
+          flexWrap: "wrap",
+          justifyContent: "center",
           alignItems: "center",
           maxWidth: "100vw",
-          overflowX: "hidden",
+          // overflowX: "hidden",
 
           gap: "1rem",
           zIndex: "1000",
@@ -121,20 +123,20 @@ export default function TechStacks() {
               sx={{
                 backgroundColor: theme.palette.background.main,
                 color: theme.palette.text.highlight,
-                margin: "2rem 0 5rem 0",
+                // margin: "2rem 0 5rem 0",
                 borderRadius: "20%",
-                padding: "1rem",
-                minWidth: "10rem",
-                height: "10rem",
+                padding: "0.8rem",
+                minWidth: "8rem",
+                height: "8rem",
                 display: "flex",
                 flexDirection: "column",
                 justifyContent: "center",
                 alignItems: "center",
-                boxShadow: `0px 0px 10px 1px ${theme.palette.text.highlight}}`,
+                boxShadow: `0px 0px 10px 1px ${theme.palette.text.primary}}`,
               }}
             >
               <Typography variant="h1">{icon.icon}</Typography>
-              <Typography variant="p">{icon.name}</Typography>
+              <Typography variant="p" fontSize={"1rem"}>{icon.name}</Typography>
             </Box>
           );
         })}

@@ -71,22 +71,10 @@ export default function Hero() {
           flexDirection: "column",
           alignItems: "center",
           justifyContent: "center",
-          "&:hover": {
-            background: `linear-gradient(transparent 0%, ${theme.palette.background.main}88 25%, ${theme.palette.background.main}88 75%, transparent 100%)`,
-            
-          },
+          background: `linear-gradient(transparent 0%, ${theme.palette.background.main}88 25%, ${theme.palette.background.main}88 75%, transparent 100%)`,
         }}
       ><Typography
       variant="h6"
-      // sx={{
-      //   fontSize: {
-      //     xs: "3.2em",
-      //     sm: "3.5em",
-      //     md: "3.8em",
-      //     lg: "4.0em",
-      //     xl: "4.0em",
-      //   },
-      // }}
     >
       👋 Hi, My name is:
     </Typography>
@@ -114,9 +102,8 @@ export default function Hero() {
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          "&:hover": {
-            background: `linear-gradient(transparent 0%, ${theme.palette.background.main}88 25%, ${theme.palette.background.main}88 75%, transparent 100%)`,
-          },
+          background: `linear-gradient(transparent 0%, ${theme.palette.background.main}88 25%, ${theme.palette.background.main}88 75%, transparent 100%)`,
+          
         }}
       >
         <Typography

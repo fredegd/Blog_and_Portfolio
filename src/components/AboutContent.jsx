@@ -134,17 +134,19 @@ export default function AboutContent() {
           zIndex: "1000",
           padding: { xs: "2rem", md: "2.5rem" },
           paddingBottom: { xs: "5rem", md: "2.5rem" },
+          paddingX: { sm:"3rem", md: "5rem", lg: "10rem"},
+
           display: "flex",
           flexDirection: { xs: "column", sm: "row" },
           alignItems: { xs: "center", sm: "flex-start" },
           gap: "2rem",
           justifyContent: "space-between",
           width: "100%",
-          // border: "1px solid pink",
+
           background: {
-            xs: `linear-gradient(90deg, #00000000 0%,${theme.palette.background.transparent} 5%, ${theme.palette.background.main} 20%, ${theme.palette.background.main} 80%, ${theme.palette.background.transparent} 95%,  #00000000 100%)`,
-            lg: `linear-gradient(90deg, #00000000 0%, ${theme.palette.background.main} 3%, ${theme.palette.background.main} 70%, ${theme.palette.background.transparent} 85%,  #00000000 100%)`,
-            xl: `linear-gradient(90deg, #00000000 0%, ${theme.palette.background.main} 5%, ${theme.palette.background.main} 70%, ${theme.palette.background.transparent} 85%,  #00000000 100%)`,
+            xs: `linear-gradient(90deg, #00000000 0%,${theme.palette.background.transparent} 8%, ${theme.palette.background.main} 20%, ${theme.palette.background.main} 80%, ${theme.palette.background.transparent} 92%,  #00000000 100%)`,
+            lg: `linear-gradient(90deg, #00000000 0%, ${theme.palette.background.main} 25%, ${theme.palette.background.main}ee 70%, ${theme.palette.background.transparent} 92%,  #00000000 100%)`,
+            xl: `linear-gradient(90deg, #00000000 0%, ${theme.palette.background.main} 25%, ${theme.palette.background.main}ee 70%, ${theme.palette.background.transparent} 92%,  #00000000 100%)`,
           },
         }}
       >
@@ -305,7 +307,7 @@ export default function AboutContent() {
                       border: `2px solid ${theme.palette.text.highlight}`,
                       borderRadius: "2rem",
                       // width: { xs: "17rem", sm: "13rem" , md:"11rem"},
-                      fontSize: { xs: "1.2rem", sm: "1.0rem", md: "0.9rem" },
+                      fontSize: { xs: "1.2rem", sm: "1.0rem" },
 
                       transition: "all 0.3s ease-in-out",
                       "&:hover": {
@@ -326,7 +328,7 @@ export default function AboutContent() {
                       border: `2px solid ${theme.palette.text.highlightAlt}`,
                       borderRadius: "2rem",
                       // width: { xs: "17rem", sm: "13rem" , md:"11rem"},
-                      fontSize: { xs: "1.2rem", sm: "1.0rem", md: "0.9rem" },
+                      fontSize: { xs: "1.2rem", sm: "1.0rem" },
                       transition: "all 0.3s ease-in-out",
                       "&:hover": {
                         background: `${theme.palette.text.highlightAlt}88`,
