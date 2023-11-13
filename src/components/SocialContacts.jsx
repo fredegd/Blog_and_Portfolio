@@ -136,7 +136,9 @@ export default function SocialContacts() {
                 underline="hover"
                 zIndex={100}
                 sx={{
-                  display: { xs: "none", md: "block" },
+                  display: { xs: "none", md: "flex" },
+                  alignItems: "center",
+                  padding: "1rem",
                   width: "100%",
                   height: {
                     md: "180px",
