@@ -1,17 +1,15 @@
 import { useState, useEffect } from "react";
-import { useGesture } from "@use-gesture/react";
 
-export default function Kaleidoscope(bgImage) {
-  // State variables to store mouse positions
-  const [mouseX, setMouseX] = useState(0);
-  const [mouseY, setMouseY] = useState(0);
-  const [gridSize, setGridSize] = useState({ numRows: 9, numCols: 5 });
+export default function Kaleidoscope({ bgImage, staticBg }) {
+  console.log("Kaleidoscope rendered", staticBg);
+
+  const [gridSize, setGridSize] = useState({ numRows: 9, numCols: 7 });
 
   const maxScale = 1.0;
 
   const calculateGridSize = () => {
-    const newNumRows = window.innerHeight > window.innerWidth ? 9 : 5;
-    const newNumCols = window.innerHeight > window.innerWidth ? 5 : 9;
+    const newNumRows = window.innerHeight > window.innerWidth ? 9 : 7;
+    const newNumCols = window.innerHeight > window.innerWidth ? 7 : 9;
     // console.log(newNumRows, newNumCols);
     return { numRows: newNumRows, numCols: newNumCols };
   };
@@ -53,9 +51,10 @@ export default function Kaleidoscope(bgImage) {
     bgImage &&
       squares.forEach((square) => {
         square.style.backgroundImage = `url(data:image/svg+xml;base64,${btoa(
-          bgImage.bgImage
+          bgImage
         )})`;
         square.style.backgroundPosition = "center";
+        square.style.backgroundSize = "cover";
         // square.style.transition = "0.5s ease-out"; //commented out temporarily
         square.style.opacity = "0.6";
       });
@@ -68,11 +67,18 @@ export default function Kaleidoscope(bgImage) {
         const col = index % gridSize.numCols;
         const xt = remap(col, 0, gridSize.numCols, 0, gridW);
         const yt = remap(row, 0, gridSize.numRows, 0, gridH);
-        const distance = Math.sqrt((xt - mX) ** 2 + (yt - mY) ** 2);
+        const distance = Math.sqrt((mX - xt) ** 2 + (mY - yt) ** 2);
+        // const distance = Math.sqrt((mX-xt) ** 2 + (mY-yt) ** 2);
         const multiplier = Math.min(
           maxScale,
           maxScale *
-            remap(distance, 0, (gridW + gridH) / 4, 3 / Math.sqrt(1.1), 0)
+            remap(
+              distance,
+              0,
+              Math.sqrt(gridW * gridH) / 2,
+              4 / Math.sqrt(2),
+              0
+            )
         );
 
         square.style.width = `${tileW * 1}px`; // instead of 1, use multiplier
@@ -81,8 +87,8 @@ export default function Kaleidoscope(bgImage) {
 
         // Calculate background tiles position based on the square's position
 
-        const bgX = -xt;
-        const bgY = -yt;
+        const bgX = gridW - xt;
+        const bgY = gridH - yt;
         square.style.backgroundPosition = `${bgX}px ${bgY}px`;
         square.style.backgroundSize = `${gridW * multiplier}px ${
           gridH * multiplier
@@ -91,8 +97,7 @@ export default function Kaleidoscope(bgImage) {
       });
     };
 
-    const handleTouchMove = (event, mx, my) => {
-      // console.log(event.touches[0].clientX, event.touches[0].clientY);
+    const handleTouchMove = (event) => {
       const gridContainerRect = gridContainer.getBoundingClientRect();
       const tileWidth = gridContainerRect.width / gridSize.numCols;
       const tileHeight = gridContainerRect.height / gridSize.numRows;
@@ -104,8 +109,6 @@ export default function Kaleidoscope(bgImage) {
         event.touches[0].clientY -
         gridContainerRect.height * 0.5 -
         tileHeight * 0.5;
-      setMouseX(newMouseX);
-      setMouseY(newMouseY);
 
       shiftSquares(
         newMouseX,
@@ -125,9 +128,6 @@ export default function Kaleidoscope(bgImage) {
         e.clientX - gridContainerRect.width * 0.5 - tileWidth * 0.5;
       const newMouseY =
         e.clientY - gridContainerRect.height * 0.5 - tileHeight * 0.5;
-
-      setMouseX(newMouseX);
-      setMouseY(newMouseY);
 
       shiftSquares(
         newMouseX,
@@ -151,24 +151,25 @@ export default function Kaleidoscope(bgImage) {
     const isTouchDevice =
       "ontouchstart" in window || navigator.maxTouchPoints > 0;
 
-    // Add the appropriate event listener
-    if (isTouchDevice) {
-      // console.log("touch device detected");
-      document.addEventListener("touchmove", handleTouchMove);
-    } else {
-      // console.log("mouse device detected");
-      document.addEventListener("mousemove", handleMouseMove);
+    if (!staticBg) {
+      // Add the appropriate event listener
+      if (isTouchDevice) {
+        // console.log("touch device detected");
+        document.addEventListener("touchmove", handleTouchMove);
+      } else {
+        // console.log("mouse device detected");
+        document.addEventListener("mousemove", handleMouseMove);
+      }
     }
-
     return () => {
-      // Remove the mousemove event listener when component unmounts
+      // Remove the event listeners when component unmounts
       document.removeEventListener("mousemove", handleMouseMove);
       document.removeEventListener("touchmove", handleTouchMove);
       window.removeEventListener("resize", handleWindowResize);
 
       gridContainer.innerHTML = "";
     };
-  }, [bgImage, window.innerWidth]);
+  }, [bgImage, window.innerWidth, staticBg]);
 
   // a function to remap a value from one range to another range
   function remap(value, fromLow, fromHigh, toLow, toHigh) {

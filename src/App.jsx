@@ -12,30 +12,28 @@ import DrawerBGChange from "./components/DrawerBGChange";
 import Kaleidoscope from "./components/Kaleidoscope";
 import { client } from "./client";
 
-
 import { colorsToChooseFrom } from "./colorsToChooseFrom";
 import "./App.css";
 
-import DarkModeProvider from "./context/DarkModeContext";
+// import DarkModeProvider from "./context/DarkModeContext";
 
 import { ThemeProvider } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 
 import { themeManager } from "./theme";
 import { useDarkMode } from "./context/DarkModeContext.jsx";
-  
-
 
 export default function App() {
-
-
   const { dk } = useDarkMode();
   const theme = themeManager(dk);
   const [blogs, setBlogs] = useState([]);
+  const [staticBg, setStaticBg] = useState(
+    localStorage.getItem("staticBg") ?JSON.parse( localStorage.getItem("staticBg")) : false
+  );
+  localStorage.setItem("staticBg", staticBg); // Save staticBg on LS
 
-  //  console.log(theme);
+  console.log("app rendered", staticBg);
   const [open, setOpen] = useState(false); //a state to control the drawer
-
   const [bgImage, setBgImage] = useState(
     localStorage.getItem("svgData") ? localStorage.getItem("svgData") : null
   );
@@ -50,7 +48,7 @@ export default function App() {
     const randomIndex = Math.floor(Math.random() * colorsToChooseFrom.length);
     const color = colorsToChooseFrom[randomIndex].value;
     localStorage.setItem(colName, color);
-     console.log(color, " was chosen");
+    console.log(color, " was chosen");
 
     return color;
   };
@@ -90,13 +88,15 @@ export default function App() {
             setColor2={setColor2}
             open={open}
             setOpen={setOpen}
+            staticBg={staticBg}
+            setStaticBg={setStaticBg}
           />{" "}
-          <Kaleidoscope bgImage={bgImage} />
+          <Kaleidoscope bgImage={bgImage} staticBg={staticBg} />
           <Routes>
             <Route path="/works" element={<Projects />} />
             <Route path="/works/read/:projectId" element={<ProjectItem />} />
             <Route path="/blog" element={<Blog />} />
-            <Route path="/blog/read/:blogItemid" element={<BlogItem  />} />
+            <Route path="/blog/read/:blogItemid" element={<BlogItem />} />
             <Route path="/about" element={<About />} />
             <Route path="/contact" element={<Contact />} />
 

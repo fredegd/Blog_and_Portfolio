@@ -3,9 +3,13 @@ import Button from "@mui/material/Button";
 import Slider from "@mui/material/Slider";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
+import Switch from "@mui/material/Switch";
+
 import { useDarkMode } from "../context/DarkModeContext.jsx";
 import { useTheme } from "@mui/material/styles";
 import { colorsToChooseFrom } from "../colorsToChooseFrom.js";
+
+import { signal, effect } from "@preact/signals-react";
 
 //
 //a function to choose from a list of colors
@@ -20,7 +24,7 @@ const getRandomHexColor = (colName) => {
   const randomIndex = Math.floor(Math.random() * colorsToChooseFrom.length);
   const color = colorsToChooseFrom[randomIndex].value;
   localStorage.setItem(colName, color);
-   console.log(color, " was chosen");
+  console.log(color, " was chosen");
 
   return color;
 };
@@ -30,16 +34,23 @@ const svgHeight = 300;
 const startString = `<svg xmlns="http://www.w3.org/2000/svg" width="${svgWidth}" height="${svgHeight}">`;
 const endString = "</svg>";
 
-function Artwork({
+export default function Artwork({
   bgImage,
   setBgImage,
   color1,
   color2,
   setColor1,
   setColor2,
+  staticBg,
+  setStaticBg,
 }) {
   const theme = useTheme();
   const dk = useDarkMode();
+
+  const toggleStaticBg = () => {
+    setStaticBg((prev) => (prev = event.target.checked));
+    localStorage.setItem("staticBg", !staticBg); // Save staticBg on LS
+  };
 
   //bg color according to the theme dark or light
   const [bgColor, setBgColor] = useState(theme.palette.background.main);
@@ -106,8 +117,7 @@ function Artwork({
           nextIndex =
             (currentIndex +
               // Math.floor(Math.random() * (gridSize ** 2 - 2)) +
-              Math.floor(Math.random() * (gridSize**gridSize))) %
-
+              Math.floor(Math.random() * gridSize ** gridSize)) %
             gridSize ** 2;
         } while (visitedPoints.has(nextIndex));
 
@@ -119,19 +129,20 @@ function Artwork({
 
         currentIndex = nextIndex;
 
-        tempString += `<line x1="${startX}" y1="${startY}" x2="${endX}" y2="${endY}" stroke="${col+'ff'}" stroke-width="${sw}" stroke-linecap="round"/>`;
+        tempString += `<line x1="${startX}" y1="${startY}" x2="${endX}" y2="${endY}" stroke="${
+          col + "ff"
+        }" stroke-width="${sw}" stroke-linecap="round"/>`;
       }
     }
 
     console.log("new strokesString");
-    
+
     return tempString;
   };
 
   const [strokesString, setStrokesString] = useState(
     bgImage ? extractStrokesFromSVG() : drawStrokes()
   );
-  
 
   useEffect(() => {
     const svgDataString =
@@ -248,7 +259,10 @@ function Artwork({
       >
         <Box sx={{ width: 300 }}>
           <Box onClick={handleDrawAndStore}>
-            <Typography variant="p" sx={{ fontSize:{xs:16,md:18}}}> Tap to Generate a new Background Pattern</Typography>
+            <Typography variant="p" sx={{ fontSize: { xs: 16, md: 18 } }}>
+              {" "}
+              Tap to Generate a new Background Pattern
+            </Typography>
 
             {/* an element displaying the content of bgImage */}
 
@@ -264,9 +278,35 @@ function Artwork({
             ></Box>
           </Box>
         </Box>
+
         <Box sx={{ width: 300 }}>
-          <Typography variant="p" sx={{ fontSize:{xs:16,md:18}}}>
-            Matrix Grid Size: {gridSize}x{gridSize}
+          <Box sx={{ mt: "1rem", alignSelf: "center" }}>
+            <Typography
+              sx={{
+                height: "3rem",
+                width: 300,
+                // border: `2px solid ${theme.palette.text.primary}`,
+                // borderRadius: "1.5rem",
+                // display: "flex",
+                // alignItems: "flex-start",
+                // justifyContent: "center",
+              
+              }}
+            >
+              { "static BG"}
+              <Switch
+              checked={staticBg}
+              onChange={toggleStaticBg}
+              inputProps={{ "aria-label": "controlled" }}
+            />
+            </Typography>
+            
+          </Box>
+        </Box>
+
+        <Box sx={{ width: 300 }}>
+          <Typography variant="p" sx={{ fontSize: { xs: 16, md: 18 } }}>
+            Matrix Size: {gridSize}x{gridSize}
           </Typography>
           <Slider
             aria-label="gridSize"
@@ -281,7 +321,9 @@ function Artwork({
         </Box>
 
         <Box sx={{ width: 300, my: "-0.5rem" }}>
-          <Typography variant="p" sx={{ fontSize:{xs:16,md:18}}}>Segment Amount: {segmentsAmount}</Typography>
+          <Typography variant="p" sx={{ fontSize: { xs: 16, md: 18 } }}>
+            Segment Amount: {segmentsAmount}
+          </Typography>
           <Slider
             aria-label="segmentsAmount"
             value={segmentsAmount}
@@ -308,11 +350,14 @@ function Artwork({
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
+              "&:hover": {
+                cursor: "pointer",
+              },
             }}
           >
             Color 1
           </Typography>
-{color1===color2?("="):("")}
+          {color1 === color2 ? "=" : ""}
           <Typography
             onClick={() => handleColorChange("col2", setColor2)}
             sx={{
@@ -324,6 +369,9 @@ function Artwork({
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
+              "&:hover": {
+                cursor: "pointer",
+              },
             }}
           >
             Color 2
@@ -341,6 +389,9 @@ function Artwork({
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
+              "&:hover": {
+                cursor: "pointer",
+              },
             }}
           >
             save SVG
@@ -350,5 +401,3 @@ function Artwork({
     </div>
   );
 }
-
-export default Artwork;
