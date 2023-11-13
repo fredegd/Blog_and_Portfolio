@@ -80,10 +80,10 @@ export default function BlogItem() {
         >
           <BlogItemHeading blog={blog} />
           <BlogItemContent blog={blog} />
-          <ScrollIndicator />
           <CommentBox
             subjectId={blog.sys.id}
           />
+          <ScrollIndicator />
         </Box>
         <Footer />
 

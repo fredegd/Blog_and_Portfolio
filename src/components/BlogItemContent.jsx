@@ -1,4 +1,4 @@
-import { Box } from "@mui/material";
+import { Box, Divider } from "@mui/material";
 import { useRef } from "react";
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
 import { BLOCKS, INLINES } from "@contentful/rich-text-types";
@@ -14,7 +14,7 @@ export default function BlogItemContent({ blog }) {
             paddingX: { xs: "1.3rem", sm: "1rem", md: "0.5rem", lg: "0rem" },
             marginY: { xs: "1rem", sm: "1.5rem", md: "1.5rem", lg: "1.5rem" },
             fontSize: {
-              xs: "1.0rem",
+              xs: "1.2rem",
               sm: "1.3rem",
               md: "1.4rem",
               lg: "1.5rem",
@@ -65,11 +65,6 @@ export default function BlogItemContent({ blog }) {
   const displayContent = (content) => {
     let id = 0;
     const paragraphs = renderRichText(content);
-    // const update = paragraphs.map((paragraph, index) => {
-    //   return paragraph;
-    // });
-
-    // return update;
     return paragraphs;
   };
 
@@ -87,6 +82,7 @@ export default function BlogItemContent({ blog }) {
       }}
     >
       {displayContent(blog.fields.content)}
+      <Divider sx={{ width: "100%" }} />
     </Box>
   );
 }

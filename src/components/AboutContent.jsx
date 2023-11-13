@@ -33,7 +33,7 @@ export default function AboutContent() {
 
   useEffect(() => {
     client
-      .getEntry("10THe99sOMrQYp3NyoDCID")
+      .getEntry(import.meta.env.VITE_ABOUT_IMAGE_ID)
       .then((response) => {
         console.log(response);
         setAboutImage(response.fields.authorImg.fields.file.url);
