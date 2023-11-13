@@ -259,7 +259,7 @@ export default function Artwork({
       >
         <Box sx={{ width: 300 }}>
           <Box onClick={handleDrawAndStore}>
-            <Typography variant="p" sx={{ fontSize: { xs: 16, md: 18 } }}>
+            <Typography variant="p" sx={{ fontSize: { xs: 16, md: 18 }, fontWeight:"bold" }}>
               {" "}
               Tap to Generate a new Background Pattern
             </Typography>

@@ -25,7 +25,7 @@ import LightModeIcon from "@mui/icons-material/LightMode";
 import MenuIcon from "@mui/icons-material/Menu";
 import DarkModeIcon from "@mui/icons-material/DarkMode";
 import CloseIcon from "@mui/icons-material/Close";
-
+import SettingsSuggestIcon from "@mui/icons-material/SettingsSuggest";
 import { navItems } from "../navItems";
 import animatedLogo from "../assets/animatedLogo.gif";
 import anime from "animejs";
@@ -254,7 +254,8 @@ export default function Navbar({ window, setOpen }) {
         width: { xs: "1.6rem", sm: "1.6rem" },
         height: { xs: "1.6rem", sm: "1.6rem" },
         "&:hover": {
-          boxShadow: ` 0px 0px 8px 8px ${theme.palette.text.highlight} , inset 0px 0px 2.5px 2.5px ${theme.palette.text.highlight}`,
+          border: `1px solid ${theme.palette.text.highlight}`,
+          boxShadow: ` 0px 0px 8px 8px ${theme.palette.text.highlight} , inset 0px 0px 2.0px 2.0px ${theme.palette.text.highlight}`,
         },
       }}
     >
@@ -286,24 +287,25 @@ export default function Navbar({ window, setOpen }) {
               boxShadow: "0px 0px 10px 10px rgba(0,0,0,0.2)",
             }}
           >
-            <Box
-              onClick={handleDrawerBgChange}
-              sx={{
-                height: { xs: "3.5rem", sm: "3.5rem" },
-                width: { xs: "3.5rem", sm: "3.5rem" },
-                backgroundImage: `url(${animatedLogo})`,
-                backgroundPosition: "center",
-                backgroundRepeat: "no-repeat",
-                backgroundSize: "contain",
-                borderRadius: "50%",
-                borderBottom: `3px solid ${theme.palette.text.highlight}`,
-                borderLeft: `3px solid ${theme.palette.text.highlight}`,
-                "&:hover": {
-                  boxShadow: `0px 0px 5px 5px ${theme.palette.text.highlight}`,
-                },
-                transition: "all 0.2s ease-in-out",
-              }}
-            />
+            <Link href={"/"}>
+              <Box
+                sx={{
+                  height: { xs: "3.5rem", sm: "3.5rem" },
+                  width: { xs: "3.5rem", sm: "3.5rem" },
+                  backgroundImage: `url(${animatedLogo})`,
+                  backgroundPosition: "center",
+                  backgroundRepeat: "no-repeat",
+                  backgroundSize: "contain",
+                  borderRadius: "50%",
+                  borderBottom: `3px solid ${theme.palette.text.highlight}`,
+                  borderLeft: `3px solid ${theme.palette.text.highlight}`,
+                  "&:hover": {
+                    boxShadow: `0px 0px 5px 5px ${theme.palette.text.highlight}`,
+                  },
+                  transition: "all 0.2s ease-in-out",
+                }}
+              />
+            </Link>
 
             <Box
               sx={{
@@ -347,31 +349,35 @@ export default function Navbar({ window, setOpen }) {
                   </Link>
                 ))}
               </Box>
-
-              {/* <IconButton
-              aria-label="openBackgroudEditor"
-              edge="start"
-              onClick={handleDrawerBgChange}
-              sx={{
-                color: theme.palette.text.highlight,
-                mx: "0.8rem",
-                width: { xs: "1.6rem", sm: "1.6rem" },
-                height: { xs: "1.6rem", sm: "1.6rem" },
-                padding: 0,
-                borderRadius: "10%",
-                "&:hover": {
-                  boxShadow: `0px 0px 10px 10px ${theme.palette.text.highlightAlt}`,
-                },
-              }}
-            >
-              <Typography variant={"h6"} sx={{ display: "flex" }}>
-                <WallpaperIcon
-                  sx={{ fontSize: { xs: "2.2rem", sm: "2rem" } }}
-                />
-              </Typography>
-            </IconButton> */}
             </Box>
-            {dkToggleIcon}
+
+            <Box sx={{ display: "flex" }}>
+              <IconButton
+                aria-label="openBackgroudEditor"
+                edge="start"
+                onClick={handleDrawerBgChange}
+                sx={{
+                  color: theme.palette.text.highlightAlt,
+                  mx: "0.8rem",
+                  width: { xs: "1.6rem", sm: "1.6rem" },
+                  height: { xs: "1.6rem", sm: "1.6rem" },
+                  padding: 0,
+                  borderRadius: "50%",
+                  alignItems: "center",
+                  "&:hover": {
+                    boxShadow: ` -2px 2px 8px 8px ${theme.palette.text.highlight} , inset 0px 0px 5.0px 5.0px ${theme.palette.text.highlight}`,
+                  },
+                }}
+              >
+                <Typography variant={"h6"} sx={{ display: "flex" }}>
+                  <SettingsSuggestIcon
+                    sx={{ fontSize: { xs: "2.2rem", sm: "2rem" } }}
+                  />
+                </Typography>
+              </IconButton>
+              {dkToggleIcon}
+            </Box>
+
             <IconButton
               aria-label="open drawer"
               edge="start"
