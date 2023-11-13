@@ -9,8 +9,7 @@ import { client } from "../client"; // contentful client
 
 import BlogItemHeading from "./BlogItemHeading";
 import BlogItemContent from "./BlogItemContent";
-import MyCommentBox from "./MyCommentBox";
-import postData  from "../postCommentData";
+import CommentBox from "./CommentBox";
 import Footer from "./Footer";
 import ScrollToTop from "./ScrollToTop";
 import PopOver from "./PopOver";
@@ -82,10 +81,8 @@ export default function BlogItem() {
           <BlogItemHeading blog={blog} />
           <BlogItemContent blog={blog} />
           <ScrollIndicator />
-          <MyCommentBox
+          <CommentBox
             subjectId={blog.sys.id}
-            postData={postData}
-            contentfulClient={client}
           />
         </Box>
         <Footer />
