@@ -8,9 +8,9 @@ import { Box, Typography } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 import { BLOCKS, INLINES } from "@contentful/rich-text-types";
 
-import { useDarkMode } from "../context/DarkModeContext.jsx";
+import { useDarkMode } from "../../context/DarkModeContext.jsx";
 
-export default function BlogItemCard({ blog }) {
+export default function ProjectItemCard({ project }) {
   const { dk } = useDarkMode();
   const theme = useTheme();
 
@@ -47,23 +47,23 @@ export default function BlogItemCard({ blog }) {
   // Truncate the text to the first 45 chars
 
   const truncatedTitle = () => {
-    const title = blog.fields.title;
-    if (title.length < 40) {
+    const title = project.fields.title;
+    if (title.length < 50) {
       return title;
     } else {
-      return title.split("").slice(0, 45).join("").trim() + " ...";
+      return title.split("").slice(0, 45).join("").trim() + "...";
     }
   };
 
   // Truncate the text to the first 20 words
 
   const truncatedContent = () => {
-    const contentPreview = extractTextFromRichText(blog.fields.content);
+    const contentPreview = extractTextFromRichText(project.fields.description);
     const words = contentPreview.split(" ");
-    if (words.length < 13) {
+    if (words.length < 20) {
       return words.join(" ");
     } else {
-      return words.slice(0, 13).join(" ") + " [...]";
+      return words.slice(0, 20).join(" ") + " [...]";
     }
   };
 
@@ -80,7 +80,7 @@ export default function BlogItemCard({ blog }) {
         whileTap={{ scale: 0.9 }}
       >
         <Link
-          to={`/blog/read/${blog.sys.id}`}
+          to={`/works/read/${project.sys.id}`}
           style={{
             textDecoration: "none",
             color: theme.palette.text.secondary,
@@ -94,18 +94,18 @@ export default function BlogItemCard({ blog }) {
               justifyContent: "flex-start",
               height: { xs: "100vw", sm: "90vw", md: "47vw", lg: "30vw" },
               maxHeight: { lg: "400px" },
-              // border: `5px solid ${theme.palette.text.highlight}`,
-              boxShadow: `0 0 10px ${theme.palette.text.highlight}`,
+              // border: `5px solid ${theme.palette.text.highlightAlt}`,
+              boxShadow: `0 0 10px ${theme.palette.text.highlightAlt}`,
               padding: "1rem",
               "&:hover": {
                 backgroundColor: `${theme.palette.background.main}`,
-                // border: `5px solid ${theme.palette.text.highlightAlt}`,
-                boxShadow: `0 0 10px ${theme.palette.text.highlightAlt}`,
+                // border: `5px solid ${theme.palette.text.highlight}`,
+                boxShadow: `0 0 10px ${theme.palette.text.highlight}`,
                 color: theme.palette.text.primary,
               },
             }}
           >
-            {blog && (
+            {project && (
               <>
                 {" "}
                 <Box
@@ -113,7 +113,7 @@ export default function BlogItemCard({ blog }) {
                     height: { xs: "66vw", md: "32vw", lg: "20vw" },
 
                     width: "100%",
-                    backgroundImage: `url(${blog.fields.blogTitleImage.fields.file.url})`,
+                    backgroundImage: `url(${project.fields.titleImage.fields.file.url})`,
                     filter: "grayscale(90%)",
                     backgroundPosition: "center",
                     backgroundSize: `100% auto`,
@@ -131,8 +131,6 @@ export default function BlogItemCard({ blog }) {
                   flexDirection={"column"}
                   sx={{
                     width: "100%",
-                    // marginTop: "1rem",
-                    // transition: "all 0.5s ease-in-out",
                   }}
                 >
                   <Box display={"flex"} alignItems={"flex-Start"}>
@@ -143,9 +141,9 @@ export default function BlogItemCard({ blog }) {
                       lineHeight={"1"}
                       sx={{
                         fontSize: {
-                          xs: "1.5rem",
+                          xs: "1.8rem",
                           sm: "2rem",
-                          md: "1.6rem",
+                          md: "1.4rem",
                           lg: "1.6rem",
                           xl: "1.7rem",
                         },
@@ -158,12 +156,10 @@ export default function BlogItemCard({ blog }) {
                       {truncatedTitle()}
                     </Typography>
                   </Box>
-
                   <Box
                     display={"flex"}
                     alignItems={"center"}
                     sx={{
-                      py: "1rem",
                       // color: theme.palette.text.secondary,
                       "&:hover": { color: "inherit" },
                     }}
@@ -171,11 +167,11 @@ export default function BlogItemCard({ blog }) {
                     <Typography
                       variant="p"
                       sx={{
-                        fontSize: { xs: "1.2rem", md: "1rem" },
+                        fontSize: "0.8rem",
                         textAlign: "justify",
                         textJustify: "interWord",
                         zIndex: "100",
-                        letterSpacing: `0.02vw`,
+                        letterSpacing: `0.08vw`,
                       }}
                     >
                       {truncatedContent()}

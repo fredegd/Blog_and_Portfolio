@@ -8,9 +8,9 @@ import { Box, Typography } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 import { BLOCKS, INLINES } from "@contentful/rich-text-types";
 
-import { useDarkMode } from "../context/DarkModeContext.jsx";
+import { useDarkMode } from "../../context/DarkModeContext.jsx";
 
-export default function ProjectItemCard({ project }) {
+export default function BlogItemCard({ blog }) {
   const { dk } = useDarkMode();
   const theme = useTheme();
 
@@ -47,23 +47,23 @@ export default function ProjectItemCard({ project }) {
   // Truncate the text to the first 45 chars
 
   const truncatedTitle = () => {
-    const title = project.fields.title;
-    if (title.length < 50) {
+    const title = blog.fields.title;
+    if (title.length < 40) {
       return title;
     } else {
-      return title.split("").slice(0, 45).join("").trim() + "...";
+      return title.split("").slice(0, 45).join("").trim() + " ...";
     }
   };
 
   // Truncate the text to the first 20 words
 
   const truncatedContent = () => {
-    const contentPreview = extractTextFromRichText(project.fields.description);
+    const contentPreview = extractTextFromRichText(blog.fields.content);
     const words = contentPreview.split(" ");
-    if (words.length < 20) {
+    if (words.length < 13) {
       return words.join(" ");
     } else {
-      return words.slice(0, 20).join(" ") + " [...]";
+      return words.slice(0, 13).join(" ") + " [...]";
     }
   };
 
@@ -80,7 +80,7 @@ export default function ProjectItemCard({ project }) {
         whileTap={{ scale: 0.9 }}
       >
         <Link
-          to={`/works/read/${project.sys.id}`}
+          to={`/blog/read/${blog.sys.id}`}
           style={{
             textDecoration: "none",
             color: theme.palette.text.secondary,
@@ -94,18 +94,18 @@ export default function ProjectItemCard({ project }) {
               justifyContent: "flex-start",
               height: { xs: "100vw", sm: "90vw", md: "47vw", lg: "30vw" },
               maxHeight: { lg: "400px" },
-              // border: `5px solid ${theme.palette.text.highlightAlt}`,
-              boxShadow: `0 0 10px ${theme.palette.text.highlightAlt}`,
+              // border: `5px solid ${theme.palette.text.highlight}`,
+              boxShadow: `0 0 10px ${theme.palette.text.highlight}`,
               padding: "1rem",
               "&:hover": {
                 backgroundColor: `${theme.palette.background.main}`,
-                // border: `5px solid ${theme.palette.text.highlight}`,
-                boxShadow: `0 0 10px ${theme.palette.text.highlight}`,
+                // border: `5px solid ${theme.palette.text.highlightAlt}`,
+                boxShadow: `0 0 10px ${theme.palette.text.highlightAlt}`,
                 color: theme.palette.text.primary,
               },
             }}
           >
-            {project && (
+            {blog && (
               <>
                 {" "}
                 <Box
@@ -113,7 +113,7 @@ export default function ProjectItemCard({ project }) {
                     height: { xs: "66vw", md: "32vw", lg: "20vw" },
 
                     width: "100%",
-                    backgroundImage: `url(${project.fields.titleImage.fields.file.url})`,
+                    backgroundImage: `url(${blog.fields.blogTitleImage.fields.file.url})`,
                     filter: "grayscale(90%)",
                     backgroundPosition: "center",
                     backgroundSize: `100% auto`,
@@ -131,6 +131,8 @@ export default function ProjectItemCard({ project }) {
                   flexDirection={"column"}
                   sx={{
                     width: "100%",
+                    // marginTop: "1rem",
+                    // transition: "all 0.5s ease-in-out",
                   }}
                 >
                   <Box display={"flex"} alignItems={"flex-Start"}>
@@ -141,9 +143,9 @@ export default function ProjectItemCard({ project }) {
                       lineHeight={"1"}
                       sx={{
                         fontSize: {
-                          xs: "1.8rem",
+                          xs: "1.5rem",
                           sm: "2rem",
-                          md: "1.4rem",
+                          md: "1.6rem",
                           lg: "1.6rem",
                           xl: "1.7rem",
                         },
@@ -156,10 +158,12 @@ export default function ProjectItemCard({ project }) {
                       {truncatedTitle()}
                     </Typography>
                   </Box>
+
                   <Box
                     display={"flex"}
                     alignItems={"center"}
                     sx={{
+                      py: "1rem",
                       // color: theme.palette.text.secondary,
                       "&:hover": { color: "inherit" },
                     }}
@@ -167,11 +171,11 @@ export default function ProjectItemCard({ project }) {
                     <Typography
                       variant="p"
                       sx={{
-                        fontSize: "0.8rem",
+                        fontSize: { xs: "1.2rem", md: "1rem" },
                         textAlign: "justify",
                         textJustify: "interWord",
                         zIndex: "100",
-                        letterSpacing: `0.08vw`,
+                        letterSpacing: `0.02vw`,
                       }}
                     >
                       {truncatedContent()}

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useTheme } from "@mui/material/styles";
-import { client } from "../client";
+import { contentfulClient } from "../../utils/contentfulClient";
 import BlogItemCard from "./BlogItemCard";
 import { Box, Grid, Typography } from "@mui/material";
 
@@ -10,7 +10,7 @@ export default function BlogListCF() {
   const theme = useTheme();
 
   useEffect(() => {
-    client
+    contentfulClient
       .getEntries({
         content_type: "fredegdBlog",
       })

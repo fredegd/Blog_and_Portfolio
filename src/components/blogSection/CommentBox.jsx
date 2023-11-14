@@ -10,7 +10,7 @@ export default function CommentBox({ subjectId }) {
   console.log(subjectId);
 
   return (
-    <Box sx={{ width: "100%", maxWidth:"900px", display:"flex",flexDirection:"column"}}>
+    <Box sx={{ width: "100%", maxWidth:"900px", display:"flex",flexDirection:"column", padding:"1rem"}}>
       <CommentList />
       <CommentForm/>
     </Box>

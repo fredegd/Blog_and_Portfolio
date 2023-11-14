@@ -2,7 +2,7 @@ import { Box, Typography, IconButton, Link } from "@mui/material";
 
 import { useTheme } from "@mui/material/styles";
 
-import contactItems from "../contactItems";
+import contactItems from "../../contactItems";
 
 export default function Contact() {
   const theme = useTheme();

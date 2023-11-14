@@ -1,8 +1,7 @@
 import { Box } from "@mui/material";
 
-import PageTitle from "./PageTitle";
+import PageTitle from "../shared/PageTitle";
 import SocialContacts from "./SocialContacts";
-import Footer from "./Footer";
 
 export default function ContactContent() {
   return (

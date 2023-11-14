@@ -1,17 +1,19 @@
 import React, { useEffect, useRef, useState } from "react";
-import Button from "@mui/material/Button";
 import Slider from "@mui/material/Slider";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Switch from "@mui/material/Switch";
 
-import { useDarkMode } from "../context/DarkModeContext.jsx";
+import { useDarkMode } from "../../context/DarkModeContext.jsx";
 import { useTheme } from "@mui/material/styles";
-import { colorsToChooseFrom } from "../colorsToChooseFrom.js";
+import { colorsToChooseFrom } from "../../colorsToChooseFrom.js";
+import { color } from "framer-motion";
 
-import { signal, effect } from "@preact/signals-react";
+const svgWidth = 300;
+const svgHeight = 300;
+const startString = `<svg xmlns="http://www.w3.org/2000/svg" width="${svgWidth}" height="${svgHeight}">`;
+const endString = "</svg>";
 
-//
 //a function to choose from a list of colors
 const getRandomHexColor = (colName) => {
   //a variation to generate Hex colors
@@ -29,11 +31,6 @@ const getRandomHexColor = (colName) => {
   return color;
 };
 
-const svgWidth = 300;
-const svgHeight = 300;
-const startString = `<svg xmlns="http://www.w3.org/2000/svg" width="${svgWidth}" height="${svgHeight}">`;
-const endString = "</svg>";
-
 export default function Artwork({
   bgImage,
   setBgImage,
@@ -47,14 +44,9 @@ export default function Artwork({
   const theme = useTheme();
   const dk = useDarkMode();
 
-  const toggleStaticBg = () => {
-    setStaticBg((prev) => (prev = event.target.checked));
-    localStorage.setItem("staticBg", !staticBg); // Save staticBg on LS
-  };
-
   //bg color according to the theme dark or light
   const [bgColor, setBgColor] = useState(theme.palette.background.main);
-  //
+  // a string to build a backround rectangle
   const [bgString, setBgString] = useState(
     `<rect width="${svgWidth}" height="${svgHeight}" fill="${bgColor}"/>`
   );
@@ -71,17 +63,21 @@ export default function Artwork({
       ? parseInt(localStorage.getItem("segmentsAmount"))
       : 7
   );
-
+  // a max amount of segments according to each grid size is calculated
   const [maxSegmentAmount, setMaxSegmentAmount] = useState(
     gridSize > 2 ? Math.floor(gridSize * gridSize * 0.5) + gridSize : 2
   );
-
+  //check is there is some SVGdata in local storage
   const svgData = localStorage.getItem("svgData");
+
+  const toggleStaticBg = () => {
+    setStaticBg((prev) => (prev = event.target.checked));
+    localStorage.setItem("staticBg", !staticBg); // Save staticBg on LS
+  };
 
   const extractStrokesFromSVG = () => {
     const regex = /<line [^>]*\/>/g;
     if (svgData) {
-      // console.log("bgImage passed to extractStrokesFromSVG");
       const matches = svgData.match(regex);
       if (matches) {
         const strokes = matches.join("");
@@ -94,7 +90,7 @@ export default function Artwork({
 
   const drawStrokes = () => {
     const pointSize = svgWidth / (gridSize - 1);
-
+    console.log(color1, color2);
     let tempString = "";
     for (let i = 0; i < 2; i++) {
       const col = i % 2 === 0 ? color1 : color2;
@@ -135,7 +131,7 @@ export default function Artwork({
       }
     }
 
-    console.log("new strokesString");
+    // console.log("new strokesString");
 
     return tempString;
   };
@@ -157,24 +153,30 @@ export default function Artwork({
     setBgString(
       `<rect width="${svgWidth}" height="${svgHeight}" fill="${theme.palette.background.main}"/>`
     );
-
+    // console.log("executing useEffect");
     localStorage.setItem("svgData", svgDataString);
-    setBgImage(svgDataString);
+    setBgImage((prev) => (prev = svgDataString));
   }, [dk, strokesString]);
 
-  //this function is called when the component is mounted and it checks if there is a bgImage in local storage
-  //if there is one,  sets the bgImage state to the value in local storage
+  //this useEffect is called when the component is mounted and it checks if there is a bgImage in local storage
+  //if there is one,  sets the bgImage state like the value in local storage
   useEffect(() => {
     const svgData = localStorage.getItem("svgData");
-
     if (svgData) {
-      // console.log(svgData)
-      setBgImage(svgData);
+      setBgImage((prev) => (prev = svgData));
     }
   }, [bgImage, color1, color2, gridSize, segmentsAmount, bgColor]);
 
+  const handleDrawAndStore = () => {
+    let newStrokesString = drawStrokes();
+    setStrokesString((prev) => (prev = newStrokesString));
+    let svgString = startString + bgString + newStrokesString + endString;
+    setBgImage(svgString);
+    saveDataLocally(svgString);
+  };
+
   const saveDataLocally = (svgData) => {
-    try {
+    {
       // Store the SVG data in localStorage
       localStorage.setItem("bgColor", bgColor); // Save bgColor
       localStorage.setItem("col1", color1); // Save col1
@@ -183,25 +185,17 @@ export default function Artwork({
       localStorage.setItem("segmentsAmount", segmentsAmount); // Save segmentsAmount
       localStorage.setItem("svgData", svgData);
       console.log("SVG data saved locally.");
-    } catch (error) {
-      console.error("Error while saving SVG data locally:", error);
     }
-  };
-
-  const handleDrawAndStore = () => {
-    console.log("getting a call", bgString);
-    let newStrokesString = drawStrokes();
-    setStrokesString(newStrokesString);
-    let svgString = startString + bgString + newStrokesString + endString;
-    saveDataLocally(svgString);
-    setBgImage(svgString);
   };
 
   const handleColorChange = (colorKey, setter) => {
     const newColor = getRandomHexColor(colorKey);
     console.log(newColor);
-    setter(newColor);
+    setter((prev) => (prev = newColor));
+    console.log(colorKey, newColor);
     localStorage.setItem(colorKey, newColor);
+    //this is a bug and need to be fixed
+    // handleDrawAndStore();
   };
 
   const handleGridSizeChange = (event, newValue) => {
@@ -254,59 +248,124 @@ export default function Artwork({
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
-          height: "10vh",
         }}
       >
-        <Box sx={{ width: 300 }}>
-          <Box onClick={handleDrawAndStore}>
-            <Typography variant="p" sx={{ fontSize: { xs: 16, md: 18 }, fontWeight:"bold" }}>
-              {" "}
-              Tap to Generate a new Background Pattern
-            </Typography>
+        <Box
+          sx={{
+            width: { xs: "100%", sm: 300 },
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            justifyContent: "space-around",
+          }}
+        >
+          {/* an element displaying the content of bgImage */}
 
-            {/* an element displaying the content of bgImage */}
+          <Box
+            sx={{
+              width: { xs: "250px", md: "300px" },
+              height: { xs: "250px", md: "300px" },
+              backgroundImage: `url(data:image/svg+xml;base64,${btoa(
+                bgImage
+              )})`,
+              backgroundRepeat: "no-repeat",
+              backgroundSize: "contain",
+            }}
+            onClick={handleDrawAndStore}
+          ></Box>
 
-            <Box
-              sx={{
-                width: "300px",
-                height: "300px",
-                backgroundImage: `url(data:image/svg+xml;base64,${btoa(
-                  bgImage
-                )})`,
-                backgroundRepeat: "no-repeat",
+          <Box
+            sx={{
+              width: { xs: 250, md: 300 },
+              mt: "0.5rem",
+              display: "flex",
+              // flexDirection: { xs: "column", sm: "row" },
+              gap: "1rem",
+              justifyContent: "space-between",
+            }}
+          >
+            <Typography
+              onClick={() => {
+                handleColorChange("col1", setColor1);
               }}
-            ></Box>
+              sx={{
+                height: "2.5rem",
+                width: { xs: "100px", sm: "120px" },
+                background: `${color1}`,
+                fontSize: { xs: 20 },
+                fontWeight: "bold",
+                borderRadius: "1.5rem",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                "&:hover": {
+                  cursor: "pointer",
+                },
+              }}
+            >
+              Color 1
+            </Typography>
+            {color1 === color2 ? "=" : ""}
+            <Typography
+              onClick={() => handleColorChange("col2", setColor2)}
+              sx={{
+                height: "2.5rem",
+                width: { xs: "100px", sm: "120px" },
+                background: `${color2}`,
+                fontSize: { xs: 20 },
+                fontWeight: "bold",
+                borderRadius: "1.5rem",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                "&:hover": {
+                  cursor: "pointer",
+                },
+              }}
+            >
+              Color 2
+            </Typography>
           </Box>
         </Box>
 
         <Box sx={{ width: 300 }}>
-          <Box sx={{ mt: "1rem", alignSelf: "center" }}>
+          <Box
+            sx={{
+              display: "flex",
+              justifyContent: "space-between",
+              mt: "1rem",
+              alignSelf: "center",
+            }}
+          >
             <Typography
               sx={{
                 height: "3rem",
-                width: 300,
-                // border: `2px solid ${theme.palette.text.primary}`,
-                // borderRadius: "1.5rem",
-                // display: "flex",
-                // alignItems: "flex-start",
-                // justifyContent: "center",
-              
+                fontSize: { xs: "18px", md: "18px" },
               }}
             >
-              { "static BG"}
-              <Switch
+              {"static BG"}
+            </Typography>
+            <Switch
               checked={staticBg}
               onChange={toggleStaticBg}
               inputProps={{ "aria-label": "controlled" }}
             />
-            </Typography>
-            
           </Box>
         </Box>
 
         <Box sx={{ width: 300 }}>
-          <Typography variant="p" sx={{ fontSize: { xs: 16, md: 18 } }}>
-            Matrix Size: {gridSize}x{gridSize}
+          <Typography
+            variant="p"
+            sx={{
+              fontSize: { xs: "18px", md: "18px" },
+              display: "flex",
+              justifyContent: "space-between",
+            }}
+          >
+            {"Matrix Size: "}
+            <strong>
+              {gridSize - 1}x{gridSize - 1}
+            </strong>
           </Typography>
           <Slider
             aria-label="gridSize"
@@ -321,8 +380,16 @@ export default function Artwork({
         </Box>
 
         <Box sx={{ width: 300, my: "-0.5rem" }}>
-          <Typography variant="p" sx={{ fontSize: { xs: 16, md: 18 } }}>
-            Segment Amount: {segmentsAmount}
+          <Typography
+            variant="p"
+            sx={{
+              fontSize: { xs: 18, md: 18 },
+              display: "flex",
+              justifyContent: "space-between",
+            }}
+          >
+            {"Segment Amount: "}
+            <strong>{segmentsAmount}</strong>
           </Typography>
           <Slider
             aria-label="segmentsAmount"
@@ -334,48 +401,6 @@ export default function Artwork({
             max={maxSegmentAmount}
             onChange={handleNumStrokesChange}
           />
-        </Box>
-
-        <Box
-          sx={{ width: 300, mt: "1rem", display: "flex", flexDirection: "row" }}
-        >
-          <Typography
-            onClick={() => handleColorChange("col1", setColor1)}
-            sx={{
-              height: "3rem",
-              width: "8rem",
-              background: `${color1}`,
-              mx: "1rem",
-              borderRadius: "1.5rem",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              "&:hover": {
-                cursor: "pointer",
-              },
-            }}
-          >
-            Color 1
-          </Typography>
-          {color1 === color2 ? "=" : ""}
-          <Typography
-            onClick={() => handleColorChange("col2", setColor2)}
-            sx={{
-              height: "3rem",
-              width: "8rem",
-              background: `${color2}`,
-              mx: "1rem",
-              borderRadius: "1.5rem",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              "&:hover": {
-                cursor: "pointer",
-              },
-            }}
-          >
-            Color 2
-          </Typography>
         </Box>
 
         <Box sx={{ mt: "1rem" }}>

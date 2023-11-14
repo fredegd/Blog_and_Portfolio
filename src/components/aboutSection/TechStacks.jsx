@@ -136,7 +136,9 @@ export default function TechStacks() {
               }}
             >
               <Typography variant="h1">{icon.icon}</Typography>
-              <Typography variant="p" fontSize={"1rem"}>{icon.name}</Typography>
+              <Typography variant="p" fontSize={"1rem"}>
+                {icon.name}
+              </Typography>
             </Box>
           );
         })}

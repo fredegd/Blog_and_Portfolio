@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 
 import { Typography, Box } from "@mui/material";
-import { client } from "../client";
+import { contentfulClient } from "../../utils/contentfulClient";
 
 import { createClient } from "contentful-management";
 
@@ -15,9 +15,10 @@ export default function CommentList() {
   const [comments, setComments] = useState([]);
 
   useEffect(() => {
-    client
+    contentfulClient
       .getEntries({
         content_type: "comment",
+        order: "-sys.createdAt",
       })
       .then((response) => {
         const filtered = response.items.filter((item) => {

@@ -1,16 +1,16 @@
 import { Routes, Route } from "react-router-dom";
 import { useState, useEffect } from "react";
-import Landing from "./components/Landing";
+import Landing from "./components/homeSection/Landing";
 import Navbar from "./components/Navbar";
-import Projects from "./components/Projects";
-import ProjectItem from "./components/ProjectItem";
-import About from "./components/About";
-import Blog from "./components/Blog";
-import BlogItem from "./components/BlogItem";
-import Contact from "./components/Contact";
-import DrawerBGChange from "./components/DrawerBGChange";
+import Projects from "./components/worksSection/Projects";
+import ProjectItem from "./components/worksSection/ProjectItem";
+import About from "./components/aboutSection/About";
+import Blog from "./components/blogSection/Blog";
+import BlogItem from "./components/blogSection/BlogItem";
+import Contact from "./components/contactSection/Contact";
+import DrawerBGChange from "./components/BGpatternUI/DrawerBGChange";
 import Kaleidoscope from "./components/Kaleidoscope";
-import { client } from "./client";
+import { contentfulClient } from "./utils/contentfulClient.js";
 
 import { colorsToChooseFrom } from "./colorsToChooseFrom";
 import "./App.css";
@@ -31,8 +31,7 @@ export default function App() {
     localStorage.getItem("staticBg") ?JSON.parse( localStorage.getItem("staticBg")) : false
   );
   localStorage.setItem("staticBg", staticBg); // Save staticBg on LS
-
-  console.log("app rendered", staticBg);
+  
   const [open, setOpen] = useState(false); //a state to control the drawer
   const [bgImage, setBgImage] = useState(
     localStorage.getItem("svgData") ? localStorage.getItem("svgData") : null
@@ -64,7 +63,7 @@ export default function App() {
   );
 
   useEffect(() => {
-    client
+    contentfulClient
       .getEntries({
         content_type: "fredegdBlog",
       })

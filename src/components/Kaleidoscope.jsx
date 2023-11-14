@@ -1,8 +1,6 @@
 import { useState, useEffect } from "react";
 
 export default function Kaleidoscope({ bgImage, staticBg }) {
-  console.log("Kaleidoscope rendered", staticBg);
-
   const [gridSize, setGridSize] = useState({ numRows: 9, numCols: 7 });
 
   const maxScale = 1.0;

@@ -1,25 +1,24 @@
-import { Box, Typography, Button } from "@mui/material";
+import { Box } from "@mui/material";
+import ContactContent from "./ContactContent";
+import Footer from "../shared/Footer";
 
-import AboutContent from "./AboutContent";
-import Footer from "./Footer";
-
-export default function About() {
+export default function Contact() {
   window.scrollTo(0, 0);
 
   return (
     <Box
-      id="about"
       sx={{
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
         justifyContent: "space-between",
-        width: "100%",
         minHeight: "100vh",
+
+        overflow: "scroll",
         zIndex: "1000",
       }}
     >
-      <AboutContent />
+      <ContactContent />
       <Footer />
     </Box>
   );

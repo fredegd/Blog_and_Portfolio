@@ -1,10 +1,10 @@
+import { Link } from "react-router-dom";
 import { Box } from "@mui/system";
 import useTheme from "@mui/material/styles/useTheme";
+import { Typography, Button, Grid } from "@mui/material";
 import { motion, useAnimation } from "framer-motion";
 
-import { Typography, Button, Grid } from "@mui/material";
-import { Link } from "react-router-dom";
-import BlogItemCard from "./BlogItemCard";
+import BlogItemCard from "../blogSection/BlogItemCard";
 
 export default function BlogPreview({ blogs }) {
   const theme = useTheme();
