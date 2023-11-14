@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useTheme } from "@mui/material/styles";
-import { client } from "../client";
+import { client } from "../../client";
 import BlogItemCard from "./BlogItemCard";
 import { Box, Grid, Typography } from "@mui/material";
 

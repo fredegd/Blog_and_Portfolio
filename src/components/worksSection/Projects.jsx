@@ -1,6 +1,5 @@
 import { Box } from "@mui/material";
-import ContactContent from "./ContactContent";
-import Footer from "./Footer";
+import Footer from "../shared/Footer";
 import ProjectsContent from "./ProjectsContent";
 
 export default function Projects() {

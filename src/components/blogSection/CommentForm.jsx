@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form";
 import { useState, useEffect } from "react";
 import { createClient } from "contentful-management";
 import { useParams } from "react-router-dom";
-
+import createComment from "../../utils/createComment";
 const commentsClient = createClient({
   accessToken: import.meta.env.VITE_CREATE_POST_COMMENT,
 });
@@ -26,24 +26,15 @@ export default function CommentForm() {
   });
   const submit = (data) => {
     // alert(JSON.stringify(data));
-    console.log(data);
+    const dataToSubmit = {
+      commentAuthor: data.commentAuthor,
+      commentBody: data.commentBody,
+      parentPostId: subjectId.blogItemid,
+      parentCommentId: null,
+    };
+    console.log(dataToSubmit);
 
-    commentsClient
-      .getSpace(import.meta.env.VITE_SPACE_ID)
-      .then((space) => space.getEnvironment(import.meta.env.VITE_ENVIRONMENT))
-      .then((environment) =>
-        environment.createEntry("comment", {
-          fields: {
-            commentAuthor: { "en-US": data.commentAuthor }, // Adjust the locale if needed
-            commentBody: { "en-US": data.commentBody }, // Adjust the locale if needed
-            parentPostId: { "en-US": subjectId.blogItemid }, // Adjust the locale if needed
-            parentCommentId: { "en-US": "" }, // Adjust the locale if needed
-          },
-        })
-      )
-      .then((entry) => entry.publish())
-      .then((entry) => console.log(entry))
-      .catch(console.error);
+    createComment(dataToSubmit);
 
     reset();
   };

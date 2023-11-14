@@ -1,8 +1,7 @@
-import PageTitle from "./PageTitle";
-
-import BlogListCF from "./BlogListCF";
-import Footer from "./Footer";
 import { Box } from "@mui/material";
+import PageTitle from "../shared/PageTitle";
+import BlogListCF from "./BlogListCF";
+import Footer from "../shared/Footer";
 export default function Blog() {
   window.scrollTo(0, 0);
 

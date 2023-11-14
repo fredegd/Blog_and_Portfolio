@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Box, Grid, Typography, IconButton, Link } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
-import contactItems from "../contactItems";
+import contactItems from "../../contactItems";
 
 import { motion, useAnimation } from "framer-motion";
 

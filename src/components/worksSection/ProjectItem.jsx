@@ -3,13 +3,13 @@ import { useEffect, useState } from "react";
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
 import { useTheme } from "@mui/material/styles";
 
-import { client } from "../client";
+import { client } from "../../client";
 import { Box, Typography, Button } from "@mui/material";
 
 import { BLOCKS, INLINES } from "@contentful/rich-text-types";
 
 import ProjectItemHead from "./ProjectItemHead";
-import Footer from "./Footer";
+import Footer from "../shared/Footer";
 
 import FullScreenPreview from "./FullScreenPreview";
 

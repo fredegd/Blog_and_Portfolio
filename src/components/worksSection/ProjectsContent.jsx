@@ -1,6 +1,6 @@
 import { Box, Typography } from "@mui/material";
 import useTheme from "@mui/material/styles/useTheme";
-import PageTitle from "./PageTitle";
+import PageTitle from "../shared/PageTitle";
 import ProjectsList from "./ProjectsList";
 
 export default function ProjectsContent() {

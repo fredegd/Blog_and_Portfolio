@@ -5,12 +5,12 @@ import { useTheme } from "@mui/material/styles";
 import { Box, IconButton } from "@mui/material";
 
 import { KeyboardArrowLeft } from "@mui/icons-material";
-import { client } from "../client"; // contentful client
+import { client } from "../../client"; // contentful client
 
 import BlogItemHeading from "./BlogItemHeading";
 import BlogItemContent from "./BlogItemContent";
 import CommentBox from "./CommentBox";
-import Footer from "./Footer";
+import Footer from "../shared/Footer";
 import ScrollToTop from "./ScrollToTop";
 import PopOver from "./PopOver";
 import ScrollIndicator from "./ScrollIndicator";

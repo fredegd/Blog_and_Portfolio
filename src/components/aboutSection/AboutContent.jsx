@@ -3,12 +3,12 @@ import { useTheme } from "@mui/material/styles";
 import { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import { Link } from "react-router-dom";
-import { client } from "../client";
+import { client } from "../../client";
 import { motion, useScroll, useMotionValueEvent } from "framer-motion";
 
 import TechStacks from "./TechStacks";
 
-import PageTitle from "./PageTitle";
+import PageTitle from "../shared/PageTitle";
 
 import anime from "animejs";
 
