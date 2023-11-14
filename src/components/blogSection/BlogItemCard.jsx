@@ -1,7 +1,7 @@
 import {
   truncatedTitle,
   truncatedContent,
-} from "../../utils/blogDataFormatter.js";
+} from "../../utils/blogDataFormatter";
 
 import { motion } from "framer-motion";
 

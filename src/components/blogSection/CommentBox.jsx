@@ -6,6 +6,8 @@ import CommentForm from "./CommentForm";
 
 
 export default function CommentBox({ subjectId }) {
+
+  
   console.log();
   console.log(subjectId);
 

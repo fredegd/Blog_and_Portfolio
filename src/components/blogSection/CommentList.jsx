@@ -1,7 +1,9 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import { useTheme } from "@mui/material";
 
-import { Typography, Box } from "@mui/material";
+import { Typography, Box, IconButton } from "@mui/material";
+import ReplyIcon from "@mui/icons-material/Reply";
 import { contentfulClient } from "../../utils/contentfulClient";
 
 import { createClient } from "contentful-management";
@@ -10,7 +12,12 @@ const commentsClient = createClient({
   accessToken: import.meta.env.VITE_CREATE_POST_COMMENT,
 });
 
+function reply(comment) {
+  return console.log(comment)
+}
+
 export default function CommentList() {
+  const theme = useTheme();
   const subjectId = useParams();
   const [comments, setComments] = useState([]);
 
@@ -18,7 +25,7 @@ export default function CommentList() {
     contentfulClient
       .getEntries({
         content_type: "comment",
-        order: "-sys.createdAt",
+        order: "sys.createdAt",
       })
       .then((response) => {
         const filtered = response.items.filter((item) => {
@@ -30,6 +37,8 @@ export default function CommentList() {
       .catch((err) => console.error(err));
   }, []);
 
+
+
   return comments.length == 0 ? (
     <>{"Write a comment"}</>
   ) : (
@@ -37,7 +46,7 @@ export default function CommentList() {
       <Typography variant="h4" textAlign={"left"} mb={3}>
         Comments:
       </Typography>
-      {comments.map((comment,index) => {
+      {comments.map((comment, index) => {
         // const createdAt = new Date(comment.sys.createdAt).toLocaleDateString().getTime();
         // const currentDateTime = new Date().getTime();
         // const timeDifference = currentDateTime - createdAt;
@@ -63,12 +72,13 @@ export default function CommentList() {
             key={index}
             sx={{
               marginBottom: "2rem",
+              padding: "1rem",
               display: "flex",
               flexDirection: "column",
               justifyContent: "flex-start",
               gap: "0.5rem",
+              backgroundColor: theme.palette.background.main,
               boxShadow: "0 0 10px rgba(0,0,0,0.5)",
-              padding: "1rem",
               borderRadius: "1rem",
               fontSize: {
                 xs: "1.2rem",
@@ -87,6 +97,7 @@ export default function CommentList() {
             >
               <Typography fontWeight={"bold"} fontSize={"inherit"}>
                 {comment.fields.commentAuthor}
+                {":"}
               </Typography>
               {/* <Typography
                 fontWeight={"bold"}
@@ -108,6 +119,12 @@ export default function CommentList() {
                 {comment.fields.commentBody}
               </Typography>
             </Box>
+           {/* { <IconButton
+              sx={{ width: "2rem", height: "2rem" }}
+              onClick={reply(comment)}
+            >
+              <ReplyIcon />
+            </IconButton>} */}
           </Box>
         );
       })}
