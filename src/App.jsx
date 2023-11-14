@@ -10,7 +10,7 @@ import BlogItem from "./components/blogSection/BlogItem";
 import Contact from "./components/contactSection/Contact";
 import DrawerBGChange from "./components/BGpatternUI/DrawerBGChange";
 import Kaleidoscope from "./components/Kaleidoscope";
-import { client } from "./client";
+import { contentfulClient } from "./utils/contentfulClient.js";
 
 import { colorsToChooseFrom } from "./colorsToChooseFrom";
 import "./App.css";
@@ -63,7 +63,7 @@ export default function App() {
   );
 
   useEffect(() => {
-    client
+    contentfulClient
       .getEntries({
         content_type: "fredegdBlog",
       })

@@ -3,7 +3,7 @@ import { useTheme } from "@mui/material/styles";
 import { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import { Link } from "react-router-dom";
-import { client } from "../../client";
+import { contentfulClient } from "../../utils/contentfulClient";
 import { motion, useScroll, useMotionValueEvent } from "framer-motion";
 
 import TechStacks from "./TechStacks";
@@ -12,32 +12,26 @@ import PageTitle from "../shared/PageTitle";
 
 import anime from "animejs";
 
-const personalInfo = {
-  short:
-    "I'm Full stack Web developer with a passion for creating beautiful, functional, and responsive web applications. I love experimenting in the realm of Creative Coding and Graphic Design and Animation",
-  full: [
-    "I'm Full stack developer with a passion for creating beautiful, functional, and responsive web applications.",
-    "I also like experimenting in the fields of Creative Coding and Graphic Design",
-    "Lifelong learner,  Always looking for new ways to improve my skills and expand my experience.",
-    "This year I attended full-time a coding Bootcamp, Successfully graduate at it and improved my knowledge and skills in the field of Software Development.",
-    "Currently i am looking for a full time position as a Frontend engineer.",
-    "Fun fact: I began by chance as a self-taught developer, have been coding for past 2+ years now.",
-  ],
-};
 export default function AboutContent() {
   const theme = useTheme();
   const location = useLocation();
   const [gridSize, setGridSize] = useState({ numRows: 11, numCols: 1 });
   const [aboutImage, setAboutImage] = useState();
   const [aboutImageAlt, setAboutImageAlt] = useState();
-
+  const [authorInfo, setAuthorInfo] = useState(null);
   useEffect(() => {
-    client
+    contentfulClient
       .getEntry(import.meta.env.VITE_ABOUT_IMAGE_ID)
       .then((response) => {
         console.log(response);
         setAboutImage(response.fields.authorImg.fields.file.url);
         setAboutImageAlt(response.fields.authorImgAlt.fields.file.url);
+        setAuthorInfo({
+          short: response.fields.personalInfoShort,
+          full: response.fields.personalInfoLong.content.map(
+            (item) => item.content[0].value
+          ),
+        });
       })
       .catch((err) => console.log(err));
   }, []);
@@ -134,7 +128,7 @@ export default function AboutContent() {
           zIndex: "1000",
           padding: { xs: "2rem", md: "2.5rem" },
           paddingBottom: { xs: "5rem", md: "2.5rem" },
-          paddingX: { sm:"3rem", md: "5rem", lg: "10rem"},
+          paddingX: { sm: "3rem", md: "5rem", lg: "10rem" },
 
           display: "flex",
           flexDirection: { xs: "column", sm: "row" },
@@ -275,7 +269,7 @@ export default function AboutContent() {
                   },
                 }}
               >
-                {personalInfo.full.map((item, index) => {
+                {authorInfo?.full.map((item, index) => {
                   return (
                     <Box
                       key={index}
@@ -358,7 +352,7 @@ export default function AboutContent() {
             >
               {
                 <>
-                  {personalInfo.short}
+                  {authorInfo?.short}
                   <Link to={"/about"}>
                     <Button>...more</Button>
                   </Link>
@@ -368,7 +362,7 @@ export default function AboutContent() {
           )}
         </Box>
       </Box>
-      {location.pathname==="/about"&&<TechStacks />}
+      {location.pathname === "/about" && <TechStacks />}
     </Box>
   );
 }

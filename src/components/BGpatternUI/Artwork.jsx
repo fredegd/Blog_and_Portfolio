@@ -7,6 +7,7 @@ import Switch from "@mui/material/Switch";
 import { useDarkMode } from "../../context/DarkModeContext.jsx";
 import { useTheme } from "@mui/material/styles";
 import { colorsToChooseFrom } from "../../colorsToChooseFrom.js";
+import { color } from "framer-motion";
 
 const svgWidth = 300;
 const svgHeight = 300;
@@ -62,11 +63,11 @@ export default function Artwork({
       ? parseInt(localStorage.getItem("segmentsAmount"))
       : 7
   );
-// a max amount of segments according to each grid size is calculated
+  // a max amount of segments according to each grid size is calculated
   const [maxSegmentAmount, setMaxSegmentAmount] = useState(
     gridSize > 2 ? Math.floor(gridSize * gridSize * 0.5) + gridSize : 2
   );
-//check is there is some SVGdata in local storage
+  //check is there is some SVGdata in local storage
   const svgData = localStorage.getItem("svgData");
 
   const toggleStaticBg = () => {
@@ -89,11 +90,10 @@ export default function Artwork({
 
   const drawStrokes = () => {
     const pointSize = svgWidth / (gridSize - 1);
-
+    console.log(color1, color2);
     let tempString = "";
     for (let i = 0; i < 2; i++) {
       const col = i % 2 === 0 ? color1 : color2;
-      console.log(col);
 
       let startIndex = Math.floor(Math.random() * gridSize ** 2);
       let currentIndex = startIndex;
@@ -131,7 +131,7 @@ export default function Artwork({
       }
     }
 
-    console.log("new strokesString");
+    // console.log("new strokesString");
 
     return tempString;
   };
@@ -153,24 +153,30 @@ export default function Artwork({
     setBgString(
       `<rect width="${svgWidth}" height="${svgHeight}" fill="${theme.palette.background.main}"/>`
     );
-
+    // console.log("executing useEffect");
     localStorage.setItem("svgData", svgDataString);
     setBgImage((prev) => (prev = svgDataString));
   }, [dk, strokesString]);
 
-  //this function is called when the component is mounted and it checks if there is a bgImage in local storage
-  //if there is one,  sets the bgImage state to the value in local storage
+  //this useEffect is called when the component is mounted and it checks if there is a bgImage in local storage
+  //if there is one,  sets the bgImage state like the value in local storage
   useEffect(() => {
     const svgData = localStorage.getItem("svgData");
-
     if (svgData) {
-      console.log(svgData);
       setBgImage((prev) => (prev = svgData));
     }
   }, [bgImage, color1, color2, gridSize, segmentsAmount, bgColor]);
 
+  const handleDrawAndStore = () => {
+    let newStrokesString = drawStrokes();
+    setStrokesString((prev) => (prev = newStrokesString));
+    let svgString = startString + bgString + newStrokesString + endString;
+    setBgImage(svgString);
+    saveDataLocally(svgString);
+  };
+
   const saveDataLocally = (svgData) => {
-    try {
+    {
       // Store the SVG data in localStorage
       localStorage.setItem("bgColor", bgColor); // Save bgColor
       localStorage.setItem("col1", color1); // Save col1
@@ -179,26 +185,17 @@ export default function Artwork({
       localStorage.setItem("segmentsAmount", segmentsAmount); // Save segmentsAmount
       localStorage.setItem("svgData", svgData);
       console.log("SVG data saved locally.");
-    } catch (error) {
-      console.error("Error while saving SVG data locally:", error);
     }
-  };
-
-  const handleDrawAndStore = () => {
-    console.log("getting a call", bgString);
-    let newStrokesString = drawStrokes();
-    setStrokesString((prev) => (prev = newStrokesString));
-    let svgString = startString + bgString + newStrokesString + endString;
-    saveDataLocally(svgString);
-    setBgImage((prev) => (prev = svgString));
   };
 
   const handleColorChange = (colorKey, setter) => {
     const newColor = getRandomHexColor(colorKey);
     console.log(newColor);
     setter((prev) => (prev = newColor));
+    console.log(colorKey, newColor);
     localStorage.setItem(colorKey, newColor);
-    //  handleDrawAndStore();
+    //this is a bug and need to be fixed
+    // handleDrawAndStore();
   };
 
   const handleGridSizeChange = (event, newValue) => {

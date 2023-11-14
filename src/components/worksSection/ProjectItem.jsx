@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
 import { useTheme } from "@mui/material/styles";
 
-import { client } from "../../client";
+import { contentfulClient } from "../../utils/contentfulClient";
 import { Box, Typography, Button } from "@mui/material";
 
 import { BLOCKS, INLINES } from "@contentful/rich-text-types";
@@ -27,7 +27,7 @@ export default function ProjectItem() {
   const { projectId } = useParams();
 
   useEffect(() => {
-    client
+    contentfulClient
       .getEntry(projectId)
       .then((response) => {
         setProject(response);

@@ -3,14 +3,14 @@ import { useTheme } from "@emotion/react";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import BlogItemCard from "./BlogItemCard";
-import { client } from "../../client";
+import { contentfulClient } from "../../utils/contentfulClient";
 export default function RelatedPosts() {
   const theme = useTheme();
 
   const [related, setRelated] = useState([]);
   const { blogItemid } = useParams();
   useEffect(() => {
-    client
+    contentfulClient
       .getEntries({
         content_type: "fredegdBlog",
         order: "-sys.createdAt",

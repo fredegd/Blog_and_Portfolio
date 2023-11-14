@@ -2,14 +2,14 @@ import { Box, Grid, Typography } from "@mui/material";
 import useTheme from "@mui/material/styles/useTheme";
 import ProjectItemCard from "./ProjectItemCard";
 import { useState, useEffect } from "react";
-import { client } from "../../client";
+import { contentfulClient } from "../../utils/contentfulClient";
 
 export default function ProjectsList() {
   const theme = useTheme();
   const [projects, setProjects] = useState([]);
 
   useEffect(() => {
-    client
+    contentfulClient
       .getEntries({
         content_type: "fredegdProjects",
       })

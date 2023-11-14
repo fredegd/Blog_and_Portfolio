@@ -5,7 +5,7 @@ import { useTheme } from "@mui/material/styles";
 import { Box, IconButton } from "@mui/material";
 
 import { KeyboardArrowLeft } from "@mui/icons-material";
-import { client } from "../../client"; // contentful client
+import { contentfulClient } from "../../utils/contentfulClient"; // contentful client
 
 import BlogItemHeading from "./BlogItemHeading";
 import BlogItemContent from "./BlogItemContent";
@@ -14,7 +14,6 @@ import Footer from "../shared/Footer";
 import ScrollToTop from "./ScrollToTop";
 import PopOver from "./PopOver";
 import ScrollIndicator from "./ScrollIndicator";
-
 
 export default function BlogItem() {
   const theme = useTheme();
@@ -28,9 +27,9 @@ export default function BlogItem() {
     setAnchorEl(null);
   };
 
-//fetching blog data from contentful
+  //fetching blog data from contentful
   useEffect(() => {
-    client
+    contentfulClient
       .getEntry(blogItemid)
       .then((response) => {
         setBlog(response);
@@ -39,8 +38,6 @@ export default function BlogItem() {
       })
       .catch((err) => console.log(err));
   }, [blogItemid]);
-
-
 
   if (!blog) {
     // console.log("done");
@@ -60,6 +57,7 @@ export default function BlogItem() {
           justifyContent: "flex-start",
         }}
       >
+        <ScrollIndicator />
         <Box
           sx={{
             zIndex: "1000",
@@ -69,8 +67,8 @@ export default function BlogItem() {
             paddingX: { xs: "0.5rem", sm: "2rem", md: "2.5rem", lg: "3rem" },
 
             background: {
-              xs: `linear-gradient(90deg, #00000000 0%,${theme.palette.background.transparent} 5%, ${theme.palette.background.main} 20%, ${theme.palette.background.main} 80%, ${theme.palette.background.transparent} 95%,  #00000000 100%)`,
-              lg: `linear-gradient(90deg, #00000000 0%,${theme.palette.background.transparent} 15%, ${theme.palette.background.main} 30%, ${theme.palette.background.main} 70%, ${theme.palette.background.transparent} 85%,  #00000000 100%)`,
+              xs: `linear-gradient(90deg, #00000000 0%,${theme.palette.background.transparent} 5%, ${theme.palette.background.main}cc 20%, ${theme.palette.background.main}cc 80%, ${theme.palette.background.transparent} 95%,  #00000000 100%)`,
+              lg: `linear-gradient(90deg, #00000000 0%,${theme.palette.background.transparent} 15%, ${theme.palette.background.main}cc 30%, ${theme.palette.background.main}cc 70%, ${theme.palette.background.transparent} 85%,  #00000000 100%)`,
             },
             display: "flex",
             flexDirection: "column",
@@ -80,10 +78,7 @@ export default function BlogItem() {
         >
           <BlogItemHeading blog={blog} />
           <BlogItemContent blog={blog} />
-          <CommentBox
-            subjectId={blog.sys.id}
-          />
-          <ScrollIndicator />
+          <CommentBox subjectId={blog.sys.id} />
         </Box>
         <Footer />
 
