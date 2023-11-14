@@ -368,7 +368,7 @@ export default function AboutContent() {
           )}
         </Box>
       </Box>
-      <TechStacks />
+      {location.pathname==="/about"&&<TechStacks />}
     </Box>
   );
 }
