@@ -113,7 +113,55 @@ export default function Navbar({ window, setOpen }) {
     delay: anime.stagger(150),
     easing: "easeOutElastic(1, .8)",
   });
+  const BGoptionsUIIcon = (
+    <IconButton
+      aria-label="openBackgroudEditor"
+      edge="start"
+      onClick={handleDrawerBgChange}
+      sx={{
+        color: theme.palette.text.highlightAlt,
+        mx: "0.8rem",
+        width: { xs: "1.6rem", sm: "1.6rem" },
+        height: { xs: "1.6rem", sm: "1.6rem" },
+        padding: 0,
+        borderRadius: "50%",
+        alignItems: "center",
+        "&:hover": {
+          boxShadow: ` -2px 2px 8px 8px ${theme.palette.text.highlight} , inset 0px 0px 5.0px 5.0px ${theme.palette.text.highlight}`,
+        },
+      }}
+    >
+      <Typography variant={"h6"} sx={{ display: "flex" }}>
+        <SettingsSuggestIcon sx={{ fontSize: { xs: "2.2rem", sm: "2rem" } }} />
+      </Typography>
+    </IconButton>
+  );
 
+  const dkToggleIcon = (
+    <IconButton
+      aria-label="dark-light-toggle"
+      edge="start"
+      onClick={handleDarkChange}
+      sx={{
+        color: theme.palette.text.primary,
+        mx: "0.8rem",
+        width: { xs: "1.6rem", sm: "1.6rem" },
+        height: { xs: "1.6rem", sm: "1.6rem" },
+        "&:hover": {
+          border: `1px solid ${theme.palette.text.highlight}`,
+          boxShadow: ` 0px 0px 8px 8px ${theme.palette.text.highlight} , inset 0px 0px 2.0px 2.0px ${theme.palette.text.highlight}`,
+        },
+      }}
+    >
+      <Typography variant={"h6"} sx={{ display: "flex" }}>
+        {dk ? (
+          <LightModeIcon sx={{ fontSize: { xs: "2.2rem", sm: "2rem" } }} />
+        ) : (
+          <DarkModeIcon sx={{ fontSize: { xs: "2.2rem", sm: "2rem" } }} />
+        )}
+      </Typography>
+    </IconButton>
+  );
   const drawer = (
     <Box
       sx={{
@@ -138,8 +186,9 @@ export default function Navbar({ window, setOpen }) {
             justifyContent: "space-between",
           }}
         >
+          <Link href={"/"}>
           <Box
-            onClick={handleDrawerBgChange}
+            // onClick={handleDrawerBgChange}
             className="menu-logo"
             sx={{
               height: { xs: "3.5rem", sm: "4rem" },
@@ -152,7 +201,12 @@ export default function Navbar({ window, setOpen }) {
               borderBottom: `3px solid ${theme.palette.text.highlight}`,
               borderLeft: `3px solid ${theme.palette.text.highlight}`,
             }}
-          />
+            />
+            </Link>
+          <Box>
+            {BGoptionsUIIcon}
+            {dkToggleIcon}
+          </Box>
 
           <IconButton
             aria-label="close drawer"
@@ -243,32 +297,6 @@ export default function Navbar({ window, setOpen }) {
     </Box>
   );
 
-  const dkToggleIcon = (
-    <IconButton
-      aria-label="dark-light-toggle"
-      edge="start"
-      onClick={handleDarkChange}
-      sx={{
-        color: theme.palette.text.primary,
-        mx: "0.8rem",
-        width: { xs: "1.6rem", sm: "1.6rem" },
-        height: { xs: "1.6rem", sm: "1.6rem" },
-        "&:hover": {
-          border: `1px solid ${theme.palette.text.highlight}`,
-          boxShadow: ` 0px 0px 8px 8px ${theme.palette.text.highlight} , inset 0px 0px 2.0px 2.0px ${theme.palette.text.highlight}`,
-        },
-      }}
-    >
-      <Typography variant={"h6"} sx={{ display: "flex" }}>
-        {dk ? (
-          <LightModeIcon sx={{ fontSize: { xs: "2.2rem", sm: "2rem" } }} />
-        ) : (
-          <DarkModeIcon sx={{ fontSize: { xs: "2.2rem", sm: "2rem" } }} />
-        )}
-      </Typography>
-    </IconButton>
-  );
-
   const container =
     window !== undefined ? () => window().document.body : undefined;
 
@@ -352,29 +380,7 @@ export default function Navbar({ window, setOpen }) {
             </Box>
 
             <Box sx={{ display: "flex" }}>
-              <IconButton
-                aria-label="openBackgroudEditor"
-                edge="start"
-                onClick={handleDrawerBgChange}
-                sx={{
-                  color: theme.palette.text.highlightAlt,
-                  mx: "0.8rem",
-                  width: { xs: "1.6rem", sm: "1.6rem" },
-                  height: { xs: "1.6rem", sm: "1.6rem" },
-                  padding: 0,
-                  borderRadius: "50%",
-                  alignItems: "center",
-                  "&:hover": {
-                    boxShadow: ` -2px 2px 8px 8px ${theme.palette.text.highlight} , inset 0px 0px 5.0px 5.0px ${theme.palette.text.highlight}`,
-                  },
-                }}
-              >
-                <Typography variant={"h6"} sx={{ display: "flex" }}>
-                  <SettingsSuggestIcon
-                    sx={{ fontSize: { xs: "2.2rem", sm: "2rem" } }}
-                  />
-                </Typography>
-              </IconButton>
+              {BGoptionsUIIcon}
               {dkToggleIcon}
             </Box>
 

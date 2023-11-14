@@ -17,10 +17,8 @@ export default function Contact() {
         backgroundColor: `${theme.palette.text.highlight}88`,
         fontSize: "20px",
         color: theme.palette.text.contrast,
-
         width: "100%",
-        // padding: { xs: "0.5rem", sm: "1.5rem", md: "2.5rem" },
-        marginTop: "5rem",
+        paddingY:{xs:"1rem", md:"2rem"},
         marginBottom: "1rem",
         zIndex: "1000",
       }}
@@ -64,10 +62,10 @@ export default function Contact() {
         ))}
       </Box>
       <Box sx={{ padding: "1.5rem" }}>
-        <Typography variant="p" color={theme.palette.text.primary}>
+        <Typography variant="p" color={theme.palette.text.primary} >
           <span>2023 all rights reserved </span>
           <span>
-            ©&nbsp; <a href="https://fredegd.dev"> Fred&nbsp;Egidi</a>
+            ©&nbsp; <Link underline="hover"  color="inherit" href="https://fredegd.dev">fredegd.dev</Link>
           </span>
         </Typography>
       </Box>

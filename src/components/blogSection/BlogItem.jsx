@@ -12,7 +12,6 @@ import BlogItemContent from "./BlogItemContent";
 import CommentBox from "./CommentBox";
 import Footer from "../shared/Footer";
 import ScrollToTop from "./ScrollToTop";
-import PopOver from "./PopOver";
 import ScrollIndicator from "./ScrollIndicator";
 
 export default function BlogItem() {
@@ -62,7 +61,7 @@ export default function BlogItem() {
           sx={{
             zIndex: "1000",
             width: { xs: "100vw", sm: "100vw", md: "100vw", lg: "100vw" },
-            paddingBottom: "5rem",
+            // paddingBottom: "5rem",
             paddingTop: "3rem",
             paddingX: { xs: "0.5rem", sm: "2rem", md: "2.5rem", lg: "3rem" },
 
@@ -83,8 +82,6 @@ export default function BlogItem() {
         <Footer />
 
         <ScrollToTop />
-
-        <PopOver anchorEl={anchorEl} handlePopoverClose={handlePopoverClose} />
 
         <Box>
           {/* Back to "/blog" button */}
