@@ -73,11 +73,8 @@ export default function Hero() {
           justifyContent: "center",
           background: `linear-gradient(transparent 0%, ${theme.palette.background.main}88 25%, ${theme.palette.background.main}88 75%, transparent 100%)`,
         }}
-      ><Typography
-      variant="h6"
-    >
-      👋 Hi, My name is:
-    </Typography>
+      >
+        <Typography variant="h6">👋 Hi, My name is:</Typography>
         <Typography
           variant="h1"
           sx={{
@@ -103,7 +100,6 @@ export default function Hero() {
           alignItems: "center",
           justifyContent: "center",
           background: `linear-gradient(transparent 0%, ${theme.palette.background.main}88 25%, ${theme.palette.background.main}88 75%, transparent 100%)`,
-          
         }}
       >
         <Typography
