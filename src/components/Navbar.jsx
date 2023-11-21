@@ -27,7 +27,9 @@ import DarkModeIcon from "@mui/icons-material/DarkMode";
 import CloseIcon from "@mui/icons-material/Close";
 import SettingsSuggestIcon from "@mui/icons-material/SettingsSuggest";
 import { navItems } from "../navItems";
-import animatedLogo from "../assets/animatedLogo.gif";
+// import animatedLogo from "../assets/animatedLogo.gif";
+import animatedLogoBW from "../assets/animatedLogoBW.gif";
+import animatedLogoWB from "../assets/animatedLogoWB.gif";
 import anime from "animejs";
 
 function HideOnScroll(props) {
@@ -193,7 +195,7 @@ export default function Navbar({ window, setOpen }) {
             sx={{
               height: { xs: "3.5rem", sm: "4rem" },
               width: { xs: "3.5rem", sm: "4rem" },
-              backgroundImage: `url(${animatedLogo})`,
+              backgroundImage: `url(${dk?animatedLogoWB:animatedLogoBW})`,
               backgroundPosition: "center",
               backgroundRepeat: "no-repeat",
               backgroundSize: "contain",
@@ -320,7 +322,7 @@ export default function Navbar({ window, setOpen }) {
                 sx={{
                   height: { xs: "3.5rem", sm: "3.5rem" },
                   width: { xs: "3.5rem", sm: "3.5rem" },
-                  backgroundImage: `url(${animatedLogo})`,
+                  backgroundImage: `url(${dk?animatedLogoWB:animatedLogoBW})`,
                   backgroundPosition: "center",
                   backgroundRepeat: "no-repeat",
                   backgroundSize: "contain",

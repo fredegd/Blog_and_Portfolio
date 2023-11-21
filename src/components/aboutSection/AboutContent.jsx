@@ -4,6 +4,8 @@ import { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { contentfulClient } from "../../utils/contentfulClient";
+import { useDarkMode } from "../../context/DarkModeContext";
+
 import { motion, useScroll, useMotionValueEvent } from "framer-motion";
 
 import TechStacks from "./TechStacks";
@@ -13,11 +15,13 @@ import PageTitle from "../shared/PageTitle";
 import anime from "animejs";
 
 export default function AboutContent() {
+  const { dk } = useDarkMode();
   const theme = useTheme();
   const location = useLocation();
   const [gridSize, setGridSize] = useState({ numRows: 11, numCols: 1 });
   const [aboutImage, setAboutImage] = useState();
-  const [aboutImageAlt, setAboutImageAlt] = useState();
+  const [aboutImageBBg, setAboutImageBBg] = useState();
+  const [aboutImageWBg, setAboutImageWBg] = useState();
   const [authorInfo, setAuthorInfo] = useState(null);
   useEffect(() => {
     contentfulClient
@@ -25,7 +29,8 @@ export default function AboutContent() {
       .then((response) => {
         console.log(response);
         setAboutImage(response.fields.authorImg.fields.file.url);
-        setAboutImageAlt(response.fields.authorImgAlt.fields.file.url);
+        setAboutImageBBg(response.fields.authorImgBBg.fields.file.url);
+        setAboutImageWBg(response.fields.authorImgWBg.fields.file.url);
         setAuthorInfo({
           short: response.fields.personalInfoShort,
           full: response.fields.personalInfoLong.content.map(
@@ -161,7 +166,7 @@ export default function AboutContent() {
                   key={item}
                   sx={{
                     position: "relative",
-                    background: `url(${aboutImage})`,
+                    background: `url(${dk ? aboutImageBBg : aboutImageWBg})`,
                     backgroundPosition: {
                       xs: ` ${-maxWidth * 1.8}vw ${bgY * 1.8}vw`,
                       sm: ` ${-maxWidth * 0.9}vw ${bgY * 0.9}vw`,
@@ -180,14 +185,16 @@ export default function AboutContent() {
                       sm: `${maxHeight * 0.9}vw`,
                       lg: `${maxHeight * 0.65}vw`,
                     },
+                    // transition: "all 0.65s ease-in-out",
+
                     "&:hover": {
-                      background: `url(${aboutImageAlt})`,
+                      background: `url(${aboutImage})`,
                       backgroundPosition: {
                         xs: ` ${-maxWidth * 1.8}vw ${bgY * 1.8}vw`,
                         sm: ` ${-maxWidth * 0.9}vw ${bgY * 0.9}vw`,
                         lg: ` ${-maxWidth * 0.65}vw ${bgY * 0.65}vw`,
                       },
-                      filter: "brightness(130%)",
+                      filter: "brightness(110%)",
                       backgroundRepeat: "noRepeat",
                       backgroundSize: {
                         xs: `100% ${101 * divArray.length}%`,
@@ -220,7 +227,7 @@ export default function AboutContent() {
             <Box
               sx={{
                 position: "relative",
-                background: `url(${aboutImageAlt})`,
+                background: `url(${aboutImage})`,
                 backgroundSize: { xs: "100% auto", sm: "100% auto" },
                 backgroundRepeat: "noRepeat",
                 width: {
@@ -235,7 +242,7 @@ export default function AboutContent() {
                 },
                 transition: "all 0.65s ease-in-out",
                 "&:hover": {
-                  background: `url(${aboutImage})`,
+                  background: `url(${dk ? aboutImageBBg : aboutImageWBg})`,
                   backgroundSize: { xs: "100% auto", sm: "100% auto" },
                   backgroundRepeat: "noRepeat",
                   width: {
