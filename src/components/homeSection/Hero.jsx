@@ -74,7 +74,7 @@ export default function Hero() {
           background: `linear-gradient(transparent 0%, ${theme.palette.background.main}88 25%, ${theme.palette.background.main}88 75%, transparent 100%)`,
         }}
       >
-        <Typography variant="h6">👋 Hi, My name is:</Typography>
+        <Typography variant="h6" mb={4}>👋 Hi, My name is:</Typography>
         <Typography
           variant="h1"
           sx={{
@@ -117,34 +117,36 @@ export default function Hero() {
           <Typewriter
             options={{
               loop: true,
-              delay: "natural",
+              // delay: "natural",
+              delay: 80,
+              deleteSpeed: 20,
             }}
             onInit={(typewriter) => {
               typewriter
-                .pauseFor(500)
+                .pauseFor(400)
                 .typeString("Full Stack")
-                .pauseFor(500)
+                .pauseFor(100)
                 .typeString(" Web Devellper")
                 .deleteChars(4)
                 .pauseFor(100)
                 .typeString("oper")
-                .pauseFor(2000)
+                .pauseFor(1000)
                 .deleteAll()
                 .typeString("Creative ")
-                .pauseFor(300)
+                .pauseFor(100)
                 .typeString("Coder ")
-                .pauseFor(1500)
+                .pauseFor(1000)
                 .deleteChars(9)
-                .pauseFor(250)
+                .pauseFor(200)
                 .typeString("ve Human")
-                .pauseFor(400)
+                .pauseFor(200)
                 .typeString(" Being ")
                 .pauseFor(850)
                 .deleteChars(22)
                 .typeString("Based in Berlin ")
                 .pauseFor(200)
                 .typeString("Germany")
-                .pauseFor(2000)
+                .pauseFor(1000)
                 .start();
             }}
           />

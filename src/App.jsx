@@ -1,7 +1,7 @@
 import { Routes, Route } from "react-router-dom";
 import { useState, useEffect } from "react";
 import Landing from "./components/homeSection/Landing";
-import Navbar from "./components/Navbar";
+import NavbarNeu from "./components/NavbarNeu";
 import Projects from "./components/worksSection/Projects";
 import ProjectItem from "./components/worksSection/ProjectItem";
 import About from "./components/aboutSection/About";
@@ -77,7 +77,7 @@ export default function App() {
     <>
       <ThemeProvider theme={theme}>
         <CssBaseline enableColorScheme>
-          <Navbar setOpen={setOpen} />
+          <NavbarNeu setOpen={setOpen} />
           <DrawerBGChange
             bgImage={bgImage}
             setBgImage={setBgImage}
