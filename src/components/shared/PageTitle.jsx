@@ -5,13 +5,13 @@ export default function PageTitle({ title }) {
   return (
     <Box
       sx={{
-        backgroundColor: `${theme.palette.text.highlight}88`,
+        backgroundColor: `${theme.palette.text.highlightAlt}88`,
         color: theme.palette.text.primary,
         width: "100vw",
         maxWidth: "1280px",
         paddingY: "2.5rem",
         marginBottom: "5rem",
-        border: `5px solid ${theme.palette.text.highlightAlt}`,
+        border: `5px solid ${theme.palette.text.highlight}`,
         zIndex: "1000",
       }}
     >

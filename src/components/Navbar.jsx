@@ -18,16 +18,12 @@ import {
   Typography,
 } from "@mui/material/";
 import { motion, useScroll } from "framer-motion";
-
-import CssBaseline from "@mui/material/CssBaseline";
-import Divider from "@mui/material/Divider";
 import LightModeIcon from "@mui/icons-material/LightMode";
 import MenuIcon from "@mui/icons-material/Menu";
 import DarkModeIcon from "@mui/icons-material/DarkMode";
 import CloseIcon from "@mui/icons-material/Close";
-import SettingsSuggestIcon from "@mui/icons-material/SettingsSuggest";
+import SettingsIcon from "@mui/icons-material/Settings";
 import { navItems } from "../navItems";
-// import animatedLogo from "../assets/animatedLogo.gif";
 import animatedLogoBW from "../assets/animatedLogoBW.gif";
 import animatedLogoWB from "../assets/animatedLogoWB.gif";
 import anime from "animejs";
@@ -126,7 +122,7 @@ export default function Navbar({ window, setOpen }) {
         width: { xs: "1.6rem", sm: "1.6rem" },
         height: { xs: "1.6rem", sm: "1.6rem" },
         padding: 0,
-        borderRadius: "50%",
+        // borderRadius: "50%",
         alignItems: "center",
         "&:hover": {
           boxShadow: ` -2px 2px 8px 8px ${theme.palette.text.highlight} , inset 0px 0px 5.0px 5.0px ${theme.palette.text.highlight}`,
@@ -134,7 +130,7 @@ export default function Navbar({ window, setOpen }) {
       }}
     >
       <Typography variant={"h6"} sx={{ display: "flex" }}>
-        <SettingsSuggestIcon sx={{ fontSize: { xs: "2.2rem", sm: "2rem" } }} />
+        <SettingsIcon sx={{ fontSize: { xs: "2.2rem", sm: "2rem" } }} />
       </Typography>
     </IconButton>
   );
@@ -189,22 +185,21 @@ export default function Navbar({ window, setOpen }) {
           }}
         >
           <Link href={"/"}>
-          <Box
-            // onClick={handleDrawerBgChange}
-            className="menu-logo"
-            sx={{
-              height: { xs: "3.5rem", sm: "4rem" },
-              width: { xs: "3.5rem", sm: "4rem" },
-              backgroundImage: `url(${dk?animatedLogoWB:animatedLogoBW})`,
-              backgroundPosition: "center",
-              backgroundRepeat: "no-repeat",
-              backgroundSize: "contain",
-              borderRadius: "50%",
-              borderBottom: `3px solid ${theme.palette.text.highlight}`,
-              borderLeft: `3px solid ${theme.palette.text.highlight}`,
-            }}
+            <Box
+              // onClick={handleDrawerBgChange}
+              className="menu-logo"
+              sx={{
+                height: { xs: "2.2rem", sm: "2rem" },
+                width: { xs: "2.2rem", sm: "2rem" },
+                backgroundImage: `url(${dk ? animatedLogoWB : animatedLogoBW})`,
+                backgroundPosition: "left top",
+                backgroundRepeat: "no-repeat",
+                // borderRadius: "50%",
+                borderBottom: `3px solid ${theme.palette.text.highlight}`,
+                borderLeft: `3px solid ${theme.palette.text.highlight}`,
+              }}
             />
-            </Link>
+          </Link>
           <Box>
             {BGoptionsUIIcon}
             {dkToggleIcon}
@@ -256,9 +251,9 @@ export default function Navbar({ window, setOpen }) {
                     onClick={handleDrawerToggle}
                     sx={{
                       height: "5rem",
+                      paddingX: "3rem",
                       marginBottom: "0.5rem",
-                      borderRadius: "2.5rem",
-                      width: "70vw",
+                      // borderRadius: "2.5rem",
                       color: theme.palette.text.primary,
                       borderBottom: `4px solid ${
                         activeMenuItem === item.id
@@ -270,10 +265,12 @@ export default function Navbar({ window, setOpen }) {
                           ? theme.palette.text.highlight
                           : "transparent"
                       }`,
-
+                      // transition: "all 1s ease-out",
                       "&:hover": {
+                        paddingX: "8rem",
+
                         backgroundColor: `${theme.palette.text.highlightAlt}`,
-                        boxShadow: `0px 0px 5px 5px ${theme.palette.text.highlight}`,
+                        // boxShadow: `0px 0px 5px 5px ${theme.palette.text.highlight}`,
                       },
                     }}
                   >
@@ -320,13 +317,15 @@ export default function Navbar({ window, setOpen }) {
             <Link href={"/"}>
               <Box
                 sx={{
-                  height: { xs: "3.5rem", sm: "3.5rem" },
-                  width: { xs: "3.5rem", sm: "3.5rem" },
-                  backgroundImage: `url(${dk?animatedLogoWB:animatedLogoBW})`,
+                  height: { xs: "2.2rem", sm: "2rem" },
+                  width: { xs: "2.2rem", sm: "2rem" },
+                  backgroundImage: `url(${
+                    dk ? animatedLogoWB : animatedLogoBW
+                  })`,
                   backgroundPosition: "center",
                   backgroundRepeat: "no-repeat",
                   backgroundSize: "contain",
-                  borderRadius: "50%",
+                  // borderRadius: "50%",
                   borderBottom: `3px solid ${theme.palette.text.highlight}`,
                   borderLeft: `3px solid ${theme.palette.text.highlight}`,
                   "&:hover": {
@@ -351,7 +350,7 @@ export default function Navbar({ window, setOpen }) {
                       sx={{
                         height: { sm: "3rem", md: "3rem" },
 
-                        borderRadius: { sm: "1.5rem", md: "1.75rem" },
+                        // borderRadius: { sm: "1.5rem", md: "1.75rem" },
                         padding: { sm: "0.25rem ", md: "0.95rem" },
                         mx: { sm: "0.1rem", md: "0.7rem" },
                         fontSize: { sm: "1.15rem", md: "1.4rem" },
@@ -370,7 +369,7 @@ export default function Navbar({ window, setOpen }) {
 
                         "&:hover": {
                           backgroundColor: `${theme.palette.text.highlightAlt}`,
-                          boxShadow: `0px 0px 5px 5px ${theme.palette.text.highlight}`,
+                          // boxShadow: `0px 0px 5px 5px ${theme.palette.text.highlight}`,
                         },
                       }}
                     >

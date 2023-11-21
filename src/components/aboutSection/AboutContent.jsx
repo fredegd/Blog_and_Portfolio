@@ -136,8 +136,8 @@ export default function AboutContent() {
           paddingX: { sm: "3rem", md: "5rem", lg: "10rem" },
 
           display: "flex",
-          flexDirection: { xs: "column", sm: "row" },
-          alignItems: { xs: "center", sm: "flex-start" },
+          flexDirection: { xs: "column", md: "row" },
+          alignItems: { xs: "center", md: "flex-start" },
           gap: "2rem",
           justifyContent: "space-between",
           width: "100%",
@@ -170,7 +170,7 @@ export default function AboutContent() {
                     backgroundPosition: {
                       xs: ` ${-maxWidth * 1.8}vw ${bgY * 1.8}vw`,
                       sm: ` ${-maxWidth * 0.9}vw ${bgY * 0.9}vw`,
-                      lg: ` ${-maxWidth * 0.65}vw ${bgY * 0.65}vw`,
+                      lg: ` ${-maxWidth * 0.55}vw ${bgY * 0.55}vw`,
                     },
                     filter: "brightness(130%)",
                     backgroundSize: { xs: "100% auto", sm: "100% auto" },
@@ -178,12 +178,12 @@ export default function AboutContent() {
                     width: {
                       xs: `${maxWidth * 1.8}vw`,
                       sm: `${maxWidth * 0.9}vw`,
-                      lg: `${maxWidth * 0.65}vw`,
+                      lg: `${maxWidth * 0.55}vw`,
                     },
                     height: {
                       xs: `${maxHeight * 1.8}vw`,
                       sm: `${maxHeight * 0.9}vw`,
-                      lg: `${maxHeight * 0.65}vw`,
+                      lg: `${maxHeight * 0.55}vw`,
                     },
                     // transition: "all 0.65s ease-in-out",
 
@@ -192,7 +192,7 @@ export default function AboutContent() {
                       backgroundPosition: {
                         xs: ` ${-maxWidth * 1.8}vw ${bgY * 1.8}vw`,
                         sm: ` ${-maxWidth * 0.9}vw ${bgY * 0.9}vw`,
-                        lg: ` ${-maxWidth * 0.65}vw ${bgY * 0.65}vw`,
+                        lg: ` ${-maxWidth * 0.55}vw ${bgY * 0.55}vw`,
                       },
                       filter: "brightness(110%)",
                       backgroundRepeat: "noRepeat",
@@ -203,12 +203,12 @@ export default function AboutContent() {
                       width: {
                         xs: `${maxWidth * 1.8}vw`,
                         sm: `${maxWidth * 0.9}vw`,
-                        lg: `${maxWidth * 0.65}vw`,
+                        lg: `${maxWidth * 0.55}vw`,
                       },
                       height: {
                         xs: `${maxHeight * 1.8}vw`,
                         sm: `${maxHeight * 0.9}vw`,
-                        lg: `${maxHeight * 0.65}vw`,
+                        lg: `${maxHeight * 0.55}vw`,
                       },
                     },
                   }}
@@ -233,12 +233,12 @@ export default function AboutContent() {
                 width: {
                   xs: `${maxWidth * 1.8}vw`,
                   sm: `${maxWidth * 0.9}vw`,
-                  lg: `${maxWidth * 0.65}vw`,
+                  lg: `${maxWidth * 0.55}vw`,
                 },
                 height: {
                   xs: `${maxHeight * 1.8 * gridSize.numRows}vw`,
                   sm: `${maxHeight * 0.9 * gridSize.numRows}vw`,
-                  lg: `${maxHeight * 0.65 * gridSize.numRows}vw`,
+                  lg: `${maxHeight * 0.55 * gridSize.numRows}vw`,
                 },
                 transition: "all 0.65s ease-in-out",
                 "&:hover": {
@@ -248,12 +248,12 @@ export default function AboutContent() {
                   width: {
                     xs: `${maxWidth * 1.8}vw`,
                     sm: `${maxWidth * 0.9}vw`,
-                    lg: `${maxWidth * 0.65}vw`,
+                    lg: `${maxWidth * 0.55}vw`,
                   },
                   height: {
                     xs: `${maxHeight * 1.8 * gridSize.numRows}vw`,
                     sm: `${maxHeight * 0.9 * gridSize.numRows}vw`,
-                    lg: `${maxHeight * 0.65 * gridSize.numRows}vw`,
+                    lg: `${maxHeight * 0.55 * gridSize.numRows}vw`,
                   },
                 },
               }}
@@ -272,7 +272,6 @@ export default function AboutContent() {
                     xs: "1.0rem",
                     sm: "1.0rem",
                     md: "1.2rem",
-                    textAlign: "justify",
                   },
                 }}
               >
@@ -283,7 +282,7 @@ export default function AboutContent() {
                       sx={{ display: "flex", flexDirection: "column" }}
                     >
                       <Typography
-                        sx={{ fontSize: "inherit", marginY: "0.5rem" }}
+                        sx={{ fontSize: "inherit",textAlign:{xs:"center", sm:"left"}, marginY: "0.5rem" }}
                       >
                         {item}
                       </Typography>
@@ -294,9 +293,9 @@ export default function AboutContent() {
               <Box
                 sx={{
                   display: "flex",
-                  flexDirection: { xs: "column", md: "row" },
+                  flexDirection: { xs: "column",sm:"row", md: "column", lg: "row" },
                   alignItems: "flex-start",
-                  justifyContent: { xs: "flex-start", md: "space-between" },
+                  justifyContent: { xs: "flex-start", sm: "space-between",md: "flex-start", md: "space-between" },
                   width: "90%",
                   zIndex: "1000",
                 }}
@@ -306,7 +305,6 @@ export default function AboutContent() {
                     sx={{
                       marginTop: "2rem",
                       border: `2px solid ${theme.palette.text.highlight}`,
-                      borderRadius: "2rem",
                       // width: { xs: "17rem", sm: "13rem" , md:"11rem"},
                       fontSize: { xs: "1.2rem", sm: "1.0rem" },
 
@@ -327,13 +325,11 @@ export default function AboutContent() {
                     sx={{
                       marginTop: "2rem",
                       border: `2px solid ${theme.palette.text.highlightAlt}`,
-                      borderRadius: "2rem",
                       // width: { xs: "17rem", sm: "13rem" , md:"11rem"},
                       fontSize: { xs: "1.2rem", sm: "1.0rem" },
                       transition: "all 0.3s ease-in-out",
                       "&:hover": {
                         background: `${theme.palette.text.highlightAlt}88`,
-
                         transform: "translateX(2.5rem)",
                       },
                     }}
@@ -361,7 +357,18 @@ export default function AboutContent() {
                 <>
                   {authorInfo?.short}
                   <Link to={"/about"}>
-                    <Button>...more</Button>
+                    <Button
+                      sx={{
+                        color: theme.palette.text.highlight,
+
+                        "&:hover": {
+                          background: theme.palette.text.highlightAlt,
+                          color: theme.palette.text.primary,
+                        },
+                      }}
+                    >
+                      ...more
+                    </Button>
                   </Link>
                 </>
               }
