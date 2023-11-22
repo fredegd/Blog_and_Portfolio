@@ -121,7 +121,7 @@ export default function TechStacks() {
               key={index}
               className="loop-infinity"
               sx={{
-                backgroundColor: theme.palette.background.main,
+                backgroundColor: `${theme.palette.text.highlightAlt}cc`,
                 color: theme.palette.text.highlight,
                 // margin: "2rem 0 5rem 0",
                 borderRadius: "20%",
@@ -132,7 +132,7 @@ export default function TechStacks() {
                 flexDirection: "column",
                 justifyContent: "center",
                 alignItems: "center",
-                boxShadow: `0px 0px 10px 1px ${theme.palette.text.primary}}`,
+                // boxShadow: `0px 0px 10px 1px ${theme.palette.text.primary}}`,
               }}
             >
               <Typography variant="h1">{icon.icon}</Typography>

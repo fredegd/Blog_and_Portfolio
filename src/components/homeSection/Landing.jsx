@@ -19,8 +19,8 @@ export default function Landing({ blogs }) {
       }}
     >
       <Hero />
-      <AboutContent />
       <BlogPreview blogs={blogs} />
+      <AboutContent />
       <ContactContent />
       <Footer />
     </Box>

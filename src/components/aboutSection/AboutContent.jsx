@@ -295,7 +295,7 @@ export default function AboutContent() {
                   display: "flex",
                   flexDirection: { xs: "column",sm:"row", md: "column", lg: "row" },
                   alignItems: "flex-start",
-                  justifyContent: { xs: "flex-start", sm: "space-between",md: "flex-start", md: "space-between" },
+                  justifyContent: { xs: "flex-start", sm: "space-between", md: "space-between" },
                   width: "90%",
                   zIndex: "1000",
                 }}
