@@ -10,7 +10,7 @@ export default function PageTitle({ title }) {
         width: "100vw",
         maxWidth: "1280px",
         paddingY: "2.5rem",
-        marginBottom: "5rem",
+        marginBottom: "3rem",
         border: `5px solid ${theme.palette.text.highlight}`,
         zIndex: "1000",
       }}

@@ -34,143 +34,117 @@ export default function SocialContacts() {
   }, [clicker]);
 
   return (
-    <Box display={"flex"} alignItems={"center"} justifyContent={"center"}>
-      <Grid
-        container
-        spacing={2}
-        alignItems="center"
-        sx={{
-          maxWidth: "900px",
-          paddingX: { xs: "2rem", md: "2.5rem" },
-          "& > div": {
-            display: "flex",
-            alignItems: "flex-start",
-            justifyContent: { xs: "center", sm: "center", md: "flex-start" },
-          },
-        }}
-      >
-        {contactItems.map((item) => {
-          // console.log(item.icon)
-          return (
-            <Grid item key={item.id} xs={6} sm={6} md={12}>
-              <Link href={item.linkTo} target={"blank"} underline="hover">
-                <motion.div
-                  key={item.id}
-                  style={{
-                    margin: "0 1.5rem 1.5rem 0",
-                    display: "flex",
-                    flexDirection: "column",
-                    alignItems: "center",
-                    justifyContent: "center",
-                  }}
-                  variants={staggerConfig}
-                  // initial="animate"
-                  //  animate={controls}
-                  whileHover={{ scale: 1.1 }}
-                  transition={{ type: "spring", stiffness: 200, damping: 8 }}
-                  whileTap={{ scale: 0.9 }}
-                >
-                  <IconButton
-                    sx={{
-                      fill: `${theme.palette.text.highlightAlt} `,
+    <Box>
+      {/* <Typography variant="h1" my={3}>Socials:</Typography> */}
 
-                      background: theme.palette.background.main,
-                      border: `10px solid ${theme.palette.text.highlightAlt}`,
-                      color: theme.palette.text.highlightAlt,
-                      borderRadius: "1.5rem",
-                      width: {
-                        xs: "100px",
-                        sm: "200px",
-                        md: "180px",
-                        lg: "150px",
-                      },
-                      height: {
-                        xs: "100px",
-                        sm: "200px",
-                        md: "180px",
-                        lg: "150px",
-                      },
-                      transition: " 0.4s ease-in-out",
-                      "&:hover": {
-                        fill: `${theme.palette.text.highlight} `,
-                        color: theme.palette.text.highlight,
+      <Box
+        display={"flex"}
+        alignItems={"center"}
+        justifyContent={"center"}
+        mb={5}
+      >
+        <Grid
+          container
+          spacing={2}
+          alignItems="center"
+          sx={{
+            maxWidth: "900px",
+            // paddingX: { xs: "2rem", md: "2.5rem" },
+            "& > div": {
+              display: "flex",
+              justifyContent: "center",
+            },
+          }}
+        >
+          {contactItems.map((item) => {
+            // console.log(item.icon)
+            return (
+              <Grid item key={item.id} xs={6} md={6} lg={6}>
+                <Link href={item.linkTo} target={"blank"} underline="hover">
+                  <motion.div
+                    key={item.id}
+                    style={{
+                      margin: "0 1.5rem 0 1.5rem",
+                      display: "flex",
+                      flexDirection: "column",
+                      alignItems: "center",
+                      justifyContent: "center",
+                    }}
+                    variants={staggerConfig}
+                    // initial="animate"
+                    //  animate={controls}
+                    whileHover={{ scale: 1.1 }}
+                    transition={{ type: "spring", stiffness: 200, damping: 8 }}
+                    whileTap={{ scale: 0.9 }}
+                  >
+                    <IconButton
+                      sx={{
+                        fill: `${theme.palette.text.highlightAlt} `,
                         background: theme.palette.background.main,
-                        border: `10px solid ${theme.palette.text.highlight}`,
-                        borderRadius: "2.2rem",
-                      },
-                      
-                    }}
-                  >
-                    <Typography variant="h1"sx={{ display: "flex" }} >
-                      {<item.icon
-                        sx={{
-                          fontSize: {
-                            xs: "4rem",
-                            sm: "8rem",
-                            md: "9rem",
-                            lg: "8rem",
-                          },
-                          viewBox:"0 0 512 512",
-                          color: "inherit",
-                          textAlign: "center",
-                          textJustify: "center",
-                        }}
-                      />}
-                    </Typography>
-                  </IconButton>
-                  <Box
-                    sx={{
-                      zIndex: "1000",
-                      display: { xs: "block", md: "none" },
-                    }}
-                  >
-                    <Typography variant="h6" textDecoration={"none"}>
-                      {item.name}
-                    </Typography>
-                  </Box>
-                </motion.div>
-              </Link>
-              <Link
-                href={item.linkTo}
-                target={"blank"}
-                underline="hover"
-                zIndex={100}
-                sx={{
-                  display: { xs: "none", md: "flex" },
-                  alignItems: "center",
-                  padding: "1rem",
-                  width: "100%",
-                  height: {
-                    md: "180px",
-                    lg: "150px",
-                  },
-                  backgroundImage: ``,
-                  backgroundColor: `${theme.palette.background.main}cc`,
-                  boxShadow: `0 0 10px ${theme.palette.text.highlight}cc`,
-                  "&>p": {
-                    margin: 0,
-                  },
-                  "&:hover": {
-                    border: `10px solid ${theme.palette.text.highlight}`,
-                    boxShadow: `0 0 10px ${theme.palette.text.highlight}88`,
-                    borderRadius: "1.5rem",
-                    // backgroundColor: `${theme.palette.text.highlight}88`,
-                    backgroundImage: `url(${item.screenshot})`,
-                    backgroundSize: "100% auto",
-                    "& > p": {
-                      display: "none",
-                    },
-                  },
-                  color: theme.palette.text.primary,
-                  transition: "all 0.35s ease-in-out",
-                }}
-              >
-                <p>{item.shortText}</p>
-              </Link>
-            </Grid>
-          );
-        })}
-      </Grid>
+                        border: `10px solid ${theme.palette.text.highlightAlt}`,
+                        color: theme.palette.text.highlightAlt,
+                        borderRadius: "1.5rem",
+                        width: {
+                          xs: "160px",
+                          sm: "200px",
+                          md: "180px",
+                          lg: "150px",
+                        },
+                        height: {
+                          xs: "160px",
+                          sm: "200px",
+                          md: "180px",
+                          lg: "150px",
+                        },
+                        transition: " 0.4s ease-in-out",
+                        "&:hover": {
+                          fill: `${theme.palette.text.highlight} `,
+                          color: theme.palette.text.highlight,
+                          background: theme.palette.background.main,
+                          border: `10px solid ${theme.palette.text.highlight}`,
+                          borderRadius: "2.2rem",
+                        },
+                      }}
+                    >
+                      <Typography variant="h1" sx={{ display: "flex" }}>
+                        {
+                          <item.icon
+                            sx={{
+                              fontSize: {
+                                xs: "7rem",
+                                sm: "8rem",
+                                md: "9rem",
+                                lg: "8rem",
+                              },
+                              viewBox: "0 0 512 512",
+                              color: "inherit",
+                              textAlign: "center",
+                              textJustify: "center",
+                            }}
+                          />
+                        }
+                      </Typography>
+                    </IconButton>
+                    <Box
+                      sx={{
+                        zIndex: "1000",
+                      }}
+                    >
+                      <Typography
+                        variant="h6"
+                        textDecoration={"none"}
+                        color={theme.palette.text.primary}
+                      >
+                        {item.name}
+                      </Typography>
+                    </Box>
+                  </motion.div>
+                </Link>
+              </Grid>
+            );
+          })}
+        </Grid>
+      </Box>
     </Box>
   );
 }
