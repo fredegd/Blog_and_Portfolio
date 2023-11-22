@@ -16,7 +16,7 @@ export default function ContactContent() {
       }}
     >
       <PageTitle title={"LET'S GET IN TOUCH:"} />
-      <Box display={'flex'} flexDirection={{xs:'column',lg:'row'}} alignItems={'center'} justifyContent={'center'}>
+      <Box display={'flex'} flexDirection={{xs:'column-reverse',lg:'row'}} alignItems={'center'} justifyContent={'center'}>
         <SendMeAnEmail />
         <SocialContacts />
       </Box>

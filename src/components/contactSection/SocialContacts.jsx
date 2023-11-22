@@ -34,8 +34,16 @@ export default function SocialContacts() {
   }, [clicker]);
 
   return (
-    <Box>
-      {/* <Typography variant="h1" my={3}>Socials:</Typography> */}
+    <Box
+      sx={{
+        width: { xs: "100%", lg: "50%" },
+        height: "35rem",
+        boxShadow: `0 0 10px ${theme.palette.text.highlightAlt}}`,
+      }}
+    >
+      <Typography variant="h5" my={3}>
+        Socials:
+      </Typography>
 
       <Box
         display={"flex"}
@@ -85,16 +93,10 @@ export default function SocialContacts() {
                         color: theme.palette.text.highlightAlt,
                         borderRadius: "1.5rem",
                         width: {
-                          xs: "160px",
-                          sm: "200px",
-                          md: "180px",
-                          lg: "150px",
+                          xs: "150px",
                         },
                         height: {
-                          xs: "160px",
-                          sm: "200px",
-                          md: "180px",
-                          lg: "150px",
+                          xs: "150px",
                         },
                         transition: " 0.4s ease-in-out",
                         "&:hover": {
@@ -112,9 +114,9 @@ export default function SocialContacts() {
                             sx={{
                               fontSize: {
                                 xs: "7rem",
-                                sm: "8rem",
-                                md: "9rem",
-                                lg: "8rem",
+                                // sm: "8rem",
+                                // md: "8rem",
+                                // lg: "8rem",
                               },
                               viewBox: "0 0 512 512",
                               color: "inherit",

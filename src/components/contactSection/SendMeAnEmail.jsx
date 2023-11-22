@@ -61,13 +61,14 @@ export default function SendMeAnEmail() {
         ref={form}
         sx={{
           width: { xs: "100%", lg: "50%" },
-          marginTop: "3rem",
+          height: "35rem",
+
           padding: "1rem",
           display: "flex",
           flexDirection: "column",
           justifyContent: "flex-start",
           gap: "0.5rem",
-          backgroundColor: theme.palette.background.main,
+          backgroundColor: `${theme.palette.background.main}88`,
           boxShadow: `0 0 10px ${theme.palette.text.highlightAlt}}`,
           borderRadius: "1rem",
           fontSize: {
@@ -82,7 +83,7 @@ export default function SendMeAnEmail() {
         autoComplete="off"
         onSubmit={handleSubmit(submit)}
       >
-        <Typography variant="h6" my={3}>
+        <Typography variant="h5" my={3}>
           Drop me an email:
         </Typography>
 
@@ -92,6 +93,7 @@ export default function SendMeAnEmail() {
             id="filled-basic"
             label="Your Name"
             fullWidth
+            sx={{ backgroundColor: theme.palette.background.main }}
           />
         </Box>
         <Box display={"flex"}>
@@ -100,7 +102,7 @@ export default function SendMeAnEmail() {
             id="filled-basic"
             label="Your email"
             fullWidth
-
+            sx={{ backgroundColor: theme.palette.background.main }}
           />
         </Box>
         <Box display={"flex"}>
@@ -108,21 +110,25 @@ export default function SendMeAnEmail() {
             {...register("message", { required: true, maxLength: 1000 })}
             // id="outlined-multiline-static"
             label="Message:"
-
             multiline
             rows={3}
             defaultValue="Default Value"
             fullWidth
-			sx={{ '&:focus': {
-				boxShadow: `${theme.palette.text.primary, 0.25} 0 0 0 0.2rem`,
-				borderColor: theme.palette.text.primary,
-			  },}}
+            sx={{
+              backgroundColor: theme.palette.background.main,
+              "&:focus": {
+                boxShadow: `${(theme.palette.text.primary, 0.25)} 0 0 0 0.2rem`,
+                borderColor: theme.palette.text.primary,
+              },
+            }}
           />
         </Box>
         <Button
           type="submit"
           variant="outlined"
           sx={{
+            backgroundColor: theme.palette.background.main,
+
             color: theme.palette.text.primary,
             border: `2px solid ${theme.palette.text.highlightAlt}`,
             "&:hover": {
