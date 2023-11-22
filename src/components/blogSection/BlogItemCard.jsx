@@ -93,8 +93,8 @@ export default function BlogItemCard({ blog }) {
                         },
                         zIndex: "100",
                         color: theme.palette.text.primary,
-                        textAlign: "justify",
-                        textJustify: "interWord",
+                        textAlign: "left",
+
                       }}
                     >
                       {truncatedTitle(title)}
@@ -113,9 +113,8 @@ export default function BlogItemCard({ blog }) {
                     <Typography
                       variant="p"
                       sx={{
-                        fontSize: { xs: "1.2rem", md: "1rem" },
-                        textAlign: "justify",
-                        textJustify: "interWord",
+                        fontSize: { xs: "1.1rem", md: "1rem" },
+                        textAlign: "left",
                         zIndex: "100",
                         letterSpacing: `0.02vw`,
                       }}
