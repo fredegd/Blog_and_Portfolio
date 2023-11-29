@@ -1,19 +1,14 @@
 :root {
   /* font-family: 'IBM Plex Mono', sans-serif; */
-  font-family: "IBM Plex Mono", sans-serif;
   font-style: "normal";
   line-height: 1.5;
   font-weight: 400;
- 
+
   padding-top: 5rem;
-  
-
-
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
-
 }

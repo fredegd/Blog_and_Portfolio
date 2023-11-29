@@ -70,7 +70,7 @@ export const themeManager = (darkMode) => {
       },
       h1: {
         fontSize: "4rem",
-        // fontFamily: "IBM Plex Mono",
+        //  fontFamily: "IBM Plex Mono",
         letterSpacing: "-0.08em",
 
         // lineHeight: "5.8rem",

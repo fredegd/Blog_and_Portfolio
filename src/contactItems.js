@@ -3,10 +3,10 @@ import GitHubIcon from "@mui/icons-material/GitHub";
 import InstagramIcon from "@mui/icons-material/Instagram";
 // import TwitterIcon from "./assets/TwitterIcon";
 import TwitterIcon from '@mui/icons-material/Twitter';
-import linkedin from "./assets/linkedin_ss.png";
-import gitHub from "./assets/gitHub.png";
-import instagram from "./assets/instagram.png";
-import twitter from "./assets/twitterX.png";
+
+
+
+
 
 const contactItems = [
   {
@@ -16,7 +16,7 @@ const contactItems = [
     icon: LinkedInIcon,
     shortText:
       "In my LinkedIn profile you can find my work experience and education but i also like to use it to get in touch with Developer. peers",
-    screenshot: linkedin,
+
   },
   {
     id: "github",
@@ -25,7 +25,7 @@ const contactItems = [
     icon: GitHubIcon,
     shortText:
       "Here's my GitHub profile, where you can find repositories of my projects and latest contributions.",
-    screenshot: gitHub,
+
   },
 
   {
@@ -35,7 +35,7 @@ const contactItems = [
     icon: InstagramIcon,
     shortText:
       "Trough Instagram, i do mostly share my latest creative coding experiments under the profile name TAPIWO, i got in contact with a lot of  peers from CC community there.",
-    screenshot: instagram,
+
   },
   {
     id: "twitter",
@@ -44,7 +44,7 @@ const contactItems = [
     icon: TwitterIcon,
     shortText:
       "Here's my Twitter, ehm.. 'X' profile,  mostly used for retweet and stuff,  although, since the  latest, owner-change i don't like the platform anymore ",
-    screenshot: twitter,
+
   },
 ];
 
