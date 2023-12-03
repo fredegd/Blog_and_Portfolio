@@ -72,10 +72,7 @@ export default function Showreel() {
               }}
               // poster="https://assets.codepen.io/6093409/river.jpg"
             >
-              <source
-                src={showReelUrl}
-                type="video/mp4"
-              />
+              <source src={showReelUrl} type="video/mp4" />
             </video>
           ) : null}
         </Card>

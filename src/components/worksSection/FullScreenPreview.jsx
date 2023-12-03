@@ -46,9 +46,13 @@ export default function FullScreenPreview({
           }}
         >
           <Toolbar>
-            
             <Typography
-              sx={{ ml: 2, flex: 1, color: theme.palette.text.primary, paddingY:"3rem" }}
+              sx={{
+                ml: 2,
+                flex: 1,
+                color: theme.palette.text.primary,
+                paddingY: "3rem",
+              }}
               variant="h5"
               component="Box"
               textAlign={"center"}
@@ -85,26 +89,24 @@ export default function FullScreenPreview({
             {description}
           </Typography>
           <Button
-          onClick={handleClose}
-          sx={{
-            marginY: "2rem",
-            border: `2px solid ${theme.palette.text.highlight}`,
-            borderRadius: "2rem",
-            width: { xs: "17rem", sm: "20rem" },
-            // alignSelf: "flex-end",
-            transition: "all 0.3s ease-in-out",
-            "&:hover": {
-              background: `${theme.palette.text.highlight}88`,
+            onClick={handleClose}
+            sx={{
+              marginY: "2rem",
+              border: `2px solid ${theme.palette.text.highlight}`,
+              borderRadius: "2rem",
+              width: { xs: "17rem", sm: "20rem" },
+              // alignSelf: "flex-end",
+              transition: "all 0.3s ease-in-out",
+              "&:hover": {
+                background: `${theme.palette.text.highlight}88`,
 
-              transform: "translateX(-2.5rem)",
-            },
-          }}
-        >
-          ← back
-        </Button>
+                transform: "translateX(-2.5rem)",
+              },
+            }}
+          >
+            ← back
+          </Button>
         </Box>
-
-        
       </Dialog>
     </Box>
   );

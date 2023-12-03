@@ -4,8 +4,8 @@ const commentsClient = createClient({
   accessToken: import.meta.env.VITE_CREATE_POST_COMMENT,
 });
 
-export default async function createComment( commentData ) {
-  console.log(commentData);
+export default async function createComment(commentData) {
+  // console.log(commentData);
   try {
     const space = await commentsClient.getSpace(import.meta.env.VITE_SPACE_ID);
     const environment = await space.getEnvironment(

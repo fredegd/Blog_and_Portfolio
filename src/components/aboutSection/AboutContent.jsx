@@ -6,7 +6,6 @@ import { Link } from "react-router-dom";
 import { contentfulClient } from "../../utils/contentfulClient";
 import { useDarkMode } from "../../context/DarkModeContext";
 
-
 import TechStacks from "./TechStacks";
 
 import PageTitle from "../shared/PageTitle";
@@ -280,7 +279,11 @@ export default function AboutContent() {
                       sx={{ display: "flex", flexDirection: "column" }}
                     >
                       <Typography
-                        sx={{ fontSize: "inherit",textAlign:{xs:"center", sm:"left"}, marginY: "0.5rem" }}
+                        sx={{
+                          fontSize: "inherit",
+                          textAlign: { xs: "center", sm: "left" },
+                          marginY: "0.5rem",
+                        }}
                       >
                         {item}
                       </Typography>
@@ -291,9 +294,18 @@ export default function AboutContent() {
               <Box
                 sx={{
                   display: "flex",
-                  flexDirection: { xs: "column",sm:"row", md: "column", lg: "row" },
+                  flexDirection: {
+                    xs: "column",
+                    sm: "row",
+                    md: "column",
+                    lg: "row",
+                  },
                   alignItems: "flex-start",
-                  justifyContent: { xs: "flex-start", sm: "space-between", md: "space-between" },
+                  justifyContent: {
+                    xs: "flex-start",
+                    sm: "space-between",
+                    md: "space-between",
+                  },
                   width: "90%",
                   zIndex: "1000",
                 }}

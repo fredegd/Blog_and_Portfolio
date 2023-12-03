@@ -8,13 +8,7 @@ const commentsClient = createClient({
   accessToken: import.meta.env.VITE_CREATE_POST_COMMENT,
 });
 
-
-
 export default function CommentList() {
-
-
-
-
   useEffect(() => {
     contentfulClient
       .getEntries({
@@ -30,6 +24,4 @@ export default function CommentList() {
       })
       .catch((err) => console.error(err));
   }, []);
-
-
 }

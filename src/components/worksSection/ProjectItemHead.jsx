@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { useTheme } from "@mui/material/styles";
 
 export default function ProjectItemHead({ project }) {
-  console.log(project);
+  // console.log(project);
 
   const theme = useTheme();
 

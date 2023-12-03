@@ -33,7 +33,7 @@ export default function ProjectItem() {
         setProject(response);
         window.scrollTo(0, 0);
 
-        console.log(response);
+        // console.log(response);
 
         if (response.fields.exampleImages) {
           setExampleImages(response.fields.exampleImages);
@@ -144,7 +144,7 @@ export default function ProjectItem() {
                   <Box
                     onClick={(e) => {
                       // window.open(image.fields.file.url, "_blank");
-                      console.log(e);
+                      // console.log(e);
                       setOpenPreview(true);
                       setPreviewImage(image);
                     }}
