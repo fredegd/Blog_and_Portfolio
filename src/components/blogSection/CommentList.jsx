@@ -110,11 +110,11 @@ export default function CommentList() {
             <Box
               sx={{
                 display: "flex",
-                alignItems: "center",
+                alignItems: "flex-start",
 
               }}
             >
-              <Typography fontSize={"inherit"}>
+              <Typography fontSize={"inherit"} textAlign={"left"}>
                 {comment.fields.commentBody}
               </Typography>
             </Box>
