@@ -50,6 +50,7 @@ export default function Hero() {
           lg: "2.1rem",
           xl: "2.5rem",
         },
+        marginBottom: {xs:"-5rem", sm:0, md:0, lg:0, xl:0},
         width: { xs: "100%", sm: "100%", md: "100%", lg: "100%", xl: "100%" },
         minHeight: "90vh",
         background: `

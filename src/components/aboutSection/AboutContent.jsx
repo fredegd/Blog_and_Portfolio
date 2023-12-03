@@ -6,7 +6,6 @@ import { Link } from "react-router-dom";
 import { contentfulClient } from "../../utils/contentfulClient";
 import { useDarkMode } from "../../context/DarkModeContext";
 
-import { motion, useScroll, useMotionValueEvent } from "framer-motion";
 
 import TechStacks from "./TechStacks";
 
