@@ -34,7 +34,7 @@ export default function CommentForm() {
       parentPostId: subjectId.blogItemid,
       parentCommentId: null,
     };
-    console.log(dataToSubmit);
+    // console.log(dataToSubmit);
 
     createComment(dataToSubmit);
 

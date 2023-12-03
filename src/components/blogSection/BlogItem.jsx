@@ -33,7 +33,7 @@ export default function BlogItem() {
       .then((response) => {
         setBlog(response);
         window.scrollTo(0, 0);
-        console.log(response);
+        // console.log(response);
       })
       .catch((err) => console.log(err));
   }, [blogItemid]);

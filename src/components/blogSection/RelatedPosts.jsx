@@ -19,7 +19,7 @@ export default function RelatedPosts() {
         const related = response.items.filter(
           (blog) => blog.sys.id !== blogItemid
         );
-        console.log(related);
+        // console.log(related);
         setRelated(related);
       })
       .catch((err) => console.log(err));

@@ -26,7 +26,6 @@ export default function AboutContent() {
     contentfulClient
       .getEntry(import.meta.env.VITE_ABOUT_IMAGE_ID)
       .then((response) => {
-        console.log(response);
         setAboutImage(response.fields.authorImg.fields.file.url);
         setAboutImageBBg(response.fields.authorImgBBg.fields.file.url);
         setAboutImageWBg(response.fields.authorImgWBg.fields.file.url);
@@ -76,10 +75,10 @@ export default function AboutContent() {
     // The callback will return an array of entries, even if you are only observing a single item
     entries.map((entry) => {
       if (entry.isIntersecting) {
-        console.log("intersecting");
+        // console.log("intersecting");
         handleOn(entry);
       } else {
-        console.log("not intersecting");
+        // console.log("not intersecting");
       }
     });
   }

@@ -64,7 +64,7 @@ export default function BlogItemHeading({ blog }) {
     });
     return Math.ceil(contentArray.reduce((a, b) => a + b, 0) / 5 / 250); //250 is the average word count per minute and 5 is the average length of a word
   };
-  console.log(blogLength());
+  // console.log(blogLength());
 
   return (
     <Box

@@ -22,10 +22,10 @@ export default function SendMeAnEmail() {
       )
       .then(
         (result) => {
-          console.log(result.text);
+          // console.log(result.text);
         },
         (error) => {
-          console.log(error.text);
+          // console.log(error.text);
         }
       );
   };
@@ -48,8 +48,8 @@ export default function SendMeAnEmail() {
       from_email: data.from_email,
       message: data.message,
     };
-    console.log(dataToSubmit);
-    console.log(form.current, "form");
+    // console.log(dataToSubmit);
+    // console.log(form.current, "form");
     sendEmail(dataToSubmit);
 
     reset();

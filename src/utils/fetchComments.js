@@ -25,7 +25,7 @@ export default function CommentList() {
         const filtered = response.items.filter((item) => {
           return item.fields.parentPostId === subjectId.blogItemid;
         });
-        console.log(filtered);
+        // console.log(filtered);
         setComments(filtered);
       })
       .catch((err) => console.error(err));

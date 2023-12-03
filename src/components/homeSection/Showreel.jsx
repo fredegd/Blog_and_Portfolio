@@ -4,13 +4,23 @@ import { Card } from "@mui/material";
 import { useTheme } from "@emotion/react";
 import { motion } from "framer-motion";
 import { useAnimateOnScroll } from "../shared/UseAnimateOnScroll";
-
-
+import { useEffect, useState } from "react";
+import { contentfulClient } from "../../utils/contentfulClient";
 
 export default function Showreel() {
+  const [showReelUrl, setShowReelUrl] = useState(null);
+
+  useEffect(() => {
+    contentfulClient
+      .getEntry(import.meta.env.VITE_INTRO_SHOW_REEL_ID)
+      .then((response) => {
+        setShowReelUrl(response.fields.showReel.fields.file.url);
+      })
+      .catch((err) => console.log(err));
+  }, []);
+
   const theme = useTheme();
   const { parentRef, control } = useAnimateOnScroll(0);
-  console.log(parentRef, control);
 
   return (
     <Box
@@ -25,7 +35,6 @@ export default function Showreel() {
         background: "transparent",
         backgroundColor: `${theme.palette.background.main}cc`,
 
-
         zIndex: 1000,
       }}
     >
@@ -36,40 +45,39 @@ export default function Showreel() {
         transition={{ duration: 0.5, ease: "easeOut" }} // Define the duration and delay for the animation
         variants={{
           visible: {
-
             opacity: 1,
-            transition: { duration: 1.2, ease: "easeInOut" },
+            transition: { duration: 0.7, ease: "easeInOut" },
           },
           hidden: {
-
-            opacity: 0.01,
-            transition: { duration: 1.2, ease: "easeInOut" },
+            opacity: 0,
+            transition: { duration: 0.7, ease: "easeInOut" },
           },
         }}
       >
         {/* Your content goes here */}
         <Card sx={{ minWidth: 300, flexGrow: 1 }}>
-          <video
-            autoPlay
-            loop
-            muted
-            style={{
-              position: "absolute",
-              left: "50%",
-              top: "50%",
-              width: "100%",
-              height: "100%",
-              objectFit: "cover",
-              transform: "translate(-50%, -50%)",
-            }}
-            // poster="https://assets.codepen.io/6093409/river.jpg"
-          >
-            <source
-              src="./src/assets/videoSmall.mp4"
-              type="video/mp4"
-              onLoad={() => console.log("video")}
-            />
-          </video>
+          {showReelUrl ? (
+            <video
+              autoPlay
+              loop
+              muted
+              style={{
+                position: "absolute",
+                left: "50%",
+                top: "50%",
+                width: "100%",
+                height: "100%",
+                objectFit: "cover",
+                transform: "translate(-50%, -50%)",
+              }}
+              // poster="https://assets.codepen.io/6093409/river.jpg"
+            >
+              <source
+                src={showReelUrl}
+                type="video/mp4"
+              />
+            </video>
+          ) : null}
         </Card>
       </motion.div>
       {/* Other content */}

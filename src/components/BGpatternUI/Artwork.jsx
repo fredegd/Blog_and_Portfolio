@@ -26,7 +26,7 @@ const getRandomHexColor = (colName) => {
   const randomIndex = Math.floor(Math.random() * colorsToChooseFrom.length);
   const color = colorsToChooseFrom[randomIndex].value;
   localStorage.setItem(colName, color);
-  console.log(color, " was chosen");
+  // console.log(color, " was chosen");
 
   return color;
 };
@@ -84,13 +84,13 @@ export default function Artwork({
         return strokes;
       }
     } else {
-      console.log("no bgImage");
+      // console.log("no bgImage");
     }
   };
 
   const drawStrokes = () => {
     const pointSize = svgWidth / (gridSize - 1);
-    console.log(color1, color2);
+    // console.log(color1, color2);
     let tempString = "";
     for (let i = 0; i < 2; i++) {
       const col = i % 2 === 0 ? color1 : color2;
@@ -184,15 +184,15 @@ export default function Artwork({
       localStorage.setItem("gridSize", gridSize); // Save gridSize
       localStorage.setItem("segmentsAmount", segmentsAmount); // Save segmentsAmount
       localStorage.setItem("svgData", svgData);
-      console.log("SVG data saved locally.");
+      // console.log("SVG data saved locally.");
     }
   };
 
   const handleColorChange = (colorKey, setter) => {
     const newColor = getRandomHexColor(colorKey);
-    console.log(newColor);
+    // console.log(newColor);
     setter((prev) => (prev = newColor));
-    console.log(colorKey, newColor);
+    // console.log(colorKey, newColor);
     localStorage.setItem(colorKey, newColor);
     //this is a bug and need to be fixed
     // handleDrawAndStore();

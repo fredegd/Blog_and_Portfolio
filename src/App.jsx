@@ -47,7 +47,7 @@ export default function App() {
     const randomIndex = Math.floor(Math.random() * colorsToChooseFrom.length);
     const color = colorsToChooseFrom[randomIndex].value;
     localStorage.setItem(colName, color);
-    console.log(color, " was chosen");
+    // console.log(color, " was chosen");
 
     return color;
   };
