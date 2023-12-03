@@ -65,7 +65,7 @@ export default function Showreel() {
             // poster="https://assets.codepen.io/6093409/river.jpg"
           >
             <source
-              src="./src/assets/video.mp4"
+              src="./src/assets/videoSmall.mp4"
               type="video/mp4"
               onLoad={() => console.log("video")}
             />
