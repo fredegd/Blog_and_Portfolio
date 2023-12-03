@@ -2,7 +2,8 @@ import { useRef } from "react";
 import emailjs from "@emailjs/browser";
 import { Box, Typography, Button } from "@mui/material";
 import TextField from "@mui/material/TextField";
-import { TextareaAutosize } from "@mui/base/TextareaAutosize";
+import EmailOutlinedIcon from "@mui/icons-material/EmailOutlined";
+
 import { useForm } from "react-hook-form";
 
 import { useTheme } from "@mui/material";
@@ -63,11 +64,11 @@ export default function SendMeAnEmail() {
           width: { xs: "100%", lg: "50%" },
           height: "35rem",
 
-          padding: "1rem",
+          paddingX: "1rem",
           display: "flex",
           flexDirection: "column",
           justifyContent: "flex-start",
-          gap: "0.5rem",
+          gap: "1rem",
           backgroundColor: `${theme.palette.background.main}88`,
           boxShadow: `0 0 10px ${theme.palette.text.highlightAlt}}`,
           borderRadius: "1rem",
@@ -83,9 +84,14 @@ export default function SendMeAnEmail() {
         autoComplete="off"
         onSubmit={handleSubmit(submit)}
       >
-        <Typography variant="h5" my={3}>
-          Drop me an email:
-        </Typography>
+        <Box display={"flex"} justifyContent={"center"}>
+          <Typography variant="h3" my={3} mx={2}>
+            <EmailOutlinedIcon sx={{ fontSize: "3rem" }} />
+          </Typography>
+          <Typography variant="h5" my={3}>
+            Drop me an email:
+          </Typography>
+        </Box>
 
         <Box display={"flex"}>
           <TextField

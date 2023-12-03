@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Box, Grid, Typography, IconButton, Link } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 import contactItems from "../../contactItems";
+import HandshakeOutlinedIcon from "@mui/icons-material/HandshakeOutlined";
 
 import { motion, useAnimation } from "framer-motion";
 
@@ -41,15 +42,21 @@ export default function SocialContacts() {
         boxShadow: `0 0 10px ${theme.palette.text.highlightAlt}}`,
       }}
     >
-      <Typography variant="h5" my={3}>
-        Socials:
-      </Typography>
+      <Box display={"flex"} justifyContent={"center"}>
+        <Typography variant="h3" my={3} mx={2}>
+          <HandshakeOutlinedIcon sx={{ fontSize: "3rem" }} />
+        </Typography>
+        <Typography variant="h5" my={3}>
+          Socials:
+        </Typography>
+      </Box>
 
       <Box
         display={"flex"}
         alignItems={"center"}
         justifyContent={"center"}
         mb={5}
+         py={"0.5rem"}
       >
         <Grid
           container
