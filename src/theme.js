@@ -16,6 +16,7 @@ export const themeManager = (darkMode) => {
 
       highlight: localStorage.getItem("col1") || "#ff8800", //hex orange color
       highlightAlt: localStorage.getItem("col2") || "#ffff00", //hex yellow color
+      icon: "#f1f1f1",
     },
     action: {
       active: "#ffcf8c",
@@ -38,6 +39,7 @@ export const themeManager = (darkMode) => {
       contrast: "#ffffff",
       highlight: localStorage.getItem("col1") || "#ff8800", //hex orange color
       highlightAlt: localStorage.getItem("col2") || "#ffff00", //hex yellow color
+      icon: "#131313",
     },
     action: {
       active: "#ffcf8c",
@@ -46,6 +48,7 @@ export const themeManager = (darkMode) => {
       main: "#009688",
     },
   };
+
 
   const theme = createTheme({
     palette: darkMode ? { ...darkPalette } : { ...lightPalette },

@@ -4,6 +4,7 @@ import AboutContent from "../aboutSection/AboutContent";
 import BlogPreview from "./BlogPreview";
 import ContactContent from "../contactSection/ContactContent";
 import Footer from "../shared/Footer";
+import Showreel from "./Showreel";
 
 export default function Landing({ blogs }) {
   return (
@@ -19,6 +20,7 @@ export default function Landing({ blogs }) {
       }}
     >
       <Hero />
+      <Showreel />
       <BlogPreview blogs={blogs} />
       <AboutContent />
       <ContactContent />
