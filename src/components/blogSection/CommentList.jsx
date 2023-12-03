@@ -55,7 +55,6 @@ export default function CommentList() {
         // const ageInHours = Math.floor(timeDifference / 3600000);
         // const ageInDays = Math.floor(ageInHours / 24);
         // const ageInWeeks = Math.floor(ageInDays / 7);
-
         // let commentAge = "";
         // if (ageInWeeks > 0) {
         //   commentAge = `${ageInWeeks} week${ageInWeeks > 1 ? "s" : ""} ago`;
@@ -112,7 +111,7 @@ export default function CommentList() {
               sx={{
                 display: "flex",
                 alignItems: "center",
-                height: "2rem",
+
               }}
             >
               <Typography fontSize={"inherit"}>
