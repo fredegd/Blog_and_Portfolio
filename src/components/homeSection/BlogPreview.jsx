@@ -24,10 +24,10 @@ export default function BlogPreview({ blogs }) {
       <motion.div
         style={{
           margin: "5rem 0 2rem 0",
-          padding: "0 1.5rem",
+          padding: "0 0.5rem",
         }}
         whileHover={{
-          scale: 1.03,
+          scale: 1.01,
         }}
         whileTap={{ scale: 0.9 }}
         transition={{ type: "spring", stiffness: 100, damping: 10 }}
@@ -54,7 +54,6 @@ export default function BlogPreview({ blogs }) {
                 backgroundColor: theme.palette.background.secondary,
                 color: theme.palette.text.highlightAlt,
                 fontSize: "1.1rem",
-                borderRadius: "2rem",
               },
             }}
           >
