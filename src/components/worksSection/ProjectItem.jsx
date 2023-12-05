@@ -33,8 +33,6 @@ export default function ProjectItem() {
         setProject(response);
         window.scrollTo(0, 0);
 
-        // console.log(response);
-
         if (response.fields.exampleImages) {
           setExampleImages(response.fields.exampleImages);
         }
@@ -83,14 +81,17 @@ export default function ProjectItem() {
 
         <Box
           sx={{
-            zIndex: "999",
-            width: "100%",
+            zIndex: "1000",
+            width: { xs: "100vw", sm: "100vw", md: "100vw", lg: "100vw" },
+            
             maxWidth: "900px",
-            // paddingBottom: "5rem",
-            // paddingTop: "3rem",
-            // paddingX: { xs: "1rem", sm: "2rem", md: "3rem", lg: "3rem" },
-            background: `linear-gradient(90deg, #00000000 0%,${theme.palette.background.transparent} 5%, ${theme.palette.background.main} 20%, ${theme.palette.background.main} 80%, ${theme.palette.background.transparent} 95%,  #00000000 100%)`,
 
+            paddingX: { xs: "0.5rem", sm: "2rem", md: "2.5rem", lg: "3rem" },
+
+            background: {
+              xs: `linear-gradient(90deg, #00000000 0%,${theme.palette.background.transparent} 5%, ${theme.palette.background.main}cc 20%, ${theme.palette.background.main}cc 80%, ${theme.palette.background.transparent} 95%,  #00000000 100%)`,
+              lg: `linear-gradient(90deg, #00000000 0%,${theme.palette.background.transparent} 15%, ${theme.palette.background.main}cc 30%, ${theme.palette.background.main}cc 70%, ${theme.palette.background.transparent} 85%,  #00000000 100%)`,
+            },
             display: "flex",
             flexDirection: "column",
             overflowX: "visible",
@@ -108,7 +109,7 @@ export default function ProjectItem() {
               textAlign: "left",
             }}
           >
-            {renderRichText(project.fields.description)}
+            {renderRichText(project.fields.content)}
           </Box>
           {exampleImages &&
             exampleImages.map((image, index) => {

@@ -1,8 +1,12 @@
 import { Box, Typography } from "@mui/material";
 
 import { useTheme } from "@mui/material/styles";
-import { BLOCKS, INLINES } from "@contentful/rich-text-types";
-import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
+
+import {
+  blogLength,
+  publishedAt,
+  lastUpdate,
+} from "../../utils/blogDataFormatter";
 
 export default function BlogItemHeading({ blog }) {
   const theme = useTheme();
@@ -10,61 +14,6 @@ export default function BlogItemHeading({ blog }) {
   // +" at:" +new Date(blog.sys.createdAt).toLocaleTimeString();
   const updatedAt = new Date(blog.sys.updatedAt).toLocaleDateString();
   // + " at:" + new Date(blog.sys.updatedAt).toLocaleTimeString();
-
-  const options = {
-    renderNode: {
-      [BLOCKS.HEADING_1]: (node, children) => <h1>{children}</h1>,
-      [BLOCKS.PARAGRAPH]: (node, children) => {
-        const { content } = node;
-        const text = content.map((c) => c.value).join("");
-        if (text.startsWith("#img")) {
-          const imgIndex = parseInt(text.substring(4));
-          if (
-            blog &&
-            blog.fields.contentImages &&
-            blog.fields.contentImages[imgIndex]
-          ) {
-            const imgUrl = blog.fields.contentImages[imgIndex].fields.file.url;
-            return (
-              <Box key={imgIndex + "img"}>
-                <Box
-                  component="img"
-                  sx={{
-                    marginY: { xs: "1rem", sm: "2rem", md: "3rem", lg: "4rem" },
-                    height: "auto", //{ xs: "97vw", sm: "90vw", md: "900px", lg: "900px" },
-                    width: { xs: "97vw", sm: "90vw", md: "900px", lg: "900px" },
-                    backgroundPosition: "center",
-                    backgroundSize: `contain`,
-                    backgroundRepeat: "no-repeat",
-                    transition: "all 0.5s ease-in-out",
-                  }}
-                  src={imgUrl}
-                >
-                  {/* content image */}
-                  {/* <Typography variant="h1" >WTF</Typography> */}
-                </Box>
-              </Box>
-            );
-          }
-        }
-        return <p>{children}</p>;
-      }, // Add more renderNode functions as needed for other block types
-    },
-    renderMark: {},
-    renderInline: {},
-  };
-  const renderRichText = (richText) => {
-    return documentToReactComponents(richText, options);
-  };
-  const blogLength = () => {
-    const contentArray = renderRichText(blog.fields.content).map((el) => {
-      return (
-        typeof el.props.children[0] === "string" && el.props.children[0].length
-      );
-    });
-    return Math.ceil(contentArray.reduce((a, b) => a + b, 0) / 5 / 250); //250 is the average word count per minute and 5 is the average length of a word
-  };
-  // console.log(blogLength());
 
   return (
     <Box
@@ -84,8 +33,8 @@ export default function BlogItemHeading({ blog }) {
     >
       <Box
         sx={{
-          height: "60vw",
-          width: "90vw",
+          height: "66vw",
+          width: "100vw",
           maxWidth: "1280px" || "100%",
           maxHeight: `${1280 * 0.66}px`,
           alignSelf: "center",
@@ -96,39 +45,60 @@ export default function BlogItemHeading({ blog }) {
           transition: "all 0.5s ease-in-out",
 
           // border:"2px solid black"
-          boxShadow: `0px 0px 10px 10px ${theme.palette.text.highlight}88`,
+          // boxShadow: `0px 0px 10px 10px ${theme.palette.text.highlight}88`,
+          borderRadius: { xs: "0", lg: "0.5rem" },
+          borderBottom: `10px solid ${theme.palette.text.highlight}cc`,
         }}
       ></Box>
-      <Typography
-        variant="h1"
+
+      <Box
         sx={{
-          fontSize: {
-            xs: "8.0vw",
-            sm: "7.0vw",
-            md: "6.0vw",
-            lg: "5.0vw",
-          },
-          padding: "1rem",
-          transition: "all 0.5s ease-in-out",
-          fontWeight: "bold",
-          textAlign: "justify",
+          width: "100%",
+          maxWidth: "900px",
+          display: "flex",
+          justifyContent: "flex-start",
         }}
       >
-        {blog.fields.title}
-      </Typography>
-     <Box sx={{width:"100%", maxWidth:"900px", display:"flex", justifyContent:"flex-start"}}>
-     <Typography
-        variant="h4"
+        <Typography
+          variant="h1"
+          sx={{
+            fontSize: {
+              xs: "8vw",
+              sm: "7.0vw",
+              md: "6.0vw",
+              lg: "4.0vw",
+            },
+            padding: "1rem",
+            transition: "all 0.5s ease-in-out",
+            fontWeight: "bold",
+            textAlign: "left",
+          }}
+        >
+          {blog.fields.title}
+        </Typography>
+      </Box>
+
+      <Box
         sx={{
-          fontSize: { xs: "5vw", sm: "4vw", md: "3.5vw", lg: "2.55vw" },
-          fontStyle: "italic",
-          p: { xs: "1rem", md: 0.5 },
-          marginY: "1rem",
+          width: "100%",
+          maxWidth: "900px",
+          display: "flex",
+          justifyContent: "flex-start",
         }}
       >
-        {""}"{blog.fields.subtitle}"
-      </Typography>
-     </Box>
+        <Typography
+          variant="h5"
+          sx={{
+            // fontSize: { xs: "5vw", sm: "4vw", md: "3.5vw", lg: "2.55vw" },
+            fontStyle: "italic",
+            // p: { xs: "1rem", md: 0.5 },
+            textAlign: "left",
+            marginY: "1rem",
+          }}
+        >
+          {""}"{blog.fields.subtitle}"
+        </Typography>
+      </Box>
       <Box
         sx={{
           width: "100%",
@@ -148,12 +118,7 @@ export default function BlogItemHeading({ blog }) {
             justifyContent: "flex-start",
           }}
         >
-          <Typography
-            variant="p"
-            sx={{ textAlign: "left", fontWeight: "bold" }}
-          >
-            Tags:
-          </Typography>
+          <Typography variant="h6">Tags:</Typography>
           <Box
             sx={{
               display: "flex",
@@ -171,7 +136,7 @@ export default function BlogItemHeading({ blog }) {
                     padding: "0.2rem 0.8rem",
                     backgroundColor: theme.palette.text.highlightAlt,
                     color: theme.palette.primary.contrastText,
-                    fontSize: { xs: "0.8rem", sm: "1rem" },
+                    padding: "0.2rem 0.8rem",
                     borderRadius: "1rem",
                   }}
                 >
@@ -197,12 +162,13 @@ export default function BlogItemHeading({ blog }) {
           }}
         >
           <Typography variant="p">
-            <strong>Published on: </strong>
-            {createdAt} by "{blog.fields.blogAuthor.fields.authorName}"
+            <strong>Published: </strong>
+            {publishedAt(blog.sys.createdAt)}, by "
+            {blog.fields.blogAuthor.fields.authorName}"
           </Typography>
           <Typography variant="p">
             <strong>Last edit: </strong>
-            {updatedAt} {blogLength()} min read
+            {lastUpdate(blog.sys.updatedAt)}, {blogLength(blog)} min. read
           </Typography>
         </Box>
       </Box>

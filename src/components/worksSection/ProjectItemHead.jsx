@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import { useTheme } from "@mui/material/styles";
 
 export default function ProjectItemHead({ project }) {
-  // console.log(project);
 
   const theme = useTheme();
 
@@ -17,21 +16,24 @@ export default function ProjectItemHead({ project }) {
         backgroundColor: theme.palette.background.main,
         maxWidth: "1280px",
         zIndex: "1000",
-        boxShadow: `0px 0px 10px 10px ${theme.palette.text.highlightAlt}88`,
+        // boxShadow: `0px 0px 10px 10px ${theme.palette.text.highlightAlt}88`,
       }}
     >
       <Box
         sx={{
-          height: "65vw",
+          height: {
+            xs: "66vw",
+            // md: "29vw",
+            lg: "845px",
+            // xl: "15.5rem",
+          },
           width: "90vw",
           maxWidth: "1280px",
           alignSelf: "center",
           backgroundImage: `url(${project.fields.titleBanner.fields.file.url})`,
-          backgroundPosition: "cover",
-          backgroundSize: `100% auto`,
+          backgroundPosition: "center",
+          backgroundSize: `auto 100%`,
           backgroundRepeat: "no-repeat",
-          transition: "all 0.5s ease-in-out",
-          margin: "1rem",
         }}
       ></Box>
 
@@ -120,15 +122,7 @@ export default function ProjectItemHead({ project }) {
             justifyContent: "flex-start",
           }}
         >
-          <Typography
-            variant="h6"
-            sx={{
-              textAlign: "center",
-              fontSize: { xs: "5vw", sm: "4vw", md: "3.5vw", lg: "2.55vw" },
-            }}
-          >
-            Technologies:
-          </Typography>
+          <Typography variant="h6">Technologies:</Typography>
           <Box
             sx={{
               display: "flex",

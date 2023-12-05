@@ -71,7 +71,7 @@ export default function Showreel() {
                   objectFit: "cover",
                   transform: "translate(-50%, -50%)",
                 }}
-                // poster="https://assets.codepen.io/6093409/river.jpg"
+                // poster="someimage.jpg"
               >
                 <source src={showReelUrl} type="video/mp4" />
               </video>
@@ -92,7 +92,7 @@ export default function Showreel() {
               sx={{
                 minWidth: "100%",
                 textAlign: "left",
-                fontSize: { xs: "1rem" },
+                fontSize: { xs: "0.8rem" },
               }}
             >
               {" "}

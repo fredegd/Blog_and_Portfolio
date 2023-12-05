@@ -169,7 +169,7 @@ export default function AboutContent() {
                       sm: ` ${-maxWidth * 0.9}vw ${bgY * 0.9}vw`,
                       lg: ` ${-maxWidth * 0.55}vw ${bgY * 0.55}vw`,
                     },
-                    filter: "brightness(130%)",
+                    filter: "brightness(120%)",
                     backgroundSize: { xs: "100% auto", sm: "100% auto" },
                     backgroundRepeat: "noRepeat",
                     width: {
@@ -224,9 +224,11 @@ export default function AboutContent() {
             <Box
               sx={{
                 position: "relative",
-                background: `url(${aboutImage})`,
+                backgroundImage: `url(${aboutImage})`,
                 backgroundSize: { xs: "100% auto", sm: "100% auto" },
-                backgroundRepeat: "noRepeat",
+                backgroundPosition: "center",
+
+                backgroundRepeat: "repeat",
                 width: {
                   xs: `${maxWidth * 1.8}vw`,
                   sm: `${maxWidth * 0.9}vw`,
@@ -239,8 +241,9 @@ export default function AboutContent() {
                 },
                 transition: "all 0.65s ease-in-out",
                 "&:hover": {
-                  background: `url(${dk ? aboutImageBBg : aboutImageWBg})`,
-                  backgroundSize: { xs: "100% auto", sm: "100% auto" },
+                  backgroundImage: `url(${dk ? aboutImageBBg : aboutImageWBg})`,
+                  backgroundPosition: "center",
+                  backgroundSize: { xs: "120% auto", sm: "120% auto" },
                   backgroundRepeat: "noRepeat",
                   width: {
                     xs: `${maxWidth * 1.8}vw`,

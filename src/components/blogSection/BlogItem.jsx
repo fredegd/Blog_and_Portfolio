@@ -19,7 +19,6 @@ export default function BlogItem() {
   const [blog, setBlog] = useState();
   const { blogItemid } = useParams();
 
-
   //fetching blog data from contentful
   useEffect(() => {
     contentfulClient
@@ -27,13 +26,11 @@ export default function BlogItem() {
       .then((response) => {
         setBlog(response);
         window.scrollTo(0, 0);
-        // console.log(response);
       })
       .catch((err) => console.log(err));
   }, [blogItemid]);
 
   if (!blog) {
-    // console.log("done");
     return (
       <div>
         <h1>LOADING</h1>
@@ -55,8 +52,7 @@ export default function BlogItem() {
           sx={{
             zIndex: "1000",
             width: { xs: "100vw", sm: "100vw", md: "100vw", lg: "100vw" },
-            // paddingBottom: "5rem",
-            paddingTop: "3rem",
+
             paddingX: { xs: "0.5rem", sm: "2rem", md: "2.5rem", lg: "3rem" },
 
             background: {

@@ -6,56 +6,68 @@ import { Typography, Box } from "@mui/material";
 const options = {
   renderNode: {
     [BLOCKS.HEADING_1]: (node, children) => (
-      <Typography variant="h1" sx={{
-        paddingX: { xs: "1.3rem", sm: "1rem", md: "0.5rem", lg: "0rem" },
-        marginY: { xs: "1rem", sm: "1.5rem", md: "1.5rem", lg: "1.5rem" },
-       
-      }}>
+      <Typography
+        variant="h1"
+        sx={{
+          paddingX: { xs: "1.3rem", sm: "1rem", md: "0.5rem", lg: "0rem" },
+          marginY: { xs: "1rem", sm: "1.5rem", md: "1.5rem", lg: "1.5rem" },
+        }}
+      >
         {children}
       </Typography>
     ),
     [BLOCKS.HEADING_2]: (node, children) => (
-      <Typography variant="h2" sx={{
-        paddingX: { xs: "1.3rem", sm: "1rem", md: "0.5rem", lg: "0rem" },
-        marginY: { xs: "1rem", sm: "1.5rem", md: "1.5rem", lg: "1.5rem" },
-       
-      }}>
+      <Typography
+        variant="h2"
+        sx={{
+          paddingX: { xs: "1.3rem", sm: "1rem", md: "0.5rem", lg: "0rem" },
+          marginY: { xs: "1rem", sm: "1.5rem", md: "1.5rem", lg: "1.5rem" },
+        }}
+      >
         {children}
       </Typography>
     ),
     [BLOCKS.HEADING_3]: (node, children) => (
-      <Typography variant="h3" sx={{
-        paddingX: { xs: "1.3rem", sm: "1rem", md: "0.5rem", lg: "0rem" },
-        marginY: { xs: "1rem", sm: "1.5rem", md: "1.5rem", lg: "1.5rem" },
-       
-      }}>
+      <Typography
+        variant="h3"
+        sx={{
+          paddingX: { xs: "1.3rem", sm: "1rem", md: "0.5rem", lg: "0rem" },
+          marginY: { xs: "1rem", sm: "1.5rem", md: "1.5rem", lg: "1.5rem" },
+        }}
+      >
         {children}
       </Typography>
     ),
     [BLOCKS.HEADING_4]: (node, children) => (
-      <Typography variant="h4" sx={{
-        paddingX: { xs: "1.3rem", sm: "1rem", md: "0.5rem", lg: "0rem" },
-        marginY: { xs: "1rem", sm: "1.5rem", md: "1.5rem", lg: "1.5rem" },
-       
-      }}>
+      <Typography
+        variant="h4"
+        sx={{
+          paddingX: { xs: "1.3rem", sm: "1rem", md: "0.5rem", lg: "0rem" },
+          marginY: { xs: "1rem", sm: "1.5rem", md: "1.5rem", lg: "1.5rem" },
+        }}
+      >
         {children}
       </Typography>
     ),
     [BLOCKS.HEADING_5]: (node, children) => (
-      <Typography variant="h5" sx={{
-        paddingX: { xs: "1.3rem", sm: "1rem", md: "0.5rem", lg: "0rem" },
-        marginY: { xs: "1rem", sm: "1.5rem", md: "1.5rem", lg: "1.5rem" },
-       
-      }}>
+      <Typography
+        variant="h5"
+        sx={{
+          paddingX: { xs: "1.3rem", sm: "1rem", md: "0.5rem", lg: "0rem" },
+          marginY: { xs: "1rem", sm: "1.5rem", md: "1.5rem", lg: "1.5rem" },
+        }}
+      >
         {children}
       </Typography>
     ),
     [BLOCKS.HEADING_6]: (node, children) => (
-      <Typography variant="h6" sx={{
-        paddingX: { xs: "1.3rem", sm: "1rem", md: "0.5rem", lg: "0rem" },
-        marginY: { xs: "1rem", sm: "1.5rem", md: "1.5rem", lg: "1.5rem" },
-       
-      }}>
+      <Typography
+        variant="h6"
+        sx={{
+          paddingX: { xs: "1.3rem", sm: "1rem", md: "0.5rem", lg: "0rem" },
+          marginY: { xs: "1rem", sm: "1.5rem", md: "1.5rem", lg: "1.5rem" },
+        }}
+      >
         {children}
       </Typography>
     ),
@@ -116,8 +128,27 @@ const renderRichText = (richText) => {
   return documentToReactComponents(richText, options);
 };
 
-export const displayContent = (content) => {
+export const publishedAt = (date) => {
+  const options = { day: "numeric", month: "long", year: "numeric" };
+  return new Date(date).toLocaleDateString("en-US", options);
+};
+export const lastUpdate = (date) => {
+  const options = { day: "numeric", month: "long", year: "numeric" };
+  return new Date(date).toLocaleDateString("en-US", options);
+};
 
+// Calculate the length of the blog in minutes
+//
+export const blogLength = (content) => {
+  const contentArray = renderRichText(content.fields.content).map((el) => {
+    return (
+      typeof el.props.children[0] === "string" && el.props.children[0].length
+    );
+  });
+  return Math.ceil(contentArray.reduce((a, b) => a + b, 0) / 5 / 250); //250 is the average word count per minute and 5 is the average length of a word
+};
+
+export const displayContent = (content) => {
   let id = 0;
   const paragraphs = renderRichText(content);
   return paragraphs;
@@ -136,8 +167,6 @@ export const truncatedTitle = (title) => {
 // Truncate the text to the first 15 words
 
 export const truncatedContent = (content) => {
-
-
   const contentPreview = content.content[0].content[0].value;
   console.log(contentPreview);
   const words = contentPreview.split(" ");

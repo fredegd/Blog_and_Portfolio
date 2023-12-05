@@ -4,6 +4,7 @@ import { useLocation } from "react-router-dom";
 import { useDarkMode } from "../context/DarkModeContext";
 import { useTheme } from "@mui/material/styles";
 import AppBar from "@mui/material/AppBar";
+import Typewriter from "typewriter-effect";
 import {
   Box,
   Button,
@@ -79,38 +80,38 @@ export default function Navbar({ window, setOpen }) {
     toggleDarkMode();
   };
 
-  anime({
-    targets: ".menu-logo",
-    translateX: ["70vw", 0],
+  // anime({
+  //   targets: ".menu-logo",
+  //   translateX: ["70vw", 0],
 
-    opacity: [0.5, 1],
-    duration: 850,
+  //   opacity: [0.5, 1],
+  //   duration: 850,
 
-    delay: anime.stagger(250, { direction: "reverse" }),
-    easing: "easeOutElastic(1, .8)",
-  });
+  //   delay: anime.stagger(250, { direction: "reverse" }),
+  //   easing: "easeOutElastic(1, .8)",
+  // });
 
-  anime({
-    targets: ".close-drawer",
-    translateX: ["-20vw", 0],
+  // anime({
+  //   targets: ".close-drawer",
+  //   translateX: ["-20vw", 0],
 
-    opacity: [0.5, 1],
-    duration: 850,
+  //   opacity: [0.5, 1],
+  //   duration: 850,
 
-    delay: anime.stagger(350, { direction: "reverse" }),
-    easing: "easeOutElastic(1, .8)",
-  });
+  //   delay: anime.stagger(350, { direction: "reverse" }),
+  //   easing: "easeOutElastic(1, .8)",
+  // });
 
-  anime({
-    targets: ".link-item ",
-    translateX: ["90vw", 0],
+  // anime({
+  //   targets: ".link-item ",
+  //   translateX: ["90vw", 0],
 
-    opacity: [0.5, 1],
-    duration: (navItems.length + 1) * 150,
+  //   opacity: [0.5, 1],
+  //   duration: (navItems.length + 1) * 150,
 
-    delay: anime.stagger(150),
-    easing: "easeOutElastic(1, .8)",
-  });
+  //   delay: anime.stagger(150),
+  //   easing: "easeOutElastic(1, .8)",
+  // });
   const BGoptionsUIIcon = (
     <IconButton
       aria-label="openBackgroudEditor"
@@ -150,7 +151,6 @@ export default function Navbar({ window, setOpen }) {
           border: `1px solid ${theme.palette.text.highlight}`,
           boxShadow: ` 0px 0px 5px 5px ${theme.palette.text.highlight}aa , inset 0px 0px 2.0px 2.0px ${theme.palette.text.highlight}aa`,
           color: theme.palette.text.highlightAlt,
-
         },
       }}
     >
@@ -189,7 +189,6 @@ export default function Navbar({ window, setOpen }) {
         >
           <Link href={"/"}>
             <Box
-
               className="menu-logo"
               sx={{
                 height: { xs: "2.5rem", sm: "2.2rem" },
@@ -199,9 +198,9 @@ export default function Navbar({ window, setOpen }) {
                 backgroundRepeat: "no-repeat",
                 backgroundSize: "contain",
                 borderBottom: `3px solid ${theme.palette.text.highlight}`,
-                borderLeft: `3px solid ${theme.palette.text.highlight}`,
+                // borderLeft: `3px solid ${theme.palette.text.highlight}`,
                 "&:hover": {
-                  boxShadow: `1px -1px 2px ${theme.palette.text.highlight}`,
+                  boxShadow: `0px 0px 2px 2px ${theme.palette.text.highlight}`,
                 },
               }}
             />
@@ -242,7 +241,7 @@ export default function Navbar({ window, setOpen }) {
               gap: "0.5rem",
             }}
           >
-            {navItems.map((item) => (
+            {navItems.map((item,index) => (
               <ListItem
                 className="link-item"
                 key={item.id}
@@ -260,29 +259,57 @@ export default function Navbar({ window, setOpen }) {
                       height: "5rem",
                       paddingX: "3rem",
                       marginBottom: "0.5rem",
-                      // borderRadius: "2.5rem",
+
                       color: theme.palette.text.primary,
                       borderBottom: `4px solid ${
                         activeMenuItem === item.id
                           ? theme.palette.text.highlight
                           : "transparent"
                       }`,
-                      borderLeft: `4px solid ${
-                        activeMenuItem === item.id
-                          ? theme.palette.text.highlight
-                          : "transparent"
-                      }`,
-                      // transition: "all 1s ease-out",
+                      // borderLeft: `4px solid ${
+                      //   activeMenuItem === item.id
+                      //     ? theme.palette.text.highlight
+                      //     : "transparent"
+                      // }`,
+
                       "&:hover": {
-                        paddingX: "8rem",
+                        paddingX: "4rem",
 
                         backgroundColor: `${theme.palette.text.highlightAlt}`,
-                        // boxShadow: `0px 0px 5px 5px ${theme.palette.text.highlight}`,
                       },
                     }}
                   >
-                    <Typography variant="h4" sx={{ my: 2 }}>
+                    {/* <Typography variant="h4" sx={{ my: 2 }}>
                       {item.name}{" "}
+                    </Typography> */}
+                    <Typography
+                      variant="h4"
+                      sx={{
+                        // fontSize: {
+                        //   xs: "2.0em",
+                        //   sm: "2.2em",
+                        //   md: "2.3em",
+                        //   lg: "2.3em",
+                        //   xl: "2.3em",
+                        // },
+                        my: 2,
+                      }}
+                    >
+                     {mobileOpen&& <Typewriter
+                        options={{
+                          delay: 70,
+                          deleteSpeed: 20,
+                          cursor: "",
+                        }}
+                        onInit={(typewriter) => {
+                          typewriter
+                          .start()
+                          
+                          .pauseFor(300*index)
+
+                            .typeString(item.name)
+                        }}
+                      />}
                     </Typography>
                   </Button>
                 </Link>
@@ -333,10 +360,10 @@ export default function Navbar({ window, setOpen }) {
                   backgroundRepeat: "no-repeat",
                   backgroundSize: "contain",
                   borderBottom: `3px solid ${theme.palette.text.highlight}`,
-                  borderLeft: `3px solid ${theme.palette.text.highlight}`,
+                  // borderLeft: `3px solid ${theme.palette.text.highlight}`,
 
                   "&:hover": {
-                    boxShadow: `1px -1px 2px ${theme.palette.text.highlight}`,
+                    boxShadow: `0px 0px 2px 2px ${theme.palette.text.highlight}`,
                   },
                   transition: "all 0.2s ease-in-out",
                 }}
@@ -368,11 +395,11 @@ export default function Navbar({ window, setOpen }) {
                             ? theme.palette.text.highlight
                             : "transparent" // Inactive color
                         }`,
-                        borderLeft: `4px solid ${
-                          activeMenuItem === item.id
-                            ? theme.palette.text.highlight
-                            : "transparent"
-                        }`,
+                        // borderLeft: `4px solid ${
+                        //   activeMenuItem === item.id
+                        //     ? theme.palette.text.highlight
+                        //     : "transparent"
+                        // }`,
 
                         "&:hover": {
                           backgroundColor: `${theme.palette.text.highlightAlt}`,

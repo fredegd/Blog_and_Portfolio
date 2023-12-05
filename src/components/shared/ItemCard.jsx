@@ -12,10 +12,14 @@ export default function ItemCard({ item }) {
   const theme = useTheme();
 
   const location = useLocation();
-  console.log({location})
-
+  console.log({ location });
 
   const { title, content } = item.fields;
+
+  const linkEnd =
+    location.pathname == "/"
+      ? location.pathname + "blog/read/" + item.sys.id
+      : location.pathname + "/read/" + item.sys.id;
 
   return !item ? null : (
     <>
@@ -28,7 +32,7 @@ export default function ItemCard({ item }) {
         whileTap={{ scale: 0.9 }}
       >
         <Link
-          to={`${location.pathname}/read/${item.sys.id}`}
+          to={linkEnd}
           style={{
             textDecoration: "none",
             color: theme.palette.text.secondary,
