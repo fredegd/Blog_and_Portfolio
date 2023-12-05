@@ -11,7 +11,7 @@ export default function BlogItemContent({ blog }) {
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
-        textAlign: "justify",
+        textAlign: "left",
       }}
     >
       {displayContent(blog.fields.content)}

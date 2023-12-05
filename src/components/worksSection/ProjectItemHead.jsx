@@ -26,7 +26,7 @@ export default function ProjectItemHead({ project }) {
           width: "90vw",
           maxWidth: "1280px",
           alignSelf: "center",
-          backgroundImage: `url(${project.fields.titleImage.fields.file.url})`,
+          backgroundImage: `url(${project.fields.titleBanner.fields.file.url})`,
           backgroundPosition: "cover",
           backgroundSize: `100% auto`,
           backgroundRepeat: "no-repeat",

@@ -89,7 +89,7 @@ export default function BlogItemHeading({ blog }) {
           maxWidth: "1280px" || "100%",
           maxHeight: `${1280 * 0.66}px`,
           alignSelf: "center",
-          backgroundImage: `url(${blog.fields.blogTitleImage.fields.file.url})`,
+          backgroundImage: `url(${blog.fields.titleBanner.fields.file.url})`,
           backgroundPosition: "cover",
           backgroundSize: `100% auto`,
           backgroundRepeat: "no-repeat",

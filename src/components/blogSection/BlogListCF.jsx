@@ -1,13 +1,10 @@
 import { useEffect, useState } from "react";
-import { useTheme } from "@mui/material/styles";
 import { contentfulClient } from "../../utils/contentfulClient";
-import BlogItemCard from "./BlogItemCard";
+import ItemCard from "../shared/ItemCard";
 import { Box, Grid, Typography } from "@mui/material";
 
 export default function BlogListCF() {
   const [blogs, setBlogs] = useState([]);
-
-  const theme = useTheme();
 
   useEffect(() => {
     contentfulClient
@@ -20,17 +17,11 @@ export default function BlogListCF() {
       .catch((err) => console.error(err));
   }, []);
 
-  const handleSearchChange = (e) => {
-    setSearchKeyword(e.target.value);
-  };
-
-  // const filteredBlogs = blogs.filter((blog) =>
-  //   blog.fields.title.toLowerCase().includes(searchKeyword.toLowerCase())
-  // );
-
   return (
     <Box
       sx={{
+        width: "100vw",
+
         maxWidth: "1280px",
         paddingX: { xs: "1rem", sm: "2.5rem", md: "2.5rem" },
       }}
@@ -39,7 +30,7 @@ export default function BlogListCF() {
         {blogs &&
           blogs.map((blog) => (
             <Grid item xs={12} sm={12} md={6} lg={4} key={blog.sys.id}>
-              <BlogItemCard blog={blog} />
+              <ItemCard item={blog} />
             </Grid>
           ))}
       </Grid>

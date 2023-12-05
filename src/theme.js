@@ -56,15 +56,14 @@ export const themeManager = (darkMode) => {
     typography: {
       fontFamily: "IBM Plex Mono",
       body1: {
-        fontSize: "1.4rem"
+        fontSize: "1.0rem"
         // fontFamily: "IBM Plex Mono",
       },
       body2: {
-        fontSize: "1.2rem",
+        fontSize: "1.0rem",
         // fontFamily: "IBM Plex Mono",
       },
       button: {
-        fontSize: "1.1rem",
         // fontFamily: "IBM Plex Mono",
         fontSize: "1.4rem",
         fontWeight: 400,
@@ -72,28 +71,28 @@ export const themeManager = (darkMode) => {
         textTransform: "uppercase",
       },
       h1: {
-        fontSize: "4rem",
+        fontSize: "3.5rem",
         //  fontFamily: "IBM Plex Mono",
         letterSpacing: "-0.08em",
 
         // lineHeight: "5.8rem",
       },
       h2: {
-        fontSize: "3.5rem",
+        fontSize: "2.8rem",
         // fontFamily: "IBM Plex Mono",
         letterSpacing: "-0.08em",
 
         // lineHeight: "3.2rem",
       },
       h3: {
-        fontSize: "3rem",
+        fontSize: "2.5rem",
         // fontFamily: "IBM Plex Mono",
         letterSpacing: "-0.08em",
 
         // lineHeight: "2.6rem",
       },
       h4: {
-        fontSize: "2.5rem",
+        fontSize: "2.2rem",
         // fontFamily: "IBM Plex Mono",
         letterSpacing: "-0.08em",
 

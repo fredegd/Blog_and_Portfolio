@@ -2,7 +2,7 @@ import { Box, Typography, Grid } from "@mui/material";
 import { useTheme } from "@emotion/react";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import BlogItemCard from "./BlogItemCard";
+import ItemCard from "../shared/ItemCard";
 import { contentfulClient } from "../../utils/contentfulClient";
 export default function RelatedPosts() {
   const theme = useTheme();

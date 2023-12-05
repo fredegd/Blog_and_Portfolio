@@ -17,14 +17,8 @@ import ScrollIndicator from "./ScrollIndicator";
 export default function BlogItem() {
   const theme = useTheme();
   const [blog, setBlog] = useState();
-  const [anchorEl, setAnchorEl] = useState(null); // for popover
   const { blogItemid } = useParams();
-  const handlePopoverOpen = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
-  const handlePopoverClose = () => {
-    setAnchorEl(null);
-  };
+
 
   //fetching blog data from contentful
   useEffect(() => {

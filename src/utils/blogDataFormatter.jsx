@@ -3,92 +3,124 @@ import { documentToReactComponents } from "@contentful/rich-text-react-renderer"
 
 import { Typography, Box } from "@mui/material";
 
-
-
-
 const options = {
-    renderNode: {
-      [BLOCKS.HEADING_1]: (node, children) => <h1>{children}</h1>,
-      [BLOCKS.PARAGRAPH]: (node, children) => (
-        <Typography
-          sx={{
-            paddingX: { xs: "1.3rem", sm: "1rem", md: "0.5rem", lg: "0rem" },
-            marginY: { xs: "1rem", sm: "1.5rem", md: "1.5rem", lg: "1.5rem" },
-            fontSize: {
-              xs: "1.2rem",
-              sm: "1.3rem",
-              md: "1.4rem",
-              lg: "1.5rem",
-            },
-          }}
-        >
-          {children}
-        </Typography>
-      ), // Add more renderNode functions as needed for other block types
-      [BLOCKS.EMBEDDED_ASSET]: (node, children) => {
-        const imgUrl = node.data.target.fields.file.url;
-        return (
-          <Box>
-            <Box
-              component="img"
-              sx={{
-                paddingX: {
-                  xs: "1.3rem",
-                  sm: "1rem",
-                  md: "0.5rem",
-                  lg: "0rem",
-                },
+  renderNode: {
+    [BLOCKS.HEADING_1]: (node, children) => (
+      <Typography variant="h1" sx={{
+        paddingX: { xs: "1.3rem", sm: "1rem", md: "0.5rem", lg: "0rem" },
+        marginY: { xs: "1rem", sm: "1.5rem", md: "1.5rem", lg: "1.5rem" },
+       
+      }}>
+        {children}
+      </Typography>
+    ),
+    [BLOCKS.HEADING_2]: (node, children) => (
+      <Typography variant="h2" sx={{
+        paddingX: { xs: "1.3rem", sm: "1rem", md: "0.5rem", lg: "0rem" },
+        marginY: { xs: "1rem", sm: "1.5rem", md: "1.5rem", lg: "1.5rem" },
+       
+      }}>
+        {children}
+      </Typography>
+    ),
+    [BLOCKS.HEADING_3]: (node, children) => (
+      <Typography variant="h3" sx={{
+        paddingX: { xs: "1.3rem", sm: "1rem", md: "0.5rem", lg: "0rem" },
+        marginY: { xs: "1rem", sm: "1.5rem", md: "1.5rem", lg: "1.5rem" },
+       
+      }}>
+        {children}
+      </Typography>
+    ),
+    [BLOCKS.HEADING_4]: (node, children) => (
+      <Typography variant="h4" sx={{
+        paddingX: { xs: "1.3rem", sm: "1rem", md: "0.5rem", lg: "0rem" },
+        marginY: { xs: "1rem", sm: "1.5rem", md: "1.5rem", lg: "1.5rem" },
+       
+      }}>
+        {children}
+      </Typography>
+    ),
+    [BLOCKS.HEADING_5]: (node, children) => (
+      <Typography variant="h5" sx={{
+        paddingX: { xs: "1.3rem", sm: "1rem", md: "0.5rem", lg: "0rem" },
+        marginY: { xs: "1rem", sm: "1.5rem", md: "1.5rem", lg: "1.5rem" },
+       
+      }}>
+        {children}
+      </Typography>
+    ),
+    [BLOCKS.HEADING_6]: (node, children) => (
+      <Typography variant="h6" sx={{
+        paddingX: { xs: "1.3rem", sm: "1rem", md: "0.5rem", lg: "0rem" },
+        marginY: { xs: "1rem", sm: "1.5rem", md: "1.5rem", lg: "1.5rem" },
+       
+      }}>
+        {children}
+      </Typography>
+    ),
 
-                marginY: { xs: "1rem", sm: "2rem", md: "3rem", lg: "4rem" },
-                height: "auto", //{ xs: "97vw", sm: "90vw", md: "900px", lg: "900px" },
-                width: { xs: "97vw", sm: "90vw", md: "900px", lg: "900px" },
-                backgroundPosition: "center",
-                backgroundSize: `contain`,
-                backgroundRepeat: "no-repeat",
-                transition: "all 0.5s ease-in-out",
-              }}
-              src={imgUrl}
-            >
-              {/* content image */}
-              {/* <Typography variant="h1" >WTF</Typography> */}
-            </Box>
+    [BLOCKS.PARAGRAPH]: (node, children) => (
+      <Typography
+        variant="p"
+        sx={{
+          paddingX: { xs: "1.3rem", sm: "1rem", md: "0.5rem", lg: "0rem" },
+          marginY: { xs: "1rem", sm: "1.5rem", md: "1.5rem", lg: "1.5rem" },
+          fontSize: {
+            xs: "1.0rem",
+            sm: "1.15rem",
+            md: "1.18rem",
+            lg: "1.25rem",
+          },
+        }}
+      >
+        {children}
+      </Typography>
+    ), // Add more renderNode functions as needed for other block types
+    [BLOCKS.EMBEDDED_ASSET]: (node, children) => {
+      const imgUrl = node.data.target.fields.file.url;
+      return (
+        <Box>
+          <Box
+            component="img"
+            sx={{
+              paddingX: {
+                xs: "1.3rem",
+                sm: "1rem",
+                md: "0.5rem",
+                lg: "0rem",
+              },
+
+              marginY: { xs: "1rem", sm: "2rem", md: "3rem", lg: "4rem" },
+              height: "auto", //{ xs: "97vw", sm: "90vw", md: "900px", lg: "900px" },
+              width: { xs: "97vw", sm: "90vw", md: "900px", lg: "900px" },
+              backgroundPosition: "center",
+              backgroundSize: `contain`,
+              backgroundRepeat: "no-repeat",
+              transition: "all 0.5s ease-in-out",
+            }}
+            src={imgUrl}
+          >
+            {/* content image */}
+            {/* <Typography variant="h1" >WTF</Typography> */}
           </Box>
-        );
-      },
+        </Box>
+      );
     },
-    renderMark: {},
-    renderInline: {},
-  };
+  },
+  renderMark: {},
+  renderInline: {},
+};
 
+const renderRichText = (richText) => {
+  return documentToReactComponents(richText, options);
+};
 
-  const renderRichText = (richText) => {
-    return documentToReactComponents(richText, options);
-  };
+export const displayContent = (content) => {
 
-  export const displayContent = (content) => {
-    let id = 0;
-    const paragraphs = renderRichText(content);
-    return paragraphs;
-  };
-
-
-
-
-const extractTextFromRichText = (content) => {
-  if (!content) return "";
-
-  return content.content
-    .map((node) => {
-      if (node.nodeType === "text" && node.value) {
-        return node.value;
-      } else if (node.nodeType === "paragraph") {
-        return extractTextFromRichText(node);
-      } else if (node.content) {
-        return extractTextFromRichText(node);
-      }
-      return "";
-    })
-    .join(" ");
+  let id = 0;
+  const paragraphs = renderRichText(content);
+  return paragraphs;
 };
 
 // Truncate the text to the first 70 chars
@@ -104,7 +136,10 @@ export const truncatedTitle = (title) => {
 // Truncate the text to the first 15 words
 
 export const truncatedContent = (content) => {
-  const contentPreview = extractTextFromRichText(content);
+
+
+  const contentPreview = content.content[0].content[0].value;
+  console.log(contentPreview);
   const words = contentPreview.split(" ");
   if (words.length < 15) {
     return words.join(" ");

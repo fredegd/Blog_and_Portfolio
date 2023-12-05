@@ -1,6 +1,7 @@
 import { Box } from "@mui/material";
+import PageTitle from "../shared/PageTitle";
+import ProjectsList from "./ProjectsList";
 import Footer from "../shared/Footer";
-import ProjectsContent from "./ProjectsContent";
 
 export default function Projects() {
   window.scrollTo(0, 0);
@@ -17,7 +18,19 @@ export default function Projects() {
         zIndex: "1000",
       }}
     >
-      <ProjectsContent />
+      <Box
+        sx={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          width: "100vw",
+          zIndex: "1000",
+          marginBottom: "8rem",
+        }}
+      >
+        <PageTitle title={"LATEST PROJECTS"} />
+        <ProjectsList />
+      </Box>
       <Footer />
     </Box>
   );

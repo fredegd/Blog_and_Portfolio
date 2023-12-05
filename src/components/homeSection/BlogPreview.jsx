@@ -4,7 +4,7 @@ import useTheme from "@mui/material/styles/useTheme";
 import { Typography, Button, Grid } from "@mui/material";
 import { motion, useAnimation } from "framer-motion";
 
-import BlogItemCard from "../blogSection/BlogItemCard";
+import ItemCard from "../shared/ItemCard";
 
 export default function BlogPreview({ blogs }) {
   const theme = useTheme();
@@ -83,7 +83,7 @@ export default function BlogPreview({ blogs }) {
             return (
               index < 3 && (
                 <Grid item xs={12} sm={12} md={6} lg={4} key={blog.sys.id}>
-                  <BlogItemCard blog={blog} />
+                  <ItemCard item={blog} />
                 </Grid>
               )
             );

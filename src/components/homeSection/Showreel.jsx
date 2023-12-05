@@ -81,7 +81,6 @@ export default function Showreel() {
             sx={{
               position: "relative",
               bottom: { xs: "-35vw", sm: "-30vw", lg: "-26.5vw", xl: "-22vw" },
-              maxWidth: "100%",
               width: "100vw",
               maxWidth: "1280px",
               display: "flex",

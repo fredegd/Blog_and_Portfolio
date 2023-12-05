@@ -1,11 +1,9 @@
-import { Box, Grid, Typography } from "@mui/material";
-import useTheme from "@mui/material/styles/useTheme";
-import ProjectItemCard from "./ProjectItemCard";
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import { contentfulClient } from "../../utils/contentfulClient";
+import ItemCard from "../shared/ItemCard";
+import { Box, Grid, Typography } from "@mui/material";
 
-export default function ProjectsList() {
-  const theme = useTheme();
+export default function BlogListCF() {
   const [projects, setProjects] = useState([]);
 
   useEffect(() => {
@@ -14,7 +12,7 @@ export default function ProjectsList() {
         content_type: "fredegdProjects",
       })
       .then((response) => {
-        console.log(response.items);
+        console.log(response.items)
         setProjects(response.items);
       })
       .catch((err) => console.error(err));
@@ -23,6 +21,7 @@ export default function ProjectsList() {
   return (
     <Box
       sx={{
+        width: "100vw",
         maxWidth: "1280px",
         paddingX: { xs: "1rem", sm: "2.5rem", md: "2.5rem" },
       }}
@@ -31,7 +30,7 @@ export default function ProjectsList() {
         {projects &&
           projects.map((project) => (
             <Grid item xs={12} sm={12} md={6} lg={4} key={project.sys.id}>
-              <ProjectItemCard project={project} />
+              <ItemCard item={project} />
             </Grid>
           ))}
       </Grid>
