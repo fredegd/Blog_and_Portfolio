@@ -62,7 +62,8 @@ export default function SendMeAnEmail() {
         ref={form}
         sx={{
           width: { xs: "100%", lg: "50%" },
-          height: "35rem",
+          height: "38rem",
+
 
           paddingX: "1rem",
           display: "flex",
@@ -117,7 +118,7 @@ export default function SendMeAnEmail() {
             // id="outlined-multiline-static"
             label="Message:"
             multiline
-            rows={3}
+            rows={6}
             defaultValue="Default Value"
             fullWidth
             sx={{

@@ -38,7 +38,7 @@ export default function SocialContacts() {
     <Box
       sx={{
         width: { xs: "100%", lg: "50%" },
-        height: "35rem",
+        height: "38rem",
         boxShadow: `0 0 10px ${theme.palette.text.highlightAlt}}`,
       }}
     >
@@ -55,12 +55,12 @@ export default function SocialContacts() {
         display={"flex"}
         alignItems={"center"}
         justifyContent={"center"}
-        mb={5}
-         py={"0.5rem"}
+        // mb={5}
+        //  py={"0.5rem"}
       >
         <Grid
           container
-          spacing={2}
+          // spacing={2}
           alignItems="center"
           sx={{
             maxWidth: "900px",
@@ -79,7 +79,7 @@ export default function SocialContacts() {
                   <motion.div
                     key={item.id}
                     style={{
-                      margin: "0 1.5rem 0 1.5rem",
+
                       display: "flex",
                       flexDirection: "column",
                       alignItems: "center",
@@ -88,12 +88,13 @@ export default function SocialContacts() {
                     variants={staggerConfig}
                     // initial="animate"
                     //  animate={controls}
-                    whileHover={{ scale: 1.1 }}
+                    whileHover={{ scale: 1.05 }}
                     transition={{ type: "spring", stiffness: 200, damping: 8 }}
                     whileTap={{ scale: 0.9 }}
                   >
                     <IconButton
                       sx={{
+                        margin: "1rem",
                         fill: `${theme.palette.text.highlightAlt} `,
                         background: theme.palette.background.main,
                         border: `10px solid ${theme.palette.text.highlightAlt}`,
