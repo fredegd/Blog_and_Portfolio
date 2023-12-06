@@ -83,7 +83,7 @@ export default function ProjectItem() {
           sx={{
             zIndex: "1000",
             width: { xs: "100vw", sm: "100vw", md: "100vw", lg: "100vw" },
-            
+
             maxWidth: "900px",
 
             paddingX: { xs: "0.5rem", sm: "2rem", md: "2.5rem", lg: "3rem" },
@@ -182,6 +182,15 @@ export default function ProjectItem() {
                 </Box>
               );
             })}
+<Button
+component={Link}
+to={"/works"}
+sx={{
+  my: "2rem",
+}}
+>
+{"      back to works         "}
+</Button>
           {previewImage && (
             <Box sx={{ display: { xs: "none", md: "block" } }}>
               <FullScreenPreview
@@ -192,7 +201,8 @@ export default function ProjectItem() {
                 description={previewImage.fields.description}
               />
             </Box>
-          )}{" "}
+          )}
+  
         </Box>
         <Footer />
       </Box>

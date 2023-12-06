@@ -6,7 +6,7 @@ import { motion, useAnimation } from "framer-motion";
 
 import ItemCard from "../shared/ItemCard";
 
-export default function BlogPreview({ blogs }) {
+export default function WorksPreview({ works }) {
   const theme = useTheme();
 
   return (
@@ -33,7 +33,7 @@ export default function BlogPreview({ blogs }) {
         transition={{ type: "spring", stiffness: 100, damping: 10 }}
       >
         <Link
-          to={"/blog"}
+          to={"/works"}
           style={{
             textDecoration: "none",
             color: theme.palette.text.primary,
@@ -65,7 +65,7 @@ export default function BlogPreview({ blogs }) {
                 transition: " all 0.5s ease-in-out",
               }}
             >
-              Latest from the Blog:
+              LATEST PROJECTS:
             </Typography>
           </Box>
         </Link>
@@ -79,11 +79,11 @@ export default function BlogPreview({ blogs }) {
         }}
       >
         <Grid container spacing={5}>
-          {blogs.map((blog, index) => {
+          {works.map((project, index) => {
             return (
               index < 3 && (
-                <Grid item xs={12} sm={12} md={6} lg={4} key={blog.sys.id}>
-                  <ItemCard item={blog} sectionPath={"/blog"}/>
+                <Grid item xs={12} sm={12} md={6} lg={4} key={project.sys.id}>
+                  <ItemCard item={project} sectionPath={"/works"}/>
                 </Grid>
               )
             );

@@ -5,8 +5,9 @@ import BlogPreview from "./BlogPreview";
 import ContactContent from "../contactSection/ContactContent";
 import Footer from "../shared/Footer";
 import Showreel from "./Showreel";
+import WorksPreview from "./WorksPreview";
 
-export default function Landing({ blogs }) {
+export default function Landing({ blogs,works }) {
   return (
     <Box
       sx={{
@@ -21,6 +22,7 @@ export default function Landing({ blogs }) {
     >
       <Hero />
       <Showreel />
+      <WorksPreview works={works} />
       <BlogPreview blogs={blogs} />
       <AboutContent />
       <ContactContent />

@@ -27,15 +27,18 @@ export default function App() {
   const { dk } = useDarkMode();
   const theme = themeManager(dk);
   const [blogs, setBlogs] = useState([]);
+  const [works, setWorks] = useState([]); // [TODO] - Add works to state
   const [staticBg, setStaticBg] = useState(
-    localStorage.getItem("staticBg") ?JSON.parse( localStorage.getItem("staticBg")) : false
+    localStorage.getItem("staticBg")
+      ? JSON.parse(localStorage.getItem("staticBg"))
+      : false
   );
   localStorage.setItem("staticBg", staticBg); // Save staticBg on LS
-  
-  const [open, setOpen] = useState(false); //a state to control the drawer
+
   const [bgImage, setBgImage] = useState(
     localStorage.getItem("svgData") ? localStorage.getItem("svgData") : null
   );
+  const [open, setOpen] = useState(false); //a state to control the navbar drawer
 
   const getRandomHexColor = (colName) => {
     // const hexChars = "0123456789abcdef";
@@ -73,6 +76,17 @@ export default function App() {
       .catch((err) => console.error(err));
   }, []);
 
+  useEffect(() => {
+    contentfulClient
+      .getEntries({
+        content_type: "fredegdProjects",
+      })
+      .then((response) => {
+        setWorks(response.items);
+      })
+      .catch((err) => console.error(err));
+  }, []);
+
   return (
     <>
       <ThemeProvider theme={theme}>
@@ -99,7 +113,7 @@ export default function App() {
             <Route path="/about" element={<About />} />
             <Route path="/contact" element={<Contact />} />
 
-            <Route path="/" element={<Landing blogs={blogs} />} />
+            <Route path="/" element={<Landing blogs={blogs} works={works} />} />
           </Routes>
         </CssBaseline>
       </ThemeProvider>

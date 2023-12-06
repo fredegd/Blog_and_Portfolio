@@ -8,7 +8,7 @@ import {
 } from "../../utils/blogDataFormatter";
 import { useLocation } from "react-router-dom";
 
-export default function ItemCard({ item }) {
+export default function ItemCard({ item, sectionPath }) {
   const theme = useTheme();
 
   const location = useLocation();
@@ -18,8 +18,8 @@ export default function ItemCard({ item }) {
 
   const linkEnd =
     location.pathname == "/"
-      ? location.pathname + "blog/read/" + item.sys.id
-      : location.pathname + "/read/" + item.sys.id;
+      ?  sectionPath+"read/" + item.sys.id
+      :  "read/" + item.sys.id;
 
   return !item ? null : (
     <>
