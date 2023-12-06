@@ -10,7 +10,7 @@ export default function DarkModeProvider({ children }) {
   console.log(localStorage.getItem("dk"));
 
   const [dk, setDk] = useState(
-    !localStorage.getItem("dk") ? true : localStorage.getItem("dk")
+    localStorage.getItem("dk") ? JSON.parse(localStorage.getItem("dk")) : true
   );
 
   localStorage.setItem("dk", dk);

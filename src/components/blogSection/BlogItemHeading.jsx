@@ -68,7 +68,8 @@ export default function BlogItemHeading({ blog }) {
               md: "6.0vw",
               lg: "4.0vw",
             },
-            padding: "1rem",
+            paddingX: { xs: "1.3rem", sm: "1rem", md: "0.5rem", lg: "0rem" },
+            marginY: { xs: "1rem", sm: "1.5rem", md: "1.5rem", lg: "1.5rem" },
             transition: "all 0.5s ease-in-out",
             fontWeight: "bold",
             textAlign: "left",
@@ -91,9 +92,9 @@ export default function BlogItemHeading({ blog }) {
           sx={{
             // fontSize: { xs: "5vw", sm: "4vw", md: "3.5vw", lg: "2.55vw" },
             fontStyle: "italic",
-            // p: { xs: "1rem", md: 0.5 },
             textAlign: "left",
-            marginY: "1rem",
+            paddingX: { xs: "1.3rem", sm: "1rem", md: "0.5rem", lg: "0rem" },
+            marginY: { xs: "1rem", sm: "1.5rem", md: "1.5rem", lg: "1.5rem" },
           }}
         >
           {""}"{blog.fields.subtitle}"
@@ -110,9 +111,11 @@ export default function BlogItemHeading({ blog }) {
         }}
       >
         <Box
+          id="tags"
           sx={{
             paddingY: { xs: "1rem", md: 1.5 },
-
+            paddingX: { xs: "1.3rem", sm: "1rem", md: "0.5rem", lg: "0rem" },
+            marginY: { xs: "1rem", sm: "1.5rem", md: "1.5rem", lg: "1.5rem" },
             display: "flex",
             alignItems: "center",
             justifyContent: "flex-start",
@@ -148,6 +151,7 @@ export default function BlogItemHeading({ blog }) {
         </Box>
 
         <Box
+          id="dates"
           sx={{
             maxWidth: "900px",
 
@@ -159,6 +163,8 @@ export default function BlogItemHeading({ blog }) {
             fontSize: { xs: "2.8vw", sm: "1rem", md: "1.2rem", lg: "1rem" },
             gap: "0.5rem",
             paddingY: { xs: "1rem", md: "2rem" },
+            paddingX: { xs: "1.3rem", sm: "1rem", md: "0.5rem", lg: "0rem" },
+            marginY: { xs: "1rem", sm: "1.5rem", md: "1.5rem", lg: "1.5rem" },
           }}
         >
           <Typography variant="p">

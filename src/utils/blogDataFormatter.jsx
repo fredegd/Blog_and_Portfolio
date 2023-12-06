@@ -103,7 +103,7 @@ const options = {
                 lg: "0rem",
               },
 
-              marginY: { xs: "1rem", sm: "2rem", md: "3rem", lg: "4rem" },
+              marginY: { xs: "1rem", sm: "1rem", md: "1rem", lg: "1rem" },
               height: "auto", //{ xs: "97vw", sm: "90vw", md: "900px", lg: "900px" },
               width: { xs: "97vw", sm: "90vw", md: "900px", lg: "900px" },
               backgroundPosition: "center",
@@ -168,7 +168,7 @@ export const truncatedTitle = (title) => {
 
 export const truncatedContent = (content) => {
   const contentPreview = content.content[0].content[0].value;
-  console.log(contentPreview);
+  // console.log(contentPreview);
   const words = contentPreview.split(" ");
   if (words.length < 15) {
     return words.join(" ");

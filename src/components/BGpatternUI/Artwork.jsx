@@ -2,12 +2,11 @@ import React, { useEffect, useRef, useState } from "react";
 import Slider from "@mui/material/Slider";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
-import Switch from "@mui/material/Switch";
+import {CustomSwitch} from "./CustomSwitch";
 
 import { useDarkMode } from "../../context/DarkModeContext.jsx";
 import { useTheme } from "@mui/material/styles";
 import { colorsToChooseFrom } from "../../colorsToChooseFrom.js";
-import { color } from "framer-motion";
 
 const svgWidth = 300;
 const svgHeight = 300;
@@ -345,11 +344,7 @@ export default function Artwork({
             >
               {"static BG"}
             </Typography>
-            <Switch
-              checked={staticBg}
-              onChange={toggleStaticBg}
-              inputProps={{ "aria-label": "controlled" }}
-            />
+            <CustomSwitch checked={staticBg} onChange={toggleStaticBg} />
           </Box>
         </Box>
 

@@ -12,7 +12,7 @@ export default function ItemCard({ item }) {
   const theme = useTheme();
 
   const location = useLocation();
-  console.log({ location });
+  // console.log({ location });
 
   const { title, content } = item.fields;
 

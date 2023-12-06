@@ -1,9 +1,13 @@
-import * as React from "react";
-import { useState, useEffect } from "react";
+import { useDarkMode } from "../../context/DarkModeContext";
 import { Box, IconButton, Typography } from "@mui/material";
+import { styled, useTheme } from "@mui/material/styles";
+
 import CloseIcon from "@mui/icons-material/Close";
-import { useTheme } from "@mui/material/styles";
 import Drawer from "@mui/material/Drawer";
+import LightModeIcon from "@mui/icons-material/LightMode";
+import DarkModeIcon from "@mui/icons-material/DarkMode";
+import { CustomSwitch } from "./CustomSwitch";
+
 import Artwork from "./Artwork";
 
 export default function DrawerBGChange({
@@ -18,7 +22,9 @@ export default function DrawerBGChange({
   staticBg,
   setStaticBg,
 }) {
-  const [state, setState] = useState(false);
+  const theme = useTheme();
+
+  const { dk, toggleDarkMode } = useDarkMode();
 
   const toggleDrawer = (open) => (event) => {
     setState(open);
@@ -27,15 +33,45 @@ export default function DrawerBGChange({
     setOpen(false);
   };
 
-  const theme = useTheme();
+  const handleDarkChange = () => {
+    toggleDarkMode();
+  };
+
+  const dkToggleIcon = (
+    <IconButton
+      aria-label="dark-light-toggle"
+      edge="start"
+      onClick={handleDarkChange}
+      sx={{
+        color: theme.palette.text.primary,
+        mx: "0.8rem",
+        width: { xs: "1.6rem", sm: "1.6rem" },
+        height: { xs: "1.6rem", sm: "1.6rem" },
+        "&:hover": {
+          border: `1px solid ${theme.palette.text.highlight}`,
+          boxShadow: ` 0px 0px 5px 5px ${theme.palette.text.highlight}aa , inset 0px 0px 2.0px 2.0px ${theme.palette.text.highlight}aa`,
+          color: theme.palette.text.highlightAlt,
+        },
+      }}
+    >
+      <Typography variant={"h6"} sx={{ display: "flex" }}>
+        {dk ? (
+          <LightModeIcon sx={{ fontSize: { xs: "2.4rem", sm: "2.2rem" } }} />
+        ) : (
+          <DarkModeIcon sx={{ fontSize: { xs: "2.4rem", sm: "2.2rem" } }} />
+        )}
+      </Typography>
+    </IconButton>
+  );
 
   return (
     <Drawer
-      anchor={"left"}
+      anchor={"right"}
       open={open}
       onClose={toggleDrawer(false)}
       variant="persistent"
       style={{ zIndex: "1000" }}
+
     >
       <Box
         sx={{
@@ -46,7 +82,7 @@ export default function DrawerBGChange({
           height: "100vh",
           display: "flex",
           flexDirection: "column",
-          backgroundColor: theme.palette.background.main,
+          backgroundColor: theme.palette.background.main + "88",
         }}
         role="presentation"
       >
@@ -59,17 +95,14 @@ export default function DrawerBGChange({
             padding: "1rem",
           }}
         >
-          <Typography
-            variant="p"
-            sx={{
-              fontSize: { xs: 18, md: 18 },
-              fontWeight: "bold",
-              padding: "0.5rem",
-            }}
+          <Box
+            sx={{ display: "flex", flexDirection: "row", alignItems: "center" }}
           >
-            {" "}
-            Tap below to Generate a new Background Pattern
-          </Typography>
+            <LightModeIcon sx={{ fontSize: { xs: "1.8rem", sm: "2.2rem" } }} />
+            <CustomSwitch checked={dk} onChange={handleDarkChange} />
+            <DarkModeIcon sx={{ fontSize: { xs: "1.8rem", sm: "2.2rem" } }} />
+          </Box>
+
           <IconButton
             aria-label="close drawer"
             edge="start"
@@ -83,7 +116,17 @@ export default function DrawerBGChange({
             </Typography>
           </IconButton>
         </Box>
-
+        <Typography
+          variant="p"
+          sx={{
+            fontSize: { xs: 18, md: 18 },
+            fontWeight: "bold",
+            padding: "0.5rem",
+          }}
+        >
+          {" "}
+          Tap below to Generate a new Background Pattern
+        </Typography>
         <Artwork
           bgImage={bgImage}
           setBgImage={setBgImage}
