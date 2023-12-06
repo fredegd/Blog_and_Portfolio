@@ -83,7 +83,7 @@ export default function BlogPreview({ blogs }) {
             return (
               index < 3 && (
                 <Grid item xs={12} sm={12} md={6} lg={4} key={blog.sys.id}>
-                  <ItemCard item={blog} sectionPath={"/blog"}/>
+                  <ItemCard item={blog} sectionPath={"/blog/"}/>
                 </Grid>
               )
             );

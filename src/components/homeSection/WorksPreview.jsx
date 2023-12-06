@@ -83,7 +83,7 @@ export default function WorksPreview({ works }) {
             return (
               index < 3 && (
                 <Grid item xs={12} sm={12} md={6} lg={4} key={project.sys.id}>
-                  <ItemCard item={project} sectionPath={"/works"}/>
+                  <ItemCard item={project} sectionPath={"/works/"}/>
                 </Grid>
               )
             );
