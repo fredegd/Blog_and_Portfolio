@@ -21,7 +21,6 @@ import {
 import { motion, useScroll } from "framer-motion";
 import MenuIcon from "@mui/icons-material/Menu";
 import CloseIcon from "@mui/icons-material/Close";
-import SettingsIcon from "@mui/icons-material/Settings";
 import { navItems } from "../navItems";
 import animatedLogoBW from "../assets/animatedLogoBW.gif";
 import animatedLogoWB from "../assets/animatedLogoWB.gif";

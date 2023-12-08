@@ -35,12 +35,12 @@ export default function ToolCorner({ handleDrawerBgChange, dk, theme }) {
       <Box
         sx={{
           position: "fixed",
-          bottom: "-0.25rem",
-          right: "-1.2rem",
-          width: "10rem",
+          bottom: "-1.1rem",
+          right: "-4.6rem",
+          width: "15rem",
           height: "8rem",
           zIndex: "1001",
-          transform: "rotate(45deg) translate(6rem, 0)",
+          transform: "rotate(45deg) translate(7rem, 0)",
 
           background: theme.palette.background.primary,
 

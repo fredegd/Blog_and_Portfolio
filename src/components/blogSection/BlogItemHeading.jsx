@@ -136,7 +136,6 @@ export default function BlogItemHeading({ blog }) {
                   variant="p"
                   sx={{
                     mx: "0.5rem",
-                    padding: "0.2rem 0.8rem",
                     backgroundColor: theme.palette.text.highlightAlt,
                     color: theme.palette.primary.contrastText,
                     padding: "0.2rem 0.8rem",

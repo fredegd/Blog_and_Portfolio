@@ -35,7 +35,7 @@ export default function ScrollToTop() {
       <Box
         onClick={handleClick}
         role="presentation"
-        sx={{ position: "fixed", bottom: 16, right: 16 ,zIndex: "1100",}}
+        sx={{zIndex: "1100",}}
       >
         <IconButton
             id="back to top"
@@ -43,8 +43,8 @@ export default function ScrollToTop() {
             sx={{
 
               position: "fixed",
-              bottom: "1.5rem",
-              right: "1.5rem",
+              bottom: "8.2rem",
+              right: "1.0rem",
               backgroundColor: theme.palette.text.highlightAlt,
               color: theme.palette.primary.contrastText,
               "&:hover": { backgroundColor: theme.palette.text.primary },
