@@ -13,13 +13,13 @@ export default function ToolCorner({ handleDrawerBgChange, dk, theme }) {
 
         width: { xs: "1.6rem", sm: "1.6rem" },
         height: { xs: "1.6rem", sm: "1.6rem" },
-        padding: "2.5rem",
+        padding: "1.8rem",
         position: "absolute",
         transform: "rotate(-45deg)",
-        top: "-2.3rem",
-        left: "-4.2rem",
+        top: "-1.55rem",
+        left: "-3.6rem",
         "&:hover": {
-          color: theme.palette.text.contrast,
+
           background: "transparent",
         },
       }}
@@ -45,13 +45,13 @@ export default function ToolCorner({ handleDrawerBgChange, dk, theme }) {
           background: theme.palette.background.primary,
 
           borderTop: `4rem solid ${theme.palette.text.highlightAlt + "66"}`,
-          borderLeft: `4rem solid ${theme.palette.text.highlightAlt + "ee"}`,
+          borderLeft: `4rem solid ${theme.palette.text.highlightAlt + "88"}`,
           borderRight: "4rem solid transparent",
           borderBottom: `4rem solid ${theme.palette.text.highlightAlt}99`,
           transition: "all 0.5s ease-in-out",
           "&:hover": {
             borderTop: `4rem solid ${theme.palette.text.highlightAlt + "66"}`,
-            borderLeft: `4rem solid ${theme.palette.text.highlightAlt + "ee"}`,
+            borderLeft: `4rem solid ${theme.palette.text.highlightAlt }`,
             borderRight: "4rem solid transparent",
             borderBottom: `4rem solid ${theme.palette.text.highlightAlt}99`,
             transform: "rotate(45deg) translate(4rem, 0)",
