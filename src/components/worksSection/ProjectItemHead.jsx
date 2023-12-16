@@ -1,9 +1,9 @@
 import { Box, Typography, Button } from "@mui/material";
 import { Link } from "react-router-dom";
 import { useTheme } from "@mui/material/styles";
+import { Block } from "@mui/icons-material";
 
 export default function ProjectItemHead({ project }) {
-
   const theme = useTheme();
 
   return (
@@ -131,20 +131,35 @@ export default function ProjectItemHead({ project }) {
             }}
           >
             {project.fields.tags.technologies.map((tag, index) => {
+              const tagIcon = "devicon-" + tag.toLowerCase() + "-plain";
+              console.log(tagIcon);
               return (
-                <Typography
+                <Box
                   key={index}
-                  variant="p"
+                  className="loop-infinity"
                   sx={{
-                    m: "0.3rem 0.5rem",
-                    backgroundColor: theme.palette.text.highlightAlt,
-                    color: theme.palette.primary.contrastText,
-                    padding: "0.2rem 0.8rem",
-                    borderRadius: "1rem",
+                    border: `3px solid ${theme.palette.text.highlight}cc`,
+                    color: theme.palette.text.highlight,
+                     margin: "0.5rem",
+                    borderRadius: "1.5rem",
+                    padding: "0.5rem",
+                    minWidth: {xs:"none",md:"6rem"},
+                    minHeight: {xs:"none",md:"6rem"},
+                    display: "flex",
+                    flexDirection: "column",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    // boxShadow: `0px 0px 10px 1px ${theme.palette.text.primary}}`,
                   }}
                 >
+                  <Typography variant="h4" fontSize={"2.5rem"} px={3} display={{xs:"none", md:"block"}}>
+                    {" "}
+                    <i className={tagIcon} />
+                  </Typography>
+                  <Typography variant="p" fontSize={"1rem"} >
                   {tag}
-                </Typography>
+                  </Typography>
+                </Box>
               );
             })}
           </Box>
