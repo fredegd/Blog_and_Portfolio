@@ -107,6 +107,7 @@ export default function ProjectItem() {
               flexDirection: "column",
               alignItems: "flex-start",
               textAlign: "left",
+              fontSize: { xs: "1.2rem", sm: "1.2rem", md: "1.2rem", lg: "1.2rem" },
             }}
           >
             {renderRichText(project.fields.content)}
@@ -118,7 +119,7 @@ export default function ProjectItem() {
                   key={index}
                   zIndex={1000}
                   sx={{
-                    // backgroundColor: `${theme.palette.background.main}`,
+                     backgroundColor: `${theme.palette.background.main}`,
                     // height: { xs: "62vw", sm: "62vw", md: "62vw", lg: "42vw" },
                     border: "2px solid black",
                     display: "flex",
@@ -182,15 +183,15 @@ export default function ProjectItem() {
                 </Box>
               );
             })}
-<Button
-component={Link}
-to={"/works"}
-sx={{
-  my: "2rem",
-}}
->
-{"      back to works         "}
-</Button>
+          <Button
+            component={Link}
+            to={"/works"}
+            sx={{
+              my: "2rem",
+            }}
+          >
+            {"      back to works         "}
+          </Button>
           {previewImage && (
             <Box sx={{ display: { xs: "none", md: "block" } }}>
               <FullScreenPreview
@@ -202,7 +203,6 @@ sx={{
               />
             </Box>
           )}
-  
         </Box>
         <Footer />
       </Box>

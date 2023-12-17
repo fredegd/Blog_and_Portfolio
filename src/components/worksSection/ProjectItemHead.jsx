@@ -95,11 +95,13 @@ export default function ProjectItemHead({ project }) {
                     sx={{
                       height: "3rem",
                       margin: "0.5rem",
-                      borderRadius: "1.5rem",
+                      borderRadius: "0.5rem",
                       padding: { xs: "0.25rem ", md: "0.95rem" },
                       fontSize: { xs: "1.15rem", md: "1.4rem" },
                       letterSpacing: { sm: "-0.055rem", md: "0.065rem" },
                       color: theme.palette.text.primary,
+                      backgroundColor: `${theme.palette.text.highlightAlt}55`,
+
                       border: `2px solid ${theme.palette.text.highlight}`,
                       "&:hover": {
                         backgroundColor: `${theme.palette.text.highlightAlt}`,
@@ -138,10 +140,11 @@ export default function ProjectItemHead({ project }) {
                   key={index}
                   className="loop-infinity"
                   sx={{
-                    border: `3px solid ${theme.palette.text.highlight}cc`,
+                    // border: `3px solid ${theme.palette.text.highlight}cc`,
+                     borderBottom: `3px solid ${theme.palette.text.highlight}cc`,
                     color: theme.palette.text.highlight,
                      margin: "0.5rem",
-                    borderRadius: "1.5rem",
+                    borderRadius: "0.5rem",
                     padding: "0.5rem",
                     minWidth: {xs:"none",md:"6rem"},
                     minHeight: {xs:"none",md:"6rem"},
@@ -152,7 +155,7 @@ export default function ProjectItemHead({ project }) {
                     // boxShadow: `0px 0px 10px 1px ${theme.palette.text.primary}}`,
                   }}
                 >
-                  <Typography variant="h4" fontSize={"2.5rem"} px={3} display={{xs:"none", md:"block"}}>
+                  <Typography variant="h4" fontSize={"2.2rem"} px={3} display={{xs:"none", md:"block"}}>
                     {" "}
                     <i className={tagIcon} />
                   </Typography>
