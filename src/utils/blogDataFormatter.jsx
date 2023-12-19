@@ -1,7 +1,7 @@
 import { BLOCKS } from "@contentful/rich-text-types";
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
 
-import { Typography, Box } from "@mui/material";
+import { Typography, Box, Divider } from "@mui/material";
 
 const options = {
   renderNode: {
@@ -119,6 +119,16 @@ const options = {
         </Box>
       );
     },
+
+    [BLOCKS.HR]: (node, children) => [
+      <Divider
+        sx={{
+          width: "100%",
+          marginY: { xs: "2rem", sm: "2.5rem", md: "2.5rem", lg: "2.5rem" },
+          paddingX: { xs: "2.3rem", sm: "1rem", md: "0.5rem", lg: "0rem" },
+        }}
+      />,
+    ],
   },
   renderMark: {},
   renderInline: {},
@@ -140,11 +150,19 @@ export const lastUpdate = (date) => {
 // Calculate the length of the blog in minutes
 //
 export const blogLength = (content) => {
-  const contentArray = renderRichText(content.fields.content).map((el) => {
-    return (
-      typeof el.props.children[0] === "string" && el.props.children[0].length
-    );
-  });
+  const contentArray = renderRichText(content.fields.content).map(
+    (el, index) => {
+      if (
+        typeof el.props?.children[0] === "string" &&
+        el.props?.children !== undefined
+      ) {
+        return el.props?.children[0]?.length;
+      }else{
+        return 0
+      }
+    }
+  );
+
   return Math.ceil(contentArray.reduce((a, b) => a + b, 0) / 5 / 250); //250 is the average word count per minute and 5 is the average length of a word
 };
 

@@ -7,6 +7,7 @@ import {
   publishedAt,
   lastUpdate,
 } from "../../utils/blogDataFormatter";
+import AccessTimeIcon from "@mui/icons-material/AccessTime";
 
 export default function BlogItemHeading({ blog }) {
   const theme = useTheme();
@@ -173,7 +174,11 @@ export default function BlogItemHeading({ blog }) {
           </Typography>
           <Typography variant="p">
             <strong>Last edit: </strong>
-            {lastUpdate(blog.sys.updatedAt)}, {blogLength(blog)} min. read
+            {lastUpdate(blog.sys.updatedAt)},
+          </Typography>
+          <Typography variant="p" color="initial">
+            <AccessTimeIcon fontSize={"inherit"}/> {blogLength(blog)}
+            {"  min. read"}
           </Typography>
         </Box>
       </Box>

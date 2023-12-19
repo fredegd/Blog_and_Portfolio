@@ -12,7 +12,7 @@ export default function BlogListCF() {
         content_type: "fredegdProjects",
       })
       .then((response) => {
-        console.log(response.items)
+        // console.log(response.items)
         setProjects(response.items);
       })
       .catch((err) => console.error(err));
