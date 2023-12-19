@@ -344,7 +344,11 @@ export default function Artwork({
             >
               {"static BG"}
             </Typography>
+            <Box>
+
+            {staticBg ? "ON" : "OFF"  }
             <CustomSwitch checked={staticBg} onChange={toggleStaticBg} />
+            </Box>
           </Box>
         </Box>
 
