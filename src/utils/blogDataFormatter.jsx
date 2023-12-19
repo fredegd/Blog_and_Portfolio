@@ -91,8 +91,18 @@ const options = {
     ), // Add more renderNode functions as needed for other block types
     [BLOCKS.EMBEDDED_ASSET]: (node, children) => {
       const imgUrl = node.data.target.fields.file.url;
+      console.log(node.data);
       return (
-        <Box>
+        <Box
+          sx={{
+            marginBottom: {
+              xs: "3.5rem",
+              sm: "3.5rem",
+              md: "3.5rem",
+              lg: "3.5rem",
+            },
+          }}
+        >
           <Box
             component="img"
             sx={{
@@ -103,7 +113,7 @@ const options = {
                 lg: "0rem",
               },
 
-              marginY: { xs: "1rem", sm: "1rem", md: "1rem", lg: "1rem" },
+              marginTop: { xs: "1rem", sm: "1rem", md: "1rem", lg: "1rem" },
               height: "auto", //{ xs: "97vw", sm: "90vw", md: "900px", lg: "900px" },
               width: { xs: "97vw", sm: "90vw", md: "900px", lg: "900px" },
               backgroundPosition: "center",
@@ -116,6 +126,19 @@ const options = {
             {/* content image */}
             {/* <Typography variant="h1" >WTF</Typography> */}
           </Box>
+          <Typography
+            variant="p"
+            sx={{
+              paddingX: {
+                xs: "1.3rem",
+                sm: "1rem",
+                md: "0.5rem",
+                lg: "0rem",
+              },
+            }}
+          >
+            {node.data.target.fields.description}
+          </Typography>
         </Box>
       );
     },
@@ -157,8 +180,8 @@ export const blogLength = (content) => {
         el.props?.children !== undefined
       ) {
         return el.props?.children[0]?.length;
-      }else{
-        return 0
+      } else {
+        return 0;
       }
     }
   );
