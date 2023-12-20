@@ -19,8 +19,8 @@ export default function DrawerBGChange({
   color2,
   setColor1,
   setColor2,
-  staticBg,
-  setStaticBg,
+  opacity,
+  setOpacity,
 }) {
   const theme = useTheme();
 
@@ -134,8 +134,8 @@ export default function DrawerBGChange({
           color2={color2}
           setColor1={setColor1}
           setColor2={setColor2}
-          staticBg={staticBg}
-          setStaticBg={setStaticBg}
+          opacity={opacity}
+          setOpacity={setOpacity}
         />
       </Box>
     </Drawer>

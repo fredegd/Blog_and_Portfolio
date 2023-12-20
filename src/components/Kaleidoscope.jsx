@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-export default function Kaleidoscope({ bgImage, staticBg }) {
+export default function Kaleidoscope({ bgImage, staticBg,opacity }) {
   const [gridSize, setGridSize] = useState({ numRows: 9, numCols: 7 });
 
   const maxScale = 1.0;
@@ -54,13 +54,13 @@ export default function Kaleidoscope({ bgImage, staticBg }) {
         square.style.backgroundPosition = "center";
         square.style.backgroundSize = "cover";
         // square.style.transition = "0.5s ease-out"; //commented out temporarily
-        square.style.opacity = "0.6";
+        square.style.opacity = opacity;
       });
 
-    const shiftSquares = (mX, mY, gridW, gridH, tileW, tileH) => {
+    const shiftSquares =  (mX, mY, gridW, gridH, tileW, tileH) => {
       mX = mX + gridW / 2;
       mY = mY + gridH / 2;
-      squares.forEach((square, index) => {
+      !staticBg&& squares.forEach((square, index) => {
         const row = Math.floor(index / gridSize.numCols);
         const col = index % gridSize.numCols;
         const xt = remap(col, 0, gridSize.numCols, 0, gridW);
@@ -81,7 +81,7 @@ export default function Kaleidoscope({ bgImage, staticBg }) {
 
         square.style.width = `${tileW * 1}px`; // instead of 1, use multiplier
         square.style.height = `${tileH * 1}px`; // instead of 1, use multiplier
-        square.style.opacity = `${remap(distance, 0, gridW / 2, 1.5, 0.2)}`;
+        square.style.opacity = `${remap(distance, 0, gridW / 2, 1.5, 0.2)*opacity}`;
 
         // Calculate background tiles position based on the square's position
 
@@ -167,7 +167,7 @@ export default function Kaleidoscope({ bgImage, staticBg }) {
 
       gridContainer.innerHTML = "";
     };
-  }, [bgImage, window.innerWidth, staticBg]);
+  }, [bgImage, window.innerWidth, staticBg,opacity]);
 
   // a function to remap a value from one range to another range
   function remap(value, fromLow, fromHigh, toLow, toHigh) {

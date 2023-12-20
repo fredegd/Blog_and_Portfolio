@@ -37,12 +37,9 @@ export default function Artwork({
   color2,
   setColor1,
   setColor2,
-  staticBg,
-  setStaticBg,
+  opacity,
+  setOpacity,
 }) {
-  const isFirefox =
-    typeof window !== "undefined" &&
-    window.navigator.userAgent.toLowerCase().indexOf("firefox") > -1;
   const theme = useTheme();
   const dk = useDarkMode();
 
@@ -72,10 +69,10 @@ export default function Artwork({
   //check is there is some SVGdata in local storage
   const svgData = localStorage.getItem("svgData");
 
-  const toggleStaticBg = () => {
-    setStaticBg((prev) => (prev = event.target.checked));
-    localStorage.setItem("staticBg", !staticBg); // Save staticBg on LS
-  };
+  // const toggleStaticBg = () => {
+  //   setStaticBg((prev) => (prev = event.target.checked));
+  //   localStorage.setItem("staticBg", !staticBg); // Save staticBg on LS
+  // };
 
   const extractStrokesFromSVG = () => {
     const regex = /<line [^>]*\/>/g;
@@ -217,6 +214,11 @@ export default function Artwork({
     localStorage.setItem("segmentsAmount", newAmountOfStrokes); // Save segmentsAmount
   };
 
+  const handleOpacity = (event, newValue) => {
+    setOpacity(newValue);
+    localStorage.setItem("opacity", newValue); // Save opacity
+  };
+
   const handleNumStrokesChange = (event, newValue) => {
     setSegmentAmount(newValue);
     localStorage.setItem("segmentsAmount", newValue); // Save segmentsAmount
@@ -265,6 +267,7 @@ export default function Artwork({
 
           <Box
             sx={{
+              opacity: opacity,
               width: { xs: "250px", md: "300px" },
               height: { xs: "250px", md: "300px" },
               backgroundImage: `url(data:image/svg+xml;base64,${btoa(
@@ -331,31 +334,29 @@ export default function Artwork({
         </Box>
 
         <Box sx={{ width: 300 }}>
-         {!isFirefox&& <Box
+          <Typography
+            variant="p"
             sx={{
+              fontSize: { xs: "18px", md: "18px" },
               display: "flex",
               justifyContent: "space-between",
-              mt: "1rem",
-              alignSelf: "center",
             }}
           >
-            <Typography
-              sx={{
-                height: "3rem",
-                fontSize: { xs: "18px", md: "18px" },
-              }}
-            >
-              {"static BG"}
-            </Typography>
-            <Box>
-              {staticBg ? "ON" : "OFF"}
-              <CustomSwitch
-                checked={staticBg}
-                disabled={isFirefox ? true : false}
-                onChange={toggleStaticBg}
-              />
-            </Box>
-          </Box>}
+            {"Opacity: "}
+            <strong>
+              {opacity}
+            </strong>
+          </Typography>
+          <Slider
+            aria-label="gridSize"
+            value={opacity}
+            valueLabelDisplay="auto"
+            step={0.1}
+            marks
+            min={0}
+            max={1}
+            onChange={handleOpacity}
+          />
         </Box>
 
         <Box sx={{ width: 300 }}>

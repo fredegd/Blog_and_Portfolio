@@ -1,4 +1,4 @@
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
 import Landing from "./components/homeSection/Landing";
 import Navbar from "./components/Navbar";
@@ -24,24 +24,37 @@ import { themeManager } from "./theme";
 import { useDarkMode } from "./context/DarkModeContext.jsx";
 
 export default function App() {
-  const isFirefox = typeof window !== 'undefined' && window.navigator.userAgent.toLowerCase().indexOf('firefox') > -1;
-console.log(isFirefox)  ;
   const { dk } = useDarkMode();
   const theme = themeManager(dk);
+  const isFirefox =
+    typeof window !== "undefined" &&
+    window.navigator.userAgent.toLowerCase().indexOf("firefox") > -1;
+
+  const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+
   const [blogs, setBlogs] = useState([]);
   const [works, setWorks] = useState([]); // [TODO] - Add works to state
-  const [staticBg, setStaticBg] = useState(
-    localStorage.getItem("staticBg")
-      ? JSON.parse(localStorage.getItem("staticBg"))
-      : isFirefox?true:false
-  );
-  localStorage.setItem("staticBg", staticBg); // Save staticBg on LS
+  const [staticBg, setStaticBg] = useState(isFirefox ? true : false);
+  const [opacity, setOpacity] = useState(localStorage.getItem("opacity") ? localStorage.getItem("opacity") : 0.5); 
 
   const [bgImage, setBgImage] = useState(
     localStorage.getItem("svgData") ? localStorage.getItem("svgData") : null
   );
   const [open, setOpen] = useState(false); //a state to control the navbar drawer
+  const location = useLocation();
 
+  useEffect(() => {
+    if (location.pathname === "/") {
+      if (isFirefox || isSafari) {
+        setStaticBg(true);
+      } else {
+        setStaticBg(false);
+      }
+    } else {
+      console.log(location.pathname, "is not /");
+      setStaticBg(true);
+    }
+  }, [location.pathname, isFirefox]);
   const getRandomHexColor = (colName) => {
     // const hexChars = "0123456789abcdef";
     // let color = "#";
@@ -103,10 +116,10 @@ console.log(isFirefox)  ;
             setColor2={setColor2}
             open={open}
             setOpen={setOpen}
-            staticBg={staticBg}
-            setStaticBg={setStaticBg}
+            opacity={opacity}
+            setOpacity={setOpacity}
           />{" "}
-          <Kaleidoscope bgImage={bgImage} staticBg={staticBg} />
+          <Kaleidoscope bgImage={bgImage} staticBg={staticBg} opacity={opacity} />
           <Routes>
             <Route path="/works" element={<Projects />} />
             <Route path="/works/read/:projectId" element={<ProjectItem />} />
