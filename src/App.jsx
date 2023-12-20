@@ -24,6 +24,8 @@ import { themeManager } from "./theme";
 import { useDarkMode } from "./context/DarkModeContext.jsx";
 
 export default function App() {
+  const isFirefox = typeof window !== 'undefined' && window.navigator.userAgent.toLowerCase().indexOf('firefox') > -1;
+console.log(isFirefox)  ;
   const { dk } = useDarkMode();
   const theme = themeManager(dk);
   const [blogs, setBlogs] = useState([]);
@@ -31,7 +33,7 @@ export default function App() {
   const [staticBg, setStaticBg] = useState(
     localStorage.getItem("staticBg")
       ? JSON.parse(localStorage.getItem("staticBg"))
-      : false
+      : isFirefox?true:false
   );
   localStorage.setItem("staticBg", staticBg); // Save staticBg on LS
 

@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import Slider from "@mui/material/Slider";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
-import {CustomSwitch} from "./CustomSwitch";
+import { CustomSwitch } from "./CustomSwitch";
 
 import { useDarkMode } from "../../context/DarkModeContext.jsx";
 import { useTheme } from "@mui/material/styles";
@@ -40,6 +40,9 @@ export default function Artwork({
   staticBg,
   setStaticBg,
 }) {
+  const isFirefox =
+    typeof window !== "undefined" &&
+    window.navigator.userAgent.toLowerCase().indexOf("firefox") > -1;
   const theme = useTheme();
   const dk = useDarkMode();
 
@@ -328,7 +331,7 @@ export default function Artwork({
         </Box>
 
         <Box sx={{ width: 300 }}>
-          <Box
+         {!isFirefox&& <Box
             sx={{
               display: "flex",
               justifyContent: "space-between",
@@ -345,11 +348,14 @@ export default function Artwork({
               {"static BG"}
             </Typography>
             <Box>
-
-            {staticBg ? "ON" : "OFF"  }
-            <CustomSwitch checked={staticBg} onChange={toggleStaticBg} />
+              {staticBg ? "ON" : "OFF"}
+              <CustomSwitch
+                checked={staticBg}
+                disabled={isFirefox ? true : false}
+                onChange={toggleStaticBg}
+              />
             </Box>
-          </Box>
+          </Box>}
         </Box>
 
         <Box sx={{ width: 300 }}>
