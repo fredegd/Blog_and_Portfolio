@@ -6,6 +6,8 @@ import { Link } from "react-router-dom";
 import { contentfulClient } from "../../utils/contentfulClient";
 import { useDarkMode } from "../../context/DarkModeContext";
 
+import { displayContent } from "../../utils/blogDataFormatter";
+
 import TechStacks from "./TechStacks";
 
 import PageTitle from "../shared/PageTitle";
@@ -30,13 +32,15 @@ export default function AboutContent() {
         setAboutImageWBg(response.fields.authorImgWBg.fields.file.url);
         setAuthorInfo({
           short: response.fields.personalInfoShort,
-          full: response.fields.personalInfoLong.content.map(
-            (item) => item.content[0].value
-          ),
+          full: response.fields.personalInfoLong,
+          // full: response.fields.personalInfoLong.content.map(
+          //   (item) => item.content[0].content)
         });
       })
       .catch((err) => console.log(err));
   }, []);
+
+  // console.log(displayContent(authorInfo?.full));
 
   const divArray = Array.from(
     { length: gridSize.numRows },
@@ -263,37 +267,8 @@ export default function AboutContent() {
         <Box className="tile">
           {location.pathname === "/about" && (
             <>
-              {" "}
-              <Typography
-                variant="p"
-                color={theme.palette.text.primary}
-                sx={{
-                  fontSize: {
-                    xs: "1.0rem",
-                    sm: "1.0rem",
-                    md: "1.2rem",
-                  },
-                }}
-              >
-                {authorInfo?.full.map((item, index) => {
-                  return (
-                    <Box
-                      key={index}
-                      sx={{ display: "flex", flexDirection: "column" }}
-                    >
-                      <Typography
-                        sx={{
-                          fontSize: "inherit",
-                          textAlign: { xs: "center", sm: "left" },
-                          marginY: "0.5rem",
-                        }}
-                      >
-                        {item}
-                      </Typography>
-                    </Box>
-                  );
-                })}
-              </Typography>
+              {displayContent(authorInfo?.full)}
+
               <Box
                 sx={{
                   display: "flex",
@@ -354,37 +329,22 @@ export default function AboutContent() {
             </>
           )}
           {location.pathname === "/" && (
-            <Typography
-              variant="p"
-              color={theme.palette.text.primary}
-              sx={{
-                fontSize: {
-                  xs: "1.2rem",
-                  sm: "1.2rem",
-                  md: "1.5rem",
-                  textAlign: "justify",
-                },
-              }}
-            >
-              {
-                <>
-                  {authorInfo?.short}
-                  <Link to={"/about"}>
-                    <Button
-                      sx={{
-                        color: theme.palette.text.highlight,
-
-                        "&:hover": {
-                          background: theme.palette.text.highlightAlt,
-                          color: theme.palette.text.primary,
-                        },
-                      }}
-                    >
-                      ...more
-                    </Button>
-                  </Link>
-                </>
-              }
+            <Typography variant="body1" textAlign={"left"}>
+              {authorInfo?.short}
+              <Link to={"/about"}>
+                <Button
+                  sx={{
+                    color: theme.palette.text.highlight,
+fontSize:"inherit",
+                    "&:hover": {
+                      background: theme.palette.text.highlightAlt,
+                      color: theme.palette.text.primary,
+                    },
+                  }}
+                >
+                  more...
+                </Button>
+              </Link>
             </Typography>
           )}
         </Box>

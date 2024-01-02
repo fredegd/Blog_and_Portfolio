@@ -74,7 +74,7 @@ const options = {
 
     [BLOCKS.PARAGRAPH]: (node, children) => (
       <Typography
-        variant="p"
+        variant="body1"
         sx={{
           paddingX: { xs: "1.3rem", sm: "1rem", md: "0.5rem", lg: "0rem" },
           marginY: { xs: "1rem", sm: "1.5rem", md: "1.5rem", lg: "1.5rem" },
@@ -84,6 +84,7 @@ const options = {
             md: "1.18rem",
             lg: "1.25rem",
           },
+          textAlign: "left",
         }}
       >
         {children}

@@ -89,8 +89,6 @@ export default function BlogItem() {
                   backgroundColor: theme.palette.text.primary,
                 },
               }}
-              // onMouseEnter={handlePopoverOpen}
-              // onMouseLeave={handlePopoverClose}
             >
               <KeyboardArrowLeft />
             </IconButton>

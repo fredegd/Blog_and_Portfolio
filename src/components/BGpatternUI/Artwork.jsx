@@ -343,11 +343,10 @@ export default function Artwork({
             }}
           >
             {"Opacity: "}
-            <strong>
-              {opacity}
-            </strong>
+            <strong>{opacity}</strong>
           </Typography>
           <Slider
+            id={"opacity"}
             aria-label="gridSize"
             value={opacity}
             valueLabelDisplay="auto"
@@ -374,6 +373,7 @@ export default function Artwork({
             </strong>
           </Typography>
           <Slider
+            id={"gridSize"}
             aria-label="gridSize"
             value={gridSize}
             valueLabelDisplay="auto"
@@ -398,6 +398,7 @@ export default function Artwork({
             <strong>{segmentsAmount}</strong>
           </Typography>
           <Slider
+            id={"segmentsAmount"}
             aria-label="segmentsAmount"
             value={segmentsAmount}
             valueLabelDisplay="auto"

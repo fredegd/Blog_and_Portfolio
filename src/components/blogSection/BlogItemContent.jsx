@@ -1,6 +1,7 @@
 import { Box, Divider } from "@mui/material";
 import { displayContent } from "../../utils/blogDataFormatter";
 export default function BlogItemContent({ blog }) {
+  console.log(blog.fields)
   return (
     <Box
       className="blog-content"
