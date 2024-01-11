@@ -1,6 +1,6 @@
 import { Box, IconButton, Typography } from "@mui/material";
 import SettingsIcon from "@mui/icons-material/Settings";
-import { useState } from "react";
+
 
 export default function ToolCorner({ handleDrawerBgChange, dk, theme }) {
   const BGoptionsUIIcon = (
@@ -9,23 +9,21 @@ export default function ToolCorner({ handleDrawerBgChange, dk, theme }) {
       edge="start"
       onClick={handleDrawerBgChange}
       sx={{
+        borderRadius: 0,
         color: theme.palette.text.primary,
-
-        width: { xs: "1.6rem", sm: "1.6rem" },
-        height: { xs: "1.6rem", sm: "1.6rem" },
-        padding: "1.8rem",
+        paddingTop: "2.9rem",
+        paddingBottom: "1.8rem",
+        paddingRight: "4.5rem",
         position: "absolute",
-        transform: "rotate(-45deg)",
-        top: "-1.55rem",
-        left: "-3.6rem",
+        top: "-3.9rem",
+        left: "-3.3rem",
         "&:hover": {
-
           background: "transparent",
         },
       }}
     >
-      <Typography variant={"h6"} textAlign={"center"}>
-        <SettingsIcon sx={{ fontSize: { xs: "2.4rem", sm: "2.2rem" } }} />
+      <Typography variant={"h6"} textAlign={"center"} >
+        <SettingsIcon sx={{ fontSize: { xs: "2.4rem", sm: "2.2rem" }, transform:"rotate(-45deg)" }} />
       </Typography>
     </IconButton>
   );

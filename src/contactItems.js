@@ -1,9 +1,7 @@
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import GitHubIcon from "@mui/icons-material/GitHub";
 import InstagramIcon from "@mui/icons-material/Instagram";
-// import TwitterIcon from "./assets/TwitterIcon";
-import TwitterIcon from '@mui/icons-material/Twitter';
-
+import XIcon from '@mui/icons-material/X';
 
 
 
@@ -41,7 +39,7 @@ const contactItems = [
     id: "twitter",
     name: "Twitter ",
     linkTo: "https://twitter.com/tapiwoHB",
-    icon: TwitterIcon,
+    icon: XIcon,
     shortText:
       "Here's my Twitter, ehm.. 'X' profile,  mostly used for retweet and stuff,  although, since the  latest, owner-change i don't like the platform anymore ",
 
