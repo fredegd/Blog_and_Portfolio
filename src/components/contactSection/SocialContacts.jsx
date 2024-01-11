@@ -22,18 +22,7 @@ const staggerConfig = {
 
 export default function SocialContacts() {
   const theme = useTheme();
-
-  const [click, setClick] = useState(false);
-  const clicker = () => {
-    return click ? setClick(false) : setClick(true);
-  };
-
-  const controls = useAnimation();
-
-  useEffect(() => {
-    controls.start("animate");
-  }, [clicker]);
-
+  
   return (
     <Box
       sx={{
