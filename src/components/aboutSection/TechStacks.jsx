@@ -14,6 +14,8 @@ const stackIcons = [
   { name: "typescript", icon: <i className="devicon-typescript-plain" /> },
   //react
   { name: "react", icon: <i className="devicon-react-original" /> },
+  //nextjs
+  { name: "nextjs", icon: <i className="devicon-nextjs-original" /> },
   //node js
   { name: "nodejs", icon: <i className="devicon-nodejs-plain" /> },
   //express
@@ -24,6 +26,8 @@ const stackIcons = [
   { name: "mysql", icon: <i className="devicon-mysql-plain" /> },
   //mongodb
   { name: "mongodb", icon: <i className="devicon-mongodb-plain" /> },
+  //graphql
+  { name: "graphql", icon: <i className="devicon-graphql-plain" /> },
   //bootstrap
   { name: "bootstrap", icon: <i className="devicon-bootstrap-plain" /> },
   //material ui
@@ -49,6 +53,12 @@ const stackIcons = [
   { name: "npm", icon: <i className="devicon-npm-original-wordmark" /> },
   //yarn
   { name: "yarn", icon: <i className="devicon-yarn-plain" /> },
+
+  //cucumber
+  { name: "cucumber", icon: <i className="devicon-cucumber-plain" /> },
+
+  //jira
+  { name: "jira", icon: <i className="devicon-jira-plain" /> },
 
   //trello
   { name: "trello", icon: <i className="devicon-trello-plain" /> },
