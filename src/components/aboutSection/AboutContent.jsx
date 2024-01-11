@@ -66,7 +66,7 @@ export default function AboutContent() {
       easing: "easeOutElastic(1, .8)",
       direction: "reverse",
     });
-    const arr = Array.from(entry.target.children).map((item) => {
+    Array.from(entry.target.children).map((item) => {
       item.classList.remove("tile");
       // console.log("removed");
     });
@@ -335,7 +335,7 @@ export default function AboutContent() {
                 <Button
                   sx={{
                     color: theme.palette.text.highlight,
-fontSize:"inherit",
+                    fontSize: "inherit",
                     "&:hover": {
                       background: theme.palette.text.highlightAlt,
                       color: theme.palette.text.primary,

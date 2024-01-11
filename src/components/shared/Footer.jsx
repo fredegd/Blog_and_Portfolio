@@ -3,7 +3,7 @@ import { Box, Typography, IconButton, Link } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 
 import contactItems from "../../contactItems";
-
+const year = new Date().getFullYear();
 export default function Contact() {
   const theme = useTheme();
 
@@ -63,7 +63,7 @@ export default function Contact() {
       </Box>
       <Box sx={{ padding: "1.5rem" }}>
         <Typography variant="p" color={theme.palette.text.primary} >
-          <span>2023 all rights reserved </span>
+          <span>{year} all rights reserved </span>
           <span>
             ©&nbsp; <Link underline="hover"  color="inherit" href="https://fredegd.dev">fredegd.dev</Link>
           </span>
