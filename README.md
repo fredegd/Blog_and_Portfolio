@@ -20,7 +20,7 @@ Made using React and NodeJs and Material Ui
 ## Demo
 
 
-You can see a live demo of this application [here](https://blogandportfolio.netlify.app/).
+You can see a live demo of this application [here](https://fredegd.dev/).
 
 
 Provide an introduction to your project. Explain what it does, its purpose, and any relevant background information. You can also include a screenshot or a GIF to showcase the project.

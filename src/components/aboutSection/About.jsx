@@ -1,6 +1,6 @@
 import { Box, Typography, Button } from "@mui/material";
 
-import AboutContent from "./AboutContent";
+import AboutContentNoAni from "./AboutContentNoAni";
 import Footer from "../shared/Footer";
 
 export default function About() {
@@ -19,7 +19,7 @@ export default function About() {
         zIndex: "1000",
       }}
     >
-      <AboutContent />
+      <AboutContentNoAni />
       <Footer />
     </Box>
   );

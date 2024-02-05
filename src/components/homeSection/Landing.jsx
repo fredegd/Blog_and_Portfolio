@@ -1,13 +1,13 @@
 import { Box } from "@mui/material";
 import Hero from "./Hero";
-import AboutContent from "../aboutSection/AboutContent";
+import AboutContentNoAni from "../aboutSection/AboutContentNoAni";
 import BlogPreview from "./BlogPreview";
 import ContactContent from "../contactSection/ContactContent";
 import Footer from "../shared/Footer";
 import Showreel from "./Showreel";
 import WorksPreview from "./WorksPreview";
 
-export default function Landing({ blogs,works }) {
+export default function Landing({ blogs, works }) {
   return (
     <Box
       sx={{
@@ -24,7 +24,7 @@ export default function Landing({ blogs,works }) {
       <Showreel />
       <WorksPreview works={works} />
       <BlogPreview blogs={blogs} />
-      <AboutContent />
+      <AboutContentNoAni />
       <ContactContent />
       <Footer />
     </Box>
