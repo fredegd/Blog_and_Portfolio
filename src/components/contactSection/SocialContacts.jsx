@@ -1,10 +1,9 @@
-import { useEffect, useState } from "react";
 import { Box, Grid, Typography, IconButton, Link } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 import contactItems from "../../contactItems";
 import HandshakeOutlinedIcon from "@mui/icons-material/HandshakeOutlined";
 
-import { motion, useAnimation } from "framer-motion";
+import { motion } from "framer-motion";
 
 const staggerConfig = {
   animate: {
@@ -22,7 +21,7 @@ const staggerConfig = {
 
 export default function SocialContacts() {
   const theme = useTheme();
-  
+
   return (
     <Box
       sx={{
@@ -68,7 +67,6 @@ export default function SocialContacts() {
                   <motion.div
                     key={item.id}
                     style={{
-
                       display: "flex",
                       flexDirection: "column",
                       alignItems: "center",
