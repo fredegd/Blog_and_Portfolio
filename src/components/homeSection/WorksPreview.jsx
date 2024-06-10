@@ -1,11 +1,13 @@
+/* eslint-disable react/prop-types */
 import { Link } from "react-router-dom";
 import { Box } from "@mui/system";
 import useTheme from "@mui/material/styles/useTheme";
-import { Typography, Button, Grid } from "@mui/material";
-import { motion, useAnimation } from "framer-motion";
+import { Typography, Grid } from "@mui/material";
+import { motion } from "framer-motion";
 
 import ItemCard from "../shared/ItemCard";
 
+// eslint-disable-next-line react/prop-types
 export default function WorksPreview({ works }) {
   const theme = useTheme();
 
@@ -79,7 +81,7 @@ export default function WorksPreview({ works }) {
         }}
       >
         <Grid container spacing={5}>
-          {works.map((project, index) => {
+          {works.map((project) => {
             return (
               <Grid item xs={12} sm={12} md={6} lg={4} key={project.sys.id}>
                 <ItemCard item={project} sectionPath={"/works/"} />

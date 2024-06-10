@@ -1,13 +1,14 @@
 import { Box } from "@mui/material";
 import Hero from "./Hero";
 import AboutContentNoAni from "../aboutSection/AboutContentNoAni";
-import BlogPreview from "./BlogPreview";
+// import BlogPreview from "./BlogPreview";
 import ContactContent from "../contactSection/ContactContent";
 import Footer from "../shared/Footer";
 import Showreel from "./Showreel";
 import WorksPreview from "./WorksPreview";
 
-export default function Landing({ blogs, works }) {
+// eslint-disable-next-line react/prop-types
+export default function Landing({  works }) {
   return (
     <Box
       sx={{
