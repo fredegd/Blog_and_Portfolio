@@ -29,8 +29,7 @@ export default async function createComment(commentData) {
           : null, // the id of the parent comment
       },
     });
-    const entry_1 = await entry.publish();
-    return console.log(entry_1);
+    return await entry.publish();
   } catch (message_1) {
     return console.error(message_1);
   }

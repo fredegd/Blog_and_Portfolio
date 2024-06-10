@@ -81,11 +81,9 @@ export default function WorksPreview({ works }) {
         <Grid container spacing={5}>
           {works.map((project, index) => {
             return (
-              index < 3 && (
-                <Grid item xs={12} sm={12} md={6} lg={4} key={project.sys.id}>
-                  <ItemCard item={project} sectionPath={"/works/"}/>
-                </Grid>
-              )
+              <Grid item xs={12} sm={12} md={6} lg={4} key={project.sys.id}>
+                <ItemCard item={project} sectionPath={"/works/"} />
+              </Grid>
             );
           })}
         </Grid>

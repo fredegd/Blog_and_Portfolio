@@ -1,20 +1,13 @@
-import React from "react";
-import { Box, Typography, Button } from "@mui/material";
+import { Box, Button } from "@mui/material";
 import TextField from "@mui/material/TextField";
-import { TextareaAutosize } from "@mui/base/TextareaAutosize";
+// import { TextareaAutosize } from "@mui/base/TextareaAutosize";
 
 import { useForm } from "react-hook-form";
 import { useTheme } from "@mui/material";
-import { createClient } from "contentful-management";
-import { useParams } from "react-router-dom";
 import createComment from "../../utils/createComment";
-const commentsClient = createClient({
-  accessToken: import.meta.env.VITE_CREATE_POST_COMMENT,
-});
 
-export default function CommentForm() {
+export default function CommentForm({ comments, setComments, subjectId }) {
   const theme = useTheme();
-  const subjectId = useParams();
   const {
     register,
     handleSubmit,
@@ -27,7 +20,6 @@ export default function CommentForm() {
     },
   });
   const submit = (data) => {
-    // alert(JSON.stringify(data));
     const dataToSubmit = {
       commentAuthor: data.commentAuthor,
       commentBody: data.commentBody,
@@ -36,7 +28,12 @@ export default function CommentForm() {
     };
     // console.log(dataToSubmit);
 
-    createComment(dataToSubmit);
+    const newComment = createComment(dataToSubmit).then((response) => {
+      console.log(response, "response");
+      setComments([...comments, response]);
+    });
+    console.log(newComment, "newComment");
+    // setComments([...comments, dataToSubmit]);
 
     reset();
   };

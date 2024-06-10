@@ -23,7 +23,7 @@ export default function Landing({ blogs, works }) {
       <Hero />
       <Showreel />
       <WorksPreview works={works} />
-      <BlogPreview blogs={blogs} />
+      {/* <BlogPreview blogs={blogs} /> */}
       <AboutContentNoAni />
       <ContactContent />
       <Footer />

@@ -1,43 +1,14 @@
-import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+/* eslint-disable react/prop-types */
 import { useTheme } from "@mui/material";
 
-import { Typography, Box, IconButton } from "@mui/material";
-import ReplyIcon from "@mui/icons-material/Reply";
-import { contentfulClient } from "../../utils/contentfulClient";
+import { Typography, Box } from "@mui/material";
+// import ReplyIcon from "@mui/icons-material/Reply";
+// function reply(comment) {
+//   return console.log(comment)
+// }
 
-import { createClient } from "contentful-management";
-
-const commentsClient = createClient({
-  accessToken: import.meta.env.VITE_CREATE_POST_COMMENT,
-});
-
-function reply(comment) {
-  return console.log(comment)
-}
-
-export default function CommentList() {
+export default function CommentList({ comments }) {
   const theme = useTheme();
-  const subjectId = useParams();
-  const [comments, setComments] = useState([]);
-
-  useEffect(() => {
-    contentfulClient
-      .getEntries({
-        content_type: "comment",
-        order: "sys.createdAt",
-      })
-      .then((response) => {
-        const filtered = response.items.filter((item) => {
-          return item.fields.parentPostId === subjectId.blogItemid;
-        });
-        // console.log(filtered);
-        setComments(filtered);
-      })
-      .catch((err) => console.error(err));
-  }, []);
-
-
 
   return comments.length == 0 ? (
     <>{"Write a comment"}</>
@@ -111,14 +82,13 @@ export default function CommentList() {
               sx={{
                 display: "flex",
                 alignItems: "flex-start",
-
               }}
             >
               <Typography fontSize={"inherit"} textAlign={"left"}>
                 {comment.fields.commentBody}
               </Typography>
             </Box>
-           {/* { <IconButton
+            {/* { <IconButton
               sx={{ width: "2rem", height: "2rem" }}
               onClick={reply(comment)}
             >
