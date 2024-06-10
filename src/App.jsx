@@ -32,10 +32,12 @@ export default function App() {
 
   const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
 
-  const [blogs, setBlogs] = useState([]);
+  // const [blogs, setBlogs] = useState([]);
   const [works, setWorks] = useState([]); // [TODO] - Add works to state
   const [staticBg, setStaticBg] = useState(isFirefox ? true : false);
-  const [opacity, setOpacity] = useState(localStorage.getItem("opacity") ? localStorage.getItem("opacity") : 0.5); 
+  const [opacity, setOpacity] = useState(
+    localStorage.getItem("opacity") ? localStorage.getItem("opacity") : 0.5
+  );
 
   const [bgImage, setBgImage] = useState(
     localStorage.getItem("svgData") ? localStorage.getItem("svgData") : null
@@ -119,7 +121,11 @@ export default function App() {
             opacity={opacity}
             setOpacity={setOpacity}
           />{" "}
-          <Kaleidoscope bgImage={bgImage} staticBg={staticBg} opacity={opacity} />
+          <Kaleidoscope
+            bgImage={bgImage}
+            staticBg={staticBg}
+            opacity={opacity}
+          />
           <Routes>
             <Route path="/works" element={<Projects />} />
             <Route path="/works/read/:projectId" element={<ProjectItem />} />
@@ -128,7 +134,7 @@ export default function App() {
             <Route path="/about" element={<About />} />
             <Route path="/contact" element={<Contact />} />
 
-            <Route path="/" element={<Landing blogs={blogs} works={works} />} />
+            <Route path="/" element={<Landing works={works} />} />
           </Routes>
         </CssBaseline>
       </ThemeProvider>

@@ -18,7 +18,7 @@ import {
   Toolbar,
   Typography,
 } from "@mui/material/";
-import { motion, useScroll } from "framer-motion";
+import { useScroll } from "framer-motion";
 import MenuIcon from "@mui/icons-material/Menu";
 import CloseIcon from "@mui/icons-material/Close";
 import { navItems } from "../navItems";
